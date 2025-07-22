@@ -30,3 +30,19 @@ def count_pos(doc, per_word_amount=100):
     print(parts_of_speech)
 
 count_pos(doc)
+
+
+#word frequencies
+word_frequencies = {}
+for token in doc:
+    if not token.is_stop and not token.is_punct:
+        if token.text not in word_frequencies:
+            word_frequencies[token.text] = 1
+        else:
+            word_frequencies[token.text] += 1
+print(word_frequencies)
+
+#stop words - usefull to take out when examining word frequencies
+for token in doc:
+    if not token.is_stop:
+        print(token.text)
