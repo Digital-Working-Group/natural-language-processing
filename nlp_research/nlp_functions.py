@@ -2,6 +2,7 @@ import spacy
 import pathlib
 import pandas as pd
 
+
 def data_to_df(doc):
     d = []
     for token in doc:
@@ -52,7 +53,7 @@ def num_tense_inflected_verbs(doc, amount=100):
             num_tiv = len(present_verbs) + len(modal_auxiliary) + len(past_verbs)
     return num_tiv / total_words * amount
 
-def idea_density(doc, amount=100):
+def idea_density(doc, amount=1):
     count_props = 0
     idea_density_sentences = 0
     num_sentences = 0
@@ -91,7 +92,7 @@ def abstractness(doc, amount=100):
                     total_words -= 1
     return total_concreteness_values / total_words * amount
 
-def semantic_diversity(doc, amount=100):
+def semantic_ambiguity(doc, amount=100):
     df = pd.read_excel("Semantic_diversity.xlsx", skiprows=1)
     df['!term'] = df['!term'].str.lower()
 
@@ -164,7 +165,6 @@ def word_prevelance(doc, amount=100):
 def word_familiarity(doc, amount=100):
     df = pd.read_excel("word_prevelance.xlsx")
     df['Word'] = df['Word'].str.lower()
-    df['Pknown_z-score'] = (df['Pknown'] - df['Pknown'].mean()) / df['Pknown'].std()
 
     total_words = 0
     total_word_freq_values = 0
@@ -173,9 +173,9 @@ def word_familiarity(doc, amount=100):
             total_words += 1
             if token.pos_ == "NOUN":
                 word = token.text.lower()
-                result = df.loc[df['Word'] == word, 'Pknown_z-score']
+                result = df.loc[df['Word'] == word, 'Pknown']
                 word_lemma = token.lemma_.lower()
-                result_lemma = df.loc[df['Word'] == word_lemma, 'Pknown_z-score']
+                result_lemma = df.loc[df['Word'] == word_lemma, 'Pknown']
 
                 if not result.empty:
                     total_word_freq_values += result.item()
@@ -208,3 +208,24 @@ def age_of_aquisition(doc, amount=100):
                 else:
                     total_words -= 1
     return total_AoA_values / total_words * amount
+
+def frequency_nonwords(doc, amount=100):
+    total_words = 0
+    total_nonwords = 0
+
+    word_set = set()
+    with open("words_alpha.txt", "r") as f:
+        for line in f:
+            word_set.add(line.strip())
+
+
+    for token in doc:
+        if token.is_alpha:
+            total_words += 1
+            if token.text.lower() not in word_set and token.lemma_.lower() not in word_set:
+                total_nonwords += 1
+
+    print(f"total nonwords: {total_nonwords}")
+    ratio_nonwords = total_nonwords / total_words * amount
+    return ratio_nonwords
+

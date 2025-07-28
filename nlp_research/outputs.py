@@ -2,7 +2,8 @@ import spacy
 import pathlib
 import pandas as pd
 from nlp_research.nlp_functions import data_to_df, num_tense_inflected_verbs, idea_density, abstractness, \
-    semantic_diversity, word_frequency, word_prevelance, word_familiarity, age_of_aquisition
+    semantic_ambiguity, word_frequency, word_prevelance, word_familiarity, age_of_aquisition, semantic_ambiguity, \
+    frequency_nonwords
 from nlp_functions import POS_ratio
 
 nlp = spacy.load('en_core_web_lg')
@@ -32,7 +33,7 @@ print(f"Idea Density is: {idea_density(doc)}")
 print(f"abstract: {abstractness(doc)}")
 
 #Semantic Ambiguity
-print(f"semantic ambiguity: {semantic_diversity(doc)}")
+print(f"semantic ambiguity: {semantic_ambiguity(doc)}")
 
 #Word frequency lg10
 print(f"word frequency: {word_frequency(doc)}")
@@ -45,3 +46,7 @@ print(f"word familiarity: {word_familiarity(doc)}")
 
 #Age of Aquisition
 print(f"age of aquisition: {age_of_aquisition(doc)}")
+
+#frequency of non-words
+doc2 = nlp(pathlib.Path("contains_nonwords.txt").read_text(encoding="utf-8"))
+print(f"frequency of nonwords: {frequency_nonwords(doc2, 1)}")
