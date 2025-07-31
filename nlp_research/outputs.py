@@ -6,10 +6,11 @@ from nlp_research.nlp_functions import data_to_df, proportion_tense_inflected_ve
     semantic_ambiguity, word_frequency, word_prevalence, word_familiarity, age_of_acquisition, semantic_ambiguity, \
     frequency_nonwords, length_of_sentences, occurrences_of_most_frequent, mattr_automatic, \
     moving_average_text_token_ratio, \
-    incorrectly_followed_articles, number_of_unique_tokens, count_nonwords
+    incorrectly_followed_articles, number_of_unique_tokens, avg_wh_words, avg_num_nonwords, \
+    count_nonwords_with_spellcheck, mean_similarity_of_sentences, avg_dependency_tree_height, max_dependency_tree_height
 from nlp_functions import tag_ratio
 
-nlp = spacy.load('en_core_web_sm')
+nlp = spacy.load('en_core_web_lg')
 file_name = "test.txt"
 doc = nlp(pathlib.Path("test.txt").read_text(encoding="utf-8"))
 doc1 = nlp("contains_nonwords.txt")
@@ -77,4 +78,19 @@ print(f"number of unique tokens: {number_of_unique_tokens(doc)}")
 print(f"number of unique tokens: {number_of_unique_tokens(doc)}")
 
 #number of nonwords
-print(f"number of nonwords: {count_nonwords(doc1)}")
+print(f"number of nonwords: {count_nonwords_with_spellcheck(doc=nlp(pathlib.Path("contains_nonwords.txt").read_text(encoding="utf-8")))}")
+
+#Average number of wh words
+print(f"Average number of wh words: {avg_wh_words(doc, amount=100)})")
+
+#Average number of nonwords
+print(f"Average number of non-words: {avg_num_nonwords(doc=nlp(pathlib.Path("contains_nonwords.txt").read_text(encoding="utf-8")), amount=100)}")
+
+#Average similarity of sentences
+print(f"Average semantic similarity: {mean_similarity_of_sentences(doc)}")
+
+#Average height of dependency trees
+print(f"Average height of dependency trees: {avg_dependency_tree_height(doc)}")
+
+#Max height of dependency trees
+print(f"Max height of dependency trees: {max_dependency_tree_height(doc)}")

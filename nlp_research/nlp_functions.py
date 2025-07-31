@@ -2,7 +2,10 @@ import spacy
 import pathlib
 import pandas as pd
 from lexical_diversity import lex_div as ld
+from spellchecker import SpellChecker
+import itertools
 
+nlp = spacy.load('en_core_web_lg')
 
 def data_to_df(doc):
     '''Takes in a spacy doc object and returns a pandas dataframe with token attributes '''
@@ -471,7 +474,11 @@ def ratio_of_nouns(doc):
                 total_nouns += 1
     return total_nouns / total_words
 
-def count_nonwords(doc):
+spell = SpellChecker()
+def count_nonwords_with_spellcheck(doc):
+    """
+    Takes in a spacy doc and returns the number of nonwords
+    """
     number_of_nonwords = 0
     nonwords = []
     for token in doc:
@@ -479,3 +486,94 @@ def count_nonwords(doc):
             number_of_nonwords += 1
             nonwords.append(token.text)
     return number_of_nonwords, nonwords
+
+def avg_wh_words(doc, amount=100):
+    """
+    Takes in a spacy doc and per word amount
+    calculates number of wh words per word amount
+    returns average number of wh-words per word amount
+    """
+    total_wh_words = 0
+    total_words = 0
+    for token in doc:
+        if token.is_alpha:
+            total_words += 1
+            word = token.text.lower()
+            if word[0:2] == "wh":
+                total_wh_words += 1
+    return total_wh_words / total_words * amount
+
+def avg_num_nonwords(doc, amount=100):
+    """
+    Takes in doc object and word amount
+    Counts number of nonwords by checking if words are in spacys vocabulary
+    Returns average number of nonwords per word amount
+    """
+    nonwords = 0
+    total_words = 0
+    for token in doc:
+        if token.is_alpha:
+            total_words += 1
+            if token.is_oov:
+                nonwords += 1
+    return nonwords / total_words * amount
+
+def mean_similarity_of_sentences(doc, amount=100):
+    """
+    Takes in a spacy doc object and per word amount
+    calculates mean similarity of all combinations of sentences
+    Returns mean similarity per word amount
+    """
+    sentence_list = list(doc.sents)
+    similarity_scores = []
+    for comb in itertools.combinations(sentence_list, 2):
+        sentence_one = str(comb[0])
+        sentence_two = str(comb[1])
+        doc_one = nlp(sentence_one)
+        doc_two = nlp(sentence_two)
+        similarity_score = round(doc_one.similarity(doc_two), 2)
+        similarity_scores.append(similarity_score)
+    return sum(similarity_scores) / len(similarity_scores) * amount
+
+def tree_height(node):
+    """
+    Returns the max height of a tree given a node
+    """
+    if node is None:
+        return 0
+    else:
+        children = list(node.lefts) + list(node.rights)
+        if not children:
+            return 1
+        else:
+            return max(tree_height(child) for child in children) + 1
+
+def avg_dependency_tree_height(doc):
+    """
+    Takes in a spacy doc object
+    Uses tree_height() to calculate max height of dependency trees
+    Returns average height of all dependency trees
+    """
+    tree_depths = []
+    max_depth = 0
+    for sentence in doc.sents:
+        for token in sentence:
+            if token.dep_ == "ROOT":
+                max_depth = tree_height(token)
+        tree_depths.append(max_depth)
+    return sum(tree_depths) / len(tree_depths)
+
+def max_dependency_tree_height(doc):
+    """
+    Takes in a spacy doc object
+    Uses tree_height() to calculate max height of dependency trees
+    Returns average height of all dependency trees
+    """
+    tree_depths = []
+    max_depth = 0
+    for sentence in doc.sents:
+        for token in sentence:
+            if token.dep_ == "ROOT":
+                max_depth = tree_height(token)
+        tree_depths.append(max_depth)
+    return max(tree_depths)
