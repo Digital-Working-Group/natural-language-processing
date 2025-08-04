@@ -1,13 +1,18 @@
 import spacy
 import pathlib
 import pandas as pd
+
+from nlp_research.count_pos import max_similarity_of_words
 from nlp_research.nlp_functions import data_to_df, proportion_tense_inflected_verbs, calculate_idea_density, \
     abstractness, \
     semantic_ambiguity, word_frequency, word_prevalence, word_familiarity, age_of_acquisition, semantic_ambiguity, \
-    frequency_nonwords, length_of_sentences, occurrences_of_most_frequent, mattr_automatic, \
+    frequency_nonwords, length_of_sentences, occurrences_of_most_frequent, \
     moving_average_text_token_ratio, \
     incorrectly_followed_articles, number_of_unique_tokens, avg_wh_words, avg_num_nonwords, \
-    count_nonwords_with_spellcheck, mean_similarity_of_sentences, avg_dependency_tree_height, max_dependency_tree_height
+    count_nonwords_with_spellcheck, mean_similarity_of_sentences, avg_dependency_tree_height, \
+    max_dependency_tree_height, avg_similarity_of_words, \
+    max_similarity_of_words, std_similarity_of_words, ratio_of_pronouns, ratio_of_conjunctions, \
+    stats_proportion_coordinators, stats_proportion_auxiliaries, stats_proportion_subjects
 from nlp_functions import tag_ratio
 
 nlp = spacy.load('en_core_web_lg')
@@ -62,9 +67,6 @@ print(f"avg number of words in a sentence: {length_of_sentences(doc, 1)}")
 #occurences of most frequent
 print(f"occurrences of most frequent word: {occurrences_of_most_frequent(doc)}")
 
-#Moving average type-token ratio
-print(f"lexical diversity: {mattr_automatic(doc)}")
-
 #lexical diversity
 print(f"manual lexical diversity: {moving_average_text_token_ratio(doc)}")
 
@@ -94,3 +96,27 @@ print(f"Average height of dependency trees: {avg_dependency_tree_height(doc)}")
 
 #Max height of dependency trees
 print(f"Max height of dependency trees: {max_dependency_tree_height(doc)}")
+
+#Average similarity of words across moving windows
+print(f"average similarity of words with moving window size of 3: {avg_similarity_of_words(doc, window_size=3, amount=100)} ")
+
+#Maximum similarity of words across moving windows
+print(f"Maximum similarity of words with moving window size of 3: {max_similarity_of_words(doc, window_size=3, amount=100)})")
+
+#Standard deviation of similarity of words acros moving windows
+print(f"Standard deviation of similarity of words with moving window size of 3: {std_similarity_of_words(doc, window_size=3, amount=100)})")
+
+#Ratio of pronouns to total words
+print(f"ratio of pronouns to total words: {ratio_of_pronouns(doc)}")
+
+#Ratio of conjunctions to total words
+print(f"Ratio of conjunctions to total words: {ratio_of_conjunctions(doc)}")
+
+#Minimum, maximum, and standard deviation of proportion of coordinators across sentences
+print(f"Minimum, maximum, and standard deviation of proportion of coordinators across sentences: {stats_proportion_coordinators(doc)}")
+
+#Minimum, maximum, and standard deviation of proportion of auxiliaries across sentences
+print(f"Minimum, maximum, and standard deviation of proportion of auxiliaries across sentences: {stats_proportion_auxiliaries(doc)}")
+
+#Minimum, maximum, and standard deviation of proportion of subjects across sentences
+print(f"#Minimum, maximum, and standard deviation of proportion of subjects across sentences: {stats_proportion_subjects(doc)}")

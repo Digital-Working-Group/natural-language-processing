@@ -4,10 +4,21 @@ import pandas as pd
 from lexical_diversity import lex_div as ld
 from spellchecker import SpellChecker
 import itertools
+import math
+import statistics
+from spacy.tokens import Doc
 
+
+#datasets used for generating features
 nlp = spacy.load('en_core_web_lg')
+dataset_for_abstractness = "13428_2013_403_MOESM1_ESM.xlsx"
+dataset_for_semantic_ambiguity = "Semantic_diversity.xlsx"
+dataset_for_word_frequency = "SUBTLEXusExcel2007.xlsx"
+dataset_for_word_prevalence_and_familiarity = "word_prevelance.xlsx"
+dataset_for_age_of_acquisition = "for_AoA.xlsx"
 
-def data_to_df(doc):
+
+def data_to_df(doc: Doc):
     '''Takes in a spacy doc object and returns a pandas dataframe with token attributes '''
     d = []
     for token in doc:
@@ -24,7 +35,7 @@ def data_to_df(doc):
     return pd.DataFrame(d)
 
 
-def tag_ratio(doc, tag='POS', amount=100):
+def tag_ratio(doc: Doc, tag='POS', amount=100):
     ''' Takes in spacy doc object, desired tag, and per word amount(default is 100)
         Returns a dictionary with pos tags and their proportions'''
     df = data_to_df(doc)
@@ -43,7 +54,7 @@ def tag_ratio(doc, tag='POS', amount=100):
 
     return tag_count_per_amount
 
-def proportion_tense_inflected_verbs(doc, amount=100):
+def proportion_tense_inflected_verbs(doc: Doc, amount=100):
     '''
     Takes in a spacy doc object and per word amount(default is 100)
     Calculates proportion of tense inflected verbs based on number of tense inflected verbs
@@ -68,7 +79,7 @@ def proportion_tense_inflected_verbs(doc, amount=100):
             num_tiv = len(present_verbs) + len(modal_auxiliary) + len(past_verbs)
     return num_tiv / total_words * amount
 
-def calculate_idea_density(doc, amount=1):
+def calculate_idea_density(doc: Doc, amount=1):
     '''
     Takes in a spacy doc object and per word amount(default is 1))
     Calculates idea density - the number of proportions divided by the total words
@@ -90,13 +101,13 @@ def calculate_idea_density(doc, amount=1):
     idea_density += idea_density_sentences / num_sentences * amount
     return idea_density
 
-def abstractness(doc, amount=100):
+def abstractness(doc: Doc, amount=100):
     """
     Takes in a spacy doc object and per word amount(default is 100)
     Calculates abstractness - inverse of concreteness value taken from dataset
     Returns the average abstractness per word amount
     """
-    df = pd.read_excel('13428_2013_403_MOESM1_ESM.xlsx')
+    df = pd.read_excel(dataset_for_abstractness)
     df['Word'] = df['Word'].str.lower()
 
     total_words = 0
@@ -119,13 +130,13 @@ def abstractness(doc, amount=100):
                     total_words -= 1  #omits words not in data from calculation
     return total_abstractness_values / total_words * amount
 
-def semantic_ambiguity(doc, amount=100):
+def semantic_ambiguity(doc: Doc, amount=100):
     """
     Takes in a spacy doc object and per word amount(default is 100)
     Calculates semantic ambiguity using semantic diversity value from dataset
     Returns the semantic ambiguity per word amount
     """
-    df = pd.read_excel("Semantic_diversity.xlsx", skiprows=1)
+    df = pd.read_excel(dataset_for_semantic_ambiguity, skiprows=1)
     df['!term'] = df['!term'].str.lower()
 
     total_words = 0
@@ -147,13 +158,13 @@ def semantic_ambiguity(doc, amount=100):
                     total_words -= 1  #omit words not in data from calculation
     return total_ambiguity_values / total_words * amount
 
-def word_frequency(doc, amount=100):
+def word_frequency(doc: Doc, amount=100):
     """
     Takes in a spacy doc object and per word amount(default is 100)
     Calculates word frequency using log10 word frequency measure from dataset
     Returns the word frequency per word amount
     """
-    df = pd.read_excel("SUBTLEXusExcel2007.xlsx")
+    df = pd.read_excel(dataset_for_word_frequency)
     df['Word'] = df['Word'].str.lower()
 
     total_words = 0
@@ -176,13 +187,13 @@ def word_frequency(doc, amount=100):
                     total_words -= 1   #omit words not in data from calculation
     return total_wf_values / total_words * amount
 
-def word_prevalence(doc, amount=100):
+def word_prevalence(doc: Doc, amount=100):
     """
     Takes in a spacy doc object and per word amount(default is 100)
     Calculates word prevalence using prevalence measure from dataset
     Returns the word prevalence per word amount
     """
-    df = pd.read_excel("word_prevelance.xlsx")
+    df = pd.read_excel(dataset_for_word_prevalence_and_familiarity)
     df['Word'] = df['Word'].str.lower()
 
     total_words = 0
@@ -206,13 +217,13 @@ def word_prevalence(doc, amount=100):
     return total_wp_values / total_words * amount
 
 
-def word_familiarity(doc, amount=100):
+def word_familiarity(doc: Doc, amount=100):
     """
     Takes in a spacy doc object and per word amount(default is 100)
     Calculates word familiarity based on a z standardized measure of how many people know a word (from dataset)
     Returns the word familiarity per word amount
     """
-    df = pd.read_excel("word_prevelance.xlsx")
+    df = pd.read_excel(dataset_for_word_prevalence_and_familiarity)
     df['Word'] = df['Word'].str.lower()
 
     total_words = 0
@@ -235,13 +246,13 @@ def word_familiarity(doc, amount=100):
                     total_words -= 1
     return total_word_familiarity_values / total_words * amount
 
-def age_of_acquisition(doc, amount=100):
+def age_of_acquisition(doc: Doc, amount=100):
     """
     Takes in a spacy doc object and per word amount(default is 100)
     Calculates age of acquisition using age measure from dataset
     Returns the age of acquisition per word amount
     """
-    df = pd.read_excel("for_AoA.xlsx")
+    df = pd.read_excel(dataset_for_age_of_acquisition)
     df['Word'] = df['Word'].str.lower()
 
     total_words = 0
@@ -264,7 +275,7 @@ def age_of_acquisition(doc, amount=100):
                     total_words -= 1
     return total_AoA_values / total_words * amount
 
-def frequency_nonwords(doc, amount=100):
+def frequency_nonwords(doc: Doc, amount=100):
     """
     Takes in a spacy doc object and per word amount(default is 100)
     Calculates frequency of non-words using dataset of english words
@@ -288,7 +299,7 @@ def frequency_nonwords(doc, amount=100):
     return ratio_nonwords
 
 
-def length_of_sentences(doc, amount=1):
+def length_of_sentences(doc: Doc, amount=1):
     """
     Takes in a spacy doc object and per word amount(default is 1)
     Calculates average length of sentences
@@ -308,7 +319,7 @@ def length_of_sentences(doc, amount=1):
     return avg_words_per_sentence * amount
 
 #Occurances of the most frequent token in the text
-def occurrences_of_most_frequent(doc):
+def occurrences_of_most_frequent(doc: Doc):
     """
     Takes in a spacy doc object
     Finds most frequent word and counts its occurrences
@@ -333,20 +344,8 @@ def occurrences_of_most_frequent(doc):
 
     return most_common_word, most_common
 
-def mattr_automatic(doc):
-    """
-    Takes in a spacy doc object
-    uses ld.mattr from the python library "Lexical diversity" to automatically calculate moving average type token ratio
-    Returns moving average type token ratio
-    """
-    word_list = []
-    for token in doc:
-        if token.is_alpha:
-            word_list.append(token.text.lower())
 
-    return ld.mattr(word_list, window_length=25)
-
-def moving_average_text_token_ratio(doc, window_size=20):
+def moving_average_text_token_ratio(doc: Doc, window_size=20):
     """
     Takes in a spacy doc object and window size (default is 20)
     Calculates type/token ratio for a fixed-length window, and averages type/token ratios from all windows.
@@ -367,7 +366,7 @@ def moving_average_text_token_ratio(doc, window_size=20):
         text_token_ratio_per_window.append(len(unique_words) / window_size)
     return sum(text_token_ratio_per_window) / len(text_token_ratio_per_window)
 
-def term_frequency(doc, term):
+def term_frequency(doc: Doc, term):
     """
     Takes in a spacy doc object and target string
     Returns frequency of target string in document
@@ -406,7 +405,7 @@ def tf_idf(document_list, doc, term):
     """
     return term_frequency(doc, term) * inverse_document_frequency(document_list, term)
 
-def repeating_unique_word_ratio(doc, amount=100):
+def repeating_unique_word_ratio(doc: Doc, amount=100):
     """
     Takes in a spacy doc object and per word amount
     calculates (number of repeating words) / (number of unique words)
@@ -427,7 +426,7 @@ def repeating_unique_word_ratio(doc, amount=100):
     unique_words = set(word_list)
     return repeating_words / len(unique_words) * amount
 
-def incorrectly_followed_articles(doc):
+def incorrectly_followed_articles(doc: Doc):
     """
     Takes in a spacy doc object
     counts number of articles not followed by a noun, proper noun, or adjective
@@ -442,7 +441,7 @@ def incorrectly_followed_articles(doc):
                 count += 1
     return count
 
-def number_of_unique_tokens(doc):
+def number_of_unique_tokens(doc: Doc):
     """
     Takes in a spacy doc and returns the number of unique tokens
     """
@@ -451,7 +450,7 @@ def number_of_unique_tokens(doc):
         unique_tokens.add(token.text)
     return len(unique_tokens)
 
-def number_of_unique_lemmas(doc):
+def number_of_unique_lemmas(doc: Doc):
     """
     Takes in a spacy doc and returns the number of unique lemmas
     """
@@ -460,7 +459,7 @@ def number_of_unique_lemmas(doc):
         lemmas.add(token.lemma_)
     return len(lemmas)
 
-def ratio_of_nouns(doc):
+def ratio_of_nouns(doc: Doc):
     """
     Takes in a spacy doc and returns the ratio of nouns to total words
     """
@@ -475,7 +474,8 @@ def ratio_of_nouns(doc):
     return total_nouns / total_words
 
 spell = SpellChecker()
-def count_nonwords_with_spellcheck(doc):
+
+def count_nonwords_with_spellcheck(doc: Doc):
     """
     Takes in a spacy doc and returns the number of nonwords
     """
@@ -487,7 +487,7 @@ def count_nonwords_with_spellcheck(doc):
             nonwords.append(token.text)
     return number_of_nonwords, nonwords
 
-def avg_wh_words(doc, amount=100):
+def avg_wh_words(doc: Doc, amount=100):
     """
     Takes in a spacy doc and per word amount
     calculates number of wh words per word amount
@@ -503,7 +503,7 @@ def avg_wh_words(doc, amount=100):
                 total_wh_words += 1
     return total_wh_words / total_words * amount
 
-def avg_num_nonwords(doc, amount=100):
+def avg_num_nonwords(doc: Doc, amount=100):
     """
     Takes in doc object and word amount
     Counts number of nonwords by checking if words are in spacys vocabulary
@@ -518,7 +518,7 @@ def avg_num_nonwords(doc, amount=100):
                 nonwords += 1
     return nonwords / total_words * amount
 
-def mean_similarity_of_sentences(doc, amount=100):
+def mean_similarity_of_sentences(doc: Doc, amount=100):
     """
     Takes in a spacy doc object and per word amount
     calculates mean similarity of all combinations of sentences
@@ -548,7 +548,7 @@ def tree_height(node):
         else:
             return max(tree_height(child) for child in children) + 1
 
-def avg_dependency_tree_height(doc):
+def avg_dependency_tree_height(doc: Doc):
     """
     Takes in a spacy doc object
     Uses tree_height() to calculate max height of dependency trees
@@ -563,7 +563,7 @@ def avg_dependency_tree_height(doc):
         tree_depths.append(max_depth)
     return sum(tree_depths) / len(tree_depths)
 
-def max_dependency_tree_height(doc):
+def max_dependency_tree_height(doc: Doc):
     """
     Takes in a spacy doc object
     Uses tree_height() to calculate max height of dependency trees
@@ -577,3 +577,192 @@ def max_dependency_tree_height(doc):
                 max_depth = tree_height(token)
         tree_depths.append(max_depth)
     return max(tree_depths)
+
+def avg_similarity_of_words(doc: Doc, window_size=3, amount=100):
+    """
+    Takes in a spacy doc object, window size(default 3) and word amount(default 100)
+    Computes average similarity between words in each window
+    Returns average similarity score across all windows
+    """
+    word_list = []
+    similarity_scores = []
+    #make word list
+    for token in doc:
+        if token.is_alpha:
+            word_list.append(token.text)
+    #get list of words in window
+    for i in range(len(word_list) - window_size + 1):
+        similarity_scores_of_window = []
+        words_in_window = word_list[i: i + window_size]
+        for combination in itertools.combinations(words_in_window, 2):
+            word1 = str(combination[0])
+            word2 = str(combination[1])
+            doc1 = nlp(word1)
+            doc2 = nlp(word2)
+            similarity_score = round(doc1.similarity(doc2), 2)
+            similarity_scores_of_window.append(similarity_score)
+
+        avg_similarity_of_window = sum(similarity_scores_of_window) / len(similarity_scores_of_window)
+        similarity_scores.append(avg_similarity_of_window)
+
+    avg_similarity = sum(similarity_scores) / len(similarity_scores)
+    return avg_similarity * amount
+
+def max_similarity_of_words(doc: Doc, window_size=3, amount=100):
+    """
+    Takes in a spacy doc object, window size(default 3) and word amount(default 100)
+    Computes average similarity between words in each window
+    Returns maximum similarity score across all windows
+    """
+    word_list = []
+    similarity_scores = []
+    #make word list
+    for token in doc:
+        if token.is_alpha:
+            word_list.append(token.text)
+    #get list of words in window
+    for i in range(len(word_list) - window_size + 1):
+        similarity_scores_of_window = []
+        words_in_window = word_list[i: i + window_size]
+        for combination in itertools.combinations(words_in_window, 2):
+            word1 = str(combination[0])
+            word2 = str(combination[1])
+            doc1 = nlp(word1)
+            doc2 = nlp(word2)
+            similarity_score = round(doc1.similarity(doc2), 2)
+            similarity_scores_of_window.append(similarity_score)
+
+        avg_similarity_of_window = sum(similarity_scores_of_window) / len(similarity_scores_of_window)
+        similarity_scores.append(avg_similarity_of_window)
+
+    max_similarity = max(similarity_scores)
+    return max_similarity * amount
+
+def std_similarity_of_words(doc: Doc, window_size=3, amount=100):
+    """
+    Takes in a spacy doc object, window size(default 3) and word amount(default 100)
+    Computes standard deviation of similarity between words in each window
+    Returns standard deviation similarity score across all windows
+    """
+    word_list = []
+    similarity_scores = []
+    #make word list
+    for token in doc:
+        if token.is_alpha:
+            word_list.append(token.text)
+    #get list of words in window
+    for i in range(len(word_list) - window_size + 1):
+        similarity_scores_of_window = []
+        words_in_window = word_list[i: i + window_size]
+        for combination in itertools.combinations(words_in_window, 2):
+            word1 = str(combination[0])
+            word2 = str(combination[1])
+            doc1 = nlp(word1)
+            doc2 = nlp(word2)
+            similarity_score = round(doc1.similarity(doc2), 2)
+            similarity_scores_of_window.append(similarity_score)
+
+        avg_similarity_of_window = sum(similarity_scores_of_window) / len(similarity_scores_of_window)
+        similarity_scores.append(avg_similarity_of_window)
+
+    standard_deviation_similarity = statistics.stdev(similarity_scores)
+    return standard_deviation_similarity * amount
+
+def ratio_of_pronouns(doc: Doc):
+    """
+    Takes in a spacy doc and returns the ratio of nouns to total words
+    """
+    total_words = 0
+    total_pronouns = 0
+    for token in doc:
+        if token.is_alpha:
+            total_words += 1
+            if token.pos_== "PRON":
+                total_pronouns += 1
+    return total_pronouns / total_words
+
+def ratio_of_conjunctions(doc: Doc):
+    """
+    Takes in a spacy doc and returns the ratio of nouns to total words
+    """
+    total_words = 0
+    total_conjunctions = 0
+    for token in doc:
+        if token.is_alpha:
+            total_words += 1
+            if token.pos_== "CCONJ" or token.pos_ == "SCONJ":
+                total_conjunctions += 1
+    return total_conjunctions / total_words
+
+def stats_proportion_coordinators(doc: Doc):
+    """
+    Takes in a spacy doc object
+    Calculates the ratio of coordinators to total words in a sentence
+    Returns the average, minimum, maximum, and standard deviation across all sentences
+    """
+    coordinators_to_word_ratios = []
+    stats_num_coordinators = {}
+    for sentence in doc.sents:
+        number_of_words = 0
+        number_of_coordinators = 0
+        for token in sentence:
+            if token.is_alpha:
+                number_of_words += 1
+                if token.pos_ == "CCONJ":
+                    number_of_coordinators += 1
+        coordinators_to_word_ratios.append(number_of_coordinators / number_of_words)
+
+    stats_num_coordinators["mean"] = sum(coordinators_to_word_ratios) / len(coordinators_to_word_ratios)
+    stats_num_coordinators["maximum"] = max(coordinators_to_word_ratios)
+    stats_num_coordinators["minimum"] = min(coordinators_to_word_ratios)
+    stats_num_coordinators["standard deviation"] = statistics.stdev(coordinators_to_word_ratios)
+    return stats_num_coordinators
+
+def stats_proportion_auxiliaries(doc: Doc):
+    """
+    Takes in a spacy doc object
+    Calculates the ratio of auxiliaries to total words in a sentence
+    Returns the average, minimum, maximum, and standard deviation across all sentences
+    """
+    auxiliaries_to_word_ratios = []
+    stats_num_auxiliaries = {}
+    for sentence in doc.sents:
+        number_of_words = 0
+        number_of_auxiliaries = 0
+        for token in sentence:
+            if token.is_alpha:
+                number_of_words += 1
+                if token.pos_ == "AUX":
+                    number_of_auxiliaries += 1
+        auxiliaries_to_word_ratios.append(number_of_auxiliaries / number_of_words)
+
+    stats_num_auxiliaries["mean"] = sum(auxiliaries_to_word_ratios) / len(auxiliaries_to_word_ratios)
+    stats_num_auxiliaries["maximum"] = max(auxiliaries_to_word_ratios)
+    stats_num_auxiliaries["minimum"] = min(auxiliaries_to_word_ratios)
+    stats_num_auxiliaries["standard deviation"] = statistics.stdev(auxiliaries_to_word_ratios)
+    return stats_num_auxiliaries
+
+def stats_proportion_subjects(doc: Doc):
+    """
+    Takes in a spacy doc object
+    Calculates the ratio of subjects to total words in a sentence
+    Returns the average, minimum, maximum, and standard deviation across all sentences
+    """
+    subjects_to_word_ratios = []
+    stats_num_subjects = {}
+    for sentence in doc.sents:
+        number_of_words = 0
+        number_of_subjects = 0
+        for token in sentence:
+            if token.is_alpha:
+                number_of_words += 1
+                if token.dep_ == "nsubj":
+                    number_of_subjects += 1
+        subjects_to_word_ratios.append(number_of_subjects / number_of_words)
+
+    stats_num_subjects["mean"] = sum(subjects_to_word_ratios) / len(subjects_to_word_ratios)
+    stats_num_subjects["maximum"] = max(subjects_to_word_ratios)
+    stats_num_subjects["minimum"] = min(subjects_to_word_ratios)
+    stats_num_subjects["standard deviation"] = statistics.stdev(subjects_to_word_ratios)
+    return stats_num_subjects
+
