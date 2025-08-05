@@ -12,7 +12,8 @@ from nlp_research.nlp_functions import data_to_df, proportion_tense_inflected_ve
     count_nonwords_with_spellcheck, mean_similarity_of_sentences, avg_dependency_tree_height, \
     max_dependency_tree_height, avg_similarity_of_words, \
     max_similarity_of_words, std_similarity_of_words, ratio_of_pronouns, ratio_of_conjunctions, \
-    stats_proportion_coordinators, stats_proportion_auxiliaries, stats_proportion_subjects
+    stats_proportion_coordinators, stats_proportion_auxiliaries, stats_proportion_subjects, \
+    count_num_sentences_without_verbs, total_consecutive_words, stats_proportion_adjectives
 from nlp_functions import tag_ratio
 
 nlp = spacy.load('en_core_web_lg')
@@ -119,4 +120,13 @@ print(f"Minimum, maximum, and standard deviation of proportion of coordinators a
 print(f"Minimum, maximum, and standard deviation of proportion of auxiliaries across sentences: {stats_proportion_auxiliaries(doc)}")
 
 #Minimum, maximum, and standard deviation of proportion of subjects across sentences
-print(f"#Minimum, maximum, and standard deviation of proportion of subjects across sentences: {stats_proportion_subjects(doc)}")
+print(f"Minimum, maximum, and standard deviation of proportion of subjects across sentences: {stats_proportion_subjects(doc)}")
+
+#Count the number of sentences without verbs
+print(f"number of sentences without verbs: {count_num_sentences_without_verbs(doc)}")
+
+#count the number of consecutively repeating words
+print(f"Number of consecutive repeating words: {total_consecutive_words(doc)}")
+
+#Minimum, maximum, and standard deviation of proportion of adjectives across sentences
+print(f"Minimum, maximum, and standard deviation of proportion of adjectives across sentences: {stats_proportion_adjectives(doc)}")

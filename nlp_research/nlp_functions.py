@@ -8,6 +8,7 @@ import math
 import statistics
 from spacy.tokens import Doc
 
+from nlp_research.count_pos import doc
 
 #datasets used for generating features
 nlp = spacy.load('en_core_web_lg')
@@ -765,4 +766,64 @@ def stats_proportion_subjects(doc: Doc):
     stats_num_subjects["minimum"] = min(subjects_to_word_ratios)
     stats_num_subjects["standard deviation"] = statistics.stdev(subjects_to_word_ratios)
     return stats_num_subjects
+
+def count_num_sentences_without_verbs(doc: Doc):
+    """
+    Takes in a spacy doc object
+    Counts the number of sentences without verbs.
+    Returns the count of sentences without verbs.
+    """
+    count = 0
+    for sentence in doc.sents:
+        count_verbs =  0
+        for token in sentence:
+            if token.pos_ == "VERB":
+                count_verbs += 1
+        if count_verbs < 1:
+            count += 1
+    return count
+
+def total_consecutive_words(doc: Doc):
+    """
+    Takes in a spacy doc object
+    Counts the number of consecutive repeating words
+    returns the count of consecutive repeating words.
+    """
+    word_list = []
+    consecutive_words = 0
+    for token in doc:
+        if token.is_alpha:
+            word_list.append(token.text)
+    for i, word in enumerate(word_list):
+        next_word = word_list[i + 1] if i != len(word_list) - 1 else None
+        if word == next_word:
+            consecutive_words += 1
+    return consecutive_words
+
+
+def stats_proportion_adjectives(doc: Doc):
+    """
+    Takes in a spacy doc object
+    Calculates the ratio of adjectives to total words in a sentence
+    Returns the average, minimum, maximum, and standard deviation across all sentences
+    """
+    adjectives_to_word_ratios = []
+    stats_num_adjectives = {}
+    for sentence in doc.sents:
+        number_of_words = 0
+        number_of_adjectives = 0
+        for token in sentence:
+            if token.is_alpha:
+                number_of_words += 1
+                if token.pos_ == "ADJ":
+                    number_of_adjectives += 1
+        adjectives_to_word_ratios.append(number_of_adjectives / number_of_words)
+
+    stats_num_adjectives["mean"] = sum(adjectives_to_word_ratios) / len(adjectives_to_word_ratios)
+    stats_num_adjectives["maximum"] = max(adjectives_to_word_ratios)
+    stats_num_adjectives["minimum"] = min(adjectives_to_word_ratios)
+    stats_num_adjectives["standard deviation"] = statistics.stdev(adjectives_to_word_ratios)
+    return stats_num_adjectives
+
+
 
