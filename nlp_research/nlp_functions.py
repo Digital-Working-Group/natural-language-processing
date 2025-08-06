@@ -18,6 +18,12 @@ dataset_for_word_frequency = "SUBTLEXusExcel2007.xlsx"
 dataset_for_word_prevalence_and_familiarity = "word_prevelance.xlsx"
 dataset_for_age_of_acquisition = "for_AoA.xlsx"
 
+## >> 
+# Let's have nlp as an argument into the relevant functions, rather than a global variable in the entire .py file.
+# Similarly, for the filepaths defined for the datasets below (lines 15-19), let's have them be arguments in the relevant functions.
+# They can have default values that are defined as the current XLSX files that we have.
+# Let's put the XLSX files into a subfolder (datasets/file.xlsx) instead as well. There is also a minor typo in the word_prevelance.xlsx filename.
+## >>
 
 def data_to_df(doc: Doc):
     '''Takes in a spacy doc object and returns a pandas dataframe with token attributes '''
@@ -34,7 +40,9 @@ def data_to_df(doc: Doc):
             "STOP": token.is_stop
         })
     return pd.DataFrame(d)
-
+## >>
+# Is pip instaPOS the correct name for token.pos_? Should it be POS?
+## >>
 
 def tag_ratio(doc: Doc, tag='POS', amount=100):
     ''' Takes in spacy doc object, desired tag, and per word amount(default is 100)
@@ -54,6 +62,13 @@ def tag_ratio(doc: Doc, tag='POS', amount=100):
         tag_count_per_amount[tag] = tag_count_per_amount[tag] / total * amount
 
     return tag_count_per_amount
+
+## >>
+# Recommend defaultdict(int) for tag_count_per_amount or Counter() (see python collections library)
+# Is POS a proper default value for tag? If there isn't a good default value, can set it to None.
+# What is this measuring? Let's say I have 2/10 words that are POS=PROPN. Is that tag ratio 0.2 or is it 0.2*100?
+# Seems like 0.2*100 is correct, where we're then extrapolating that 0.2 ratio to as if it were over 100 words?
+## >>
 
 def proportion_tense_inflected_verbs(doc: Doc, amount=100):
     '''
@@ -79,6 +94,11 @@ def proportion_tense_inflected_verbs(doc: Doc, amount=100):
 
             num_tiv = len(present_verbs) + len(modal_auxiliary) + len(past_verbs)
     return num_tiv / total_words * amount
+## >>
+# Please add info in docstring as to why we need to check if the token is an alpha.
+# Should we be checking if Pres/Past respectively are in token.morph.get("Tense")?
+# Can token.morph.get("Tense") result in a list with >1 element?
+## >>
 
 def calculate_idea_density(doc: Doc, amount=1):
     '''
@@ -101,6 +121,15 @@ def calculate_idea_density(doc: Doc, amount=1):
         idea_density_sentences += count_props / count_words
     idea_density += idea_density_sentences / num_sentences * amount
     return idea_density
+## >>
+# Typo of 'number of proportions' instead of 'number of prepositions' in the docstring.
+# Please add info in docstring as to why we need to check if the token is an alpha.
+# PROPN represents proper nouns, not prepositions.
+# Seems like we need to count tokens that are verbs, adjectives, adverbs, prepositions, or conjunctions.
+# https://github.com/explosion/spaCy/blob/master/spacy/glossary.py
+# or running spacy.explain("PROPN") can explain the tags further.
+## >>
+
 
 def abstractness(doc: Doc, amount=100):
     """
