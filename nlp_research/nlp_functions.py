@@ -1,28 +1,16 @@
 from collections import defaultdict
-
-import spacy
-import pathlib
 import pandas as pd
-from lexical_diversity import lex_div as ld
-from spellchecker import SpellChecker
 import itertools
 import math
 import statistics
-from spacy.tokens import Doc
+import spacy
+from pathlib import Path
 
-from nlp_research.count_pos import doc
-
-#datasets used for generating features
-dataset_for_abstractness = "13428_2013_403_MOESM1_ESM.xlsx"
-dataset_for_semantic_ambiguity = "Semantic_diversity.xlsx"
-dataset_for_word_frequency = "SUBTLEXusExcel2007.xlsx"
-dataset_for_word_prevalence_and_familiarity = "word_prevelance.xlsx"
-dataset_for_age_of_acquisition = "for_AoA.xlsx"
-
-
-def data_to_df(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+def data_to_df(pipeline='en_core_web_lg', file_path="test.txt"):
     '''Takes in a natural language processor and a file path, and returns a pandas dataframe with token attributes '''
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
+
     d = []
     for token in doc:
         d.append({
@@ -38,12 +26,11 @@ def data_to_df(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
     return pd.DataFrame(d)
 
 
-def tag_ratio(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", tag="POS", amount=100):
+def tag_ratio(pipeline='en_core_web_lg', file_path="test.txt", tag="POS", amount=100):
     ''' Takes in spacy doc object, desired tag, and per word amount(default is 100)
         Returns a dictionary with pos tags and on average how many are present per 100 words'''
-    doc = nlp(file_path)
 
-    df = data_to_df(doc)
+    df = data_to_df(pipeline, file_path)
     tag_counts = defaultdict(int)
     total = 0
     #counts tags
@@ -56,13 +43,14 @@ def tag_ratio(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", tag="POS
 
     return tag_counts
 
-def num_tense_inflected_verbs(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", amount=100):
+def num_tense_inflected_verbs(pipeline='en_core_web_lg', file_path="test.txt", amount=100):
     '''
     Takes in a natural language processor, file path, and per word amount(default is 100)
     Filters on tokens that only contain alphabetic characters (excluding punctuation or numbers), and calculates avg number of tense inflected verbs per word amount
     Returns the number of tense inflected verbs
     '''
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     total_words = 0
     present_verbs = []
@@ -83,13 +71,14 @@ def num_tense_inflected_verbs(nlp = spacy.load('en_core_web_lg'), file_path="tes
             num_tiv = len(present_verbs) + len(modal_auxiliary) + len(past_verbs)
     return num_tiv / total_words * amount
 
-def calculate_idea_density(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+def calculate_idea_density(pipeline='en_core_web_lg', file_path="test.txt"):
     '''
     Takes in a natural language processor, and file path
     Filters on alphabetic tokens (words), calculates idea density - the number of propositions divided by the total words
     Returns the idea density
     '''
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     count_props = 0
     idea_density_sentences = 0
@@ -107,13 +96,14 @@ def calculate_idea_density(nlp = spacy.load('en_core_web_lg'), file_path="test.t
     idea_density += idea_density_sentences / num_sentences
     return idea_density
 
-def abstractness(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", dataset_path="datasets/13428_2013_403_MOESM1_ESM.xlsx"):
+def abstractness(pipeline='en_core_web_lg', file_path="test.txt", dataset_path="datasets/dataset_for_abstractness.xlsx"):
     """
     Takes in a natural language processor, file path, and dataset path
     Calculates abstractness - inverse of concreteness value taken from dataset
     Returns the average abstractness
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     df = pd.read_excel(dataset_path)
     df['Word'] = df['Word'].str.lower()
@@ -138,13 +128,14 @@ def abstractness(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", datas
                     total_words -= 1  #omits words not in data from calculation
     return total_abstractness_values / total_words
 
-def semantic_ambiguity(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", dataset_path="datasets/Semantic_diversity.xlsx"):
+def semantic_ambiguity(pipeline='en_core_web_lg', file_path="test.txt", dataset_path="datasets/dataset_for_semantic_ambiguity.xlsx"):
     """
     Takes in a natural language processor, file path, dataset path
     Calculates semantic ambiguity using semantic diversity value from dataset
     Returns the average semantic ambiguity value for all words
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     df = pd.read_excel(dataset_path, skiprows=1)
     df['!term'] = df['!term'].str.lower()
@@ -168,13 +159,14 @@ def semantic_ambiguity(nlp = spacy.load('en_core_web_lg'), file_path="test.txt",
                     total_words -= 1  #omit words not in data from calculation
     return total_ambiguity_values / total_words
 
-def word_frequency(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", dataset_path="datasets/SUBTLEXusExcel2007.xlsx"):
+def word_frequency(pipeline='en_core_web_lg', file_path="test.txt", dataset_path="datasets/dataset_for_word_frequency.xlsx"):
     """
     Takes in a natural language processor, file path, dataset path
     Calculates word frequency using log10 word frequency measure from dataset
     Returns the average word frequency value for all words
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     df = pd.read_excel(dataset_path)
     df['Word'] = df['Word'].str.lower()
@@ -199,13 +191,14 @@ def word_frequency(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", dat
                     total_words -= 1   #omit words not in data from calculation
     return total_wf_values / total_words
 
-def word_prevalence(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", dataset_path="datasets/word_prevalence.xlsx"):
+def word_prevalence(pipeline='en_core_web_lg', file_path="test.txt", dataset_path="datasets/dataset_for_word_prevalence_and_familiarity.xlsx"):
     """
     Takes in a natural language processor, file path, dataset path
     Calculates word prevalence using prevalence measure from dataset
     Returns the average word prevalence value of all words per
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     df = pd.read_excel(dataset_path)
     df['Word'] = df['Word'].str.lower()
@@ -231,13 +224,14 @@ def word_prevalence(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", da
     return total_wp_values / total_words
 
 
-def word_familiarity(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", dataset_path="datasets/word_prevalence.xlsx"):
+def word_familiarity(pipeline='en_core_web_lg', file_path="test.txt", dataset_path="datasets/dataset_for_word_prevalence_and_familiarity.xlsx"):
     """
     Takes in a natural language processor, file path, dataset path
     Calculates word familiarity based on a z standardized measure of how many people know a word (from dataset)
     Returns the average word familiarity of all words
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     df = pd.read_excel(dataset_path)
     df['Word'] = df['Word'].str.lower()
@@ -262,13 +256,14 @@ def word_familiarity(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", d
                     total_words -= 1
     return total_word_familiarity_values / total_words
 
-def age_of_acquisition(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", dataset_path="datasets/for_AoA.xlsx"):
+def age_of_acquisition(pipeline='en_core_web_lg', file_path="test.txt", dataset_path="datasets/dataset_for_age_of_acquisition.xlsx"):
     """
     Takes in a natural language processor, file path, dataset path
     Calculates age of acquisition using age measure from dataset
     Returns the average age of acquisition for all words
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     df = pd.read_excel(dataset_path)
     df['Word'] = df['Word'].str.lower()
@@ -293,13 +288,14 @@ def age_of_acquisition(nlp = spacy.load('en_core_web_lg'), file_path="test.txt",
                     total_words -= 1
     return total_AoA_values / total_words
 
-def frequency_nonwords(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", amount=100):
+def frequency_nonwords(pipeline='en_core_web_lg', file_path="test.txt", amount=100):
     """
     Takes in a natural language processor and file path and per word amount(default is 100)
     Calculates frequency of non-words using dataset of english words
     Outputs on average how many non-words are present per word amount
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     total_words = 0
     total_nonwords = 0
@@ -320,13 +316,14 @@ def frequency_nonwords(nlp = spacy.load('en_core_web_lg'), file_path="test.txt",
     return ratio_nonwords
 
 
-def length_of_sentences(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+def length_of_sentences(pipeline='en_core_web_lg', file_path="test.txt"):
     """
     Takes in a natural language processor and file path
     Calculates average length of sentences
     Returns the average length of sentences
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     num_sentences = 0
     words_in_sentence = []
@@ -342,13 +339,14 @@ def length_of_sentences(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"
     return avg_words_per_sentence
 
 #Occurances of the most frequent token in the text
-def occurrences_of_most_frequent(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+def occurrences_of_most_frequent(pipeline='en_core_web_lg', file_path="test.txt"):
     """
     Takes in a natural language processor and file path
     Finds most frequent word and counts its occurrences
     Returns most frequent word and occurrences
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     words_and_occurrences = {}
     most_common = 0
@@ -370,13 +368,14 @@ def occurrences_of_most_frequent(nlp = spacy.load('en_core_web_lg'), file_path="
     return most_common_word, most_common
 
 
-def moving_average_text_token_ratio(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", window_size=20):
+def moving_average_text_token_ratio(pipeline='en_core_web_lg', file_path="test.txt", window_size=20):
     """
     Takes in a natural language processor and file path and window size (default is 20)
     Calculates type/token ratio for a fixed-length window, and averages type/token ratios from all windows.
     Returns moving average text token ratio
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     word_list = []
     text_token_ratio_per_window = []
@@ -393,12 +392,13 @@ def moving_average_text_token_ratio(nlp = spacy.load('en_core_web_lg'), file_pat
         text_token_ratio_per_window.append(len(unique_words) / window_size)
     return sum(text_token_ratio_per_window) / len(text_token_ratio_per_window)
 
-def term_frequency(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", term=None):
+def term_frequency(pipeline='en_core_web_lg', file_path="test.txt", term=None):
     """
     Takes in a natural language processor and file path and target string
     Returns frequency of target string in document
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     term_appearances = 0
     total_words = 0
@@ -426,23 +426,23 @@ def inverse_document_frequency(document_list, term=None):
 
     return math.log10(number_of_documents / documents_containing_term)
 
-def tf_idf(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", term=None, document_list=None):
+def tf_idf(term=None, document_list=None):
     """
     Takes in a document list, spacy doc object, and target string
     Calculates TF-IDF by multiplying TF by IDF
     returns TF-IDF value
     """
-    doc = nlp(file_path)
 
-    return term_frequency(doc, term) * inverse_document_frequency(document_list, term)
+    return term_frequency() * inverse_document_frequency(document_list, term)
 
-def repeating_unique_word_ratio(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", amount=100):
+def repeating_unique_word_ratio(pipeline='en_core_web_lg', file_path="test.txt", amount=100):
     """
     Takes in a natural language processor and file path and per word amount
     calculates (number of repeating words) / (number of unique words)
     Returns number of repeating words per word amount
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     word_list = []
     words_and_counts = {}
@@ -459,13 +459,14 @@ def repeating_unique_word_ratio(nlp = spacy.load('en_core_web_lg'), file_path="t
     unique_words = set(word_list)
     return repeating_words / len(unique_words) * amount
 
-def incorrectly_followed_articles(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+def incorrectly_followed_articles(pipeline='en_core_web_lg', file_path="test.txt"):
     """
     Takes in a natural language processor and file path
     counts number of articles not followed by a noun, proper noun, or adjective
     returns the count
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     articles = ["a", "an", "the"]
     count = 0
@@ -476,33 +477,36 @@ def incorrectly_followed_articles(nlp = spacy.load('en_core_web_lg'), file_path=
                 count += 1
     return count
 
-def number_of_unique_tokens(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+def number_of_unique_tokens(pipeline='en_core_web_lg', file_path="test.txt"):
     """
     Takes in a spacy doc and returns the number of unique tokens
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     unique_tokens = set()
     for token in doc:
         unique_tokens.add(token.text)
     return len(unique_tokens)
 
-def number_of_unique_lemmas(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+def number_of_unique_lemmas(pipeline='en_core_web_lg', file_path="test.txt"):
     """
     Takes in a spacy doc and returns the number of unique lemmas
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     lemmas = set()
     for token in doc:
         lemmas.add(token.lemma_)
     return len(lemmas)
 
-def ratio_of_nouns(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+def ratio_of_nouns(pipeline='en_core_web_lg', file_path="test.txt"):
     """
     Takes in a spacy doc and returns the ratio of nouns to total words
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     total_words = 0
     total_nouns = 0
@@ -514,30 +518,16 @@ def ratio_of_nouns(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
                 total_nouns += 1
     return total_nouns / total_words
 
-spell = SpellChecker()
 
-def count_nonwords_with_spellcheck(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
-    """
-    Takes in a spacy doc and returns the number of nonwords
-    """
-    doc = nlp(file_path)
 
-    number_of_nonwords = 0
-    nonwords = []
-    for token in doc:
-        if token.is_alpha and token.text.lower() not in spell:
-            number_of_nonwords += 1
-            nonwords.append(token.text)
-    return number_of_nonwords, nonwords
-
-def avg_wh_words(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", amount=100):
+def avg_wh_words(pipeline='en_core_web_lg', file_path="test.txt", amount=100):
     """
     Takes in a spacy doc and per word amount
     calculates number of wh words per word amount
     returns average number of wh-words per word amount
     """
-
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     total_wh_words = 0
     total_words = 0
@@ -549,13 +539,14 @@ def avg_wh_words(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", amoun
                 total_wh_words += 1
     return total_wh_words / total_words * amount
 
-def avg_num_nonwords(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", amount=100):
+def avg_num_nonwords(pipeline='en_core_web_lg', file_path="test.txt", amount=100):
     """
     Takes in doc object and word amount
     Counts number of nonwords by checking if words are in spacys vocabulary
     Returns average number of nonwords per word amount
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     nonwords = 0
     total_words = 0
@@ -566,13 +557,14 @@ def avg_num_nonwords(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", a
                 nonwords += 1
     return nonwords / total_words * amount
 
-def mean_similarity_of_sentences(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+def mean_similarity_of_sentences(pipeline='en_core_web_lg', file_path="test.txt"):
     """
     Takes in a natural language processor and file path
     calculates mean similarity of all combinations of sentences
     Returns mean similarity of all sentences
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     sentence_list = list(doc.sents)
     similarity_scores = []
@@ -598,13 +590,14 @@ def tree_height(node):
         else:
             return max(tree_height(child) for child in children) + 1
 
-def avg_dependency_tree_height(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+def avg_dependency_tree_height(pipeline='en_core_web_lg', file_path="test.txt"):
     """
     Takes in a natural language processor and file path
     Uses tree_height() to calculate max height of dependency trees
     Returns average height of all dependency trees
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     tree_depths = []
     max_depth = 0
@@ -615,13 +608,14 @@ def avg_dependency_tree_height(nlp = spacy.load('en_core_web_lg'), file_path="te
         tree_depths.append(max_depth)
     return sum(tree_depths) / len(tree_depths)
 
-def max_dependency_tree_height(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+def max_dependency_tree_height(pipeline='en_core_web_lg', file_path="test.txt"):
     """
     Takes in a natural language processor and file path
     Uses tree_height() to calculate max height of dependency trees
     Returns average height of all dependency trees
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     tree_depths = []
     max_depth = 0
@@ -632,13 +626,14 @@ def max_dependency_tree_height(nlp = spacy.load('en_core_web_lg'), file_path="te
         tree_depths.append(max_depth)
     return max(tree_depths)
 
-def avg_similarity_of_words(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", window_size=3):
+def avg_similarity_of_words(pipeline='en_core_web_lg', file_path="test.txt", window_size=3):
     """
     Takes in a natural language processor and file path, window size(default 3)
     Computes average similarity between words in each window
     Returns average similarity score across all windows
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     word_list = []
     similarity_scores = []
@@ -664,13 +659,14 @@ def avg_similarity_of_words(nlp = spacy.load('en_core_web_lg'), file_path="test.
     avg_similarity = sum(similarity_scores) / len(similarity_scores)
     return avg_similarity
 
-def max_similarity_of_words(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", window_size=3):
+def max_similarity_of_words(pipeline='en_core_web_lg', file_path="test.txt", window_size=3):
     """
     Takes in a natural language processor and file path, window size(default 3)
     Computes average similarity between words in each window
     Returns maximum similarity score across all windows
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     word_list = []
     similarity_scores = []
@@ -696,13 +692,14 @@ def max_similarity_of_words(nlp = spacy.load('en_core_web_lg'), file_path="test.
     max_similarity = max(similarity_scores)
     return max_similarity
 
-def std_similarity_of_words(nlp = spacy.load('en_core_web_lg'), file_path="test.txt", window_size=3):
+def std_similarity_of_words(pipeline='en_core_web_lg', file_path="test.txt", window_size=3):
     """
     Takes in a natural language processor and file path, window size(default 3)
     Computes standard deviation of similarity between words in each window
     Returns standard deviation similarity score across all windows
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     word_list = []
     similarity_scores = []
@@ -728,11 +725,12 @@ def std_similarity_of_words(nlp = spacy.load('en_core_web_lg'), file_path="test.
     standard_deviation_similarity = statistics.stdev(similarity_scores)
     return standard_deviation_similarity
 
-def ratio_of_pronouns(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+def ratio_of_pronouns(pipeline='en_core_web_lg', file_path="test.txt"):
     """
     Takes in a spacy doc and returns the ratio of nouns to total words
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     total_words = 0
     total_pronouns = 0
@@ -743,11 +741,12 @@ def ratio_of_pronouns(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
                 total_pronouns += 1
     return total_pronouns / total_words
 
-def ratio_of_conjunctions(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+def ratio_of_conjunctions(pipeline='en_core_web_lg', file_path="test.txt"):
     """
     Takes in a spacy doc and returns the ratio of nouns to total words
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     total_words = 0
     total_conjunctions = 0
@@ -758,13 +757,14 @@ def ratio_of_conjunctions(nlp = spacy.load('en_core_web_lg'), file_path="test.tx
                 total_conjunctions += 1
     return total_conjunctions / total_words
 
-def stats_proportion_coordinators(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+def stats_proportion_coordinators(pipeline='en_core_web_lg', file_path="test.txt"):
     """
     Takes in a natural language processor and file path
     Calculates the ratio of coordinators to total words in a sentence
     Returns the average, minimum, maximum, and standard deviation across all sentences
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     coordinators_to_word_ratios = []
     stats_num_coordinators = {}
@@ -784,13 +784,14 @@ def stats_proportion_coordinators(nlp = spacy.load('en_core_web_lg'), file_path=
     stats_num_coordinators["standard deviation"] = statistics.stdev(coordinators_to_word_ratios)
     return stats_num_coordinators
 
-def stats_proportion_auxiliaries(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+def stats_proportion_auxiliaries(pipeline='en_core_web_lg', file_path="test.txt"):
     """
     Takes in a natural language processor and file path
     Calculates the ratio of auxiliaries to total words in a sentence
     Returns the average, minimum, maximum, and standard deviation across all sentences
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     auxiliaries_to_word_ratios = []
     stats_num_auxiliaries = {}
@@ -810,13 +811,14 @@ def stats_proportion_auxiliaries(nlp = spacy.load('en_core_web_lg'), file_path="
     stats_num_auxiliaries["standard deviation"] = statistics.stdev(auxiliaries_to_word_ratios)
     return stats_num_auxiliaries
 
-def stats_proportion_subjects(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+def stats_proportion_subjects(pipeline='en_core_web_lg', file_path="test.txt"):
     """
     Takes in a natural language processor and file path
     Calculates the ratio of subjects to total words in a sentence
     Returns the average, minimum, maximum, and standard deviation across all sentences
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     subjects_to_word_ratios = []
     stats_num_subjects = {}
@@ -836,13 +838,14 @@ def stats_proportion_subjects(nlp = spacy.load('en_core_web_lg'), file_path="tes
     stats_num_subjects["standard deviation"] = statistics.stdev(subjects_to_word_ratios)
     return stats_num_subjects
 
-def count_num_sentences_without_verbs(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+def count_num_sentences_without_verbs(pipeline='en_core_web_lg', file_path="test.txt"):
     """
     Takes in a natural language processor and file path
     Counts the number of sentences without verbs.
     Returns the count of sentences without verbs.
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     count = 0
     for sentence in doc.sents:
@@ -854,13 +857,14 @@ def count_num_sentences_without_verbs(nlp = spacy.load('en_core_web_lg'), file_p
             count += 1
     return count
 
-def total_consecutive_words(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+def total_consecutive_words(pipeline='en_core_web_lg', file_path="test.txt"):
     """
     Takes in a natural language processor and file path
     Counts the number of consecutive repeating words
     returns the count of consecutive repeating words.
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     word_list = []
     consecutive_words = 0
@@ -874,13 +878,15 @@ def total_consecutive_words(nlp = spacy.load('en_core_web_lg'), file_path="test.
     return consecutive_words
 
 
-def stats_proportion_adjectives(nlp = spacy.load('en_core_web_lg'), file_path="test.txt"):
+
+def stats_proportion_adjectives(pipeline='en_core_web_lg', file_path="test.txt"):
     """
     Takes in a natural language processor and file path
     Calculates the ratio of adjectives to total words in a sentence
     Returns the average, minimum, maximum, and standard deviation across all sentences
     """
-    doc = nlp(file_path)
+    nlp = spacy.load(pipeline)
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     adjectives_to_word_ratios = []
     stats_num_adjectives = {}

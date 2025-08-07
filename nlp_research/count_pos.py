@@ -8,44 +8,61 @@ from spacy import displacy
 import pandas as pd
 from collections import defaultdict
 
-nlp = spacy.load('en_core_web_lg')
-doc = nlp("I am going to cut you Jack. That is why yes.")
 
+def data_to_df(nlp, file_path="test.txt"):
+    '''Takes in a natural language processor and a file path, and returns a pandas dataframe with token attributes '''
 
-def proportion_tense_inflected_verbs(doc, amount=100):
-    '''
-    Takes in a spacy doc object and per word amount(default is 100)
-    Filters on tokens that only contain alphabetic characters (excluding punctuation or numbers), and calculates proportion of tense inflected verbs based on number of tense inflected verbs
-    Returns the proportion of tense inflected verbs
-    '''
-    total_words = 0
-    present_verbs = []
-    past_verbs = []
-    modal_auxiliary = []
-    num_tiv = 0
+    with open(file_path, "r", encoding="utf-8") as f:
+        text = f.read()
+
+    doc = nlp(text)
+    d = []
     for token in doc:
-        if token.is_alpha:
-            total_words += 1
-            #find tense inflected verbs
-            print(token.text, token.pos_, token.morph.get("Tense"))
-            if token.pos_ == "VERB" and "Pres" in token.morph.get("Tense"):
-                present_verbs.append(token.morph)
-            if token.pos_ == "VERB" and "Past" in token.morph.get("Tense"):
-                past_verbs.append(token.morph)
-            if token.pos_ == "AUX" and token.tag_ == "MD":
-                modal_auxiliary.append(token.morph)
-
-            num_tiv = len(present_verbs) + len(modal_auxiliary) + len(past_verbs)
-    return num_tiv / total_words * amount
-
-print(proportion_tense_inflected_verbs(doc))
-
-print(spacy.explain("IN"))
+        d.append({
+            "TEXT": token.text,
+            "LEMMA": token.lemma_,
+            "POS": token.pos_,
+            "TAG": token.tag_,
+            "DEP": token.dep_,
+            "SHAPE": token.shape_,
+            "ALPHA": token.is_alpha,
+            "STOP": token.is_stop
+        })
+    return pd.DataFrame(d)
 
 
+def tag_ratio(tag="POS", amount=100):
+    ''' Takes in spacy doc object, desired tag, and per word amount(default is 100)
+        Returns a dictionary with pos tags and on average how many are present per 100 words'''
+
+    df = data_to_df(nlp=spacy.load('en_core_web_lg'))
+    print(df.head())
+    tag_counts = defaultdict(int)
+    total = 0
+    #counts tags
+    for t in df[tag]:
+        tag_counts[t] += 1
+        total += 1
+    #calculate proportion
+    for tag_label in tag_counts:
+        tag_counts[tag_label] = tag_counts[tag_label] / total * amount
+
+    return tag_counts
+
+
+# Open the file in read mode
+file_path = 'sample.txt'
+
+
+with open("test.txt", 'r', encoding="utf-8") as file:
+    # Read the content of the file
+    file_lines = file.readlines()
+    for line in file_lines:
+        print(line.strip())
 
 
 
+print(tag_ratio(tag="POS", amount=100))
 
 
 
