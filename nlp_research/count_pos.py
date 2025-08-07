@@ -1,48 +1,58 @@
 import spacy
+import claucy
+import math
 import pathlib
+from spellchecker import SpellChecker
+import itertools
+from spacy import displacy
+import pandas as pd
+from collections import defaultdict
 
-nlp = spacy.load("en_core_web_sm")
-file_name = "test.txt"
-doc = nlp(pathlib.Path(file_name).read_text(encoding="utf-8"))
+nlp = spacy.load('en_core_web_lg')
+doc = nlp("I am going to cut you Jack. That is why yes.")
 
-sentence_list = list(doc.sents)
-for sentence in sentence_list[:5]:
-    print(sentence)
 
-#pos and counts
-def count_pos(doc, per_word_amount=100):
+def proportion_tense_inflected_verbs(doc, amount=100):
+    '''
+    Takes in a spacy doc object and per word amount(default is 100)
+    Filters on tokens that only contain alphabetic characters (excluding punctuation or numbers), and calculates proportion of tense inflected verbs based on number of tense inflected verbs
+    Returns the proportion of tense inflected verbs
+    '''
     total_words = 0
-    parts_of_speech = {}
-
+    present_verbs = []
+    past_verbs = []
+    modal_auxiliary = []
+    num_tiv = 0
     for token in doc:
-        # count total words
-        if token.is_alpha:   #all chars are alphabetic
+        if token.is_alpha:
             total_words += 1
-        # count pos amounts
-        if token.pos_ not in parts_of_speech:
-            parts_of_speech[token.pos_] = 1
-        else:
-            parts_of_speech[token.pos_] += 1
-    #pos ammount per word amount(default = 100)
-    for pos in parts_of_speech.keys():
-        parts_of_speech[pos] = (parts_of_speech[pos] / total_words) * per_word_amount
+            #find tense inflected verbs
+            print(token.text, token.pos_, token.morph.get("Tense"))
+            if token.pos_ == "VERB" and "Pres" in token.morph.get("Tense"):
+                present_verbs.append(token.morph)
+            if token.pos_ == "VERB" and "Past" in token.morph.get("Tense"):
+                past_verbs.append(token.morph)
+            if token.pos_ == "AUX" and token.tag_ == "MD":
+                modal_auxiliary.append(token.morph)
 
-    print(parts_of_speech)
+            num_tiv = len(present_verbs) + len(modal_auxiliary) + len(past_verbs)
+    return num_tiv / total_words * amount
 
-count_pos(doc)
+print(proportion_tense_inflected_verbs(doc))
+
+print(spacy.explain("IN"))
 
 
-#word frequencies
-word_frequencies = {}
-for token in doc:
-    if not token.is_stop and not token.is_punct:
-        if token.text not in word_frequencies:
-            word_frequencies[token.text] = 1
-        else:
-            word_frequencies[token.text] += 1
-print(word_frequencies)
 
-#stop words - usefull to take out when examining word frequencies
-for token in doc:
-    if not token.is_stop:
-        print(token.text)
+
+
+
+
+
+
+
+
+
+
+
+
