@@ -4,6 +4,6 @@ This repository contains example workflows, READMEs, sample data, and [Docker](h
 It is a part of a larger [toolkit](https://github.com/FHS-BAP/Voice-Feature-Extraction-Toolkit/) that was developed to support scientific research surrounding investigations of relationships between brain aging and voice features, although the extraction of voice features does have wider applicability. We invite others to please offer their questions, ideas, feedback, and improvements on this repository.
 
 ## Overview
-| Name | Description |
-| - |-|
-| **nlp_features** | Explore examples of the production of natural language processing (NLP) features via several different packages and tools.
+| Name      | Description                                                                                                                                                                                                                                                                                                                                            |
+|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **spacy** | Spacy is a free, and open-source Python library for Natural Language processing. Spacy converts raw text into Doc objects, which come with various useful attributes. These attributes include parts-of-speech tagging, tokenization, and dependency parsing. These attributes can be used to extract linguistic features of interest from plain text. |
