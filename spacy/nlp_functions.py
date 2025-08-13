@@ -118,25 +118,24 @@ def abstractness(nlp=None, file_path=None, dataset_path="datasets/dataset_for_ab
     df = pd.read_excel(dataset_path)
     df['Word'] = df['Word'].str.lower()
 
-    total_words = 0
+    total_nouns = 0
     total_abstractness_values = 0
 
     for token in doc:
-        if token.is_alpha:
-            total_words += 1
-            #find concreteness value for nouns in data
-            if token.pos_ == "NOUN":
-                word = token.text.lower()
-                result = df.loc[df['Word'] == word, 'Conc.M']
-                word_lemma = token.lemma_.lower()
-                result_lemma = df.loc[df['Word'] == word_lemma, 'Conc.M']
-                if not result.empty:
-                    total_abstractness_values += 1 / result.item()
-                elif not result_lemma.empty:
-                    total_abstractness_values += 1 / result_lemma.item()
-                else:
-                    total_words -= 1  #omits words not in data from calculation
-    return total_abstractness_values / total_words
+        #find concreteness value for nouns in data
+        if token.pos_ == "NOUN":
+            total_nouns += 1
+            word = token.text.lower()
+            result = df.loc[df['Word'] == word, 'Conc.M']
+            word_lemma = token.lemma_.lower()
+            result_lemma = df.loc[df['Word'] == word_lemma, 'Conc.M']
+            if not result.empty:
+                total_abstractness_values += 1 / result.item()
+            elif not result_lemma.empty:
+                total_abstractness_values += 1 / result_lemma.item()
+            else:
+                total_nouns -= 1  #omits words not in data from calculation
+    return total_abstractness_values / total_nouns
 
 def semantic_ambiguity(nlp=None, file_path=None, dataset_path="datasets/dataset_for_semantic_ambiguity.xlsx"):
     """
@@ -150,24 +149,23 @@ def semantic_ambiguity(nlp=None, file_path=None, dataset_path="datasets/dataset_
     df = pd.read_excel(dataset_path, skiprows=1)
     df['!term'] = df['!term'].str.lower()
 
-    total_words = 0
+    total_nouns = 0
     total_ambiguity_values = 0
     for token in doc:
-        if token.is_alpha:
-            total_words += 1
-            #find semantic diversity value for nouns
-            if token.pos_ == "NOUN":
-                word = token.text.lower()
-                result = df.loc[df['!term'] == word, 'SemD']
-                word_lemma = token.lemma_.lower()
-                result_lemma = df.loc[df['!term'] == word_lemma, 'SemD']
-                if not result.empty:
-                    total_ambiguity_values += result.item()
-                elif not result_lemma.empty:
-                    total_ambiguity_values += result_lemma.item()
-                else:
-                    total_words -= 1  #omit words not in data from calculation
-    return total_ambiguity_values / total_words
+        #find semantic diversity value for nouns
+        if token.pos_ == "NOUN":
+            total_nouns += 1
+            word = token.text.lower()
+            result = df.loc[df['!term'] == word, 'SemD']
+            word_lemma = token.lemma_.lower()
+            result_lemma = df.loc[df['!term'] == word_lemma, 'SemD']
+            if not result.empty:
+                total_ambiguity_values += result.item()
+            elif not result_lemma.empty:
+                total_ambiguity_values += result_lemma.item()
+            else:
+                total_nouns -= 1  #omit words not in data from calculation
+    return total_ambiguity_values / total_nouns
 
 def word_frequency(nlp=None, file_path=None, dataset_path="datasets/dataset_for_word_frequency.xlsx"):
     """
@@ -181,25 +179,24 @@ def word_frequency(nlp=None, file_path=None, dataset_path="datasets/dataset_for_
     df = pd.read_excel(dataset_path)
     df['Word'] = df['Word'].str.lower()
 
-    total_words = 0
+    total_nouns = 0
     total_wf_values = 0
     for token in doc:
-        if token.is_alpha:
-            total_words += 1
-            #find word frequency value for nouns in data
-            if token.pos_ == "NOUN":
-                word = token.text.lower()
-                result = df.loc[df['Word'] == word, 'Lg10WF']
-                word_lemma = token.lemma_.lower()
-                result_lemma = df.loc[df['Word'] == word_lemma, 'Lg10WF']
+        #find word frequency value for nouns in data
+        if token.pos_ == "NOUN":
+            total_nouns += 1
+            word = token.text.lower()
+            result = df.loc[df['Word'] == word, 'Lg10WF']
+            word_lemma = token.lemma_.lower()
+            result_lemma = df.loc[df['Word'] == word_lemma, 'Lg10WF']
 
-                if not result.empty:
-                    total_wf_values += result.item()
-                elif not result_lemma.empty:
-                    total_wf_values += result_lemma.item()
-                else:
-                    total_words -= 1   #omit words not in data from calculation
-    return total_wf_values / total_words
+            if not result.empty:
+                total_wf_values += result.item()
+            elif not result_lemma.empty:
+                total_wf_values += result_lemma.item()
+            else:
+                total_nouns -= 1   #omit words not in data from calculation
+    return total_wf_values / total_nouns
 
 def word_prevalence(nlp=None, file_path=None, dataset_path="datasets/dataset_for_word_prevalence_and_familiarity.xlsx"):
     """
@@ -213,25 +210,24 @@ def word_prevalence(nlp=None, file_path=None, dataset_path="datasets/dataset_for
     df = pd.read_excel(dataset_path)
     df['Word'] = df['Word'].str.lower()
 
-    total_words = 0
+    total_nouns = 0
     total_wp_values = 0
     for token in doc:
-        if token.is_alpha:
-            total_words += 1
-            #find word prevalence values for nouns from data
-            if token.pos_ == "NOUN":
-                word = token.text.lower()
-                result = df.loc[df['Word'] == word, 'Prevalence']
-                word_lemma = token.lemma_.lower()
-                result_lemma = df.loc[df['Word'] == word_lemma, 'Prevalence']
+        #find word prevalence values for nouns from data
+        if token.pos_ == "NOUN":
+            total_nouns += 1
+            word = token.text.lower()
+            result = df.loc[df['Word'] == word, 'Prevalence']
+            word_lemma = token.lemma_.lower()
+            result_lemma = df.loc[df['Word'] == word_lemma, 'Prevalence']
 
-                if not result.empty:
-                    total_wp_values += result.item()
-                elif not result_lemma.empty:
-                    total_wp_values += result_lemma.item()
-                else:
-                    total_words -= 1  #omit words not in data from calculation
-    return total_wp_values / total_words
+            if not result.empty:
+                total_wp_values += result.item()
+            elif not result_lemma.empty:
+                total_wp_values += result_lemma.item()
+            else:
+                total_nouns -= 1  #omit words not in data from calculation
+    return total_wp_values / total_nouns
 
 
 def word_familiarity(nlp=None, file_path=None, dataset_path="datasets/dataset_for_word_prevalence_and_familiarity.xlsx"):
@@ -246,25 +242,24 @@ def word_familiarity(nlp=None, file_path=None, dataset_path="datasets/dataset_fo
     df = pd.read_excel(dataset_path)
     df['Word'] = df['Word'].str.lower()
 
-    total_words = 0
+    total_nouns = 0
     total_word_familiarity_values = 0
     for token in doc:
-        if token.is_alpha:
-            total_words += 1
             #find word familiarity value for all nouns
-            if token.pos_ == "NOUN":
-                word = token.text.lower()
-                result = df.loc[df['Word'] == word, 'Pknown']
-                word_lemma = token.lemma_.lower()
-                result_lemma = df.loc[df['Word'] == word_lemma, 'Pknown']
+        if token.pos_ == "NOUN":
+            total_nouns += 1
+            word = token.text.lower()
+            result = df.loc[df['Word'] == word, 'Pknown']
+            word_lemma = token.lemma_.lower()
+            result_lemma = df.loc[df['Word'] == word_lemma, 'Pknown']
 
-                if not result.empty:
-                    total_word_familiarity_values += result.item()
-                elif not result_lemma.empty:
-                    total_word_familiarity_values += result_lemma.item()
-                else:
-                    total_words -= 1
-    return total_word_familiarity_values / total_words
+            if not result.empty:
+                total_word_familiarity_values += result.item()
+            elif not result_lemma.empty:
+                total_word_familiarity_values += result_lemma.item()
+            else:
+                total_nouns -= 1
+    return total_word_familiarity_values / total_nouns
 
 def age_of_acquisition(nlp=None, file_path=None, dataset_path="datasets/dataset_for_age_of_acquisition.xlsx"):
     """
@@ -278,25 +273,24 @@ def age_of_acquisition(nlp=None, file_path=None, dataset_path="datasets/dataset_
     df = pd.read_excel(dataset_path)
     df['Word'] = df['Word'].str.lower()
 
-    total_words = 0
+    total_nouns = 0
     total_AoA_values = 0
 
     for token in doc:
-        if token.is_alpha:
-            total_words += 1
-            if token.pos_ == "NOUN":
-                word = token.text.lower()
-                result = df.loc[df['Word'] == word, 'AoA']
-                word_lemma = token.lemma_.lower()
-                result_lemma = df.loc[df['Word'] == word_lemma, 'AoA']
+        if token.pos_ == "NOUN":
+            total_nouns += 1
+            word = token.text.lower()
+            result = df.loc[df['Word'] == word, 'AoA']
+            word_lemma = token.lemma_.lower()
+            result_lemma = df.loc[df['Word'] == word_lemma, 'AoA']
 
-                if not result.empty:
-                    total_AoA_values += result.item()
-                elif not result_lemma.empty:
-                    total_AoA_values += result_lemma.item()
-                else:
-                    total_words -= 1
-    return total_AoA_values / total_words
+            if not result.empty:
+                total_AoA_values += result.item()
+            elif not result_lemma.empty:
+                total_AoA_values += result_lemma.item()
+            else:
+                total_nouns -= 1
+    return total_AoA_values / total_nouns
 
 def frequency_nonwords(nlp=None, file_path=None, amount=100):
     """
