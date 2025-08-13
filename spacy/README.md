@@ -51,12 +51,19 @@ from nlp_functions import tag_ratio
 
 tag_ratio(nlp=spacy.load('en_core_web_sm'), file_path="sample_text/sample.txt", amount=100)
 ```
+```json
+{'POS': defaultdict(<class 'int'>, {'PRON': 15.151515151515152, 'VERB': 13.636363636363635, 'PUNCT': 12.121212121212121, 'SCONJ': 4.545454545454546, 'ADV': 7.575757575757576, 'ADP': 9.090909090909092, 'NOUN': 15.151515151515152, 'AUX': 3.0303030303030303, 'ADJ': 6.0606060606060606, 'DET': 7.575757575757576, 'PROPN': 1.5151515151515151, 'PART': 1.5151515151515151, 'CCONJ': 1.5151515151515151, 'NUM': 1.5151515151515151}), 'TAG': defaultdict(<class 'int'>, {'PRP': 9.090909090909092, 'VBP': 4.545454545454546, ',': 7.575757575757576, 'WRB': 4.545454545454546, 'RB': 9.090909090909092, 'IN': 7.575757575757576, 'PRP$': 3.0303030303030303, 'NN': 12.121212121212121, 'VBZ': 1.5151515151515151, 'JJ': 6.0606060606060606, 'DT': 7.575757575757576, 'NNS': 4.545454545454546, 'VB': 1.5151515151515151, 'WP': 1.5151515151515151, '.': 4.545454545454546, 'VBD': 6.0606060606060606, 'RP': 1.5151515151515151, 'VBN': 1.5151515151515151, 'NNP': 1.5151515151515151, 'VBG': 1.5151515151515151, 'CC': 1.5151515151515151, 'CD': 1.5151515151515151})}
+```
+
 ### `num_tense_inflected_verbs()`
 ```doctest
 import spacy
 from nlp_functions import num_tense_inflected_verbs
 
 num_tense_inflected_verbs(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/sample.txt", amount=100)
+```
+```json
+14.285714285714285
 ```
 ### `calculate_idea_density()`
 ```doctest
@@ -65,3 +72,9 @@ from nlp_functions import calculate_idea_density
 
 calculate_idea_density(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/sample.txt")
 ```
+```json
+[("You know, when I think back on my life, it's funny how the little things really shape who you become.", 0.55), ('I grew up in this small town called Ridgewood, tucked away in the countryside.', 0.5714285714285714), ("It wasn't much just rolling hills, a couple of farms, and one main street with a diner where everyone knew your name.", 0.4090909090909091)]
+```
+
+## Sample Input Files
+The folder sample_text contains text documents for convenient testing of these NLP functions.

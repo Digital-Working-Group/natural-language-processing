@@ -106,191 +106,91 @@ def calculate_idea_density(nlp=None, file_path=None):
 
     return idea_density_sentences
 
-def abstractness(nlp=None, file_path=None, dataset_path="datasets/dataset_for_abstractness.xlsx"):
+def features_of_nouns(nlp=None, file_path=None, feature_index=None):
     """
-    Takes in a natural language processor, file path, and dataset path
-    Calculates abstractness - inverse of concreteness value taken from dataset
-    Returns the average abstractness
+    Takes in a natural language processor, file path, and feature index
+    Calculates value of feature for each noun based on feature index and corresponding dataset
+    Returns average feature value across all nouns
     """
+
+    features = ["abstractness", "semantic ambiguity", "word frequency", "word prevalence ", "word familiarity", "age of acquisition"]
+    dataset_paths = ["datasets/dataset_for_abstractness.xlsx", "datasets/dataset_for_semantic_ambiguity.xlsx", "datasets/dataset_for_word_frequency.xlsx", "datasets/dataset_for_word_prevalence_and_familiarity.xlsx", "datasets/dataset_for_word_prevalence_and_familiarity.xlsx", "datasets/dataset_for_age_of_acquisition.xlsx"]
+    feature_columns = ['Conc.M', 'SemD', 'Lg10WF', 'Prevalence', 'Pknown', 'AoA']
 
     doc = nlp(Path(file_path).read_text(encoding='utf-8'))
+    feature_column = feature_columns[feature_index]        #name of column for feature value
 
-    df = pd.read_excel(dataset_path)
-    df['Word'] = df['Word'].str.lower()
+    if feature_index == 1:
+        df = pd.read_excel(dataset_paths[feature_index], skiprows=1)
+        word_column = '!term'
+    else:
+        df = pd.read_excel(dataset_paths[feature_index])
+        word_column = 'Word'
+    df[word_column] = df[word_column].str.lower()
 
     total_nouns = 0
-    total_abstractness_values = 0
+    total_feature_values = 0
 
     for token in doc:
-        #find concreteness value for nouns in data
         if token.pos_ == "NOUN":
             total_nouns += 1
             word = token.text.lower()
-            result = df.loc[df['Word'] == word, 'Conc.M']
+            result = df.loc[df[word_column] == word, feature_column]
             word_lemma = token.lemma_.lower()
-            result_lemma = df.loc[df['Word'] == word_lemma, 'Conc.M']
-            if not result.empty:
-                total_abstractness_values += 1 / result.item()
-            elif not result_lemma.empty:
-                total_abstractness_values += 1 / result_lemma.item()
-            else:
-                total_nouns -= 1  #omits words not in data from calculation
-    return total_abstractness_values / total_nouns
-
-def semantic_ambiguity(nlp=None, file_path=None, dataset_path="datasets/dataset_for_semantic_ambiguity.xlsx"):
-    """
-    Takes in a natural language processor, file path, dataset path
-    Calculates semantic ambiguity using semantic diversity value from dataset
-    Returns the average semantic ambiguity value for all words
-    """
-
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-
-    df = pd.read_excel(dataset_path, skiprows=1)
-    df['!term'] = df['!term'].str.lower()
-
-    total_nouns = 0
-    total_ambiguity_values = 0
-    for token in doc:
-        #find semantic diversity value for nouns
-        if token.pos_ == "NOUN":
-            total_nouns += 1
-            word = token.text.lower()
-            result = df.loc[df['!term'] == word, 'SemD']
-            word_lemma = token.lemma_.lower()
-            result_lemma = df.loc[df['!term'] == word_lemma, 'SemD']
-            if not result.empty:
-                total_ambiguity_values += result.item()
-            elif not result_lemma.empty:
-                total_ambiguity_values += result_lemma.item()
-            else:
-                total_nouns -= 1  #omit words not in data from calculation
-    return total_ambiguity_values / total_nouns
-
-def word_frequency(nlp=None, file_path=None, dataset_path="datasets/dataset_for_word_frequency.xlsx"):
-    """
-    Takes in a natural language processor, file path, dataset path
-    Calculates word frequency using log10 word frequency measure from dataset
-    Returns the average word frequency value for all words
-    """
-
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-
-    df = pd.read_excel(dataset_path)
-    df['Word'] = df['Word'].str.lower()
-
-    total_nouns = 0
-    total_wf_values = 0
-    for token in doc:
-        #find word frequency value for nouns in data
-        if token.pos_ == "NOUN":
-            total_nouns += 1
-            word = token.text.lower()
-            result = df.loc[df['Word'] == word, 'Lg10WF']
-            word_lemma = token.lemma_.lower()
-            result_lemma = df.loc[df['Word'] == word_lemma, 'Lg10WF']
+            result_lemma = df.loc[df[word_column] == word_lemma, feature_column]
 
             if not result.empty:
-                total_wf_values += result.item()
+                if feature_index == 0:
+                    total_feature_values += (1 / result.item())
+                else:
+                    total_feature_values += result.item()
+
             elif not result_lemma.empty:
-                total_wf_values += result_lemma.item()
-            else:
-                total_nouns -= 1   #omit words not in data from calculation
-    return total_wf_values / total_nouns
+                if feature_index == 0:
+                    total_feature_values += (1 / result_lemma.item())
+                else:
+                    total_feature_values += result_lemma.item()
 
-def word_prevalence(nlp=None, file_path=None, dataset_path="datasets/dataset_for_word_prevalence_and_familiarity.xlsx"):
-    """
-    Takes in a natural language processor, file path, dataset path
-    Calculates word prevalence using prevalence measure from dataset
-    Returns the average word prevalence value of all words per
-    """
-
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-
-    df = pd.read_excel(dataset_path)
-    df['Word'] = df['Word'].str.lower()
-
-    total_nouns = 0
-    total_wp_values = 0
-    for token in doc:
-        #find word prevalence values for nouns from data
-        if token.pos_ == "NOUN":
-            total_nouns += 1
-            word = token.text.lower()
-            result = df.loc[df['Word'] == word, 'Prevalence']
-            word_lemma = token.lemma_.lower()
-            result_lemma = df.loc[df['Word'] == word_lemma, 'Prevalence']
-
-            if not result.empty:
-                total_wp_values += result.item()
-            elif not result_lemma.empty:
-                total_wp_values += result_lemma.item()
-            else:
-                total_nouns -= 1  #omit words not in data from calculation
-    return total_wp_values / total_nouns
-
-
-def word_familiarity(nlp=None, file_path=None, dataset_path="datasets/dataset_for_word_prevalence_and_familiarity.xlsx"):
-    """
-    Takes in a natural language processor, file path, dataset path
-    Calculates word familiarity based on a z standardized measure of how many people know a word (from dataset)
-    Returns the average word familiarity of all words
-    """
-
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-
-    df = pd.read_excel(dataset_path)
-    df['Word'] = df['Word'].str.lower()
-
-    total_nouns = 0
-    total_word_familiarity_values = 0
-    for token in doc:
-            #find word familiarity value for all nouns
-        if token.pos_ == "NOUN":
-            total_nouns += 1
-            word = token.text.lower()
-            result = df.loc[df['Word'] == word, 'Pknown']
-            word_lemma = token.lemma_.lower()
-            result_lemma = df.loc[df['Word'] == word_lemma, 'Pknown']
-
-            if not result.empty:
-                total_word_familiarity_values += result.item()
-            elif not result_lemma.empty:
-                total_word_familiarity_values += result_lemma.item()
             else:
                 total_nouns -= 1
-    return total_word_familiarity_values / total_nouns
 
-def age_of_acquisition(nlp=None, file_path=None, dataset_path="datasets/dataset_for_age_of_acquisition.xlsx"):
+    return total_feature_values / total_nouns
+
+def abstractness(nlp=None, file_path=None):
     """
-    Takes in a natural language processor, file path, dataset path
-    Calculates age of acquisition using age measure from dataset
-    Returns the average age of acquisition for all words
+    Uses features_of_nouns to calculate average abstractness value across all nouns
     """
+    return features_of_nouns(nlp=nlp, file_path=file_path, feature_index=0)
 
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
+def semantic_ambiguity(nlp=None, file_path=None):
+    """
+    Uses features_of_nouns to calculate average semantic ambiguity value across all nouns
+    """
+    return features_of_nouns(nlp=nlp, file_path=file_path, feature_index=1)
 
-    df = pd.read_excel(dataset_path)
-    df['Word'] = df['Word'].str.lower()
+def word_frequency(nlp=None, file_path=None):
+    """
+    Uses features_of_nouns to calculate average word frequency value across all nouns
+    """
+    return features_of_nouns(nlp=nlp, file_path=file_path, feature_index=2)
 
-    total_nouns = 0
-    total_AoA_values = 0
+def word_prevalence(nlp=None, file_path=None):
+    """
+    Uses features_of_nouns to calculate average word prevalence value across all nouns
+    """
+    return features_of_nouns(nlp=nlp, file_path=file_path, feature_index=3)
 
-    for token in doc:
-        if token.pos_ == "NOUN":
-            total_nouns += 1
-            word = token.text.lower()
-            result = df.loc[df['Word'] == word, 'AoA']
-            word_lemma = token.lemma_.lower()
-            result_lemma = df.loc[df['Word'] == word_lemma, 'AoA']
+def word_familiarity(nlp=None, file_path=None):
+    """
+    Uses features_of_nouns to calculate average word familiarity value across all nouns
+    """
+    return features_of_nouns(nlp=nlp, file_path=file_path, feature_index=4)
 
-            if not result.empty:
-                total_AoA_values += result.item()
-            elif not result_lemma.empty:
-                total_AoA_values += result_lemma.item()
-            else:
-                total_nouns -= 1
-    return total_AoA_values / total_nouns
+def age_of_acquisition(nlp=None, file_path=None):
+    """
+    Uses features_of_nouns to calculate average age of acquisition value across all nouns
+    """
+    return features_of_nouns(nlp=nlp, file_path=file_path, feature_index=5)
 
 def frequency_nonwords(nlp=None, file_path=None, amount=100):
     """
