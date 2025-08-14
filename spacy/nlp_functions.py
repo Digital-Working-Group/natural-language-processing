@@ -6,105 +6,7 @@ import statistics
 import spacy
 from pathlib import Path
 
-def data_to_df(nlp=None, file_path=None):
-    """ Takes in a natural language processor and a file path, and returns a pandas dataframe with token attributes """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
-    d = []
-    for token in doc:
-        d.append({
-            "TEXT": token.text,
-            "LEMMA": token.lemma_,
-            "POS": token.pos_,
-            "TAG": token.tag_,
-            "DEP": token.dep_,
-            "SHAPE": token.shape_,
-            "ALPHA": token.is_alpha,
-            "STOP": token.is_stop
-        })
-    return pd.DataFrame(d)
-
-
-def tag_ratio(nlp=None, file_path=None, amount=100):
-    """
-    Takes in a natural language processor, and per word amount(default is 100)
-    Returns a dictionary with parts-of-speech, tags and on average how many are present per 100 words
-    """
-    df = data_to_df(nlp, file_path)
-    tag_counts = defaultdict(int)
-    pos_counts = defaultdict(int)
-    pos_and_tag_counts = {}
-    total = 0
-    #counts tags
-    for t in df["TAG"]:
-        tag_counts[t] += 1
-        total += 1
-    for p in df["POS"]:
-        pos_counts[p] += 1
-    #calculate proportion
-    for tag_label in tag_counts:
-        tag_counts[tag_label] = tag_counts[tag_label] / total * amount
-    for pos_label in pos_counts:
-        pos_counts[pos_label] = pos_counts[pos_label] / total * amount
-
-    #dictionary with pos and tag counts
-    pos_and_tag_counts["POS"] = pos_counts
-    pos_and_tag_counts["TAG"] = tag_counts
-
-    return pos_and_tag_counts
-
-
-def num_tense_inflected_verbs(nlp=None, file_path=None, amount=100):
-    """
-    Takes in a natural language processor, file path, and per word amount(default is 100)
-    Filters on tokens that only contain alphabetic characters (excluding punctuation or numbers), and calculates avg number of tense inflected verbs per word amount
-    Tokens with the pos: "AUX" are auxiliaries, and those with the tag: "MD" are modal auxiliaries
-    Returns the number of tense inflected verbs
-    """
-
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-
-    total_words = 0
-    present_verbs = 0
-    past_verbs = 0
-    modal_auxiliary = 0
-    num_tiv = 0
-    for token in doc:
-        if token.is_alpha:
-            total_words += 1
-            #find tense inflected verbs
-            if token.pos_ == "VERB" and "Pres" in token.morph.get("Tense"):
-                present_verbs += 1
-            if token.pos_ == "VERB" and "Past" in token.morph.get("Tense"):
-                past_verbs += 1
-            if token.pos_ == "AUX" and token.tag_ == "MD":
-                modal_auxiliary += 1
-
-            num_tiv = present_verbs + modal_auxiliary + past_verbs
-    return num_tiv / total_words * amount
-
-def calculate_idea_density(nlp=None, file_path=None):
-    """
-    Takes in a natural language processor, and file path
-    Filters on alphabetic tokens (words), calculates idea density - the number of propositions divided by the total words
-    Returns each sentence and its idea density
-    """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-
-    idea_density_sentences = []
-    for sent in doc.sents:
-        count_props = 0
-        count_words = 0
-        for token in sent:
-            if token.is_alpha:
-                count_words += 1
-                if token.pos_ in ["VERB", "ADJ", "ADV", "CCONJ", "SCONJ", "ADP"]:
-                    count_props += 1
-        idea_density = count_props/count_words
-        sentence_and_idea_density = (sent.text, idea_density)
-        idea_density_sentences.append(sentence_and_idea_density)
-
-    return idea_density_sentences
 
 def features_of_nouns(nlp=None, file_path=None, feature_index=None):
     """
@@ -530,22 +432,23 @@ def max_dependency_tree_height(nlp=None, file_path=None):
         tree_depths.append(max_depth)
     return max(tree_depths)
 
-def avg_similarity_of_words(nlp=None, file_path=None, window_size=3):
+
+def stats_similarity_of_words(nlp=None, file_path=None, window_size=3, stat=None):
     """
     Takes in a natural language processor and file path, window size(default 3)
-    Computes average similarity between words in each window
-    Returns average similarity score across all windows
+    Computes standard deviation, mean or max (depending on stat param) of similarity between words in each window
+    Returns statistic of similarity score across all windows (max, mean, std)
     """
 
     doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
     word_list = []
     similarity_scores = []
-    #make word list
+    # make word list
     for token in doc:
         if token.is_alpha:
             word_list.append(token.text)
-    #get list of words in window
+    # get list of words in window
     for i in range(len(word_list) - window_size + 1):
         similarity_scores_of_window = []
         words_in_window = word_list[i: i + window_size]
@@ -560,74 +463,42 @@ def avg_similarity_of_words(nlp=None, file_path=None, window_size=3):
         avg_similarity_of_window = sum(similarity_scores_of_window) / len(similarity_scores_of_window)
         similarity_scores.append(avg_similarity_of_window)
 
-    avg_similarity = sum(similarity_scores) / len(similarity_scores)
-    return avg_similarity
+    if stat.lower() == "stdev":
+        stat_similarity = statistics.stdev(similarity_scores)
+    elif stat.lower() == "mean":
+        stat_similarity = sum(similarity_scores) / len(similarity_scores)
+    elif stat.lower() == "max":
+        stat_similarity = max(similarity_scores)
+    else:
+        stat_similarity = None
 
-def max_similarity_of_words(nlp=None, file_path=None, window_size=3):
-    """
-    Takes in a natural language processor and file path, window size(default 3)
-    Computes average similarity between words in each window
-    Returns maximum similarity score across all windows
-    """
+    return stat_similarity
 
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-
-    word_list = []
-    similarity_scores = []
-    #make word list
-    for token in doc:
-        if token.is_alpha:
-            word_list.append(token.text)
-    #get list of words in window
-    for i in range(len(word_list) - window_size + 1):
-        similarity_scores_of_window = []
-        words_in_window = word_list[i: i + window_size]
-        for combination in itertools.combinations(words_in_window, 2):
-            word1 = str(combination[0])
-            word2 = str(combination[1])
-            doc1 = nlp(word1)
-            doc2 = nlp(word2)
-            similarity_score = round(doc1.similarity(doc2), 2)
-            similarity_scores_of_window.append(similarity_score)
-
-        avg_similarity_of_window = sum(similarity_scores_of_window) / len(similarity_scores_of_window)
-        similarity_scores.append(avg_similarity_of_window)
-
-    max_similarity = max(similarity_scores)
-    return max_similarity
 
 def std_similarity_of_words(nlp=None, file_path=None, window_size=3):
     """
-    Takes in a natural language processor and file path, window size(default 3)
-    Computes standard deviation of similarity between words in each window
-    Returns standard deviation similarity score across all windows
+    Takes in a natural language processor, file path and window size(default 3)
+    utilizes stats_similarity_of_words() to calculate standard deviation of word similarity across moving windows, returns this value
+    """
+    return stats_similarity_of_words(nlp=nlp, file_path=file_path, window_size=window_size, stat="stdev")
+
+
+def mean_similarity_of_words(nlp=None, file_path=None, window_size=3):
+    """
+    Takes in a natural language processor, file path and window size(default 3)
+    utilizes stats_similarity_of_words() to calculate mean word similarity across moving windows, returns this value
+    """
+    return stats_similarity_of_words(nlp=nlp, file_path=file_path, window_size=window_size, stat="mean")
+
+
+def max_similarity_of_words(nlp=None, file_path=None, window_size=3):
+    """
+    Takes in a natural language processor, file path and window size(default 3)
+    utilizes stats_similarity_of_words() to calculate maximum word similarity across moving windows, returns this value
     """
 
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
+    return stats_similarity_of_words(nlp=nlp, file_path=file_path, window_size=window_size, stat="max")
 
-    word_list = []
-    similarity_scores = []
-    #make word list
-    for token in doc:
-        if token.is_alpha:
-            word_list.append(token.text)
-    #get list of words in window
-    for i in range(len(word_list) - window_size + 1):
-        similarity_scores_of_window = []
-        words_in_window = word_list[i: i + window_size]
-        for combination in itertools.combinations(words_in_window, 2):
-            word1 = str(combination[0])
-            word2 = str(combination[1])
-            doc1 = nlp(word1)
-            doc2 = nlp(word2)
-            similarity_score = round(doc1.similarity(doc2), 2)
-            similarity_scores_of_window.append(similarity_score)
-
-        avg_similarity_of_window = sum(similarity_scores_of_window) / len(similarity_scores_of_window)
-        similarity_scores.append(avg_similarity_of_window)
-
-    standard_deviation_similarity = statistics.stdev(similarity_scores)
-    return standard_deviation_similarity
 
 def ratio_of_pronouns(nlp=None, file_path=None):
     """
@@ -661,59 +532,55 @@ def ratio_of_conjunctions(nlp=None, file_path=None):
                 total_conjunctions += 1
     return total_conjunctions / total_words
 
-def stats_proportion_coordinators(nlp=None, file_path=None):
+def stats_proportion_part_of_speech(nlp=None, file_path=None, pos_index=None):
     """
     Takes in a natural language processor and file path
     Calculates the ratio of coordinators to total words in a sentence
     Returns the average, minimum, maximum, and standard deviation across all sentences
     """
+    pos_list = ["adjectives", "auxiliaries", "coordinators"]
+    tag_list = ["ADJ", "AUX", "CCONJ"]
 
     doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
-    coordinators_to_word_ratios = []
-    stats_num_coordinators = {}
+    pos_to_word_ratios = []
+    stats_num_pos = {}
     for sentence in doc.sents:
         number_of_words = 0
-        number_of_coordinators = 0
+        number_of_pos = 0
         for token in sentence:
             if token.is_alpha:
                 number_of_words += 1
-                if token.pos_ == "CCONJ":
-                    number_of_coordinators += 1
-        coordinators_to_word_ratios.append(number_of_coordinators / number_of_words)
+                if token.pos_ == tag_list[pos_index]:
+                    number_of_pos += 1
+        pos_to_word_ratios.append(number_of_pos / number_of_words)
 
-    stats_num_coordinators["mean"] = sum(coordinators_to_word_ratios) / len(coordinators_to_word_ratios)
-    stats_num_coordinators["maximum"] = max(coordinators_to_word_ratios)
-    stats_num_coordinators["minimum"] = min(coordinators_to_word_ratios)
-    stats_num_coordinators["standard deviation"] = statistics.stdev(coordinators_to_word_ratios)
-    return stats_num_coordinators
+    stats_num_pos["mean"] = sum(pos_to_word_ratios) / len(pos_to_word_ratios)
+    stats_num_pos["maximum"] = max(pos_to_word_ratios)
+    stats_num_pos["minimum"] = min(pos_to_word_ratios)
+    stats_num_pos["standard deviation"] = statistics.stdev(pos_to_word_ratios)
+    return stats_num_pos
+
+def stats_proportion_coordinators(nlp=None, file_path=None):
+    """
+    Takes in a natural language processor and file path
+    Uses stats_proportion_part_of_speech to determine mean, min, max, and standard deviation of the proportion of coordinators in a sentence
+    """
+    return stats_proportion_part_of_speech(nlp=nlp, file_path=file_path, pos_index=2)
 
 def stats_proportion_auxiliaries(nlp=None, file_path=None):
     """
     Takes in a natural language processor and file path
-    Calculates the ratio of auxiliaries to total words in a sentence
-    Returns the average, minimum, maximum, and standard deviation across all sentences
+    Uses stats_proportion_part_of_speech to determine mean, min, max, and standard deviation of the proportion of auxiliaries in a sentence
     """
+    return stats_proportion_part_of_speech(nlp=nlp, file_path=file_path, pos_index=1)
 
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-
-    auxiliaries_to_word_ratios = []
-    stats_num_auxiliaries = {}
-    for sentence in doc.sents:
-        number_of_words = 0
-        number_of_auxiliaries = 0
-        for token in sentence:
-            if token.is_alpha:
-                number_of_words += 1
-                if token.pos_ == "AUX":
-                    number_of_auxiliaries += 1
-        auxiliaries_to_word_ratios.append(number_of_auxiliaries / number_of_words)
-
-    stats_num_auxiliaries["mean"] = sum(auxiliaries_to_word_ratios) / len(auxiliaries_to_word_ratios)
-    stats_num_auxiliaries["maximum"] = max(auxiliaries_to_word_ratios)
-    stats_num_auxiliaries["minimum"] = min(auxiliaries_to_word_ratios)
-    stats_num_auxiliaries["standard deviation"] = statistics.stdev(auxiliaries_to_word_ratios)
-    return stats_num_auxiliaries
+def stats_proportion_adjectives(nlp=None, file_path=None):
+    """
+    Takes in a natural language processor and file path
+    Uses stats_proportion_part_of_speech to determine mean, min, max, and standard deviation of the proportion of adjectives in a sentence
+    """
+    return stats_proportion_part_of_speech(nlp=nlp, file_path=file_path, pos_index=0)
 
 def stats_proportion_subjects(nlp=None, file_path=None):
     """
@@ -780,35 +647,3 @@ def total_consecutive_words(nlp=None, file_path=None):
         if word == next_word:
             consecutive_words += 1
     return consecutive_words
-
-
-
-def stats_proportion_adjectives(nlp=None, file_path=None):
-    """
-    Takes in a natural language processor and file path
-    Calculates the ratio of adjectives to total words in a sentence
-    Returns the average, minimum, maximum, and standard deviation across all sentences
-    """
-
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-
-    adjectives_to_word_ratios = []
-    stats_num_adjectives = {}
-    for sentence in doc.sents:
-        number_of_words = 0
-        number_of_adjectives = 0
-        for token in sentence:
-            if token.is_alpha:
-                number_of_words += 1
-                if token.pos_ == "ADJ":
-                    number_of_adjectives += 1
-        adjectives_to_word_ratios.append(number_of_adjectives / number_of_words)
-
-    stats_num_adjectives["mean"] = sum(adjectives_to_word_ratios) / len(adjectives_to_word_ratios)
-    stats_num_adjectives["maximum"] = max(adjectives_to_word_ratios)
-    stats_num_adjectives["minimum"] = min(adjectives_to_word_ratios)
-    stats_num_adjectives["standard deviation"] = statistics.stdev(adjectives_to_word_ratios)
-    return stats_num_adjectives
-
-
-

@@ -78,3 +78,9 @@ calculate_idea_density(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/
 
 ## Sample Input Files
 The folder sample_text contains text documents for convenient testing of these NLP functions.
+
+| File name             | Description                                                                                         | Use                                                                                                                                             |
+|-----------------------|-----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| test.txt              | This is a text file containing an AI generated story of 500 words.                                  | Can be used to test any of the nlp functions.                                                                                                   |
+| contains_nonwords.txt | This is a modified version of test.txt, in which nonsensical words were added to several sentences. | This can be used to test functions detecting presence of non-words.                                                                             |
+| sample.txt            | This is a subset of test.txt containing the first three sentences of the document.                  | This file is used in most of the Jupyter Notebook examples for quick testing and easy visualization. I is also used to validate some functions. |

@@ -1,4 +1,6 @@
-from nlp_functions import data_to_df, tag_ratio, num_tense_inflected_verbs, calculate_idea_density
+from pos_tagging import data_to_df, tag_ratio
+from syntactic_complexity import num_tense_inflected_verbs
+from semantic_complexity import calculate_idea_density
 import spacy
 
 def main():
