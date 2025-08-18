@@ -1,8 +1,8 @@
 import spacy
 from pathlib import Path
-from nlp_functions import abstractness
-from nlp_functions import semantic_ambiguity
-from nlp_functions import word_frequency, word_prevalence, word_familiarity, age_of_acquisition
+from semantic_complexity import abstractness
+from semantic_complexity import semantic_ambiguity
+from semantic_complexity import word_frequency, word_prevalence, word_familiarity, age_of_acquisition
 
 print(f" automatic abstractness {abstractness(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/sample.txt")}")
 

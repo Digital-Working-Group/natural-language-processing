@@ -1,6 +1,7 @@
 from pathlib import Path
 import spacy
 from collections import defaultdict
+import pandas as pd
 
 def data_to_df(nlp=None, file_path=None):
     """ Takes in a natural language processor and a file path, and returns a pandas dataframe with token attributes """
