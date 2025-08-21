@@ -3,7 +3,7 @@ import spacy
 from collections import defaultdict
 import pandas as pd
 
-def data_to_df(nlp=None, file_path=None):
+def data_to_df(nlp, file_path):
     """ Takes in a natural language processor and a file path, and returns a pandas dataframe with token attributes """
     doc = nlp(Path(file_path).read_text(encoding='utf-8'))
 
@@ -21,31 +21,62 @@ def data_to_df(nlp=None, file_path=None):
         })
     return pd.DataFrame(d)
 
-
-def tag_ratio(nlp=None, file_path=None, amount=100):
+def pos_tag_counts(nlp, file_path, tag, amount=100):
     """
-    Takes in a natural language processor, and per word amount(default is 100)
-    Returns a dictionary with parts-of-speech, tags and on average how many are present per 100 words
+    Takes in a natural language processor, filepath, tag("POS", or " TAG"), and per word amount
+    Returns a dictionary containing all tags and on average how many times they appear per 100 words
     """
     df = data_to_df(nlp, file_path)
     tag_counts = defaultdict(int)
-    pos_counts = defaultdict(int)
-    pos_and_tag_counts = {}
-    total = 0
-    #counts tags
-    for t in df["TAG"]:
+    for t in df[tag]:
         tag_counts[t] += 1
-        total += 1
-    for p in df["POS"]:
-        pos_counts[p] += 1
-    #calculate proportion
+    total = sum(tag_counts.values())
     for tag_label in tag_counts:
-        tag_counts[tag_label] = tag_counts[tag_label] / total * amount
-    for pos_label in pos_counts:
-        pos_counts[pos_label] = pos_counts[pos_label] / total * amount
+        tag_counts[tag_label] = (tag_counts[tag_label] / total) * amount
+    return tag_counts
 
-    #dictionary with pos and tag counts
-    pos_and_tag_counts["POS"] = pos_counts
-    pos_and_tag_counts["TAG"] = tag_counts
+def tag_ratio(nlp, file_path, amount=100):
+    """
+    Uses pos_tag_counts() to return a dictionary containing all parts-of-speech and Penn Treebank tags and on average how many times they appear per 100 words
+    """
+    return {"POS": pos_tag_counts(nlp, file_path, tag="POS", amount=amount), "TAG": pos_tag_counts(nlp, file_path, tag="TAG", amount=amount)}
 
-    return pos_and_tag_counts
+def ratio_of_pos(nlp, file_path, **kwargs):
+    """
+    Returns the ratio of specified part of speech to total words
+    """
+    parts_of_speech = kwargs["parts_of_speech"]
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
+    total_words = 0
+    total_nouns = 0
+    for token in doc:
+        if token.is_alpha:
+            total_words += 1
+            if token.pos_ in parts_of_speech:
+                total_nouns += 1
+    return total_nouns / total_words
+
+def ratio_of_nouns(nlp, file_path):
+    """
+    Uses ratio_of_pos() with specified kwargs to calculate and return the ration of nouns to total words
+    Information about the parts-of-speech tags can be found in spacy_pos_tags_explained.md
+    """
+    kwargs = {"parts_of_speech": ["NOUN", "PROPN"]}
+    return ratio_of_pos(nlp, file_path, **kwargs)
+
+def ratio_of_pronouns(nlp, file_path):
+    """
+    Uses ratio_of_pos() with specified kwargs to calculate and return the ration of pronouns to total words
+    Information about the parts-of-speech tags can be found in spacy_pos_tags_explained.md
+    """
+    kwargs = {"parts_of_speech": ["PRON"]}
+    return ratio_of_pos(nlp, file_path, **kwargs)
+
+def ratio_of_conjunctions(nlp, file_path):
+    """
+    Uses ratio_of_pos() with specified kwargs to calculate and return the ration of conjunctions to total words
+    Information about the parts-of-speech tags can be found in spacy_pos_tags_explained.md
+    """
+    kwargs = {"parts_of_speech": ["CONJ", "SCONJ"]}
+    return ratio_of_pos(nlp, file_path, **kwargs)
+

@@ -1,12 +1,16 @@
-from pos_tagging import data_to_df, tag_ratio, pos_tag_counts
+from pos_tagging import data_to_df, tag_ratio, pos_tag_counts, ratio_of_nouns, ratio_of_pronouns, ratio_of_conjunctions
 from semantic_complexity import semantic_ambiguity
+from lexical_repetition import repeating_unique_word_ratio
+from syntactic_errors import incorrectly_followed_articles
 from syntactic_complexity import sentence_lengths
-from syntactic_complexity import num_tense_inflected_verbs
+from syntactic_complexity import num_tense_inflected_verbs, dependency_tree_heights
 from semantic_complexity import calculate_idea_density
 from semantic_complexity import abstractness, word_frequency, word_prevalence, word_familiarity, age_of_acquisition
 from syntactic_errors import nonword_frequency
 from lexical_repetition import most_frequent_word
+from lexical_variation import windowed_text_token_ratio
 import spacy
+
 
 def main():
     """
@@ -57,5 +61,25 @@ def main():
     #most frequent word and its number of occurrences
     print(most_frequent_word(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt"))
 
+    #moving average text token ratio
+    print(windowed_text_token_ratio(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt", window_size=20))
+
+    #Ratio of repeating words to unique words in the text
+    print(repeating_unique_word_ratio(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt"))
+
+    #number of incorrectly followed articles present in the text
+    print(incorrectly_followed_articles(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt"))
+
+    #list of heights of all dependency trees
+    print(dependency_tree_heights(nlp=(spacy.load('en_core_web_lg')), file_path="sample_text/test.txt"))
+
+    #ratio of nouns to total words
+    print(ratio_of_nouns(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt"))
+
+    # ratio of pronouns to total words
+    print(ratio_of_pronouns(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt"))
+
+    # ratio of conjunctions to total words
+    print(ratio_of_conjunctions(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt"))
 if __name__ == '__main__':
     main()

@@ -8,23 +8,6 @@ from pathlib import Path
 
 
 
-def moving_average_text_token_ratio(nlp, file_path, window_size=20):
-    """
-    Takes in a natural language processor and file path and window size (default is 20)
-    Calculates type/token ratio for a fixed-length window, and averages type/token ratios from all windows.
-    Returns moving average text token ratio
-    """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    word_list = []
-    text_token_ratio_per_window = []
-    for token in doc:
-        if token.is_alpha:
-            word_list.append(token.text.lower())
-    for i in range(len(word_list) - window_size + 1):
-        words_in_window = word_list[i: i + window_size]
-        unique_words = set(words_in_window)
-        text_token_ratio_per_window.append(len(unique_words) / window_size)
-    return sum(text_token_ratio_per_window) / len(text_token_ratio_per_window)
 
 def term_frequency(nlp, file_path, term=None):
     """
@@ -63,43 +46,6 @@ def tf_idf(term=None, document_list=None):
     """
     return term_frequency() * inverse_document_frequency(document_list, term)
 
-def repeating_unique_word_ratio(nlp, file_path, amount=100):
-    """
-    Takes in a natural language processor and file path and per word amount
-    calculates (number of repeating words) / (number of unique words)
-    Returns number of repeating words per word amount
-    """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    word_list = []
-    words_and_counts = {}
-    repeating_words = 0
-    for token in doc:
-        if token.is_alpha:
-            word_list.append(token.text)
-            if token.text not in words_and_counts:
-                words_and_counts[token.text] = 1
-            else:
-                words_and_counts[token.text] += 1
-                repeating_words += 1
-
-    unique_words = set(word_list)
-    return repeating_words / len(unique_words) * amount
-
-def incorrectly_followed_articles(nlp, file_path):
-    """
-    Takes in a natural language processor and file path
-    counts number of articles not followed by a noun, proper noun, or adjective
-    returns the count
-    """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    articles = ["a", "an", "the"]
-    count = 0
-    for i, token in enumerate(doc):
-        if token.text.lower() in articles:
-            following_token = doc[i+1]
-            if following_token.pos_ not in ["ADJ", "NOUN", "PROPN"]:
-                count += 1
-    return count
 
 def number_of_unique_tokens(nlp, file_path):
     """
@@ -121,19 +67,7 @@ def number_of_unique_lemmas(nlp, file_path):
         lemmas.add(token.lemma_)
     return len(lemmas)
 
-def ratio_of_nouns(nlp, file_path):
-    """
-    Takes in a spacy doc and returns the ratio of nouns to total words
-    """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    total_words = 0
-    total_nouns = 0
-    for token in doc:
-        if token.is_alpha:
-            total_words += 1
-            if token.pos_== "NOUN":
-                total_nouns += 1
-    return total_nouns / total_words
+
 
 def avg_wh_words(nlp, file_path, amount=100):
     """
@@ -186,50 +120,7 @@ def mean_similarity_of_sentences(nlp, file_path):
         similarity_scores.append(similarity_score)
     return sum(similarity_scores) / len(similarity_scores)
 
-def tree_height(node=None):
-    """
-    Returns the max height of a tree given a node
-    """
-    if node is None:
-        return 0
-    else:
-        children = list(node.lefts) + list(node.rights)
-        if not children:
-            return 1
-        else:
-            return max(tree_height(child) for child in children) + 1
 
-def avg_dependency_tree_height(nlp, file_path):
-    """
-    Takes in a natural language processor and file path
-    Uses tree_height() to calculate max height of dependency trees
-    Returns average height of all dependency trees
-    """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    tree_depths = []
-    max_depth = 0
-    for sentence in doc.sents:
-        for token in sentence:
-            if token.dep_ == "ROOT":
-                max_depth = tree_height(token)
-        tree_depths.append(max_depth)
-    return sum(tree_depths) / len(tree_depths)
-
-def max_dependency_tree_height(nlp, file_path):
-    """
-    Takes in a natural language processor and file path
-    Uses tree_height() to calculate max height of dependency trees
-    Returns average height of all dependency trees
-    """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    tree_depths = []
-    max_depth = 0
-    for sentence in doc.sents:
-        for token in sentence:
-            if token.dep_ == "ROOT":
-                max_depth = tree_height(token)
-        tree_depths.append(max_depth)
-    return max(tree_depths)
 
 def stats_similarity_of_words(nlp, file_path, stat, window_size=3):
     """
@@ -289,33 +180,6 @@ def max_similarity_of_words(nlp, file_path, window_size=3):
     """
     return stats_similarity_of_words(nlp, file_path, stat="max", window_size=window_size)
 
-def ratio_of_pronouns(nlp, file_path):
-    """
-    Takes in a spacy doc and returns the ratio of nouns to total words
-    """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    total_words = 0
-    total_pronouns = 0
-    for token in doc:
-        if token.is_alpha:
-            total_words += 1
-            if token.pos_== "PRON":
-                total_pronouns += 1
-    return total_pronouns / total_words
-
-def ratio_of_conjunctions(nlp, file_path):
-    """
-    Takes in a spacy doc and returns the ratio of nouns to total words
-    """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    total_words = 0
-    total_conjunctions = 0
-    for token in doc:
-        if token.is_alpha:
-            total_words += 1
-            if token.pos_== "CCONJ" or token.pos_ == "SCONJ":
-                total_conjunctions += 1
-    return total_conjunctions / total_words
 
 def stats_proportion_part_of_speech(nlp, file_path, pos_index):
     """

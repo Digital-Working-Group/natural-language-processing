@@ -44,3 +44,32 @@ def sentence_lengths(nlp, file_path):
                 num_words += 1
         length_of_sentences.append(num_words)
     return length_of_sentences
+
+def tree_height(node=None):
+    """
+    Returns the max height of a tree given a node
+    """
+    if node is None:
+        return 0
+    else:
+        children = list(node.lefts) + list(node.rights)
+        if not children:
+            return 1
+        else:
+            return max(tree_height(child) for child in children) + 1
+
+def dependency_tree_heights(nlp, file_path):
+    """
+    Takes in a natural language processor and file path
+    Uses tree_height() to calculate max height of dependency trees
+    Returns average height of all dependency trees
+    """
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
+    tree_depths = []
+    max_depth = 0
+    for sentence in doc.sents:
+        for token in sentence:
+            if token.dep_ == "ROOT":
+                max_depth = tree_height(token)
+        tree_depths.append(max_depth)
+    return tree_depths

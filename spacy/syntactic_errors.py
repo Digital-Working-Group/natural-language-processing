@@ -23,3 +23,22 @@ def nonword_frequency(nlp, file_path, dataset_fp, amount=100):
                 total_nonwords += 1
     ratio_nonwords = total_nonwords / total_words * amount
     return ratio_nonwords
+
+def incorrectly_followed_articles(nlp, file_path):
+    """
+    Takes in a natural language processor and file path
+    counts number of articles not followed by a noun, proper noun, or adjective
+    returns the count
+    """
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
+    articles = ["a", "an", "the"]
+    count = 0
+    for i, token in enumerate(doc):
+        if token.text.lower() in articles:
+            try:
+                following_token = doc[i+1]
+                if following_token.pos_ not in ["ADJ", "NOUN", "PROPN"]:
+                    count += 1
+            except IndexError:
+                count += 1
+    return count

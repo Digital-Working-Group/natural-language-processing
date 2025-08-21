@@ -1,3 +1,5 @@
+from spacy.lexical_variation import windowed_text_token_ratio
+
 # Linguistic Features: SpaCy
 This repository contains scripts that show examples of how to use the [spaCy Python library](https://spacy.io/usage/linguistic-features) to generate linguistic features from raw text input.
 
@@ -54,6 +56,28 @@ The `tag_ratio()` function in `pos_tagging.py` takes in a natural language proce
 | file_path | str                     | This is a path to a file in string format                                                                            | N/A           |
 | amount    | int                     | This is an integer representing the number of words for which the proportion of parts-of-speech should be calculated | 100           |
 
+#### `ratio_of_pos()`
+The `ratio_of_pos()` function in `pos_tagging.py` takes in a natural language processor, filepath, key word arguments. It returns the ratio of the desired part of speech to total words in the text.
+#### `ratio_of_nouns()` 
+The `ratio_of_nouns()` function in `pos_tagging.py` calls ratio_of_pos() with specified kwargs to calculate and return the ratio of nouns to total words
+#### `ratio_of_pronouns`
+The `ratio_of_pronouns()` function in `pos_tagging.py` calls ratio_of_pos() with specified kwargs to calculate and return the ratio of pronouns to total words
+#### `ratio_of_conjunctions`
+The `ratio_of_conjunctions()` function in `pos_tagging.py` calls ratio_of_pos() with specified kwargs to calculate and return the ratio of conjunctions to total words
+#### Parameters for `ratio_of_pos()`
+
+| Parameter | Type                    | Description                                                                                               | Default Value |
+|-----------|-------------------------|-----------------------------------------------------------------------------------------------------------|---------------|
+| nlp       | spacy.language.Language | This is a pipeline object loaded from SpaCy. The user can choose the type, genre, and size of their model | Required      |
+| file_path | str                     | This is a path to a file in string format	                                                                | Required      |
+| **kwargs  |                         | function specific parameters for part of speech specification                                             |               |
+
+#### kwargs for `ratio_of_pos`
+
+| kwarg           | Type | Description                                       | Default Value |
+|-----------------|------|---------------------------------------------------|---------------|
+| parts_of_speech | list | List of pos tags used to identify parts of speech | Required      |
+
 ### Semantic Complexity
 #### `calculate_idea_density()`
 The function `calculate_idea_density()` in `semantic_complexity.py` takes in a nlp, and file_path. The function outputs a list of the sentences in the document and their idea densities. Idea Density is defined as the ratio of propositions to total words.
@@ -98,10 +122,41 @@ The functions  `abstractness()`, `semantic_ambiguity()`, `word_frequency()`, `wo
 ### Syntactic Complexity
 #### `num_tense_inflected_verbs()`
 The `num_tense_inflected_verbs()` function in `syntactic_complexity.py` takes in a nlp, file_path, and amount. The function outputs the average number of tense-inflected verbs per specified word amount. Tense inflected verbs are defined as present and past verbs and modal auxiliaries. 
+#### Parameters for `num_tense_inflected_verbs()`
+
+| Parameter | Type                    | Description                                                                                                     | Default  |
+|-----------|-------------------------|-----------------------------------------------------------------------------------------------------------------|----------|
+| nlp       | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model.      | Required |
+| file_path | str                     | This is a filepath in string format.                                                                            | Required |
+| amount    | str                     | This is an integer representing the number of words for which the proportion of nonwords should be calculated   | 100      |
+
+#### `sentence_lengths()`
+The `sentence_lengths()` function in `syntactic_complexity.py` takes in a natural language processor and a filepath. It calculates the length of each sentence and returns a list of sentence lengths.
+
+#### `dependency_tree_heights()` 
+The `dependency_tree_heights()` function in `syntactic complexity.py` takes in a natural language processor and a filepath. It calculates the dependency tree height of each dependant relation in spaCy using `tree_heights()`and returns a list of dependency tree heights. 
+#### Parameters for `sentence_lengths() and `dependency_tree_heights()`:
+
+| Parameter | Type                    | Description                                                                                                | Default  |
+|-----------|-------------------------|------------------------------------------------------------------------------------------------------------|----------|
+| nlp       | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model. | Required |
+| file_path | str                     | This is a filepath in string format.                                                                       | Required |
+
+### Lexical Variation
+#### `windowed_type_token_ratio()`
+The `windowed_type_token_ratio()` in  function takes in a natural language processor, filepath, and window size. It calculates and returns the average type token ratio across moving windows, starting from the beginning and moving one word at a time through the text. 
+#### Parameters for `windowed_type_token_ratio()`
+
+| Parameter   | Type                    | Description                                                                                                | Default  |
+|-------------|-------------------------|------------------------------------------------------------------------------------------------------------|----------|
+| nlp         | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model. | Required |
+| file_path   | str                     | This is a filepath in string format.                                                                       | Required |
+| window_size | int                     | number of words contained in moving windows (size)                                                         | 20       |
+
 
 ### Syntactic Errors
 #### `nonword_frequency()`
-The `nonword_frequency()` function takes in a natural language processor, file path, dataset of words, and per word amount(default is 100). The dataset used in examples comes from [kaggle](https://www.kaggle.com/datasets/bwandowando/479k-english-words). It is text file containing over 466k English words. The function calculates frequency of non-words using the dataset and Outputs on average how many non-words are present per word amount.
+The `nonword_frequency()` function in `syntactic_errors.py` takes in a natural language processor, file path, dataset of words, and per word amount(default is 100). The dataset used in examples comes from [kaggle](https://www.kaggle.com/datasets/bwandowando/479k-english-words). It is text file containing over 466k English words. The function calculates frequency of non-words using the dataset and Outputs on average how many non-words are present per word amount.
 #### Parameters for `nonword_frequency()`:
 
 | Parameter  | Type                    | Description                                                                                                   | Default  |
@@ -111,19 +166,20 @@ The `nonword_frequency()` function takes in a natural language processor, file p
 | dataset_fp | str                     | This is a filepath in string format for a dataset of English words. (used to detect nonwords)                 | Required |
 | amount     | int                     | This is an integer representing the number of words for which the proportion of nonwords should be calculated | 100      |
 
-#### `sentence_lengths()`
-The `sentence_lengths()` function takes in a natural language processor and a filepath. It calculates the length of each sentence and returns a list of sentence lengths.
-#### Parameters for `sentence_lengths():`
-
-| Parameter | Type                    | Description                                                                                                | Default  |
-|-----------|-------------------------|------------------------------------------------------------------------------------------------------------|----------|
-| nlp       | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model. | Required |
-| file_path | str                     | This is a filepath in string format.                                                                       | Required |
+#### `incorrectly_followed_articles()`
+The function `incorrectly_followed_articles()` in `syntactic_errors.py` takes in a natural language processor and filepath. It calculates and returns the number of articles (a, and, the) that are not followed by an adjective, noun, or, proper noun.
+#### Parameters for `incorrectly_followed_articles()`:
+| Parameter  | Type                    | Description                                                                                                   | Default  |
+|------------|-------------------------|---------------------------------------------------------------------------------------------------------------|----------|
+| nlp        | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model.    | Required |
+| file_path  | str                     | This is a filepath in string format.                                                                          | Required |
 
 ### Lexical Repetition
 #### `most_frequent_word()`
 The function `most_frequent_word()` in `lexical_repetition.py` takes in a natural language processor and a filepath. It calculates and returns the most commonly occurring word and how many times it appears in the text.
-#### Parameters for `most_frequent_word()`
+#### `repeating_unique_word_ratio()`
+The function `repeating_unique_word_ratio()` in `lexical_repetition.py` takes in a natural language processor, and a file path. It calculates and returns the ratio of repeating words to unique words in the text.
+#### Parameters for `most_frequent_word()` and `repeating_unique_word_ratio()`
 
 | Parameter  | Type                    | Description                                                                                                | Default  |
 |------------|-------------------------|------------------------------------------------------------------------------------------------------------|----------|
@@ -166,6 +222,36 @@ tag_ratio(nlp=spacy.load('en_core_web_sm'), file_path="sample_text/test.txt", am
 ```
 ```doctest
 {'POS': defaultdict(<class 'int'>, {'PRON': 15.151515151515152, 'VERB': 13.636363636363635, 'PUNCT': 12.121212121212121, 'SCONJ': 4.545454545454546, 'ADV': 7.575757575757576, 'ADP': 9.090909090909092, 'NOUN': 15.151515151515152, 'AUX': 3.0303030303030303, 'ADJ': 6.0606060606060606, 'DET': 7.575757575757576, 'PROPN': 1.5151515151515151, 'PART': 1.5151515151515151, 'CCONJ': 1.5151515151515151, 'NUM': 1.5151515151515151}), 'TAG': defaultdict(<class 'int'>, {'PRP': 9.090909090909092, 'VBP': 4.545454545454546, ',': 7.575757575757576, 'WRB': 4.545454545454546, 'RB': 9.090909090909092, 'IN': 7.575757575757576, 'PRP$': 3.0303030303030303, 'NN': 12.121212121212121, 'VBZ': 1.5151515151515151, 'JJ': 6.0606060606060606, 'DT': 7.575757575757576, 'NNS': 4.545454545454546, 'VB': 1.5151515151515151, 'WP': 1.5151515151515151, '.': 4.545454545454546, 'VBD': 6.0606060606060606, 'RP': 1.5151515151515151, 'VBN': 1.5151515151515151, 'NNP': 1.5151515151515151, 'VBG': 1.5151515151515151, 'CC': 1.5151515151515151, 'CD': 1.5151515151515151})}
+```
+#### `ratio_of_nouns()`
+```doctest
+import spacy
+from pos_tagging import ratio_of_nouns
+
+ratio_of_nouns(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
+```
+```doctest
+0.22866894197952217
+```
+#### `ratio_of_pronouns()`
+```doctest
+import spacy
+from pos_tagging import ratio_of_pronouns
+
+ratio_of_pronouns(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
+```
+```doctest
+0.16382252559726962
+```
+#### `ratio_of_conjunctions()`
+```doctest
+import spacy
+from pos_tagging import ratio_of_conjunctions
+
+ratio_of_conjunctions(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
+```
+```doctest
+0.025597269624573378
 ```
 ### Semantic Complexity
 #### `calculate_idea_density()`
@@ -267,7 +353,16 @@ sentence_lengths(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.t
 [20, 14, 22, 19, 16, 3, 11, 22, 16, 6, 27, 9, 21, 8, 8, 25, 12, 13, 22, 18, 20, 22, 25, 5, 21, 16, 25, 9, 25, 20, 26, 21, 17, 22]
 
 ```
+#### `dependency_tree_heights()`
+```doctest
+import spacy
+from syntactic_complexity import dependency_tree_heights, tree_heights
 
+dependency_tree_heights(nlp=(spacy.load('en_core_web_lg')), file_path="sample_text/test.txt")
+```
+```doctest
+[6, 5, 8, 6, 6, 2, 4, 6, 4, 3, 12, 4, 9, 5, 5, 9, 7, 5, 5, 6, 9, 5, 9, 2, 7, 8, 7, 4, 8, 9, 8, 10, 6, 7]
+```
 ### Syntactic Errors
 `nonword_frequency()`
 ```doctest
@@ -279,8 +374,18 @@ nonword_frequency(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.
 ```doctest
 1.0186757215619695
 ```
+`incorrectly_followed_articles()`
+```doctest
+import spacy
+from syntactic_errors import incorrectly_followed_articles
 
+incorrectly_followed_articles(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
+```
+```doctest
+1
+```
 ### Lexical Repetition
+#### `most_frequent_word()`
 ```doctest
 import spacy
 from lexical_repetition import most_frequent_word
@@ -290,7 +395,26 @@ most_frequent_word(nlp=spacy.load('en_ccore_web_lg'), file_path="sample_text/tes
 ```doctest
 ('life', 5)
 ```
+#### `repeating_unique_word_ratio()`
+```doctest
+import spacy
+from lexical_repetition import repeating_unique_word_ratio
 
+repeating_unique_word_ratio(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
+```
+```doctest
+0.9533333333333334
+```
+### Lexical Variation
+```doctest
+import spacy
+from lexical_variation import windowed_text_token_ratio
+
+windowed_text_token_ratio(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt", window_size=20)
+```
+```doctest
+0.9238095238095237
+```
 ## Sample Input Files
 The folder sample_text contains text documents for convenient testing of these NLP functions.
 
@@ -299,3 +423,6 @@ The folder sample_text contains text documents for convenient testing of these N
 | test.txt              | This is a text file containing an AI generated story of 500 words.                                  | Can be used to test any of the nlp functions.                                                                                                   |
 | contains_nonwords.txt | This is a modified version of test.txt, in which nonsensical words were added to several sentences. | This can be used to test functions detecting presence of non-words.                                                                             |
 | sample.txt            | This is a subset of test.txt containing the first three sentences of the document.                  | This file is used in most of the Jupyter Notebook examples for quick testing and easy visualization. I is also used to validate some functions. |
+
+## Acknowledgement
+- [SpaCy](https://spacy.io/): Free and open source library for industrial-strength Natural Language Processing (NLP) in Python
