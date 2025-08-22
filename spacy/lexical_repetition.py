@@ -33,3 +33,21 @@ def repeating_unique_word_ratio(nlp, file_path):
                 words_and_counts[token.text] += 1
                 repeating_words += 1
     return repeating_words / len(words_and_counts)
+
+def total_consecutive_words(nlp, file_path):
+    """
+    Takes in a natural language processor and file path
+    Counts the number of consecutive repeating words
+    returns the count of consecutive repeating words.
+    """
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
+    word_list = []
+    consecutive_words = 0
+    for token in doc:
+        if token.is_alpha:
+            word_list.append(token.text)
+    for i, word in enumerate(word_list):
+        next_word = word_list[i + 1] if i != len(word_list) - 1 else None
+        if word == next_word:
+            consecutive_words += 1
+    return consecutive_words

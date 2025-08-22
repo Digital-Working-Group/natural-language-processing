@@ -6,9 +6,6 @@ import statistics
 import spacy
 from pathlib import Path
 
-
-
-
 def term_frequency(nlp, file_path, term=None):
     """
     Takes in a natural language processor and file path and target string
@@ -45,29 +42,6 @@ def tf_idf(term=None, document_list=None):
     returns TF-IDF value
     """
     return term_frequency() * inverse_document_frequency(document_list, term)
-
-
-def number_of_unique_tokens(nlp, file_path):
-    """
-    Takes in a spacy doc and returns the number of unique tokens
-    """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    unique_tokens = set()
-    for token in doc:
-        unique_tokens.add(token.text)
-    return len(unique_tokens)
-
-def number_of_unique_lemmas(nlp, file_path):
-    """
-    Takes in a spacy doc and returns the number of unique lemmas
-    """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    lemmas = set()
-    for token in doc:
-        lemmas.add(token.lemma_)
-    return len(lemmas)
-
-
 
 def avg_wh_words(nlp, file_path, amount=100):
     """
@@ -255,37 +229,5 @@ def stats_proportion_subjects(nlp, file_path):
     stats_num_subjects["standard deviation"] = statistics.stdev(subjects_to_word_ratios)
     return stats_num_subjects
 
-def count_num_sentences_without_verbs(nlp, file_path):
-    """
-    Takes in a natural language processor and file path
-    Counts the number of sentences without verbs.
-    Returns the count of sentences without verbs.
-    """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    count = 0
-    for sentence in doc.sents:
-        count_verbs =  0
-        for token in sentence:
-            if token.pos_ == "VERB":
-                count_verbs += 1
-        if count_verbs < 1:
-            count += 1
-    return count
 
-def total_consecutive_words(nlp, file_path):
-    """
-    Takes in a natural language processor and file path
-    Counts the number of consecutive repeating words
-    returns the count of consecutive repeating words.
-    """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    word_list = []
-    consecutive_words = 0
-    for token in doc:
-        if token.is_alpha:
-            word_list.append(token.text)
-    for i, word in enumerate(word_list):
-        next_word = word_list[i + 1] if i != len(word_list) - 1 else None
-        if word == next_word:
-            consecutive_words += 1
-    return consecutive_words
+

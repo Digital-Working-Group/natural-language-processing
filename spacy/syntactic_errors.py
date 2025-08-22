@@ -42,3 +42,20 @@ def incorrectly_followed_articles(nlp, file_path):
             except IndexError:
                 count += 1
     return count
+
+def count_num_sentences_without_verbs(nlp, file_path):
+    """
+    Takes in a natural language processor and file path
+    Counts the number of sentences without verbs.
+    Returns the count of sentences without verbs.
+    """
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
+    count = 0
+    for sentence in doc.sents:
+        count_verbs =  0
+        for token in sentence:
+            if token.pos_ == "VERB":
+                count_verbs += 1
+        if count_verbs < 1:
+            count += 1
+    return count

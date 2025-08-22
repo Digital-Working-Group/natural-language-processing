@@ -1,14 +1,15 @@
 from pos_tagging import data_to_df, tag_ratio, pos_tag_counts, ratio_of_nouns, ratio_of_pronouns, ratio_of_conjunctions
 from semantic_complexity import semantic_ambiguity
 from lexical_repetition import repeating_unique_word_ratio
+from lexical_repetition import total_consecutive_words
 from syntactic_errors import incorrectly_followed_articles
 from syntactic_complexity import sentence_lengths
 from syntactic_complexity import num_tense_inflected_verbs, dependency_tree_heights
 from semantic_complexity import calculate_idea_density
 from semantic_complexity import abstractness, word_frequency, word_prevalence, word_familiarity, age_of_acquisition
-from syntactic_errors import nonword_frequency
+from syntactic_errors import nonword_frequency, count_num_sentences_without_verbs
 from lexical_repetition import most_frequent_word
-from lexical_variation import windowed_text_token_ratio
+from lexical_variation import windowed_text_token_ratio, number_of_unique_lemmas, number_of_unique_tokens
 import spacy
 
 
@@ -81,5 +82,17 @@ def main():
 
     # ratio of conjunctions to total words
     print(ratio_of_conjunctions(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt"))
+
+    #number of unique tokens in the text
+    print(number_of_unique_tokens(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt"))
+
+    #number of unique lemmas in the text
+    print(number_of_unique_lemmas(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt"))
+
+    #number of sentences in the text not containing verbs
+    print(count_num_sentences_without_verbs(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt"))
+
+    #number of consecutive repeating words
+    print(total_consecutive_words(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt"))
 if __name__ == '__main__':
     main()

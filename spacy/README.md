@@ -152,7 +152,15 @@ The `windowed_type_token_ratio()` in  function takes in a natural language proce
 | nlp         | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model. | Required |
 | file_path   | str                     | This is a filepath in string format.                                                                       | Required |
 | window_size | int                     | number of words contained in moving windows (size)                                                         | 20       |
-
+#### `number_of_unique_tokens()`
+The function `number_of_unique_tokens()` in `lexical_variation.py` takes in a natural language processor and filepath. It calculates and returns the number of unique tokens in the text. 
+#### `number_of_unique_lemmas()`
+The function `number_of_unique_lemmas()` in `lexical_variation.py` takes in a natural language processor and filepath. It calculates and returns the number of unique lemmas in the text. 
+#### Parameters for `number_of_unique_tokens()` and `number_of_unique_lemmas()`:
+| Parameter   | Type                    | Description                                                                                                | Default  |
+|-------------|-------------------------|------------------------------------------------------------------------------------------------------------|----------|
+| nlp         | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model. | Required |
+| file_path   | str                     | This is a filepath in string format.                                                                       | Required |
 
 ### Syntactic Errors
 #### `nonword_frequency()`
@@ -168,7 +176,9 @@ The `nonword_frequency()` function in `syntactic_errors.py` takes in a natural l
 
 #### `incorrectly_followed_articles()`
 The function `incorrectly_followed_articles()` in `syntactic_errors.py` takes in a natural language processor and filepath. It calculates and returns the number of articles (a, and, the) that are not followed by an adjective, noun, or, proper noun.
-#### Parameters for `incorrectly_followed_articles()`:
+#### `count_num_sentences_without_verbs()`
+The function `count_num_sentences_without_verbs()` in `syntactic_errors.py` takes in a natural language processor and filepath. It calculates and returns the number of sentences in the text that do not contain verbs.
+#### Parameters for `incorrectly_followed_articles()`, and `count_num_sentences_without_verbs()`:
 | Parameter  | Type                    | Description                                                                                                   | Default  |
 |------------|-------------------------|---------------------------------------------------------------------------------------------------------------|----------|
 | nlp        | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model.    | Required |
@@ -179,7 +189,9 @@ The function `incorrectly_followed_articles()` in `syntactic_errors.py` takes in
 The function `most_frequent_word()` in `lexical_repetition.py` takes in a natural language processor and a filepath. It calculates and returns the most commonly occurring word and how many times it appears in the text.
 #### `repeating_unique_word_ratio()`
 The function `repeating_unique_word_ratio()` in `lexical_repetition.py` takes in a natural language processor, and a file path. It calculates and returns the ratio of repeating words to unique words in the text.
-#### Parameters for `most_frequent_word()` and `repeating_unique_word_ratio()`
+#### `total_consecutive_words()`
+The function `total_consecutive_words` in `lexical_repetition.py` takes in a natural language processor and filepath. It calculates and returns the number of consecutive repeating words in the text.
+#### Parameters for `most_frequent_word()`, `repeating_unique_word_ratio()`, and `total_consecutive_words()` 
 
 | Parameter  | Type                    | Description                                                                                                | Default  |
 |------------|-------------------------|------------------------------------------------------------------------------------------------------------|----------|
@@ -384,6 +396,16 @@ incorrectly_followed_articles(nlp=spacy.load('en_core_web_lg'), file_path="sampl
 ```doctest
 1
 ```
+#### `count_num_sentences_without_verbs()`
+```doctest
+import spacy
+from syntactic_errors import count_num_sentences_without_verbs
+
+count_num_sentences_without_verbs(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
+```
+```doctest
+6
+```
 ### Lexical Repetition
 #### `most_frequent_word()`
 ```doctest
@@ -405,7 +427,18 @@ repeating_unique_word_ratio(nlp=spacy.load('en_core_web_lg'), file_path="sample_
 ```doctest
 0.9533333333333334
 ```
+#### `total_consecutive_words()`
+```doctest
+import spacy
+from lexical_repetition import total_consecutive_words
+
+total_consecutive_words(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
+```
+```doctest
+0
+```
 ### Lexical Variation
+#### `windowed_text_token_ratio`
 ```doctest
 import spacy
 from lexical_variation import windowed_text_token_ratio
@@ -414,6 +447,26 @@ windowed_text_token_ratio(nlp=spacy.load('en_core_web_lg'), file_path="sample_te
 ```
 ```doctest
 0.9238095238095237
+```
+#### `number_of_unique_token()`
+```doctest
+import spacy
+from lexical_variation import number_of_unique_tokens
+
+number_of_unique_tokens(nlp=spacy.load(en_core_web_lg), file_path="sample_text/test.txt")
+```
+```doctest
+311
+```
+#### `number_of_uniue_lemmas()`
+```doctest
+import spacy
+from lexical_variation import number_of_unique_lemmas
+
+number_of_unique_lemmas(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
+```
+```doctest
+278
 ```
 ## Sample Input Files
 The folder sample_text contains text documents for convenient testing of these NLP functions.

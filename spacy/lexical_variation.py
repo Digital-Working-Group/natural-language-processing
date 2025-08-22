@@ -17,3 +17,23 @@ def windowed_text_token_ratio(nlp, file_path, window_size=20):
         unique_words = set(words_in_window)
         text_token_ratio_per_window.append(len(unique_words) / window_size)
     return sum(text_token_ratio_per_window) / len(text_token_ratio_per_window)
+
+def number_of_unique_tokens(nlp, file_path):
+    """
+    Takes in a spacy doc and returns the number of unique tokens
+    """
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
+    unique_tokens = set()
+    for token in doc:
+        unique_tokens.add(token.text)
+    return len(unique_tokens)
+
+def number_of_unique_lemmas(nlp, file_path):
+    """
+    Takes in a spacy doc and returns the number of unique lemmas
+    """
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
+    lemmas = set()
+    for token in doc:
+        lemmas.add(token.lemma_)
+    return len(lemmas)
