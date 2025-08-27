@@ -1,5 +1,3 @@
-from spacy.lexical_variation import windowed_text_token_ratio
-
 # Linguistic Features: SpaCy
 This repository contains scripts that show examples of how to use the [spaCy Python library](https://spacy.io/usage/linguistic-features) to generate linguistic features from raw text input.
 
