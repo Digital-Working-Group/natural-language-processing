@@ -1,3 +1,4 @@
+import statistics
 from pathlib import Path
 import spacy
 from collections import defaultdict
@@ -80,3 +81,65 @@ def ratio_of_conjunctions(nlp, file_path):
     kwargs = {"parts_of_speech": ["CONJ", "SCONJ"]}
     return ratio_of_pos(nlp, file_path, **kwargs)
 
+def stats_proportion_part_of_speech(nlp, file_path, **kwargs):
+    """
+    Takes in a natural language processor, file path, and set of kwargs
+    Calculates the ratio of specified part-of-speech to total words in a sentence for all sentences
+    Returns the average, minimum, maximum, and standard deviation across all sentences
+    """
+    tag = kwargs.get("tag")
+    dep = kwargs.get("dep")
+
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
+
+    pos_to_word_ratios = []
+
+    for sentence in doc.sents:
+        number_of_words = 0
+        number_of_pos = 0
+        for token in sentence:
+            if token.is_alpha:
+                number_of_words += 1
+                if (tag and token.pos_ == tag) or (dep and token.dep_ == dep):
+                    number_of_pos += 1
+        pos_to_word_ratios.append(number_of_pos / number_of_words)
+
+    return {
+        "mean": sum(pos_to_word_ratios) / len(pos_to_word_ratios),
+        "max": max(pos_to_word_ratios),
+        "min": min(pos_to_word_ratios),
+        "std": statistics.stdev(pos_to_word_ratios)
+    }
+
+def stats_proportion_coordinators(nlp, file_path):
+    """
+    Takes in a natural language processor and file path
+    Uses stats_proportion_part_of_speech to determine mean, min, max, and standard deviation of the proportion of coordinators in a sentence
+    """
+    kwargs = {"tag": "CCONJ"}
+    return stats_proportion_part_of_speech(nlp, file_path, **kwargs)
+
+def stats_proportion_auxiliaries(nlp, file_path):
+    """
+    Takes in a natural language processor and file path
+    Uses stats_proportion_part_of_speech to determine mean, min, max, and standard deviation of the proportion of auxiliaries in a sentence
+    """
+    kwargs = {"tag": "AUX"}
+    return stats_proportion_part_of_speech(nlp, file_path, **kwargs)
+
+def stats_proportion_adjectives(nlp, file_path):
+    """
+    Takes in a natural language processor and file path
+    Uses stats_proportion_part_of_speech to determine mean, min, max, and standard deviation of the proportion of adjectives in a sentence
+    """
+    kwargs = {"tag": "ADJ"}
+    return stats_proportion_part_of_speech(nlp, file_path, **kwargs)
+
+def stats_proportion_subjects(nlp, file_path):
+    """
+    Takes in a natural language processor and file path
+    Calculates the ratio of subjects to total words in a sentence
+    Returns the average, minimum, maximum, and standard deviation across all sentences
+    """
+    kwargs = {"dep": "nsubj"}
+    return stats_proportion_part_of_speech(nlp, file_path, **kwargs)

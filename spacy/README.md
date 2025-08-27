@@ -78,6 +78,31 @@ The `ratio_of_conjunctions()` function in `pos_tagging.py` calls ratio_of_pos() 
 |-----------------|------|---------------------------------------------------|---------------|
 | parts_of_speech | list | List of pos tags used to identify parts of speech | Required      |
 
+#### `stats_proportion_part_of_speech()`
+The function `stats_proportion_part_of_speech()` in `pos_tagging.py` takes in a natural language processor, file path, and set of kwargs. It calculates the ratio of specified part-of-speech to total words in a sentence for all sentences and returns the average, minimum, maximum, and standard deviation across all sentences.
+#### `stats_proportion_coordinators()`
+The function `stats_proportion_coordinators()` in `pos_tagging.py` takes in a natural language processor and file path. It calls stats_proportion_part_of_speech with specified kwargs to determine mean, min, max, and standard deviation of the proportion of coordinators in a sentence.
+#### `stats_proportion_auxiliaries()`
+The function `stats_proportion_auxiliaries()` in `pos_tagging.py` takes in a natural language processor and file path. It calls stats_proportion_part_of_speech with specified kwargs to determine mean, min, max, and standard deviation of the proportion of auxiliaries in a sentence.
+#### `stats_proportion_adjectives()`
+The function `stats_proportion_adjectives()` in `pos_tagging.py` takes in a natural language processor and file path. It calls stats_proportion_part_of_speech with specified kwargs to determine mean, min, max, and standard deviation of the proportion of adjectives in a sentence.
+#### `stats_proportion_subjects()`
+The function `stats_proportion_subjects()` in `pos_tagging.py` takes in a natural language processor and file path. It calls stats_proportion_part_of_speech with specified kwargs to determine mean, min, max, and standard deviation of the proportion of subjects in a sentence.
+
+#### Parameters for `stats_proportion_part_of_speech()`
+| Parameter | Type                    | Description                                                                                               | Default Value |
+|-----------|-------------------------|-----------------------------------------------------------------------------------------------------------|---------------|
+| nlp       | spacy.language.Language | This is a pipeline object loaded from SpaCy. The user can choose the type, genre, and size of their model | Required      |
+| file_path | str                     | This is a path to a file in string format	                                                                | Required      |
+| **kwargs  |                         | function specific parameters for part of speech specification                                             |               |
+
+#### kwargs for `stats_proportion_part_of_speech()`
+
+| kwarg | Type | Description                 | Default Value |
+|-------|------|-----------------------------|---------------|
+| tag   | str  | parts of speech tag         | None          |
+| dep   | str  | parts of speech dependency  | None          |
+
 ### Semantic Complexity
 #### `calculate_idea_density()`
 The function `calculate_idea_density()` in `semantic_complexity.py` takes in a nlp, and file_path. The function outputs a list of the sentences in the document and their idea densities. Idea Density is defined as the ratio of propositions to total words.
@@ -173,7 +198,14 @@ The `nonword_frequency()` function in `syntactic_errors.py` takes in a natural l
 | file_path  | str                     | This is a filepath in string format.                                                                          | Required |
 | dataset_fp | str                     | This is a filepath in string format for a dataset of English words. (used to detect nonwords)                 | Required |
 | amount     | int                     | This is an integer representing the number of words for which the proportion of nonwords should be calculated | 100      |
-
+#### `avg_num_nonwords()` 
+`avg_num_nonwords()` in `syntactic_errors.py` is an alternative way of counting non-words. The function takes in a natural language processor, filepath, and word amount. It counts number of nonwords by checking if words are in spaCy's vocabulary, and returns the number of nonwords present per word amount.
+#### Parameters for `avg_num_nonwords()`
+| Parameter  | Type                    | Description                                                                                                   | Default  |
+|------------|-------------------------|---------------------------------------------------------------------------------------------------------------|----------|
+| nlp        | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model.    | Required |
+| file_path  | str                     | This is a filepath in string format.                                                                          | Required |
+| amount     | int                     | This is an integer representing the number of words for which the proportion of nonwords should be calculated | 100      |
 #### `incorrectly_followed_articles()`
 The function `incorrectly_followed_articles()` in `syntactic_errors.py` takes in a natural language processor and filepath. It calculates and returns the number of articles (a, and, the) that are not followed by an adjective, noun, or, proper noun.
 #### `count_num_sentences_without_verbs()`
@@ -198,7 +230,34 @@ The function `total_consecutive_words` in `lexical_repetition.py` takes in a nat
 | nlp        | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model. | Required |
 | file_path  | str                     | This is a filepath in string format.                                                                       | Required |
 
+### Similarity
+#### `stats_similarity_of_words()`
+The function `stats_similarity_of_words()` in `similarity.py` takes in a natural language processor, file path, and window size(default 3). It returns dictionary containing mean, min,  max, and standard deviation of word similarity across all windows.
+#### Parameters for `stats_similarity_of_words()`
+| Parameter   | Type                    | Description                                                                                                | Default  |
+|-------------|-------------------------|------------------------------------------------------------------------------------------------------------|----------|
+| nlp         | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model. | Required |
+| file_path   | str                     | This is a filepath in string format.                                                                       | Required |
+| window_size | int                     | This is an integer representing the number of words contained in each window                               | 3        |
+#### `mean_similarity_of_sentences()`
+The function `mean_similarity_of_sentences()` in `similarity.py` takes in a natural language processor and a filepath. It calculates and returns the mean similarity of all combinations of sentences.
+#### Parameters for `mean_similarity_of_sentences()`
+| Parameter   | Type                    | Description                                                                                                | Default  |
+|-------------|-------------------------|------------------------------------------------------------------------------------------------------------|----------|
+| nlp         | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model. | Required |
+| file_path   | str                     | This is a filepath in string format.                                                                       | Required |
 
+### Term Frequency - Inverse Document Frequency
+TF-IDF is a method used to evaluate importance of a word to a document in relation to a larger collection of documents. It combines term frequency (how often a word appears in a document) with inverse document frequency (total number of documents / number of documents containing term t). More information on this implementation can be found [here](https://www.geeksforgeeks.org/machine-learning/understanding-tf-idf-term-frequency-inverse-document-frequency/)
+#### `tf_idf()`
+The function `tf_idf()` in `term_freq_inverse_doc_freq.py` takes in  a natural language processor, filepath, document list and target string(term). It first calculates term frequency, which is defined as the frequency of a target string in a document. Then, it calculates inverse-document-frequency, which is defined as log10 of the number of documents divided by the number of documents containing the term. TF-IDF is calculated by multiplying these two values.
+#### Parameters for `tf_idf()`
+| Parameter     | Type                    | Description                                                                                                | Default  |
+|---------------|-------------------------|------------------------------------------------------------------------------------------------------------|----------|
+| nlp           | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model. | Required |
+| file_path     | str                     | This is a filepath in string format.                                                                       | Required |
+| document_list | list                    | List of file paths                                                                                         | Required |
+| term          | str                     | Target string for which TF-IDF will be calculated                                                          | None     |
 ## SpaCy Universal Tag Explanation
 Please see spacy_pos_tags_explained.md for details on spaCy's parts-of-speech tags and their descriptions.
 
@@ -265,6 +324,46 @@ ratio_of_conjunctions(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/t
 ```doctest
 0.025597269624573378
 ```
+#### `stats_proportion_coordinators()`
+```doctest
+import spacy
+from pos_tagging import stats_proportion_coordinators
+
+stats_proportion_coordinators(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
+```
+```doctest
+{'mean': 0.05029893149270312, 'max': 0.1875, 'min': 0.0, 'std': 0.04583023800082182}
+```
+#### `stats_proportion_auxiliaries()`
+```doctest
+import spacy
+from pos_tagging import stats_proportion_auxiliaries
+
+stats_proportion_auxiliaries(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
+```
+```doctest
+{'mean': 0.05560743436130433, 'max': 0.3333333333333333, 'min': 0.0, 'std': 0.07735664309842447}
+```
+#### `stats_proportion_adjectives()`
+```doctest
+import spacy
+from pos_tagging import stats_proportion_adjectives
+
+stats_proportion_adjectives(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
+```
+```doctest
+{'mean': 0.09117393468581776, 'max': 0.375, 'min': 0.0, 'std': 0.09741581819031751}
+```
+#### `stats_proportion_subjects()`
+```doctest
+import spacy
+from pos_tagging import stats_proportion_subjects
+
+stats_proportion_subjects(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
+```
+```doctest
+{'mean': 0.13538585215010274, 'max': 0.3333333333333333, 'min': 0.04, 'std': 0.06797608583749848}
+```
 ### Semantic Complexity
 #### `calculate_idea_density()`
 ```doctest
@@ -273,7 +372,7 @@ from semantic_complexity import calculate_idea_density
 
 calculate_idea_density(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
 ```
-```json
+```doctest
 [("You know, when I think back on my life, it's funny how the little things really shape who you become.", 0.55), ('I grew up in this small town called Ridgewood, tucked away in the countryside.', 0.5714285714285714), ("It wasn't much just rolling hills, a couple of farms, and one main street with a diner where everyone knew your name.", 0.4090909090909091)]
 ```
 #### `abstractness()`
@@ -381,10 +480,20 @@ dependency_tree_heights(nlp=(spacy.load('en_core_web_lg')), file_path="sample_te
 import spacy
 from syntactic_errors import nonword_frequency
 
-nonword_frequency(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt", dataset_fp="words_alpha.txt", amount=100)
+nonword_frequency(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/contains_nonwords.txt", dataset_fp="words_alpha.txt", amount=100)
 ```
 ```doctest
 1.0186757215619695
+```
+`avg_num_nonwords()`
+```doctest
+import spacy
+from syntactic_errors import avg_num_nonwords
+
+avg_num_nonwords(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/contains_nonwords.txt", amount=100)
+```
+```doctest
+0.5093378607809848
 ```
 `incorrectly_followed_articles()`
 ```doctest
@@ -467,6 +576,37 @@ number_of_unique_lemmas(nlp=spacy.load('en_core_web_lg'), file_path="sample_text
 ```
 ```doctest
 278
+```
+### Similarity
+#### `stats_similarity_of_words()`
+```doctest
+import spacy
+from similarity  import stats_similarity_of_words
+
+stats_similarity_of_words(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt", window_size=3)
+```
+```doctest
+{'mean': 0.4197374429223744, 'max': 0.7733333333333334, 'min': 0.013333333333333336, 'std': 0.1215306716400124}
+```
+#### `mean_similarity_of_sentences()`
+```doctest
+import spacy
+from similarity import mean_similarity_of_sentences
+
+mean_similarity_of_sentences(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/sample.txt")
+```
+```doctest
+0.8783600713012477
+```
+### Term Frequency-Inverse Document Frequency
+```doctest
+import spacy
+from term_freq_inverse_doc_freq import tf_idf
+
+tf_idf(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt", document_list=["sample_text/sample.txt", "sample_text/test.txt", "sample_text/contains_nonwords.txt"], term="life")
+```
+```doctest
+0.0
 ```
 ## Sample Input Files
 The folder sample_text contains text documents for convenient testing of these NLP functions.

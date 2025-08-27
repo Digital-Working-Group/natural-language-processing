@@ -24,6 +24,22 @@ def nonword_frequency(nlp, file_path, dataset_fp, amount=100):
     ratio_nonwords = total_nonwords / total_words * amount
     return ratio_nonwords
 
+def avg_num_nonwords(nlp, file_path, amount=100):
+    """
+    Takes in natural language processor, filepath, and word amount
+    Counts number of nonwords by checking if words are in spaCys vocabulary
+    Returns average number of nonwords per word amount
+    """
+    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
+    nonwords = 0
+    total_words = 0
+    for token in doc:
+        if token.is_alpha:
+            total_words += 1
+            if token.is_oov:
+                nonwords += 1
+    return nonwords / total_words * amount
+
 def incorrectly_followed_articles(nlp, file_path):
     """
     Takes in a natural language processor and file path
@@ -59,3 +75,4 @@ def count_num_sentences_without_verbs(nlp, file_path):
         if count_verbs < 1:
             count += 1
     return count
+

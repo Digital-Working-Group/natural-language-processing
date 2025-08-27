@@ -3,7 +3,7 @@ import pathlib
 import pandas as pd
 
 
-from nlp_functions import data_to_df, num_tense_inflected_verbs, calculate_idea_density, \
+from term_freq_inverse_doc_freq import data_to_df, num_tense_inflected_verbs, calculate_idea_density, \
     abstractness, \
     semantic_ambiguity, word_frequency, word_prevalence, word_familiarity, age_of_acquisition, semantic_ambiguity, \
     frequency_nonwords, length_of_sentences, occurrences_of_most_frequent, \
@@ -13,7 +13,7 @@ from nlp_functions import data_to_df, num_tense_inflected_verbs, calculate_idea_
     max_similarity_of_words, std_similarity_of_words, ratio_of_pronouns, ratio_of_conjunctions, \
     stats_proportion_coordinators, stats_proportion_auxiliaries, stats_proportion_subjects, \
     count_num_sentences_without_verbs, total_consecutive_words, stats_proportion_adjectives
-from nlp_functions import tag_ratio
+from term_freq_inverse_doc_freq import tag_ratio
 
 
 

@@ -24,12 +24,16 @@ def inverse_document_frequency(document_list=None, term=None):
     returns inverse document frequency value
     """
     number_of_documents = len(document_list)
+    print(number_of_documents)
     documents_containing_term = 0
     for document in document_list:
         term_freq_doc = term_frequency(nlp=spacy.load('en_core_web_lg'), file_path=document, term=term)
         if term_freq_doc > 0:
+            print(document)
             documents_containing_term += 1
-    return math.log10(number_of_documents / documents_containing_term)
+            print(documents_containing_term)
+    print(math.log10(number_of_documents / documents_containing_term))
+    return math.log10(number_of_documents / documents_containing_term) if documents_containing_term > 0 else 0
 
 def tf_idf(nlp, file_path, document_list=None, term=None):
     """
@@ -41,7 +45,7 @@ def tf_idf(nlp, file_path, document_list=None, term=None):
 
 
 
-
+tf_idf(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt", document_list=["sample_text/sample.txt", "sample_text/test.txt", "sample_text/contains_nonwords.txt"], term="life")
 
 
 

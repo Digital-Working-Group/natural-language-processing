@@ -1,5 +1,6 @@
 from pathlib import Path
 
+
 def windowed_text_token_ratio(nlp, file_path, window_size=20):
     """
     Takes in a natural language processor and file path and window size (default is 20)
@@ -30,10 +31,11 @@ def number_of_unique_tokens(nlp, file_path):
 
 def number_of_unique_lemmas(nlp, file_path):
     """
-    Takes in a spacy doc and returns the number of unique lemmas
+    Takes in a spacy doc and returns the number of unique tokens
     """
     doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    lemmas = set()
+    unique_lemmas = set()
     for token in doc:
-        lemmas.add(token.lemma_)
-    return len(lemmas)
+        unique_lemmas.add(token.lemma_)
+    return len(unique_lemmas)
+
