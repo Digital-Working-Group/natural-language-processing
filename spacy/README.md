@@ -19,10 +19,12 @@ Please run [jupyter notebook](https://docs.jupyter.org/en/latest/running.html) a
 
 ## Load spaCy models
 Prior to being able to load spaCy models such as [en_core_web_lg](https://spacy.io/models/en#en_core_web_lg), one must run `spacy download <model name`:
+
 ```sh
 spacy download en_core_web_lg
 ```
 
+Downloading the model allows for loading via spaCy:
 ```python
 nlp = spacy.load('en_core_web_lg')
 ```
