@@ -17,6 +17,21 @@ See the data_dictionary.md file for detailed descriptions of each linguistic fea
 ## Jupyter Notebook Examples
 Please run [jupyter notebook](https://docs.jupyter.org/en/latest/running.html) and see [nlp_function_examples.ipynb](nlp_function_examples.ipynb) for an interactive set of examples. Also, see the usage example sections below.
 
+## Load spaCy models
+Prior to being able to load spaCy models such as [en_core_web_lg](https://spacy.io/models/en#en_core_web_lg), one must run `spacy download <model name`:
+```sh
+spacy download en_core_web_lg
+```
+
+```python
+nlp = spacy.load('en_core_web_lg')
+```
+
+Without downloading the model, one may encounter errors such as:
+```sh
+OSError: [E050] Can't find model 'en_core_web_lg'. It doesn't seem to be a Python package or a valid path to a data directory.
+```
+
 ## Extracting Linguistic Features
 See `extract_linguistic_features.main()`for usage examples. 
 ### Parts-of-Speech Tagging
