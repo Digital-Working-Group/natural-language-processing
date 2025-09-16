@@ -15,7 +15,7 @@ pip install -r python3-15-5_requirements.txt
 See the data_dictionary.md file for detailed descriptions of each linguistic feature, the function(s) used to generate them, and references to the papers they were extracted from.
 
 ## Jupyter Notebook Examples
-Please run [jupyter noteboook](https://docs.jupyter.org/en/latest/running.html) and see nlp_function_examples.ipynb for an interactive set of examples. Also, see the usage example sections below.
+Please run [jupyter notebook](https://docs.jupyter.org/en/latest/running.html) and see [nlp_function_examples.ipynb](nlp_function_examples.ipynb) for an interactive set of examples. Also, see the usage example sections below.
 
 ## Extracting Linguistic Features
 See `extract_linguistic_features.main()`for usage examples. 
@@ -124,7 +124,7 @@ The function `word_familiarity()` in `semantic_complexity.py` calls `generate_no
 #### `age_of_acquisition()` 
 The function `age_of_acquisition()` in `semantic_complexity.py` calls `generate_noun_feature()` with specified kwargs. This function finds the age of acquisition value corresponding to each noun in the text utilizing a pre-existing dataset, and averages these values. The function outputs the average age of acquisition value across all nouns in the text.
 #### Parameters for `generate_noun_feature()`
-The functions  `abstractness()`, `semantic_ambiguity()`, `word_frequency()`, `word_prevalence()`, `word_familiarity()`, and `age_of_acquisition()` in `semantic_complexity.py`, all depend on the `generate_noun_feature()` function. They each calculate a feature value of nouns in the text. These values estimate the complexity of the text. Each function uses a different dataset and column with predetermined values for each word. The functions all take in a natural language processor, file path, and function specific arguments via **kwargs, and return a singular float value, representing the average feature value across all nouns in the text.
+The functions  `abstractness()`, `semantic_ambiguity()`, `word_frequency()`, `word_prevalence()`, `word_familiarity()`, and `age_of_acquisition()` in `semantic_complexity.py`, all depend on the `generate_noun_feature()` function. They each calculate a feature value of nouns in the text. These values estimate the complexity of the text. Each function uses a different dataset and column with predetermined values for each word. The functions all take in a natural language processor, file path, and function specific arguments via \*\*kwargs, and return a singular float value, representing the average feature value across all nouns in the text.
 
 | Parameter | Type                    | Description                                                                                               | Default |
 |-----------|-------------------------|-----------------------------------------------------------------------------------------------------------|---------|
@@ -132,7 +132,7 @@ The functions  `abstractness()`, `semantic_ambiguity()`, `word_frequency()`, `wo
 | file_path | str                     | This is a path to a file in string format                                                                 | N/A     |
 | **kwargs  |                         | function specific parameters for dataset lookup                                                           |         |
 
-#### **kwargs for `generate_noun_feature()`
+#### \*\*kwargs for `generate_noun_feature()`
 
 | Kwarg             | Type | Description                                                                         | Default            |
 |-------------------|------|-------------------------------------------------------------------------------------|--------------------|
@@ -158,7 +158,7 @@ The `sentence_lengths()` function in `syntactic_complexity.py` takes in a natura
 
 #### `dependency_tree_heights()` 
 The `dependency_tree_heights()` function in `syntactic complexity.py` takes in a natural language processor and a filepath. It calculates the dependency tree height of each dependant relation in spaCy using `tree_heights()`and returns a list of dependency tree heights. 
-#### Parameters for `sentence_lengths() and `dependency_tree_heights()`:
+#### Parameters for `sentence_lengths()` and `dependency_tree_heights()`:
 
 | Parameter | Type                    | Description                                                                                                | Default  |
 |-----------|-------------------------|------------------------------------------------------------------------------------------------------------|----------|
@@ -616,4 +616,4 @@ The folder sample_text contains text documents for convenient testing of these N
 | sample.txt            | This is a subset of test.txt containing the first three sentences of the document.                  | This file is used in most of the Jupyter Notebook examples for quick testing and easy visualization. I is also used to validate some functions. |
 
 ## Acknowledgement
-- [SpaCy](https://spacy.io/): Free and open source library for industrial-strength Natural Language Processing (NLP) in Python
+- [spaCy](https://spacy.io/): Free and open source library for industrial-strength Natural Language Processing (NLP) in Python
