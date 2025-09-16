@@ -3,7 +3,10 @@ pos_tagging.py
 Functions related to parts of speech tagging.
 """
 from collections import defaultdict
+from pathlib import Path
 import pandas as pd
+import spacy
+import utility as util
 
 def data_to_df(doc):
     """
@@ -23,7 +26,7 @@ def data_to_df(doc):
         })
     return pd.DataFrame(token_list)
 
-def pos_tag_counts(doc_df, tag, amount=100):
+def pos_tag_ratios(doc_df, tag, amount=100):
     """
     parameters::
         doc_df: pandas DataFrame from data_to_df()
@@ -39,6 +42,28 @@ def pos_tag_counts(doc_df, tag, amount=100):
     for tag_label, tag_ct in tag_counts.items():
         tag_counts[tag_label] = (tag_ct / total) * amount
     return tag_counts
+
+def pos_tag_ratio(model, filepath, tag_list, amount=100):
+    """
+    get POS tag ratios via pos_tag_counts()
+    """
+    nlp = spacy.load(model)
+    parameters = {'model': model, 'filepath': filepath, 'amount': amount}
+    path_filepath = Path(filepath)
+    doc = nlp(path_filepath.read_text(encoding='utf-8'))
+    doc_df = data_to_df(doc)
+    all_tag_data = []
+    for tag in tag_list:
+        tag_data = []
+        for tag_label, tag_ratio in pos_tag_ratios(doc_df, tag, amount=amount).items():
+            tag_data.append({'tag_label': tag_label, 'tag_ratio': tag_ratio,
+                'spacy.explain': spacy.explain(tag_label)})
+        all_tag_data.append({'tag': tag, 'tag_data': tag_data})
+    final_data = {'parameters': parameters, 'function': 'pos_tag_ratio',
+        'data': all_tag_data}
+    out_fp = path_filepath.parent.joinpath('pos_tag_ratio', model,
+        Path(path_filepath.name).with_suffix('.json'))
+    util.json_save(final_data, out_fp)
 
 # def tag_ratio(nlp, file_path, amount=100):
 #     """

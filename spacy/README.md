@@ -12,7 +12,7 @@ Install requirements for python 3.13.5:
 pip install -r python3-15-5_requirements.txt
 ```
 ## Data Dictionary
-See the data_dictionary.md file for detailed descriptions of each linguistic feature, the function(s) used to generate them, and references to the papers they were extracted from.
+See [data_dictionary.md](data_dictionary.md) for detailed descriptions of each linguistic feature, the function(s) used to generate them, and references to the papers they were extracted from.
 
 ## Jupyter Notebook Examples
 Please run [jupyter notebook](https://docs.jupyter.org/en/latest/running.html) and see [nlp_function_examples.ipynb](nlp_function_examples.ipynb) for an interactive set of examples. Also, see the usage example sections below.
@@ -34,6 +34,64 @@ Without downloading the model, one may encounter errors such as:
 OSError: [E050] Can't find model 'en_core_web_lg'. It doesn't seem to be a Python package or a valid path to a data directory.
 ```
 
+## Extracting Linguistic Features
+
+See [main.py](main.py) for usage examples.
+
+### Parts of Speech Tagging
+
+`pos_tagging.pos_tag_ratio()` calculates the tag ratio for every `amount` words to control for the number of words.
+
+#### Input
+
+| Parameter | Description | Example |
+| - | - | - |
+| model | The spaCy model to load and use for tagging parts of speech. | 'en_core_web_lg' |
+| filepath | The filepath to a text file to process. | 'sample_text/text.txt' |
+| tag_list | A list of tags to generate the tag ratio for (see `pos_tagging.data_to_df()` for a full list) | ['POS', 'TAG'] |
+| amount | The tag ratio is the tag count divided by the total multipled by the amount. | 100 |
+
+#### Output
+| Key | Description | Example |
+| - | - | - |
+| parameters | The list of parameters to the function. | See below. |
+| function | The name of the function. | See below. |
+| data | Contains the data specific to the function | See below. |
+| data[N].tag | The tag used as an input to pos_tag_ratio(), an element of tag_list. | "POS" |
+| data[N].tag_data.tag_label | The tag's label. | "PRON" |
+| data[N].tag_data.tag_ratio | The tag's ratio per amount of words. | 13.675 |
+| data[n].tag_data.spacy.explain | The output of spacy.explain(tag_label). | "pronoun" |
+
+Here is an excerpt of its output (see [test.json](sample_text\pos_tag_ratio\en_core_web_lg\test.json) for the full output):
+```json
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/test.txt",
+        "amount": 100
+    },
+    "function": "pos_tag_ratio",
+    "data": [
+        {
+            "tag": "POS",
+            "tag_data": [
+                {
+                    "tag_label": "PRON",
+                    "tag_ratio": 13.675213675213676,
+                    "spacy.explain": "pronoun"
+                },
+        ...
+       {
+            "tag": "TAG",
+            "tag_data": [
+                {
+                    "tag_label": "PRP",
+                    "tag_ratio": 8.547008547008547,
+                    "spacy.explain": "pronoun, personal"
+                },
+        ...
+}
+```
 ## Extracting Linguistic Features
 See `extract_linguistic_features.main()`for usage examples. 
 ### Parts-of-Speech Tagging

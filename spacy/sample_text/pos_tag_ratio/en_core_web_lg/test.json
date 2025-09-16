@@ -1,0 +1,265 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/test.txt",
+        "amount": 100
+    },
+    "function": "pos_tag_ratio",
+    "data": [
+        {
+            "tag": "POS",
+            "tag_data": [
+                {
+                    "tag_label": "PRON",
+                    "tag_ratio": 13.675213675213676,
+                    "spacy.explain": "pronoun"
+                },
+                {
+                    "tag_label": "VERB",
+                    "tag_ratio": 13.96011396011396,
+                    "spacy.explain": "verb"
+                },
+                {
+                    "tag_label": "PUNCT",
+                    "tag_ratio": 12.678062678062679,
+                    "spacy.explain": "punctuation"
+                },
+                {
+                    "tag_label": "SCONJ",
+                    "tag_ratio": 2.1367521367521367,
+                    "spacy.explain": "subordinating conjunction"
+                },
+                {
+                    "tag_label": "ADV",
+                    "tag_ratio": 4.843304843304843,
+                    "spacy.explain": "adverb"
+                },
+                {
+                    "tag_label": "ADP",
+                    "tag_ratio": 8.547008547008547,
+                    "spacy.explain": "adposition"
+                },
+                {
+                    "tag_label": "NOUN",
+                    "tag_ratio": 17.663817663817664,
+                    "spacy.explain": "noun"
+                },
+                {
+                    "tag_label": "ADJ",
+                    "tag_ratio": 6.41025641025641,
+                    "spacy.explain": "adjective"
+                },
+                {
+                    "tag_label": "DET",
+                    "tag_ratio": 7.4074074074074066,
+                    "spacy.explain": "determiner"
+                },
+                {
+                    "tag_label": "PROPN",
+                    "tag_ratio": 1.4245014245014245,
+                    "spacy.explain": "proper noun"
+                },
+                {
+                    "tag_label": "AUX",
+                    "tag_ratio": 3.9886039886039883,
+                    "spacy.explain": "auxiliary"
+                },
+                {
+                    "tag_label": "PART",
+                    "tag_ratio": 1.9943019943019942,
+                    "spacy.explain": "particle"
+                },
+                {
+                    "tag_label": "CCONJ",
+                    "tag_ratio": 4.273504273504273,
+                    "spacy.explain": "coordinating conjunction"
+                },
+                {
+                    "tag_label": "NUM",
+                    "tag_ratio": 0.14245014245014245,
+                    "spacy.explain": "numeral"
+                },
+                {
+                    "tag_label": "SPACE",
+                    "tag_ratio": 0.8547008547008548,
+                    "spacy.explain": "space"
+                }
+            ]
+        },
+        {
+            "tag": "TAG",
+            "tag_data": [
+                {
+                    "tag_label": "PRP",
+                    "tag_ratio": 8.547008547008547,
+                    "spacy.explain": "pronoun, personal"
+                },
+                {
+                    "tag_label": "VBP",
+                    "tag_ratio": 1.7094017094017095,
+                    "spacy.explain": "verb, non-3rd person singular present"
+                },
+                {
+                    "tag_label": ",",
+                    "tag_ratio": 6.1253561253561255,
+                    "spacy.explain": "punctuation mark, comma"
+                },
+                {
+                    "tag_label": "WRB",
+                    "tag_ratio": 1.566951566951567,
+                    "spacy.explain": "wh-adverb"
+                },
+                {
+                    "tag_label": "RB",
+                    "tag_ratio": 5.413105413105413,
+                    "spacy.explain": "adverb"
+                },
+                {
+                    "tag_label": "IN",
+                    "tag_ratio": 8.547008547008547,
+                    "spacy.explain": "conjunction, subordinating or preposition"
+                },
+                {
+                    "tag_label": "PRP$",
+                    "tag_ratio": 1.9943019943019942,
+                    "spacy.explain": "pronoun, possessive"
+                },
+                {
+                    "tag_label": "NN",
+                    "tag_ratio": 13.96011396011396,
+                    "spacy.explain": "noun, singular or mass"
+                },
+                {
+                    "tag_label": "VBZ",
+                    "tag_ratio": 1.7094017094017095,
+                    "spacy.explain": "verb, 3rd person singular present"
+                },
+                {
+                    "tag_label": "JJ",
+                    "tag_ratio": 5.555555555555555,
+                    "spacy.explain": "adjective (English), other noun-modifier (Chinese)"
+                },
+                {
+                    "tag_label": "DT",
+                    "tag_ratio": 8.262108262108262,
+                    "spacy.explain": "determiner"
+                },
+                {
+                    "tag_label": "NNS",
+                    "tag_ratio": 4.700854700854701,
+                    "spacy.explain": "noun, plural"
+                },
+                {
+                    "tag_label": "VB",
+                    "tag_ratio": 2.564102564102564,
+                    "spacy.explain": "verb, base form"
+                },
+                {
+                    "tag_label": "WP",
+                    "tag_ratio": 0.5698005698005698,
+                    "spacy.explain": "wh-pronoun, personal"
+                },
+                {
+                    "tag_label": ".",
+                    "tag_ratio": 4.843304843304843,
+                    "spacy.explain": "punctuation mark, sentence closer"
+                },
+                {
+                    "tag_label": "VBD",
+                    "tag_ratio": 7.4074074074074066,
+                    "spacy.explain": "verb, past tense"
+                },
+                {
+                    "tag_label": "RP",
+                    "tag_ratio": 0.5698005698005698,
+                    "spacy.explain": "adverb, particle"
+                },
+                {
+                    "tag_label": "VBN",
+                    "tag_ratio": 0.7122507122507122,
+                    "spacy.explain": "verb, past participle"
+                },
+                {
+                    "tag_label": "NNP",
+                    "tag_ratio": 1.4245014245014245,
+                    "spacy.explain": "noun, proper singular"
+                },
+                {
+                    "tag_label": ":",
+                    "tag_ratio": 1.282051282051282,
+                    "spacy.explain": "punctuation mark, colon or ellipsis"
+                },
+                {
+                    "tag_label": "VBG",
+                    "tag_ratio": 2.849002849002849,
+                    "spacy.explain": "verb, gerund or present participle"
+                },
+                {
+                    "tag_label": "CC",
+                    "tag_ratio": 4.273504273504273,
+                    "spacy.explain": "conjunction, coordinating"
+                },
+                {
+                    "tag_label": "CD",
+                    "tag_ratio": 0.14245014245014245,
+                    "spacy.explain": "cardinal number"
+                },
+                {
+                    "tag_label": "HYPH",
+                    "tag_ratio": 0.2849002849002849,
+                    "spacy.explain": "punctuation mark, hyphen"
+                },
+                {
+                    "tag_label": "_SP",
+                    "tag_ratio": 0.8547008547008548,
+                    "spacy.explain": "whitespace"
+                },
+                {
+                    "tag_label": "NFP",
+                    "tag_ratio": 0.14245014245014245,
+                    "spacy.explain": "superfluous punctuation"
+                },
+                {
+                    "tag_label": "WDT",
+                    "tag_ratio": 0.5698005698005698,
+                    "spacy.explain": "wh-determiner"
+                },
+                {
+                    "tag_label": "RBR",
+                    "tag_ratio": 0.2849002849002849,
+                    "spacy.explain": "adverb, comparative"
+                },
+                {
+                    "tag_label": "TO",
+                    "tag_ratio": 0.9971509971509971,
+                    "spacy.explain": "infinitival \"to\""
+                },
+                {
+                    "tag_label": "JJS",
+                    "tag_ratio": 0.2849002849002849,
+                    "spacy.explain": "adjective, superlative"
+                },
+                {
+                    "tag_label": "POS",
+                    "tag_ratio": 0.14245014245014245,
+                    "spacy.explain": "possessive ending"
+                },
+                {
+                    "tag_label": "MD",
+                    "tag_ratio": 0.9971509971509971,
+                    "spacy.explain": "verb, modal auxiliary"
+                },
+                {
+                    "tag_label": "JJR",
+                    "tag_ratio": 0.5698005698005698,
+                    "spacy.explain": "adjective, comparative"
+                },
+                {
+                    "tag_label": "EX",
+                    "tag_ratio": 0.14245014245014245,
+                    "spacy.explain": "existential there"
+                }
+            ]
+        }
+    ]
+}
