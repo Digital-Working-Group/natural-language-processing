@@ -8,6 +8,14 @@ import pandas as pd
 import spacy
 import utility as util
 
+def get_doc_and_filepath(model, filepath):
+    """
+    get spacy doc and Path(filepath)
+    """
+    path_filepath = Path(filepath)
+    doc = spacy.load(model)(path_filepath.read_text(encoding='utf-8'))
+    return doc, path_filepath
+
 def data_to_df(doc):
     """
     Takes in a spacy doc and returns a pandas dataframe with token attributes
@@ -70,12 +78,11 @@ def pos_tag_ratio(model, filepath, tag_list, amount=100):
     """
     get the tag ratio for each tag in tag_list
     """
-    nlp = spacy.load(model)
+    doc, path_filepath = get_doc_and_filepath(model, filepath)
     function = 'pos_tag_ratio'
     parameters = {'model': model, 'filepath': filepath, 'tag_list': tag_list,
         'amount': amount, 'function': function}
-    path_filepath = Path(filepath)
-    doc_df = data_to_df(nlp(path_filepath.read_text(encoding='utf-8')))
+    doc_df = data_to_df(doc)
     all_tag_data = []
     for tag in tag_list:
         tag_data, total = get_tag_data_and_total(doc_df, tag, amount)
@@ -112,9 +119,7 @@ def alpha_pos_ratio(model, filepath, **kwargs):
 
     Writes an output JSON for each key, value pair in pos_to_list.
     """
-    nlp = spacy.load(model)
-    path_filepath = Path(filepath)
-    doc = nlp(path_filepath.read_text(encoding='utf-8'))
+    doc, path_filepath = get_doc_and_filepath(model, filepath)
     pos_to_list = kwargs['pos_to_list']
     function = 'alpha_pos_ratio'
     pos_to_ct, total_tokens = get_alpha_pos_ct_and_total(doc, pos_to_list)
@@ -124,11 +129,15 @@ def alpha_pos_ratio(model, filepath, **kwargs):
         final_data = {'parameters': parameters, 'data': {'pos_ratio': pos_ct / total_tokens}}
         util.write_json_model(path_filepath, function, model, final_data, ext=pos)
 
-# def stats_proportion_part_of_speech(nlp, file_path, **kwargs):
+# def alpha_pos_ratio_sentences(model, filepath, **kwargs):
 #     """
-#     Takes in a natural language processor, file path, and set of kwargs
+#     Examines only alphanumeric (is_alpha) characters
 #     Calculates the ratio of specified part-of-speech to total words in a sentence for all sentences
 #     Returns the average, minimum, maximum, and standard deviation across all sentences
+
+#     model: spaCy model to load
+#     filepath: text file to process
+
 #     """
 #     tag = kwargs.get("tag")
 #     dep = kwargs.get("dep")

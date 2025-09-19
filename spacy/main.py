@@ -36,6 +36,7 @@ def main():
     """
     main entrypoint
     """
+    pos_tag_ratio()
     alpha_pos_ratio()
 
 if __name__ == '__main__':
