@@ -67,9 +67,8 @@ For example, 8.547 = 60 / 702 * 100, where we have 60 occurrences of a tag (e.g.
 
 | Key | Description | Example |
 | - | - | - |
-| parameters | The list of parameters to the function. | See below. |
+| parameters | The list of parameters to the function. | See Input table and below. |
 | parameters.function | The name of the function. | See below. |
-| data | Contains the data specific to the function | See below. |
 | data[N].tag | The tag used as an input to pos_tag_ratio(), an element of tag_list. | "POS" |
 | data[N].tag_data.tag_label | The tag's label. | "PRON" |
 | data[N].tag_data.tag_ratio | The tag's ratio per amount of words. | 13.675 |
@@ -84,6 +83,10 @@ Here is an excerpt from [story.json](sample_text/pos_tag_ratio/en_core_web_lg/st
     "parameters": {
         "model": "en_core_web_lg",
         "filepath": "sample_text/story.txt",
+        "tag_list": [
+            "POS",
+            "TAG"
+        ],
         "amount": 100,
         "function": "pos_tag_ratio"
     },
@@ -141,9 +144,8 @@ Here is an excerpt from [story.json](sample_text/pos_tag_ratio/en_core_web_lg/st
 
 | Key | Description | Example |
 | - | - | - |
-| parameters | The list of parameters to the function. | See below. |
+| parameters | The list of parameters to the function. | See Input table and below. |
 | parameters.function | The name of the function. | See below. |
-| data | Contains the data specific to the function | See below. |
 | data.pos_ratio | Contains the POS ratio across the whole document. | 0.229 |
 
 Please see [sample_text/alpha_pos_ratio/en_core_web_lg](sample_text/alpha_pos_ratio/en_core_web_lg) for sample output.
@@ -183,9 +185,8 @@ Here is an excerpt from [story_nouns.json](sample_text/alpha_pos_ratio/en_core_w
 
 | Key | Description | Example |
 | - | - | - |
-| parameters | The list of parameters to the function. | See below. |
+| parameters | The list of parameters to the function. | See Input table and below. |
 | parameters.function | The name of the function. | See below. |
-| data | Contains the data specific to the function | See below. |
 | data.sent_mean | Mean of POS ratio across all sentences. | 0.246 |
 | data.sent_max | Max of POS ratio across all sentences. | 0.4 |
 | data.sent_min | Min of POS ratio across all sentences. | 0.09 |
