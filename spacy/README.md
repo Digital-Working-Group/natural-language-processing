@@ -40,7 +40,11 @@ See [main.py](main.py) for usage examples.
 
 ### Parts of Speech Tagging
 
-`pos_tagging.pos_tag_ratio()` calculates the tag ratio for every `amount` words to control for the number of words.
+`pos_tagging.pos_tag_ratio()` calculates the tag ratio for every `amount` words. 
+```
+tag_ratio = tag_ct / total_tokens * amount
+```
+For example, 8.547 = 60 / 702 * 100, where we have 60 occurrences of a tag (e.g., PRP), 702 total tokens, and have amount is set to 100. The intent is to control for the number of total words/tokens. The amount being set to 100 is arbitrary, if set to 1 then it becomes a normal percentage.
 
 #### Input
 
