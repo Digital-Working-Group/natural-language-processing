@@ -1,0 +1,14 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/paragraph.txt",
+        "pos_list": [
+            "NOUN",
+            "PROPN"
+        ],
+        "function": "alpha_pos_ratio"
+    },
+    "data": {
+        "pos_ratio": 0.19642857142857142
+    }
+}

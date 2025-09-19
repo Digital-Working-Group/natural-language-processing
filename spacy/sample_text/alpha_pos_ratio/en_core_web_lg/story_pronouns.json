@@ -1,0 +1,13 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/story.txt",
+        "pos_list": [
+            "PRON"
+        ],
+        "function": "alpha_pos_ratio"
+    },
+    "data": {
+        "pos_ratio": 0.16382252559726962
+    }
+}

@@ -83,47 +83,44 @@ def pos_tag_ratio(model, filepath, tag_list, amount=100):
     final_data = {'parameters': parameters, 'data': all_tag_data}
     util.write_json_model(path_filepath, function, model, final_data)
 
-def ratio_of_pos(model, filepath, **kwargs):
+def get_alpha_pos_ct_and_total(doc, pos_to_list):
     """
-    Returns the ratio of specific part(s) of speech to total words
-    Examines only alphanumeric (is_alpha) characters
-    Information about the parts-of-speech tags can be found in spacy_pos_tags_explained.md
+    get post_ct, total for alpha_pos_ratio()
     """
-    nlp = spacy.load(model)
-    doc = nlp(Path(filepath).read_text(encoding='utf-8'))
-    pos_list = kwargs['pos_list']
     total_tokens = 0
-    total_pos = 0
+    pos_to_ct = defaultdict(int)
     for token in doc:
         if token.is_alpha:
             total_tokens += 1
-            if token.pos_ in pos_list:
-                total_pos += 1
-    return total_pos / total_tokens
+            for pos, pos_list in pos_to_list.items():
+                if token.pos_ in pos_list:
+                    pos_to_ct[pos] += 1
+    return pos_to_ct, total_tokens
 
-def ratio_of_nouns(nlp, file_path):
+def alpha_pos_ratio(model, filepath, **kwargs):
     """
-    Uses ratio_of_pos() with specified kwargs to calculate and return the ration of nouns to total words
+    Examines only alphanumeric (is_alpha) characters
+    Returns the ratio of specific part(s) of speech to total words
     Information about the parts-of-speech tags can be found in spacy_pos_tags_explained.md
-    """
-    kwargs = {"parts_of_speech": ["NOUN", "PROPN"]}
-    return ratio_of_pos(nlp, file_path, **kwargs)
 
-def ratio_of_pronouns(nlp, file_path):
+    model: spaCy model to load
+    filepath: text file to process
+    pos_to_list: POS string name to the list of tags associated with the desired POS
+        {'nouns': ['NOUN', 'PROPN']}
+        {'pronouns': ['PRON']}
+        {'conjunctions': ['CONJ', 'CCONJ', 'SCONJ']}
     """
-    Uses ratio_of_pos() with specified kwargs to calculate and return the ration of pronouns to total words
-    Information about the parts-of-speech tags can be found in spacy_pos_tags_explained.md
-    """
-    kwargs = {"parts_of_speech": ["PRON"]}
-    return ratio_of_pos(nlp, file_path, **kwargs)
-
-def ratio_of_conjunctions(nlp, file_path):
-    """
-    Uses ratio_of_pos() with specified kwargs to calculate and return the ration of conjunctions to total words
-    Information about the parts-of-speech tags can be found in spacy_pos_tags_explained.md
-    """
-    kwargs = {"parts_of_speech": ["CONJ", "SCONJ"]}
-    return ratio_of_pos(nlp, file_path, **kwargs)
+    nlp = spacy.load(model)
+    path_filepath = Path(filepath)
+    doc = nlp(path_filepath.read_text(encoding='utf-8'))
+    pos_to_list = kwargs['pos_to_list']
+    function = 'alpha_pos_ratio'
+    pos_to_ct, total_tokens = get_alpha_pos_ct_and_total(doc, pos_to_list)
+    for pos, pos_ct in pos_to_ct.items():
+        parameters = {'model': model, 'filepath': filepath, 'pos_list': pos_to_list[pos],
+            'function': function}
+        final_data = {'parameters': parameters, 'data': {'pos_ratio': pos_ct / total_tokens}}
+        util.write_json_model(path_filepath, function, model, final_data, ext=pos)
 
 # def stats_proportion_part_of_speech(nlp, file_path, **kwargs):
 #     """

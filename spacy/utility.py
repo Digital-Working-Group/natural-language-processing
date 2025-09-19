@@ -6,13 +6,19 @@ import os
 import json
 from pathlib import Path
 
-def write_json_model(path_filepath, function, model, final_data):
+def write_json_model(path_filepath, function, model, final_data, **kwargs):
     """
     write an output json for a function that uses a spaCy model
     """
-    out_fp = path_filepath.parent.joinpath(function, model,
-        Path(path_filepath.name).with_suffix('.json'))
+    quiet = kwargs.get('quiet', False)
+    ext = kwargs.get('ext', '')
+    ext = f'_{ext}' if '_' not in ext and ext != '' else ext
+    filename = f'{path_filepath.stem}{ext}'
+    print(filename)
+    out_fp = path_filepath.parent.joinpath(function, model, f'{filename}.json')
     json_save(final_data, out_fp)
+    if not quiet:
+        print(f'wrote: {out_fp}')
 
 def json_save(data, out_fp, sort_keys=False, indent=4):
     """

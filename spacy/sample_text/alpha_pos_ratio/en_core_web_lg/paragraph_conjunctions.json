@@ -1,0 +1,15 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/paragraph.txt",
+        "pos_list": [
+            "CONJ",
+            "CCONJ",
+            "SCONJ"
+        ],
+        "function": "alpha_pos_ratio"
+    },
+    "data": {
+        "pos_ratio": 0.07142857142857142
+    }
+}
