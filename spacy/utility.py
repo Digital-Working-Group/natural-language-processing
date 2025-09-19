@@ -4,6 +4,15 @@ utility functions, such as writing JSON output
 """
 import os
 import json
+from pathlib import Path
+
+def write_json_model(path_filepath, function, model, final_data):
+    """
+    write an output json for a function that uses a spaCy model
+    """
+    out_fp = path_filepath.parent.joinpath(function, model,
+        Path(path_filepath.name).with_suffix('.json'))
+    json_save(final_data, out_fp)
 
 def json_save(data, out_fp, sort_keys=False, indent=4):
     """

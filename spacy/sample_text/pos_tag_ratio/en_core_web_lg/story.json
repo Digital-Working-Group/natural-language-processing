@@ -2,6 +2,10 @@
     "parameters": {
         "model": "en_core_web_lg",
         "filepath": "sample_text/story.txt",
+        "tag_list": [
+            "POS",
+            "TAG"
+        ],
         "amount": 100,
         "function": "pos_tag_ratio"
     },

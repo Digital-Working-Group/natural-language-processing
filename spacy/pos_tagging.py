@@ -11,6 +11,16 @@ import utility as util
 def data_to_df(doc):
     """
     Takes in a spacy doc and returns a pandas dataframe with token attributes
+
+    Text: The original word text.
+    Lemma: The base form of the word.
+    POS: The simple UPOS part-of-speech tag.
+    Tag: The detailed part-of-speech tag.
+    Dep: Syntactic dependency, i.e. the relation between tokens.
+    Shape: The word shape – capitalization, punctuation, digits.
+    is alpha: Is the token an alpha character?
+    is stop: Is the token part of a stop list, i.e. the most common words of the language?
+
     """
     token_list = []
     for token in doc:
@@ -33,7 +43,9 @@ def pos_tag_ratios(doc_df, tag, amount=100):
         tag: Desired tag to calculate counts for (e.g., 'POS' or 'TAG')
         amount: Count how many times each tag value occurs per <amount> words
     return:
-        A dictionary containing all tags and on average how many times they appear per <amount> words
+        tag_counts: {tag_label: (total tag count, tag ratio)}
+            tag_ratio = total tag count / total tokens * amount
+        total: total tokens
     """
     tag_counts = defaultdict(int)
     for tag_label in doc_df[tag]:
@@ -43,73 +55,75 @@ def pos_tag_ratios(doc_df, tag, amount=100):
         tag_counts[tag_label] = (tag_ct, (tag_ct / total) * amount)
     return tag_counts, total
 
+def get_tag_data_and_total(doc_df, tag, amount):
+    """
+    get tag_data and total
+    """
+    tag_data = []
+    tag_counts, total = pos_tag_ratios(doc_df, tag, amount=amount)
+    for tag_label, (tag_ct, tag_ratio) in tag_counts.items():
+        tag_data.append({'tag_label': tag_label, 'tag_ct': tag_ct,
+            'tag_ratio': tag_ratio, 'spacy.explain': spacy.explain(tag_label)})
+    return tag_data, total
+
 def pos_tag_ratio(model, filepath, tag_list, amount=100):
     """
     get POS tag ratios via pos_tag_counts()
     """
     nlp = spacy.load(model)
-    parameters = {'model': model, 'filepath': filepath, 'amount': amount,
-        'function': 'pos_tag_ratio'}
+    function = 'pos_tag_ratio'
+    parameters = {'model': model, 'filepath': filepath, 'tag_list': tag_list,
+        'amount': amount, 'function': function}
     path_filepath = Path(filepath)
-    doc = nlp(path_filepath.read_text(encoding='utf-8'))
-    doc_df = data_to_df(doc)
+    doc_df = data_to_df(nlp(path_filepath.read_text(encoding='utf-8')))
     all_tag_data = []
     for tag in tag_list:
-        tag_data = []
-        tag_counts, total = pos_tag_ratios(doc_df, tag, amount=amount)
-        for tag_label, (tag_ct, tag_ratio) in tag_counts.items():
-            tag_data.append({'tag_label': tag_label, 'tag_ct': tag_ct,
-                'tag_ratio': tag_ratio, 'spacy.explain': spacy.explain(tag_label)})
+        tag_data, total = get_tag_data_and_total(doc_df, tag, amount)
         all_tag_data.append({'tag': tag, 'total_tokens': total, 'tag_data': tag_data})
     final_data = {'parameters': parameters, 'data': all_tag_data}
-    out_fp = path_filepath.parent.joinpath('pos_tag_ratio', model,
-        Path(path_filepath.name).with_suffix('.json'))
-    util.json_save(final_data, out_fp)
+    util.write_json_model(path_filepath, function, model, final_data)
 
-# def tag_ratio(nlp, file_path, amount=100):
-#     """
-#     Uses pos_tag_counts() to return a dictionary containing all parts-of-speech and Penn Treebank tags and on average how many times they appear per 100 words
-#     """
-#     return {"POS": pos_tag_counts(nlp, file_path, tag="POS", amount=amount), "TAG": pos_tag_counts(nlp, file_path, tag="TAG", amount=amount)}
+def ratio_of_pos(model, filepath, **kwargs):
+    """
+    Returns the ratio of specific part(s) of speech to total words
+    Examines only alphanumeric (is_alpha) characters
+    Information about the parts-of-speech tags can be found in spacy_pos_tags_explained.md
+    """
+    nlp = spacy.load(model)
+    doc = nlp(Path(filepath).read_text(encoding='utf-8'))
+    pos_list = kwargs['pos_list']
+    total_tokens = 0
+    total_pos = 0
+    for token in doc:
+        if token.is_alpha:
+            total_tokens += 1
+            if token.pos_ in pos_list:
+                total_pos += 1
+    return total_pos / total_tokens
 
-# def ratio_of_pos(nlp, file_path, **kwargs):
-#     """
-#     Returns the ratio of specified part of speech to total words
-#     """
-#     parts_of_speech = kwargs["parts_of_speech"]
-#     doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-#     total_words = 0
-#     total_nouns = 0
-#     for token in doc:
-#         if token.is_alpha:
-#             total_words += 1
-#             if token.pos_ in parts_of_speech:
-#                 total_nouns += 1
-#     return total_nouns / total_words
+def ratio_of_nouns(nlp, file_path):
+    """
+    Uses ratio_of_pos() with specified kwargs to calculate and return the ration of nouns to total words
+    Information about the parts-of-speech tags can be found in spacy_pos_tags_explained.md
+    """
+    kwargs = {"parts_of_speech": ["NOUN", "PROPN"]}
+    return ratio_of_pos(nlp, file_path, **kwargs)
 
-# def ratio_of_nouns(nlp, file_path):
-#     """
-#     Uses ratio_of_pos() with specified kwargs to calculate and return the ration of nouns to total words
-#     Information about the parts-of-speech tags can be found in spacy_pos_tags_explained.md
-#     """
-#     kwargs = {"parts_of_speech": ["NOUN", "PROPN"]}
-#     return ratio_of_pos(nlp, file_path, **kwargs)
+def ratio_of_pronouns(nlp, file_path):
+    """
+    Uses ratio_of_pos() with specified kwargs to calculate and return the ration of pronouns to total words
+    Information about the parts-of-speech tags can be found in spacy_pos_tags_explained.md
+    """
+    kwargs = {"parts_of_speech": ["PRON"]}
+    return ratio_of_pos(nlp, file_path, **kwargs)
 
-# def ratio_of_pronouns(nlp, file_path):
-#     """
-#     Uses ratio_of_pos() with specified kwargs to calculate and return the ration of pronouns to total words
-#     Information about the parts-of-speech tags can be found in spacy_pos_tags_explained.md
-#     """
-#     kwargs = {"parts_of_speech": ["PRON"]}
-#     return ratio_of_pos(nlp, file_path, **kwargs)
-
-# def ratio_of_conjunctions(nlp, file_path):
-#     """
-#     Uses ratio_of_pos() with specified kwargs to calculate and return the ration of conjunctions to total words
-#     Information about the parts-of-speech tags can be found in spacy_pos_tags_explained.md
-#     """
-#     kwargs = {"parts_of_speech": ["CONJ", "SCONJ"]}
-#     return ratio_of_pos(nlp, file_path, **kwargs)
+def ratio_of_conjunctions(nlp, file_path):
+    """
+    Uses ratio_of_pos() with specified kwargs to calculate and return the ration of conjunctions to total words
+    Information about the parts-of-speech tags can be found in spacy_pos_tags_explained.md
+    """
+    kwargs = {"parts_of_speech": ["CONJ", "SCONJ"]}
+    return ratio_of_pos(nlp, file_path, **kwargs)
 
 # def stats_proportion_part_of_speech(nlp, file_path, **kwargs):
 #     """
