@@ -1,5 +1,5 @@
 # Linguistic Features: SpaCy
-This repository contains scripts that show examples of how to use the [spaCy Python library](https://spacy.io/usage/linguistic-features) to generate linguistic features from raw text input.
+This repository contains examples of how to use the [spaCy Python library](https://spacy.io/usage/linguistic-features) to generate linguistic features from raw text input.
 
 ## Installation
 ### Without Docker
@@ -30,7 +30,7 @@ nlp = spacy.load('en_core_web_lg')
 ```
 
 Without downloading the model, one may encounter errors such as:
-```sh
+```
 OSError: [E050] Can't find model 'en_core_web_lg'. It doesn't seem to be a Python package or a valid path to a data directory.
 ```
 
@@ -49,9 +49,10 @@ See [main.py](main.py) for usage examples.
 | model | The spaCy model to load and use for tagging parts of speech. | 'en_core_web_lg' |
 | filepath | The filepath to a text file to process. | 'sample_text/text.txt' |
 | tag_list | A list of tags to generate the tag ratio for (see `pos_tagging.data_to_df()` for a full list) | ['POS', 'TAG'] |
-| amount | The tag ratio is the tag count divided by the total multipled by the amount. | 100 |
+| amount | The tag ratio is the number of tags divided by the total tokens multipled by the amount. | 100 |
 
 #### Output
+
 | Key | Description | Example |
 | - | - | - |
 | parameters | The list of parameters to the function. | See below. |
@@ -62,36 +63,55 @@ See [main.py](main.py) for usage examples.
 | data[N].tag_data.tag_ratio | The tag's ratio per amount of words. | 13.675 |
 | data[n].tag_data.spacy.explain | The output of spacy.explain(tag_label). | "pronoun" |
 
-Here is an excerpt of its output (see [test.json](sample_text\pos_tag_ratio\en_core_web_lg\test.json) for the full output):
-```json
+Please see [sample_text/pos_tag_ratio/en_core_web_lg](sample_text/pos_tag_ratio/en_core_web_lg) for sample output.
+
+Here is an excerpt from [story.json](sample_text/pos_tag_ratio/en_core_web_lg/story.json):
+```yaml
 {
     "parameters": {
         "model": "en_core_web_lg",
-        "filepath": "sample_text/test.txt",
-        "amount": 100
+        "filepath": "sample_text/story.txt",
+        "amount": 100,
+        "function": "pos_tag_ratio"
     },
-    "function": "pos_tag_ratio",
     "data": [
         {
             "tag": "POS",
+            "total_tokens": 702,
             "tag_data": [
                 {
                     "tag_label": "PRON",
+                    "tag_ct": 96,
                     "tag_ratio": 13.675213675213676,
                     "spacy.explain": "pronoun"
                 },
+                {
+                    "tag_label": "VERB",
+                    "tag_ct": 98,
+                    "tag_ratio": 13.96011396011396,
+                    "spacy.explain": "verb"
+                },
         ...
-       {
             "tag": "TAG",
+            "total_tokens": 702,
             "tag_data": [
                 {
                     "tag_label": "PRP",
+                    "tag_ct": 60,
                     "tag_ratio": 8.547008547008547,
                     "spacy.explain": "pronoun, personal"
                 },
+                {
+                    "tag_label": "VBP",
+                    "tag_ct": 12,
+                    "tag_ratio": 1.7094017094017095,
+                    "spacy.explain": "verb, non-3rd person singular present"
+                },
         ...
+
 }
 ```
+
 ## Extracting Linguistic Features
 See `extract_linguistic_features.main()`for usage examples. 
 ### Parts-of-Speech Tagging

@@ -1,0 +1,172 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/sentence.txt",
+        "amount": 100,
+        "function": "pos_tag_ratio"
+    },
+    "data": [
+        {
+            "tag": "POS",
+            "total_tokens": 24,
+            "tag_data": [
+                {
+                    "tag_label": "PRON",
+                    "tag_ct": 6,
+                    "tag_ratio": 25.0,
+                    "spacy.explain": "pronoun"
+                },
+                {
+                    "tag_label": "VERB",
+                    "tag_ct": 4,
+                    "tag_ratio": 16.666666666666664,
+                    "spacy.explain": "verb"
+                },
+                {
+                    "tag_label": "PUNCT",
+                    "tag_ct": 3,
+                    "tag_ratio": 12.5,
+                    "spacy.explain": "punctuation"
+                },
+                {
+                    "tag_label": "SCONJ",
+                    "tag_ct": 2,
+                    "tag_ratio": 8.333333333333332,
+                    "spacy.explain": "subordinating conjunction"
+                },
+                {
+                    "tag_label": "ADV",
+                    "tag_ct": 2,
+                    "tag_ratio": 8.333333333333332,
+                    "spacy.explain": "adverb"
+                },
+                {
+                    "tag_label": "ADP",
+                    "tag_ct": 1,
+                    "tag_ratio": 4.166666666666666,
+                    "spacy.explain": "adposition"
+                },
+                {
+                    "tag_label": "NOUN",
+                    "tag_ct": 2,
+                    "tag_ratio": 8.333333333333332,
+                    "spacy.explain": "noun"
+                },
+                {
+                    "tag_label": "AUX",
+                    "tag_ct": 1,
+                    "tag_ratio": 4.166666666666666,
+                    "spacy.explain": "auxiliary"
+                },
+                {
+                    "tag_label": "ADJ",
+                    "tag_ct": 2,
+                    "tag_ratio": 8.333333333333332,
+                    "spacy.explain": "adjective"
+                },
+                {
+                    "tag_label": "DET",
+                    "tag_ct": 1,
+                    "tag_ratio": 4.166666666666666,
+                    "spacy.explain": "determiner"
+                }
+            ]
+        },
+        {
+            "tag": "TAG",
+            "total_tokens": 24,
+            "tag_data": [
+                {
+                    "tag_label": "PRP",
+                    "tag_ct": 4,
+                    "tag_ratio": 16.666666666666664,
+                    "spacy.explain": "pronoun, personal"
+                },
+                {
+                    "tag_label": "VBP",
+                    "tag_ct": 3,
+                    "tag_ratio": 12.5,
+                    "spacy.explain": "verb, non-3rd person singular present"
+                },
+                {
+                    "tag_label": ",",
+                    "tag_ct": 2,
+                    "tag_ratio": 8.333333333333332,
+                    "spacy.explain": "punctuation mark, comma"
+                },
+                {
+                    "tag_label": "WRB",
+                    "tag_ct": 2,
+                    "tag_ratio": 8.333333333333332,
+                    "spacy.explain": "wh-adverb"
+                },
+                {
+                    "tag_label": "RB",
+                    "tag_ct": 2,
+                    "tag_ratio": 8.333333333333332,
+                    "spacy.explain": "adverb"
+                },
+                {
+                    "tag_label": "IN",
+                    "tag_ct": 1,
+                    "tag_ratio": 4.166666666666666,
+                    "spacy.explain": "conjunction, subordinating or preposition"
+                },
+                {
+                    "tag_label": "PRP$",
+                    "tag_ct": 1,
+                    "tag_ratio": 4.166666666666666,
+                    "spacy.explain": "pronoun, possessive"
+                },
+                {
+                    "tag_label": "NN",
+                    "tag_ct": 1,
+                    "tag_ratio": 4.166666666666666,
+                    "spacy.explain": "noun, singular or mass"
+                },
+                {
+                    "tag_label": "VBZ",
+                    "tag_ct": 1,
+                    "tag_ratio": 4.166666666666666,
+                    "spacy.explain": "verb, 3rd person singular present"
+                },
+                {
+                    "tag_label": "JJ",
+                    "tag_ct": 2,
+                    "tag_ratio": 8.333333333333332,
+                    "spacy.explain": "adjective (English), other noun-modifier (Chinese)"
+                },
+                {
+                    "tag_label": "DT",
+                    "tag_ct": 1,
+                    "tag_ratio": 4.166666666666666,
+                    "spacy.explain": "determiner"
+                },
+                {
+                    "tag_label": "NNS",
+                    "tag_ct": 1,
+                    "tag_ratio": 4.166666666666666,
+                    "spacy.explain": "noun, plural"
+                },
+                {
+                    "tag_label": "VB",
+                    "tag_ct": 1,
+                    "tag_ratio": 4.166666666666666,
+                    "spacy.explain": "verb, base form"
+                },
+                {
+                    "tag_label": "WP",
+                    "tag_ct": 1,
+                    "tag_ratio": 4.166666666666666,
+                    "spacy.explain": "wh-pronoun, personal"
+                },
+                {
+                    "tag_label": ".",
+                    "tag_ct": 1,
+                    "tag_ratio": 4.166666666666666,
+                    "spacy.explain": "punctuation mark, sentence closer"
+                }
+            ]
+        }
+    ]
+}
