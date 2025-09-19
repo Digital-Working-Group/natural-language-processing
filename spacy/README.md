@@ -147,7 +147,7 @@ Here is an excerpt from [story.json](sample_text/pos_tag_ratio/en_core_web_lg/st
 
 Please see [sample_text/alpha_pos_ratio/en_core_web_lg](sample_text/alpha_pos_ratio/en_core_web_lg) for sample output.
 
-Here is an excerpt from [story.json](sample_text/alpha_pos_ratio/en_core_web_lg/story_nouns.json):
+Here is an excerpt from [story_nouns.json](sample_text/alpha_pos_ratio/en_core_web_lg/story_nouns.json):
 ```json
 {
     "parameters": {
