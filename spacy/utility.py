@@ -5,6 +5,15 @@ utility functions, such as writing JSON output
 import os
 import json
 from pathlib import Path
+import spacy
+
+def get_doc_and_filepath(model, filepath):
+    """
+    get spacy doc and Path(filepath)
+    """
+    path_filepath = Path(filepath)
+    doc = spacy.load(model)(path_filepath.read_text(encoding='utf-8'))
+    return doc, path_filepath
 
 def write_json_model(path_filepath, function, model, final_data, **kwargs):
     """

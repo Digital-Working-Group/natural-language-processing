@@ -4,18 +4,9 @@ Functions related to parts of speech tagging.
 """
 import statistics
 from collections import defaultdict
-from pathlib import Path
 import pandas as pd
 import spacy
 import utility as util
-
-def get_doc_and_filepath(model, filepath):
-    """
-    get spacy doc and Path(filepath)
-    """
-    path_filepath = Path(filepath)
-    doc = spacy.load(model)(path_filepath.read_text(encoding='utf-8'))
-    return doc, path_filepath
 
 def data_to_df(doc):
     """
@@ -79,7 +70,7 @@ def pos_tag_ratio(model, filepath, tag_list, amount=100):
     """
     get the tag ratio for each tag in tag_list
     """
-    doc, path_filepath = get_doc_and_filepath(model, filepath)
+    doc, path_filepath = util.get_doc_and_filepath(model, filepath)
     function = 'pos_tag_ratio'
     parameters = {'model': model, 'filepath': filepath, 'tag_list': tag_list,
         'amount': amount, 'function': function}
@@ -120,7 +111,7 @@ def alpha_pos_ratio(model, filepath, **kwargs):
 
     Writes an output JSON for each key, value pair in pos_to_list.
     """
-    doc, path_filepath = get_doc_and_filepath(model, filepath)
+    doc, path_filepath = util.get_doc_and_filepath(model, filepath)
     pos_to_list = kwargs['pos_to_list']
     function = 'alpha_pos_ratio'
     pos_to_ct, total_tokens = get_alpha_pos_ct_and_total(doc, pos_to_list)
@@ -166,7 +157,7 @@ def alpha_pos_ratio_sentences(model, filepath, **kwargs):
         {'pronouns': ['PRON']}
         {'conjunctions': ['CONJ', 'CCONJ', 'SCONJ']}
     """
-    doc, path_filepath = get_doc_and_filepath(model, filepath)
+    doc, path_filepath = util.get_doc_and_filepath(model, filepath)
     pos_to_list = kwargs['pos_to_list']
     function = 'alpha_pos_ratio_sentences'
     pos_to_ratios = get_pos_to_ratios(doc, pos_to_list)
