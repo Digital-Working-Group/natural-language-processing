@@ -2,31 +2,63 @@
 semantic_complexity.py
 Functions related to semantic complexity.
 """
-from pathlib import Path
-import spacy
-import pandas as pd
+import utility as util
 
-def calculate_idea_density(nlp, file_path):
+def get_prop_pos():
     """
-    Takes in a natural language processor, and file path
-    Filters on alphabetic tokens (words), calculates idea density - the number of propositions divided by the total words
-    Details about the POS tags used in this function can be found in spacy_pos_tags_explained.md
-    Returns each sentence and its idea density
+    get prop pos tags for idea_density_sentences()
     """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    idea_density_sentences = []
-    for sent in doc.sents:
-        count_props = 0
-        count_words = 0
-        for token in sent:
-            if token.is_alpha:
-                count_words += 1
-                if token.pos_ in ["VERB", "ADJ", "ADV", "CCONJ", "SCONJ", "ADP"]:
-                    count_props += 1
-        idea_density = count_props/count_words
-        sentence_and_idea_density = (sent.text, idea_density)
-        idea_density_sentences.append(sentence_and_idea_density)
-    return idea_density_sentences
+    verb_pos = ['VERB']
+    adj_pos = ['ADJ']
+    adv_pos = ['ADV']
+    prep_pos = ['ADP']
+    conj_pos = ['CONJ', 'CCONJ', 'SCONJ']
+    return verb_pos + adj_pos + adv_pos + prep_pos + conj_pos
+
+def get_idea_density_sent_data(sent_idx, sent, pos_list):
+    """
+    get sentence data for idea_density_sentences()
+    """
+    props = 0
+    total_tokens = 0
+    for token in sent:
+        if token.is_alpha:
+            total_tokens += 1
+            if token.pos_ in pos_list:
+                props += 1
+    return {'sent_idx': sent_idx, 'total_tokens': total_tokens,
+        'idea_density': props / total_tokens}
+
+def idea_density_sentences(model, filepath):
+    """
+    Examines only alphanumeric (is_alpha) characters
+    
+    Calculates idea density per sentence:
+        the number of propositions divided by the total words in the sentence
+    Propositions include verbs, adjectives, adverbs, prepositions, and conjunctions.
+        VERB: verbs
+        ADJ: adjectives
+        ADV: adverbs
+        ADP: adposition (prepositions and postpositions)
+        CONJ: conjunction
+        CCONJ: coordinating conjunction
+        SCONJ: subordinating conjunction
+    Idea density is also known as propositional density (or P-density)
+    Details about the spaCy POS tags  in spacy_pos_tags_explained.md
+    
+    model: spaCy model to load
+    filepath: text file to process
+    """
+    doc, path_filepath = util.get_doc_and_filepath(model, filepath)
+    function = 'idea_density_sentences'
+    pos_list = get_prop_pos()
+    sent_list = []
+    for sent_idx, sent in enumerate(doc.sents):
+        sent_list.append(get_idea_density_sent_data(sent_idx, sent, pos_list))
+    parameters = {'model': model, 'filepath': filepath, 'function': function}
+    data = {'total_sentences': len(sent_list), 'sent_list': sent_list}
+    final_data = {'parameters': parameters, 'data': data}
+    util.write_json_model(path_filepath, function, model, final_data)
 
 # def generate_noun_feature(nlp, file_path, **kwargs):
 #     """

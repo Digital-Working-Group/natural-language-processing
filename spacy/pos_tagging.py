@@ -100,7 +100,7 @@ def alpha_pos_ratio(model, filepath, **kwargs):
     """
     Examines only alphanumeric (is_alpha) characters
     Returns the ratio of specific part(s) of speech to total words
-    Information about the parts-of-speech tags can be found in spacy_pos_tags_explained.md
+    Details about the spaCy POS tags  in spacy_pos_tags_explained.md
 
     model: spaCy model to load
     filepath: text file to process

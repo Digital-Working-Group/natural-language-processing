@@ -8,7 +8,7 @@ The following table contains all of SpaCy's parts-of-speech tags and what they m
 | "ADV"             | adverb                    |
 | "AUX"             | auxiliary                 |
 | "CONJ"            | conjunction               |
-| "CCONJ"           | coordinating, conjunction |
+| "CCONJ"           | coordinating conjunction |
 | "DET"             | determiner                |
 | "INTJ"            | interjection              |
 | "NOUN"            | noun                      |

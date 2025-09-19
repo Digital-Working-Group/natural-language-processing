@@ -3,6 +3,7 @@ main.py
 main entrypoint
 """
 import pos_tagging as pos_t
+import semantic_complexity as sem_c
 
 def pos_tag_ratio():
     """
@@ -46,6 +47,18 @@ def alpha_pos_ratio_sentences():
     for filepath in sample_files:
         pos_t.alpha_pos_ratio_sentences(model, filepath, pos_to_list=pos_to_list)
 
+def idea_density_sentences():
+    """
+    run semantic_complexity.idea_density_sentences()
+    """
+    model = 'en_core_web_lg'
+    sentence = 'sample_text/sentence.txt'
+    paragraph = 'sample_text/paragraph.txt'
+    story = 'sample_text/story.txt'
+    sample_files = [sentence, paragraph, story]
+    for filepath in sample_files:
+        sem_c.idea_density_sentences(model, filepath)
+
 def main():
     """
     main entrypoint
@@ -53,6 +66,7 @@ def main():
     pos_tag_ratio()
     alpha_pos_ratio()
     alpha_pos_ratio_sentences()
+    idea_density_sentences()
 
 if __name__ == '__main__':
     main()

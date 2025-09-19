@@ -1,0 +1,182 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/story.txt",
+        "function": "idea_density_sentences"
+    },
+    "data": {
+        "total_sentences": 34,
+        "sent_list": [
+            {
+                "sent_idx": 0,
+                "total_tokens": 20,
+                "idea_density": 0.55
+            },
+            {
+                "sent_idx": 1,
+                "total_tokens": 14,
+                "idea_density": 0.5714285714285714
+            },
+            {
+                "sent_idx": 2,
+                "total_tokens": 22,
+                "idea_density": 0.4090909090909091
+            },
+            {
+                "sent_idx": 3,
+                "total_tokens": 19,
+                "idea_density": 0.2631578947368421
+            },
+            {
+                "sent_idx": 4,
+                "total_tokens": 16,
+                "idea_density": 0.5
+            },
+            {
+                "sent_idx": 5,
+                "total_tokens": 3,
+                "idea_density": 0.3333333333333333
+            },
+            {
+                "sent_idx": 6,
+                "total_tokens": 11,
+                "idea_density": 0.5454545454545454
+            },
+            {
+                "sent_idx": 7,
+                "total_tokens": 22,
+                "idea_density": 0.5454545454545454
+            },
+            {
+                "sent_idx": 8,
+                "total_tokens": 16,
+                "idea_density": 0.3125
+            },
+            {
+                "sent_idx": 9,
+                "total_tokens": 6,
+                "idea_density": 0.3333333333333333
+            },
+            {
+                "sent_idx": 10,
+                "total_tokens": 27,
+                "idea_density": 0.5185185185185185
+            },
+            {
+                "sent_idx": 11,
+                "total_tokens": 9,
+                "idea_density": 0.5555555555555556
+            },
+            {
+                "sent_idx": 12,
+                "total_tokens": 21,
+                "idea_density": 0.42857142857142855
+            },
+            {
+                "sent_idx": 13,
+                "total_tokens": 8,
+                "idea_density": 0.75
+            },
+            {
+                "sent_idx": 14,
+                "total_tokens": 8,
+                "idea_density": 0.375
+            },
+            {
+                "sent_idx": 15,
+                "total_tokens": 25,
+                "idea_density": 0.48
+            },
+            {
+                "sent_idx": 16,
+                "total_tokens": 12,
+                "idea_density": 0.4166666666666667
+            },
+            {
+                "sent_idx": 17,
+                "total_tokens": 13,
+                "idea_density": 0.5384615384615384
+            },
+            {
+                "sent_idx": 18,
+                "total_tokens": 22,
+                "idea_density": 0.45454545454545453
+            },
+            {
+                "sent_idx": 19,
+                "total_tokens": 18,
+                "idea_density": 0.5
+            },
+            {
+                "sent_idx": 20,
+                "total_tokens": 20,
+                "idea_density": 0.45
+            },
+            {
+                "sent_idx": 21,
+                "total_tokens": 22,
+                "idea_density": 0.5454545454545454
+            },
+            {
+                "sent_idx": 22,
+                "total_tokens": 25,
+                "idea_density": 0.4
+            },
+            {
+                "sent_idx": 23,
+                "total_tokens": 5,
+                "idea_density": 0.2
+            },
+            {
+                "sent_idx": 24,
+                "total_tokens": 21,
+                "idea_density": 0.47619047619047616
+            },
+            {
+                "sent_idx": 25,
+                "total_tokens": 16,
+                "idea_density": 0.375
+            },
+            {
+                "sent_idx": 26,
+                "total_tokens": 25,
+                "idea_density": 0.44
+            },
+            {
+                "sent_idx": 27,
+                "total_tokens": 9,
+                "idea_density": 0.4444444444444444
+            },
+            {
+                "sent_idx": 28,
+                "total_tokens": 25,
+                "idea_density": 0.4
+            },
+            {
+                "sent_idx": 29,
+                "total_tokens": 20,
+                "idea_density": 0.45
+            },
+            {
+                "sent_idx": 30,
+                "total_tokens": 26,
+                "idea_density": 0.5384615384615384
+            },
+            {
+                "sent_idx": 31,
+                "total_tokens": 21,
+                "idea_density": 0.42857142857142855
+            },
+            {
+                "sent_idx": 32,
+                "total_tokens": 17,
+                "idea_density": 0.47058823529411764
+            },
+            {
+                "sent_idx": 33,
+                "total_tokens": 22,
+                "idea_density": 0.5454545454545454
+            }
+        ]
+    }
+}

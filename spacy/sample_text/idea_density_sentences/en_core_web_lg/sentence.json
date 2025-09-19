@@ -1,0 +1,17 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/sentence.txt",
+        "function": "idea_density_sentences"
+    },
+    "data": {
+        "total_sentences": 1,
+        "sent_list": [
+            {
+                "sent_idx": 0,
+                "total_tokens": 20,
+                "idea_density": 0.55
+            }
+        ]
+    }
+}
