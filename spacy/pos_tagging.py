@@ -2,6 +2,7 @@
 pos_tagging.py
 Functions related to parts of speech tagging.
 """
+import statistics
 from collections import defaultdict
 from pathlib import Path
 import pandas as pd
@@ -129,69 +130,49 @@ def alpha_pos_ratio(model, filepath, **kwargs):
         final_data = {'parameters': parameters, 'data': {'pos_ratio': pos_ct / total_tokens}}
         util.write_json_model(path_filepath, function, model, final_data, ext=pos)
 
-# def alpha_pos_ratio_sentences(model, filepath, **kwargs):
-#     """
-#     Examines only alphanumeric (is_alpha) characters
-#     Calculates the ratio of specified part-of-speech to total words in a sentence for all sentences
-#     Returns the average, minimum, maximum, and standard deviation across all sentences
+def get_pos_to_ratios(doc, pos_to_list):
+    """
+    get pos_to_ratios for alpha_pos_ratio_sentences()
+    """
+    pos_to_ratios = defaultdict(list)
+    for sentence in doc.sents:
+        pos_to_ct, total_tokens = get_alpha_pos_ct_and_total(sentence, pos_to_list)
+        for pos, pos_ct in pos_to_ct.items():
+            pos_to_ratios[pos].append(pos_ct / total_tokens)
+    return pos_to_ratios
 
-#     model: spaCy model to load
-#     filepath: text file to process
+def calc_sent_stats(list_of_ratios):
+    """
+    get total, mean, max, mind, std of ratios for alpha_pos_ratio_sentences()
+    """
+    sent_total = len(list_of_ratios)
+    sent_mean = sum(list_of_ratios) / sent_total
+    sent_max = max(list_of_ratios)
+    sent_min = min(list_of_ratios)
+    sent_std = statistics.stdev(list_of_ratios) if sent_total >= 2 else None
+    return {'sent_mean': sent_mean, 'sent_max': sent_max, 'sent_min': sent_min,
+            'sent_std': sent_std, 'sent_total': sent_total}
 
-#     """
-#     tag = kwargs.get("tag")
-#     dep = kwargs.get("dep")
+def alpha_pos_ratio_sentences(model, filepath, **kwargs):
+    """
+    Examines only alphanumeric (is_alpha) characters
+    Calculates the ratio of specified part-of-speech to total words per sentence
+    Returns the average, minimum, maximum, and standard deviation of the ratio across all sentences
 
-#     doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-
-#     pos_to_word_ratios = []
-
-#     for sentence in doc.sents:
-#         number_of_words = 0
-#         number_of_pos = 0
-#         for token in sentence:
-#             if token.is_alpha:
-#                 number_of_words += 1
-#                 if (tag and token.pos_ == tag) or (dep and token.dep_ == dep):
-#                     number_of_pos += 1
-#         pos_to_word_ratios.append(number_of_pos / number_of_words)
-
-#     return {
-#         "mean": sum(pos_to_word_ratios) / len(pos_to_word_ratios),
-#         "max": max(pos_to_word_ratios),
-#         "min": min(pos_to_word_ratios),
-#         "std": statistics.stdev(pos_to_word_ratios)
-#     }
-
-# def stats_proportion_coordinators(nlp, file_path):
-#     """
-#     Takes in a natural language processor and file path
-#     Uses stats_proportion_part_of_speech to determine mean, min, max, and standard deviation of the proportion of coordinators in a sentence
-#     """
-#     kwargs = {"tag": "CCONJ"}
-#     return stats_proportion_part_of_speech(nlp, file_path, **kwargs)
-
-# def stats_proportion_auxiliaries(nlp, file_path):
-#     """
-#     Takes in a natural language processor and file path
-#     Uses stats_proportion_part_of_speech to determine mean, min, max, and standard deviation of the proportion of auxiliaries in a sentence
-#     """
-#     kwargs = {"tag": "AUX"}
-#     return stats_proportion_part_of_speech(nlp, file_path, **kwargs)
-
-# def stats_proportion_adjectives(nlp, file_path):
-#     """
-#     Takes in a natural language processor and file path
-#     Uses stats_proportion_part_of_speech to determine mean, min, max, and standard deviation of the proportion of adjectives in a sentence
-#     """
-#     kwargs = {"tag": "ADJ"}
-#     return stats_proportion_part_of_speech(nlp, file_path, **kwargs)
-
-# def stats_proportion_subjects(nlp, file_path):
-#     """
-#     Takes in a natural language processor and file path
-#     Calculates the ratio of subjects to total words in a sentence
-#     Returns the average, minimum, maximum, and standard deviation across all sentences
-#     """
-#     kwargs = {"dep": "nsubj"}
-#     return stats_proportion_part_of_speech(nlp, file_path, **kwargs)
+    model: spaCy model to load
+    filepath: text file to process
+    pos_to_list: POS string name to the list of tags associated with the desired POS
+        {'nouns': ['NOUN', 'PROPN']}
+        {'pronouns': ['PRON']}
+        {'conjunctions': ['CONJ', 'CCONJ', 'SCONJ']}
+    """
+    doc, path_filepath = get_doc_and_filepath(model, filepath)
+    pos_to_list = kwargs['pos_to_list']
+    function = 'alpha_pos_ratio_sentences'
+    pos_to_ratios = get_pos_to_ratios(doc, pos_to_list)
+    for pos, list_of_ratios in pos_to_ratios.items():
+        parameters = {'model': model, 'filepath': filepath, 'pos_list': pos_to_list[pos],
+            'function': function}
+        data = calc_sent_stats(list_of_ratios)
+        final_data = {'parameters': parameters, 'data': data}
+        util.write_json_model(path_filepath, function, model, final_data, ext=pos)

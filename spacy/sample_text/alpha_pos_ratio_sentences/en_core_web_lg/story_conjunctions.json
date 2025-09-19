@@ -1,0 +1,19 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/story.txt",
+        "pos_list": [
+            "CONJ",
+            "CCONJ",
+            "SCONJ"
+        ],
+        "function": "alpha_pos_ratio_sentences"
+    },
+    "data": {
+        "sent_mean": 0.09371533131118744,
+        "sent_max": 0.1875,
+        "sent_min": 0.04,
+        "sent_std": 0.04105812929472781,
+        "sent_total": 26
+    }
+}

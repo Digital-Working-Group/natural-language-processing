@@ -78,6 +78,7 @@ For example, 8.547 = 60 / 702 * 100, where we have 60 occurrences of a tag (e.g.
 Please see [sample_text/pos_tag_ratio/en_core_web_lg](sample_text/pos_tag_ratio/en_core_web_lg) for sample output.
 
 Here is an excerpt from [story.json](sample_text/pos_tag_ratio/en_core_web_lg/story.json):
+
 ```yaml
 {
     "parameters": {
@@ -143,11 +144,12 @@ Here is an excerpt from [story.json](sample_text/pos_tag_ratio/en_core_web_lg/st
 | parameters | The list of parameters to the function. | See below. |
 | parameters.function | The name of the function. | See below. |
 | data | Contains the data specific to the function | See below. |
-
+| data.pos_ratio | Contains the POS ratio across the whole document. | 0.229 |
 
 Please see [sample_text/alpha_pos_ratio/en_core_web_lg](sample_text/alpha_pos_ratio/en_core_web_lg) for sample output.
 
 Here is an excerpt from [story_nouns.json](sample_text/alpha_pos_ratio/en_core_web_lg/story_nouns.json):
+
 ```json
 {
     "parameters": {
@@ -165,90 +167,57 @@ Here is an excerpt from [story_nouns.json](sample_text/alpha_pos_ratio/en_core_w
 }
 ```
 
+### Parts of Speech Ratios (Alphanumeric characters only): Sentences
+
+`pos_tagging.alpha_pos_ratio_sentences()` iterates over every sentence and calculates the ratio of specific part(s) of speech to total words, examining alphanumeric (is_alpha) characters only. Summary statistics of the ratios across all the sentences are returned. Information about the parts-of-speech tags can be found in [spacy_pos_tags_explained.md.](spacy_pos_tags_explained.md) An output JSON is written for every filepath and for every key, value pair in pos_to_list.
+
+#### Input
+
+| Parameter | Description | Example |
+| - | - | - |
+| model | The spaCy model to load and use for tagging parts of speech. | 'en_core_web_lg' |
+| filepath | The filepath to a text file to process. | 'sample_text/text.txt' |
+| pos_to_list | A part of speech string name to the list of associated POS tags. | {'nouns': ['NOUN', 'PROPN'], 'pronouns': ['PRON'], 'conjunctions': ['CONJ', 'CCONJ', 'SCONJ']} |
+
+#### Output
+
+| Key | Description | Example |
+| - | - | - |
+| parameters | The list of parameters to the function. | See below. |
+| parameters.function | The name of the function. | See below. |
+| data | Contains the data specific to the function | See below. |
+| data.sent_mean | Mean of POS ratio across all sentences. | 0.246 |
+| data.sent_max | Max of POS ratio across all sentences. | 0.4 |
+| data.sent_min | Min of POS ratio across all sentences. | 0.09 |
+| data.sent_std | Standard deviation of POS ratio across all sentences. If there are <2 sentences, is set to None. | 0.08 |
+| data.sent_total | Total number of sentences. | 33 |
+
+Please see [sample_text/alpha_pos_ratio/en_core_web_lg](sample_text/alpha_pos_ratio_sentences/en_core_web_lg) for sample output.
+
+Here is an excerpt from [story_nouns.json](sample_text/alpha_pos_ratio_sentences/en_core_web_lg/story_nouns.json):
+
+```json
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/story.txt",
+        "pos_list": [
+            "NOUN",
+            "PROPN"
+        ],
+        "function": "alpha_pos_ratio_sentences"
+    },
+    "data": {
+        "sent_mean": 0.2456333989784595,
+        "sent_max": 0.4,
+        "sent_min": 0.09090909090909091,
+        "sent_std": 0.08429027819940069,
+        "sent_total": 33
+    }
+}
+```
+
 ## Extracting Linguistic Features
-See `extract_linguistic_features.main()`for usage examples. 
-### Parts-of-Speech Tagging
-#### `data_to_df()`
-The `data_to_df()` function in `pos_tagging.py` takes in a natural language processor, and a file path. Spacy converts the raw text to a Doc object that consists of tokens with various attributes. The function returns a pandas dataframe of these attributes. 
-
-#### Parameters for `data_to_df()`
-The following table shows the functions parameters and their descriptions:
-
-| Parameter | Type                | Description                                                                                                                                                                                                                                                                                                                                                                                                                           | Default Value |
-|-----------|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| nlp       | spacy.lang.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their pipeline. The type can be `core`, a general purpose pipeline, or `dep` which is only for tagging, parsing, and lemmatization. The genre specifies the type of text the pipeline is trained on `web` or `news`. The size options include `sm`, `md`, `lg`, and `trf`. For all usage examples, we use spacy.load('en_core_web_lg'). | N/A           |
-| file_path | str                 | This is a path to a file in string format.                                                                                                                                                                                                                                                                                                                                                                                            | N/A           |
-
-#### `pos_tag_counts()`
-The `pos_tag_counts()` function in `pos_tagging.py` takes in a natural language processor, filepath, tag("POS", or " TAG"), and per word amount. It returns a dictionary containing all tags and on average how many times they appear per 100 words
-#### Parameters for `pos_tag_counts()`
-The following table shows the functions parameters and their descriptions:
-
-| Parameter | Type                    | Description                                                                                                           | Default Value |
-|-----------|-------------------------|-----------------------------------------------------------------------------------------------------------------------|---------------|
-| nlp       | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model.            | N/A           |
-| file_path | str                     | This is a filepath in string format.                                                                                  | N/A           |
-| tag       | str                     | This is either "POS", or "TAG" depending on what tags should be used.                                                 | N/A           |
-| amount    | int                     | This is an integer representing the number of words for which the proportion of parts-of-speech should be calculated. | 100           |
-
-#### `tag_ratio()`
-The `tag_ratio()` function in `pos_tagging.py` takes in a natural language processor and file path as before. It additionally takes in a word amount. The function outputs a dictionary containing parts-of-speech, Penn Treebank tags, and the average number of each present per desired word amount. 
-
-### Parameters for `tag_ratio()`
-
-| Parameter | Type                    | Description                                                                                                          | Default Value |
-|-----------|-------------------------|----------------------------------------------------------------------------------------------------------------------|---------------|
-| nlp       | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model.           | N/A           |
-| file_path | str                     | This is a path to a file in string format                                                                            | N/A           |
-| amount    | int                     | This is an integer representing the number of words for which the proportion of parts-of-speech should be calculated | 100           |
-
-#### `ratio_of_pos()`
-The `ratio_of_pos()` function in `pos_tagging.py` takes in a natural language processor, filepath, key word arguments. It returns the ratio of the desired part of speech to total words in the text.
-#### `ratio_of_nouns()` 
-The `ratio_of_nouns()` function in `pos_tagging.py` calls ratio_of_pos() with specified kwargs to calculate and return the ratio of nouns to total words
-#### `ratio_of_pronouns`
-The `ratio_of_pronouns()` function in `pos_tagging.py` calls ratio_of_pos() with specified kwargs to calculate and return the ratio of pronouns to total words
-#### `ratio_of_conjunctions`
-The `ratio_of_conjunctions()` function in `pos_tagging.py` calls ratio_of_pos() with specified kwargs to calculate and return the ratio of conjunctions to total words
-#### Parameters for `ratio_of_pos()`
-
-| Parameter | Type                    | Description                                                                                               | Default Value |
-|-----------|-------------------------|-----------------------------------------------------------------------------------------------------------|---------------|
-| nlp       | spacy.language.Language | This is a pipeline object loaded from SpaCy. The user can choose the type, genre, and size of their model | Required      |
-| file_path | str                     | This is a path to a file in string format	                                                                | Required      |
-| **kwargs  |                         | function specific parameters for part of speech specification                                             |               |
-
-#### kwargs for `ratio_of_pos`
-
-| kwarg           | Type | Description                                       | Default Value |
-|-----------------|------|---------------------------------------------------|---------------|
-| parts_of_speech | list | List of pos tags used to identify parts of speech | Required      |
-
-#### `stats_proportion_part_of_speech()`
-The function `stats_proportion_part_of_speech()` in `pos_tagging.py` takes in a natural language processor, file path, and set of kwargs. It calculates the ratio of specified part-of-speech to total words in a sentence for all sentences and returns the average, minimum, maximum, and standard deviation across all sentences.
-#### `stats_proportion_coordinators()`
-The function `stats_proportion_coordinators()` in `pos_tagging.py` takes in a natural language processor and file path. It calls stats_proportion_part_of_speech with specified kwargs to determine mean, min, max, and standard deviation of the proportion of coordinators in a sentence.
-#### `stats_proportion_auxiliaries()`
-The function `stats_proportion_auxiliaries()` in `pos_tagging.py` takes in a natural language processor and file path. It calls stats_proportion_part_of_speech with specified kwargs to determine mean, min, max, and standard deviation of the proportion of auxiliaries in a sentence.
-#### `stats_proportion_adjectives()`
-The function `stats_proportion_adjectives()` in `pos_tagging.py` takes in a natural language processor and file path. It calls stats_proportion_part_of_speech with specified kwargs to determine mean, min, max, and standard deviation of the proportion of adjectives in a sentence.
-#### `stats_proportion_subjects()`
-The function `stats_proportion_subjects()` in `pos_tagging.py` takes in a natural language processor and file path. It calls stats_proportion_part_of_speech with specified kwargs to determine mean, min, max, and standard deviation of the proportion of subjects in a sentence.
-
-#### Parameters for `stats_proportion_part_of_speech()`
-| Parameter | Type                    | Description                                                                                               | Default Value |
-|-----------|-------------------------|-----------------------------------------------------------------------------------------------------------|---------------|
-| nlp       | spacy.language.Language | This is a pipeline object loaded from SpaCy. The user can choose the type, genre, and size of their model | Required      |
-| file_path | str                     | This is a path to a file in string format	                                                                | Required      |
-| **kwargs  |                         | function specific parameters for part of speech specification                                             |               |
-
-#### kwargs for `stats_proportion_part_of_speech()`
-
-| kwarg | Type | Description                 | Default Value |
-|-------|------|-----------------------------|---------------|
-| tag   | str  | parts of speech tag         | None          |
-| dep   | str  | parts of speech dependency  | None          |
-
 ### Semantic Complexity
 #### `calculate_idea_density()`
 The function `calculate_idea_density()` in `semantic_complexity.py` takes in a nlp, and file_path. The function outputs a list of the sentences in the document and their idea densities. Idea Density is defined as the ratio of propositions to total words.

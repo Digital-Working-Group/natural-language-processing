@@ -1,0 +1,17 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/paragraph.txt",
+        "pos_list": [
+            "PRON"
+        ],
+        "function": "alpha_pos_ratio_sentences"
+    },
+    "data": {
+        "sent_mean": 0.16926406926406926,
+        "sent_max": 0.3,
+        "sent_min": 0.07142857142857142,
+        "sent_std": 0.11778392655015724,
+        "sent_total": 3
+    }
+}

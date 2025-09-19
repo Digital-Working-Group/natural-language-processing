@@ -1,0 +1,18 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/paragraph.txt",
+        "pos_list": [
+            "NOUN",
+            "PROPN"
+        ],
+        "function": "alpha_pos_ratio_sentences"
+    },
+    "data": {
+        "sent_mean": 0.19567099567099566,
+        "sent_max": 0.2727272727272727,
+        "sent_min": 0.1,
+        "sent_std": 0.08785532708822656,
+        "sent_total": 3
+    }
+}

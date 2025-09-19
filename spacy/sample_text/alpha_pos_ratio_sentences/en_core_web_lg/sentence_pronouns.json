@@ -1,0 +1,17 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/sentence.txt",
+        "pos_list": [
+            "PRON"
+        ],
+        "function": "alpha_pos_ratio_sentences"
+    },
+    "data": {
+        "sent_mean": 0.3,
+        "sent_max": 0.3,
+        "sent_min": 0.3,
+        "sent_std": null,
+        "sent_total": 1
+    }
+}
