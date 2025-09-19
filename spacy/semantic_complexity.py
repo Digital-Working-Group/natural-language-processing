@@ -60,11 +60,15 @@ def idea_density_sentences(model, filepath):
     final_data = {'parameters': parameters, 'data': data}
     util.write_json_model(path_filepath, function, model, final_data)
 
-# def generate_noun_feature(nlp, file_path, **kwargs):
+# def generate_noun_feature(model, filepath, **kwargs):
 #     """
 #     Takes in a natural language processor, file path, and feature index
 #     Calculates value of feature for each noun based on feature index and corresponding dataset
 #     Returns average feature value across all nouns
+
+#     model: spaCy model to load
+#     filepath: text file to process
+
 #     """
 #     feature_column = kwargs['feature_column']
 #     dataset_fp = kwargs['dataset_fp']
@@ -72,7 +76,7 @@ def idea_density_sentences(model, filepath):
 #     word_column = kwargs.get('word_column')
 #     increment_result = kwargs.get('increment_result', lambda r: r.item())
 
-#     doc = nlp(Path(file_path).read_text(encoding='utf-8'))
+#     doc, path_filepath = util.get_doc_and_filepath(model, filepath)
 #     df = pd.read_excel(dataset_fp, **read_excel_kwargs)
 #     df[word_column] = df[word_column].str.lower()
 

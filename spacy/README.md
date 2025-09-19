@@ -128,6 +128,26 @@ Here is an excerpt from [story.json](sample_text/pos_tag_ratio/en_core_web_lg/st
 }
 ```
 
+#### Sample Usage
+
+```py
+import pos_tagging as pos_t
+
+def pos_tag_ratio():
+    """
+    run pos_tagging.pos_tag_ratio()
+    """
+    model = 'en_core_web_lg'
+    tag_list = ['POS', 'TAG']
+    amount = 100
+    sentence = 'sample_text/sentence.txt'
+    paragraph = 'sample_text/paragraph.txt'
+    story = 'sample_text/story.txt'
+    sample_files = [sentence, paragraph, story]
+    for filepath in sample_files:
+        pos_t.pos_tag_ratio(model, filepath, tag_list, amount=amount)
+```
+
 ### Parts of Speech Ratios (Alphanumeric characters only)
 
 `pos_tagging.alpha_pos_ratio()` calculates the ratio of specific part(s) of speech to total words, examining alphanumeric (is_alpha) characters only. Information about the parts-of-speech tags can be found in [spacy_pos_tags_explained.md.](spacy_pos_tags_explained.md) An output JSON is written for every filepath and for every key, value pair in pos_to_list.
@@ -167,6 +187,26 @@ Here is an excerpt from [story_nouns.json](sample_text/alpha_pos_ratio/en_core_w
         "pos_ratio": 0.22866894197952217
     }
 }
+```
+
+#### Sample Usage
+
+```py
+import pos_tagging as pos_t
+
+def alpha_pos_ratio():
+    """
+    run pos_tagging.alpha_pos_ratio()
+    """
+    model = 'en_core_web_lg'
+    sentence = 'sample_text/sentence.txt'
+    paragraph = 'sample_text/paragraph.txt'
+    story = 'sample_text/story.txt'
+    sample_files = [sentence, paragraph, story]
+    pos_to_list = {'nouns': ['NOUN', 'PROPN'], 'pronouns': ['PRON'],
+        'conjunctions': ['CONJ', 'CCONJ', 'SCONJ']}
+    for filepath in sample_files:
+        pos_t.alpha_pos_ratio(model, filepath, pos_to_list=pos_to_list)
 ```
 
 ### Parts of Speech Ratios (Alphanumeric characters only): Sentences
@@ -216,6 +256,26 @@ Here is an excerpt from [story_nouns.json](sample_text/alpha_pos_ratio_sentences
         "sent_total": 33
     }
 }
+```
+
+#### Sample Usage
+
+```py
+import pos_tagging as pos_t
+
+def alpha_pos_ratio_sentences():
+    """
+    run pos_tagging.alpha_pos_ratio_sentences()
+    """
+    model = 'en_core_web_lg'
+    sentence = 'sample_text/sentence.txt'
+    paragraph = 'sample_text/paragraph.txt'
+    story = 'sample_text/story.txt'
+    sample_files = [sentence, paragraph, story]
+    pos_to_list = {'nouns': ['NOUN', 'PROPN'], 'pronouns': ['PRON'],
+        'conjunctions': ['CONJ', 'CCONJ', 'SCONJ']}
+    for filepath in sample_files:
+        pos_t.alpha_pos_ratio_sentences(model, filepath, pos_to_list=pos_to_list)
 ```
 
 ### Idea Density: Sentences
@@ -283,6 +343,24 @@ Here is an excerpt from [paragraph.json](sample_text/idea_density_sentences/en_c
         ]
     }
 }
+```
+
+#### Sample Usage
+
+```py
+import semantic_complexity as sem_c
+
+def idea_density_sentences():
+    """
+    run semantic_complexity.idea_density_sentences()
+    """
+    model = 'en_core_web_lg'
+    sentence = 'sample_text/sentence.txt'
+    paragraph = 'sample_text/paragraph.txt'
+    story = 'sample_text/story.txt'
+    sample_files = [sentence, paragraph, story]
+    for filepath in sample_files:
+        sem_c.idea_density_sentences(model, filepath)
 ```
 
 ## Extracting Linguistic Features
