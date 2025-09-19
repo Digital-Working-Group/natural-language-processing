@@ -109,6 +109,8 @@ def alpha_pos_ratio(model, filepath, **kwargs):
         {'nouns': ['NOUN', 'PROPN']}
         {'pronouns': ['PRON']}
         {'conjunctions': ['CONJ', 'CCONJ', 'SCONJ']}
+
+    Writes an output JSON for each key, value pair in pos_to_list.
     """
     nlp = spacy.load(model)
     path_filepath = Path(filepath)

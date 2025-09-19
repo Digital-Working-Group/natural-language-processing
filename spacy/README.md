@@ -126,7 +126,7 @@ Here is an excerpt from [story.json](sample_text/pos_tag_ratio/en_core_web_lg/st
 
 ### Parts of Speech Ratios (Alphanumeric characters only)
 
-`pos_tagging.alpha_pos_ratio()` calculates the ratio of specific part(s) of speech to total words, examining alphanumeric (is_alpha) characters only. Information about the parts-of-speech tags can be found in [spacy_pos_tags_explained.md.](spacy_pos_tags_explained.md)
+`pos_tagging.alpha_pos_ratio()` calculates the ratio of specific part(s) of speech to total words, examining alphanumeric (is_alpha) characters only. Information about the parts-of-speech tags can be found in [spacy_pos_tags_explained.md.](spacy_pos_tags_explained.md) An output JSON is written for every filepath and for every key, value pair in pos_to_list.
 
 #### Input
 
