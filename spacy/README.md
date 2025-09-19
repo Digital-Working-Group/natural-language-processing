@@ -59,7 +59,7 @@ For example, 8.547 = 60 / 702 * 100, where we have 60 occurrences of a tag (e.g.
 | Parameter | Description | Example |
 | - | - | - |
 | model | The spaCy model to load and use for tagging parts of speech. | 'en_core_web_lg' |
-| filepath | The filepath to a text file to process. | 'sample_text/text.txt' |
+| filepath | The filepath to a text file to process. | 'sample_text/story.txt' |
 | tag_list | A list of tags to generate the tag ratio for (see `pos_tagging.data_to_df()` for a full list) | ['POS', 'TAG'] |
 | amount | The tag ratio is the number of tags divided by the total tokens multipled by the amount. | 100 |
 
@@ -137,7 +137,7 @@ Here is an excerpt from [story.json](sample_text/pos_tag_ratio/en_core_web_lg/st
 | Parameter | Description | Example |
 | - | - | - |
 | model | The spaCy model to load and use for tagging parts of speech. | 'en_core_web_lg' |
-| filepath | The filepath to a text file to process. | 'sample_text/text.txt' |
+| filepath | The filepath to a text file to process. | 'sample_text/story.txt' |
 | pos_to_list | A part of speech string name to the list of associated POS tags. | {'nouns': ['NOUN', 'PROPN'], 'pronouns': ['PRON'], 'conjunctions': ['CONJ', 'CCONJ', 'SCONJ']} |
 
 #### Output
@@ -178,7 +178,7 @@ Here is an excerpt from [story_nouns.json](sample_text/alpha_pos_ratio/en_core_w
 | Parameter | Description | Example |
 | - | - | - |
 | model | The spaCy model to load and use for tagging parts of speech. | 'en_core_web_lg' |
-| filepath | The filepath to a text file to process. | 'sample_text/text.txt' |
+| filepath | The filepath to a text file to process. | 'sample_text/story.txt' |
 | pos_to_list | A part of speech string name to the list of associated POS tags. | {'nouns': ['NOUN', 'PROPN'], 'pronouns': ['PRON'], 'conjunctions': ['CONJ', 'CCONJ', 'SCONJ']} |
 
 #### Output
@@ -218,16 +218,75 @@ Here is an excerpt from [story_nouns.json](sample_text/alpha_pos_ratio_sentences
 }
 ```
 
+### Idea Density: Sentences
+
+`semantic_complexity.idea_density_sentences()` iterates over every sentence and calculates idea density, examining alphanumeric (is_alpha) characters only. Idea density is the number of propositions divided by the total words in the sentence. Idea density is also known as propositional density (or P-density).
+
+Propositions include verbs, adjectives, adverbs, prepositions, and conjunctions.
+- VERB: verbs
+- ADJ: adjectives
+- ADV: adverbs
+- ADP: adposition (prepositions and postpositions)
+- CONJ: conjunction
+- CCONJ: coordinating conjunction
+- SCONJ: subordinating conjunction
+
+Information about the parts-of-speech tags can be found in [spacy_pos_tags_explained.md.](spacy_pos_tags_explained.md)
+
+#### Input
+
+| Parameter | Description | Example |
+| - | - | - |
+| model | The spaCy model to load and use for tagging parts of speech. | 'en_core_web_lg' |
+| filepath | The filepath to a text file to process. | 'sample_text/story.txt' |
+
+#### Output
+
+| Key | Description | Example |
+| - | - | - |
+| parameters | The list of parameters to the function. | See Input table and below. |
+| parameters.function | The name of the function. | See below. |
+| data.total_sentences | The total number of sentences in the text. | 3 |
+| data.sent_list[N].sent_idx | The sentence index number (zero is the first sentence). | 0 |
+| data.sent_list[N].total_tokens | The total number of tokens in the sentence. | 14 |
+| data.sent_list[N].idea_density | The idea density of the sentence. |
+
+Please see [sample_text/idea_density_sentences/en_core_web_lg](sample_text/idea_density_sentences/en_core_web_lg) for sample output.
+
+Here is an excerpt from [paragraph.json](sample_text/idea_density_sentences/en_core_web_lg/paragraph.json):
+
+```json
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/paragraph.txt",
+        "function": "idea_density_sentences"
+    },
+    "data": {
+        "total_sentences": 3,
+        "sent_list": [
+            {
+                "sent_idx": 0,
+                "total_tokens": 20,
+                "idea_density": 0.55
+            },
+            {
+                "sent_idx": 1,
+                "total_tokens": 14,
+                "idea_density": 0.5714285714285714
+            },
+            {
+                "sent_idx": 2,
+                "total_tokens": 22,
+                "idea_density": 0.4090909090909091
+            }
+        ]
+    }
+}
+```
+
 ## Extracting Linguistic Features
 ### Semantic Complexity
-#### `calculate_idea_density()`
-The function `calculate_idea_density()` in `semantic_complexity.py` takes in a nlp, and file_path. The function outputs a list of the sentences in the document and their idea densities. Idea Density is defined as the ratio of propositions to total words.
-#### Parameters for `calculate_idea_density()`:
-
-| Parameter | Type                    | Description                                                                                                | Default Value |
-|-----------|-------------------------|------------------------------------------------------------------------------------------------------------|---------------|
-| nlp       | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model. | Required      |
-| file_path | str                     | This is a path to a file in string format                                                                  | Required      |
 
 #### `abstractness()`
 The function `abstractness()` in `semantic_complexity.py` calls `generate_noun_feature()` with specified kwargs. This function finds the abstractness value corresponding to each noun in the text utilizing a pre-existing dataset, and averages these values. The function outputs the average abstractness value across all nouns in the text.
