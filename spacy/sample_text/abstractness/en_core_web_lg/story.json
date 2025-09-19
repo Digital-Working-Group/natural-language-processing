@@ -1,0 +1,14 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/story.txt",
+        "feature_column": "Conc.M",
+        "dataset_fp": "datasets/dataset_for_abstractness.xlsx",
+        "word_column": "Word",
+        "feature": "abstractness"
+    },
+    "data": {
+        "total_nouns": 124,
+        "feature": 0.29922490830321297
+    }
+}

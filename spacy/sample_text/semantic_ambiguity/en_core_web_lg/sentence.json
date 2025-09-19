@@ -1,0 +1,17 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/sentence.txt",
+        "feature_column": "SemD",
+        "dataset_fp": "datasets/dataset_for_semantic_ambiguity.xlsx",
+        "read_excel_kwargs": {
+            "skiprows": 1
+        },
+        "word_column": "!term",
+        "feature": "semantic_ambiguity"
+    },
+    "data": {
+        "total_nouns": 2,
+        "feature": 2.03887893326526
+    }
+}

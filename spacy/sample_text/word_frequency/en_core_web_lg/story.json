@@ -1,0 +1,14 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/story.txt",
+        "feature_column": "Lg10WF",
+        "dataset_fp": "datasets/dataset_for_word_frequency.xlsx",
+        "word_column": "Word",
+        "feature": "word_frequency"
+    },
+    "data": {
+        "total_nouns": 124,
+        "feature": 3.4619091967314177
+    }
+}

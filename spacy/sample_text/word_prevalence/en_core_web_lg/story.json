@@ -1,0 +1,14 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/story.txt",
+        "feature_column": "Prevalence",
+        "dataset_fp": "datasets/dataset_for_word_prevalence_and_familiarity.xlsx",
+        "word_column": "Word",
+        "feature": "word_prevalence"
+    },
+    "data": {
+        "total_nouns": 124,
+        "feature": 2.3736957410124493
+    }
+}

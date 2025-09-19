@@ -1,0 +1,14 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/paragraph.txt",
+        "feature_column": "AoA",
+        "dataset_fp": "datasets/dataset_for_age_of_acquisition.xlsx",
+        "word_column": "Word",
+        "feature": "age_of_acquisition"
+    },
+    "data": {
+        "total_nouns": 10,
+        "feature": 5.427060742016943
+    }
+}

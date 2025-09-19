@@ -2,6 +2,7 @@
 semantic_complexity.py
 Functions related to semantic complexity.
 """
+import pandas as pd
 import utility as util
 
 def get_prop_pos():
@@ -60,86 +61,104 @@ def idea_density_sentences(model, filepath):
     final_data = {'parameters': parameters, 'data': data}
     util.write_json_model(path_filepath, function, model, final_data)
 
-# def generate_noun_feature(model, filepath, **kwargs):
-#     """
-#     Takes in a natural language processor, file path, and feature index
-#     Calculates value of feature for each noun based on feature index and corresponding dataset
-#     Returns average feature value across all nouns
+def process_doc_noun_feature(doc, **kwargs):
+    """
+    process a doc for generate_noun_feature()
+    """
+    dataset_fp = kwargs['dataset_fp']
+    read_excel_kwargs = kwargs.get('read_excel_kwargs', {})
+    word_column = kwargs.get('word_column')
+    feature_column = kwargs['feature_column']
+    increment_result = kwargs.get('increment_result', lambda r: r.item())
+    df = pd.read_excel(dataset_fp, **read_excel_kwargs)
+    df[word_column] = df[word_column].str.lower()
+    total_nouns = 0
+    total_feature_values = 0
+    for token in doc:
+        if token.pos_ == "NOUN":
+            total_nouns += 1
+            word = token.text.lower()
+            result = df.loc[df[word_column] == word, feature_column]
+            word_lemma = token.lemma_.lower()
+            result_lemma = df.loc[df[word_column] == word_lemma, feature_column]
+            if not result.empty:
+                total_feature_values += increment_result(result)
+            elif not result_lemma.empty:
+                total_feature_values += increment_result(result_lemma)
+            else:
+                total_nouns -= 1
+    return total_nouns, total_feature_values
 
-#     model: spaCy model to load
-#     filepath: text file to process
+def generate_noun_feature(model, filepath, **kwargs):
+    """
+    Calculates value of feature for each noun based on feature index and corresponding dataset
+    Returns the average feature value across all nouns
+    If the noun isn't found in the corresponding dataset, it is ignored and not included in the
+    total number of nouns.
 
-#     """
-#     feature_column = kwargs['feature_column']
-#     dataset_fp = kwargs['dataset_fp']
-#     read_excel_kwargs = kwargs.get('read_excel_kwargs', {})
-#     word_column = kwargs.get('word_column')
-#     increment_result = kwargs.get('increment_result', lambda r: r.item())
+    model: spaCy model to load
+    filepath: text file to process
 
-#     doc, path_filepath = util.get_doc_and_filepath(model, filepath)
-#     df = pd.read_excel(dataset_fp, **read_excel_kwargs)
-#     df[word_column] = df[word_column].str.lower()
+    """
+    feature = kwargs['feature']
+    doc, path_filepath = util.get_doc_and_filepath(model, filepath)
+    total_nouns, total_feature_values = process_doc_noun_feature(doc, **kwargs)
+    parameters = {'model': model, 'filepath': filepath}
+    parameters.update({k: v for k, v in kwargs.items() if k != 'increment_result'})
+    final_data = {'parameters': parameters,
+        'data': {'total_nouns': total_nouns, 'feature': total_feature_values / total_nouns}}
+    util.write_json_model(path_filepath, feature, model, final_data)
 
-#     total_nouns = 0
-#     total_feature_values = 0
+def abstractness(model, filepath):
+    """
+    Uses generate_noun_feature() to calculate average abstractness value across all nouns
+    """
+    kwargs = {'feature_column': 'Conc.M',
+        'dataset_fp': 'datasets/dataset_for_abstractness.xlsx', 'word_column': 'Word',
+        'increment_result': lambda r: (1 / r.item()), 'feature': 'abstractness'}
+    generate_noun_feature(model, filepath, **kwargs)
 
-#     for token in doc:
-#         if token.pos_ == "NOUN":
-#             total_nouns += 1
-#             word = token.text.lower()
-#             result = df.loc[df[word_column] == word, feature_column]
-#             word_lemma = token.lemma_.lower()
-#             result_lemma = df.loc[df[word_column] == word_lemma, feature_column]
-#             if not result.empty:
-#                 total_feature_values += increment_result(result)
-#             elif not result_lemma.empty:
-#                 total_feature_values += increment_result(result_lemma)
-#             else:
-#                 total_nouns -= 1
+def semantic_ambiguity(model, filepath):
+    """
+    Uses generate_noun_feature() to calculate average semantic ambiguity value across all nouns
+    """
+    kwargs = {'feature_column': 'SemD',
+        'dataset_fp': 'datasets/dataset_for_semantic_ambiguity.xlsx',
+        'read_excel_kwargs': {'skiprows': 1}, 'word_column': '!term',
+        'feature': 'semantic_ambiguity'}
+    generate_noun_feature(model, filepath, **kwargs)
 
-#     return total_feature_values / total_nouns
+def word_frequency(model, filepath):
+    """
+    Uses generate_noun_feature() to calculate average word frequency value across all nouns
+    """
+    kwargs = {'feature_column': 'Lg10WF', 'dataset_fp': 'datasets/dataset_for_word_frequency.xlsx',
+        'word_column': 'Word', 'feature': 'word_frequency'}
+    generate_noun_feature(model, filepath, **kwargs)
 
-# def abstractness(nlp, file_path):
-#     """
-#     Uses generate_noun_feature() to calculate average abstractness value across all nouns
-#     """
-#     kwargs = {'feature_column': 'Conc.M', 'dataset_fp': 'datasets/dataset_for_abstractness.xlsx', 'word_column': 'Word',
-#         'increment_result': lambda r: (1 / r.item())}
-#     return generate_noun_feature(nlp, file_path, **kwargs)
+def word_prevalence(model, filepath):
+    """
+    Uses generate_noun_feature() to calculate average word prevalence value across all nouns
+    """
+    kwargs = {'feature_column': 'Prevalence',
+        'dataset_fp': 'datasets/dataset_for_word_prevalence_and_familiarity.xlsx',
+        'word_column': 'Word', 'feature': 'word_prevalence'}
+    generate_noun_feature(model, filepath, **kwargs)
 
-# def semantic_ambiguity(nlp, file_path):
-#     """
-#     Uses generate_noun_feature() to calculate average semantic ambiguity value across all nouns
-#     """
-#     kwargs = {'feature_column': 'SemD', 'dataset_fp': 'datasets/dataset_for_semantic_ambiguity.xlsx', 'read_excel_kwargs': {'skiprows': 1},
-#         'word_column': '!term'}
-#     return generate_noun_feature(nlp, file_path, **kwargs)
+def word_familiarity(model, filepath):
+    """
+    Uses generate_noun_feature() to calculate average word familiarity value across all nouns
+    """
+    kwargs = {'feature_column': 'Pknown',
+            'dataset_fp': 'datasets/dataset_for_word_prevalence_and_familiarity.xlsx',
+            'word_column': 'Word', 'feature': 'word_familiarity'}
+    generate_noun_feature(model, filepath, **kwargs)
 
-# def word_frequency(nlp, file_path):
-#     """
-#     Uses generate_noun_feature() to calculate average word frequency value across all nouns
-#     """
-#     kwargs = {'feature_column': 'Lg10WF', 'dataset_fp': 'datasets/dataset_for_word_frequency.xlsx', 'word_column': 'Word'}
-#     return generate_noun_feature(nlp, file_path, **kwargs)
-
-# def word_prevalence(nlp, file_path):
-#     """
-#     Uses generate_noun_feature() to calculate average word prevalence value across all nouns
-#     """
-#     kwargs = {'feature_column': 'Prevalence', 'dataset_fp': 'datasets/dataset_for_word_prevalence_and_familiarity.xlsx', 'word_column': 'Word' }
-#     return generate_noun_feature(nlp, file_path, **kwargs)
-
-# def word_familiarity(nlp, file_path):
-#     """
-#     Uses generate_noun_feature() to calculate average word familiarity value across all nouns
-#     """
-#     kwargs = {'feature_column': 'Pknown', 'dataset_fp': 'datasets/dataset_for_word_prevalence_and_familiarity.xlsx',
-#               'word_column': 'Word'}
-#     return generate_noun_feature(nlp, file_path, **kwargs)
-
-# def age_of_acquisition(nlp, file_path):
-#     """
-#     Uses generate_noun_feature() to calculate average age of acquisition value across all nouns
-#     """
-#     kwargs = {'feature_column': 'AoA', 'dataset_fp': 'datasets/dataset_for_age_of_acquisition.xlsx', 'word_column': 'Word'}
-#     return generate_noun_feature(nlp, file_path, **kwargs)
+def age_of_acquisition(model, filepath):
+    """
+    Uses generate_noun_feature() to calculate average age of acquisition value across all nouns
+    """
+    kwargs = {'feature_column': 'AoA',
+        'dataset_fp': 'datasets/dataset_for_age_of_acquisition.xlsx',
+        'word_column': 'Word', 'feature': 'age_of_acquisition'}
+    generate_noun_feature(model, filepath, **kwargs)

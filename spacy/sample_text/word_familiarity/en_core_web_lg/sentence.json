@@ -1,0 +1,14 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/sentence.txt",
+        "feature_column": "Pknown",
+        "dataset_fp": "datasets/dataset_for_word_prevalence_and_familiarity.xlsx",
+        "word_column": "Word",
+        "feature": "word_familiarity"
+    },
+    "data": {
+        "total_nouns": 2,
+        "feature": 0.9988372093023254
+    }
+}
