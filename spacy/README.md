@@ -33,6 +33,14 @@ Without downloading the model, one may encounter errors such as:
 ```
 OSError: [E050] Can't find model 'en_core_web_lg'. It doesn't seem to be a Python package or a valid path to a data directory.
 ```
+## Sample Input Text Files
+```
+sample_text
+|-- paragraph.txt ## A single paragraph
+|-- sentence.txt ## A single sentence
+|-- story.txt ## A multi-paragraph story
+|-- story_with_nonwords.txt ## A multi-paragraph story with nonwords
+```
 
 ## Extracting Linguistic Features
 
@@ -60,7 +68,7 @@ For example, 8.547 = 60 / 702 * 100, where we have 60 occurrences of a tag (e.g.
 | Key | Description | Example |
 | - | - | - |
 | parameters | The list of parameters to the function. | See below. |
-| function | The name of the function. | See below. |
+| parameters.function | The name of the function. | See below. |
 | data | Contains the data specific to the function | See below. |
 | data[N].tag | The tag used as an input to pos_tag_ratio(), an element of tag_list. | "POS" |
 | data[N].tag_data.tag_label | The tag's label. | "PRON" |
@@ -113,6 +121,47 @@ Here is an excerpt from [story.json](sample_text/pos_tag_ratio/en_core_web_lg/st
                 },
         ...
 
+}
+```
+
+### Parts of Speech Ratios (Alphanumeric characters only)
+
+`pos_tagging.alpha_pos_ratio()` calculates the ratio of specific part(s) of speech to total words, examining alphanumeric (is_alpha) characters only. Information about the parts-of-speech tags can be found in [spacy_pos_tags_explained.md.](spacy_pos_tags_explained.md)
+
+#### Input
+
+| Parameter | Description | Example |
+| - | - | - |
+| model | The spaCy model to load and use for tagging parts of speech. | 'en_core_web_lg' |
+| filepath | The filepath to a text file to process. | 'sample_text/text.txt' |
+| pos_to_list | A part of speech string name to the list of associated POS tags. | {'nouns': ['NOUN', 'PROPN'], 'pronouns': ['PRON'], 'conjunctions': ['CONJ', 'CCONJ', 'SCONJ']} |
+
+#### Output
+
+| Key | Description | Example |
+| - | - | - |
+| parameters | The list of parameters to the function. | See below. |
+| parameters.function | The name of the function. | See below. |
+| data | Contains the data specific to the function | See below. |
+
+
+Please see [sample_text/alpha_pos_ratio/en_core_web_lg](sample_text/alpha_pos_ratio/en_core_web_lg) for sample output.
+
+Here is an excerpt from [story.json](sample_text/alpha_pos_ratio/en_core_web_lg/story_nouns.json):
+```json
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/story.txt",
+        "pos_list": [
+            "NOUN",
+            "PROPN"
+        ],
+        "function": "alpha_pos_ratio"
+    },
+    "data": {
+        "pos_ratio": 0.22866894197952217
+    }
 }
 ```
 
