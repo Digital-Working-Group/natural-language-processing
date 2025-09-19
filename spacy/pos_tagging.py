@@ -36,7 +36,7 @@ def data_to_df(doc):
         })
     return pd.DataFrame(token_list)
 
-def pos_tag_ratios(doc_df, tag, amount=100):
+def get_pos_tag_ratio(doc_df, tag, amount=100):
     """
     parameters::
         doc_df: pandas DataFrame from data_to_df()
@@ -60,7 +60,7 @@ def get_tag_data_and_total(doc_df, tag, amount):
     get tag_data and total
     """
     tag_data = []
-    tag_counts, total = pos_tag_ratios(doc_df, tag, amount=amount)
+    tag_counts, total = get_pos_tag_ratio(doc_df, tag, amount=amount)
     for tag_label, (tag_ct, tag_ratio) in tag_counts.items():
         tag_data.append({'tag_label': tag_label, 'tag_ct': tag_ct,
             'tag_ratio': tag_ratio, 'spacy.explain': spacy.explain(tag_label)})
@@ -68,7 +68,7 @@ def get_tag_data_and_total(doc_df, tag, amount):
 
 def pos_tag_ratio(model, filepath, tag_list, amount=100):
     """
-    get POS tag ratios via pos_tag_counts()
+    get the tag ratio for each tag in tag_list
     """
     nlp = spacy.load(model)
     function = 'pos_tag_ratio'
