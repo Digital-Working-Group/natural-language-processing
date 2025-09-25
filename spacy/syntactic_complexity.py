@@ -66,22 +66,6 @@ def tense_inflected_verbs(model, filepath, amount=100):
     final_data = {'parameters': parameters, 'data': data}
     util.write_json_model(path_filepath, function, model, final_data)
 
-# def sentence_lengths(nlp, file_path):
-#     """
-#     Takes in a natural language processor and file path
-#     Calculates length of sentences and appends to list
-#     Returns list of sentence lengths
-#     """
-#     doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-#     length_of_sentences = []
-#     for sentence in doc.sents:
-#         num_words = 0
-#         for token in sentence:
-#             if token.is_alpha:
-#                 num_words += 1
-#         length_of_sentences.append(num_words)
-#     return length_of_sentences
-
 # def tree_height(node=None):
 #     """
 #     Returns the max height of a tree given a node

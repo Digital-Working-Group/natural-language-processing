@@ -1033,18 +1033,6 @@ def tense_inflected_verbs():
 
 ## Extracting Linguistic Features
 ### Syntactic Complexity
-#### `num_tense_inflected_verbs()`
-The `num_tense_inflected_verbs()` function in `syntactic_complexity.py` takes in a nlp, file_path, and amount. The function outputs the average number of tense-inflected verbs per specified word amount. Tense inflected verbs are defined as present and past verbs and modal auxiliaries. 
-#### Parameters for `num_tense_inflected_verbs()`
-
-| Parameter | Type                    | Description                                                                                                     | Default  |
-|-----------|-------------------------|-----------------------------------------------------------------------------------------------------------------|----------|
-| nlp       | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model.      | Required |
-| file_path | str                     | This is a filepath in string format.                                                                            | Required |
-| amount    | str                     | This is an integer representing the number of words for which the proportion of nonwords should be calculated   | 100      |
-
-#### `sentence_lengths()`
-The `sentence_lengths()` function in `syntactic_complexity.py` takes in a natural language processor and a filepath. It calculates the length of each sentence and returns a list of sentence lengths.
 
 #### `dependency_tree_heights()` 
 The `dependency_tree_heights()` function in `syntactic complexity.py` takes in a natural language processor and a filepath. It calculates the dependency tree height of each dependant relation in spaCy using `tree_heights()`and returns a list of dependency tree heights. 
