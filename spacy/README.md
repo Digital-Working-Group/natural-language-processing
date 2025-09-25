@@ -4,7 +4,7 @@ This repository contains examples of how to use the [spaCy Python library](https
 ## Installation
 ### Without Docker
 Check your python version:
-```doctest
+```
 python --version
 ```
 Install requirements for python 3.13.5:
@@ -363,6 +363,161 @@ def idea_density_sentences():
         sem_c.idea_density_sentences(model, filepath)
 ```
 
+### Generate Noun Features
+
+`semantic_complexity.generate_noun_feature()` serves as a general function for several noun-based features. Each specific noun-based feature utilizes generate_noun_feature() with a different set of keyword arguments.
+
+For example, for each noun, `semantic_complexity.abstractness()` searches [datasets/dataset_for_abstractness.xlsx](datasets/dataset_for_abstractness.xlsx) for the noun ('Word' column) and upon finding it, extracts the 'Conc.M' column's value as the feature (abstractness). If we have a noun ('aardvark') and find it in the 'Word' column, the value in the 'Conc.M' column for 'aardvark' represents the abstractness.
+
+Each feature is aggregated (see the `increment_result` parameter and usage) and then averaged as the final output.
+
+#### Input
+
+| Parameter | Description | Example |
+| - | - | - |
+| model | The spaCy model to load and use for tagging parts of speech. | 'en_core_web_lg' |
+| filepath | The filepath to a text file to process. | 'sample_text/story.txt' |
+| feature | The name of the feature. | 'abstractness' |
+| dataset_fp | The filepath to the dataset excel sheet needed for the feature calculation. | 'datasets/dataset_for_abstractness.xlsx' |
+| read_excel_kwargs | Keyword arguments to add to the excel reading function call (pd.read_excel()) | {'skiprows': 1} |
+| word_column | The column in the excel sheet that is searched for an input noun. | 'Word' |
+| feature_column | The column in the excel sheet that contains the feature's value. | 'Conc.M' |
+| increment_result | A function to retrieve the value from the feature_column. | lambda r: r.item() |
+
+#### Output
+
+| Key | Description | Example |
+| - | - | - |
+| parameters | The list of parameters to the function. | See Input table and below. |
+| parameters.function | The name of the function. | See below. |
+| data.total_nouns | The total number of nouns. | 10 |
+| data.feature | The average of the calculated feature. | 0.25 |
+
+#### Sample Usage
+
+```py
+import semantic_complexity as sem_c
+
+def generate_noun_features():
+    """
+    run the several generate_noun_feature-based functions from semantic_complexity.py
+    """
+    model = 'en_core_web_lg'
+    sample_files = get_sample_files()
+    for filepath in sample_files:
+        sem_c.abstractness(model, filepath)
+        sem_c.semantic_ambiguity(model, filepath)
+        sem_c.word_frequency(model, filepath)
+        sem_c.word_prevalence(model, filepath)
+        sem_c.word_familiarity(model, filepath)
+        sem_c.age_of_acquisition(model, filepath)
+```
+
+#### Abstractness
+
+The 'Conc.M' column in the dataset represents the concreteness of word. Here, we take the inverse (1/concreteness) for each noun and return the average value across all nouns.
+
+Please see [sample_text/abstractness/en_core_web_lg](sample_text/abstractness/en_core_web_lg) for sample output.
+
+Here is an excerpt from [paragraph.json](sample_text/abstractness/en_core_web_lg/paragraph.json):
+
+```json
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/paragraph.txt",
+        "feature_column": "Conc.M",
+        "dataset_fp": "datasets/dataset_for_abstractness.xlsx",
+        "word_column": "Word",
+        "feature": "abstractness"
+    },
+    "data": {
+        "total_nouns": 10,
+        "feature": 0.2504803239958748
+    }
+}
+```
+
+#### Age of Acquisition
+
+The 'AoA' column in the dataset represents the age when a given word is typically learned. Here, we return the average AoA value across all nouns.
+
+Please see [sample_text/age_of_acquisition/en_core_web_lg](sample_text/age_of_acquisition/en_core_web_lg) for sample output.
+
+Here is an excerpt from [paragraph.json](sample_text/age_of_acquisition/en_core_web_lg/paragraph.json):
+
+```json
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/paragraph.txt",
+        "feature_column": "AoA",
+        "dataset_fp": "datasets/dataset_for_age_of_acquisition.xlsx",
+        "word_column": "Word",
+        "feature": "age_of_acquisition"
+    },
+    "data": {
+        "total_nouns": 10,
+        "feature": 5.427060742016943
+    }
+}
+```
+
+#### Semantic Ambiguity
+
+The 'SemD' column in the dataset represents the degree to which the different contexts associated with a given word vary in their meanings. Here, we return the average SemD value across all nouns.
+
+Please see [sample_text/semantic_ambiguity/en_core_web_lg](sample_text/semantic_ambiguity/en_core_web_lg) for sample output.
+
+Here is an excerpt from [paragraph.json](sample_text/semantic_ambiguity/en_core_web_lg/paragraph.json):
+
+```json
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/paragraph.txt",
+        "feature_column": "SemD",
+        "dataset_fp": "datasets/dataset_for_semantic_ambiguity.xlsx",
+        "read_excel_kwargs": {
+            "skiprows": 1
+        },
+        "word_column": "!term",
+        "feature": "semantic_ambiguity"
+    },
+    "data": {
+        "total_nouns": 10,
+        "feature": 1.75549056407669
+    }
+}
+```
+
+#### Word Familiarity
+
+The 'Pknown' column in the dataset represents a z-standardized measure of the number of people who know a given word. Here, we return the average Pknown value across all nouns.
+
+Please see [sample_text/semantic_ambiguity/en_core_web_lg](sample_text/semantic_ambiguity/en_core_web_lg) for sample output.
+
+Here is an excerpt from [paragraph.json](sample_text/semantic_ambiguity/en_core_web_lg/paragraph.json):
+
+```json
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/paragraph.txt",
+        "feature_column": "SemD",
+        "dataset_fp": "datasets/dataset_for_semantic_ambiguity.xlsx",
+        "read_excel_kwargs": {
+            "skiprows": 1
+        },
+        "word_column": "!term",
+        "feature": "semantic_ambiguity"
+    },
+    "data": {
+        "total_nouns": 10,
+        "feature": 1.75549056407669
+    }
+}
+```
 ## Extracting Linguistic Features
 ### Semantic Complexity
 
