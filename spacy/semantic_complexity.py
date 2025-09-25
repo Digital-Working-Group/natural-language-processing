@@ -75,7 +75,6 @@ def process_doc_noun_feature(doc, **kwargs):
     feature_data = []
     for token in doc:
         if token.pos_ == "NOUN":
-            total_nouns += 1
             word = token.text.lower()
             result = df.loc[df[word_column] == word, feature_column]
             word_lemma = token.lemma_.lower()
@@ -86,8 +85,6 @@ def process_doc_noun_feature(doc, **kwargs):
             elif not result_lemma.empty:
                 feature_data.append({'token.text': token.text, 'word': word_lemma,
                     'feature_val': increment_result(result_lemma), 'is_lemma': 1})
-            else:
-                total_nouns -= 1
     return feature_data
 
 def generate_noun_feature(model, filepath, **kwargs):

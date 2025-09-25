@@ -9,6 +9,67 @@
     },
     "data": {
         "total_nouns": 10,
-        "feature": 0.2504803239958748
+        "feature_data": [
+            {
+                "token.text": "life",
+                "word": "life",
+                "feature_val": 0.3717472118959108,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "things",
+                "word": "thing",
+                "feature_val": 0.31545741324921134,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "town",
+                "word": "town",
+                "feature_val": 0.21551724137931036,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "countryside",
+                "word": "countryside",
+                "feature_val": 0.2232142857142857,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "hills",
+                "word": "hill",
+                "feature_val": 0.20283975659229211,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "couple",
+                "word": "couple",
+                "feature_val": 0.2544529262086514,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "farms",
+                "word": "farm",
+                "feature_val": 0.2178649237472767,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "street",
+                "word": "street",
+                "feature_val": 0.21052631578947367,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "diner",
+                "word": "diner",
+                "feature_val": 0.20746887966804978,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "name",
+                "word": "name",
+                "feature_val": 0.2857142857142857,
+                "is_lemma": 0
+            }
+        ]
     }
 }

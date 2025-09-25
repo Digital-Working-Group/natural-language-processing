@@ -367,9 +367,9 @@ def idea_density_sentences():
 
 `semantic_complexity.generate_noun_feature()` serves as a general function for several noun-based features. Each specific noun-based feature utilizes generate_noun_feature() with a different set of keyword arguments.
 
-For example, for each noun, `semantic_complexity.abstractness()` searches [datasets/dataset_for_abstractness.xlsx](datasets/dataset_for_abstractness.xlsx) for the noun ('Word' column) and upon finding it, extracts the 'Conc.M' column's value as the feature (abstractness). If we have a noun ('aardvark') and find it in the 'Word' column, the value in the 'Conc.M' column for 'aardvark' represents the abstractness.
+For example, for each noun, `semantic_complexity.abstractness()` searches [datasets/dataset_for_abstractness.xlsx](datasets/dataset_for_abstractness.xlsx) for the noun (in the 'Word' column) and upon finding it, extracts the 'Conc.M' column's value as the feature (abstractness). If we have a noun ('aardvark') and find it in the 'Word' column, the value in the 'Conc.M' column for 'aardvark' represents the abstractness.
 
-Each feature is aggregated (see the `increment_result` parameter and usage) and then averaged as the final output.
+If the noun isn't found in the `word_column`, then its lemma is also searched for in the `word_column`. If neither the noun nor its lemma are found, then it's skipped. The noun (or lemma) is converted into a value based on the `increment_result` function.
 
 #### Input
 
@@ -391,7 +391,10 @@ Each feature is aggregated (see the `increment_result` parameter and usage) and 
 | parameters | The list of parameters to the function. | See Input table and below. |
 | parameters.function | The name of the function. | See below. |
 | data.total_nouns | The total number of nouns. | 10 |
-| data.feature | The average of the calculated feature. | 0.25 |
+| data.feature_data[N].token.text | The text of the token. | 'things' |
+| data.feature_data[N].word | The lowercased version of token.text. It will be the lemma (base form) of the token.text, if the token.text can't be found in the dataset and only the lemma can be found. | 'thing' |
+| data.feature_data[N].feature_val | The value of the feature found in the feature column. | 0.315 |
+| data.feature_data[N].is_lemma | This is equal to 0 if data[N].word is found directly in the word column and is equal to 1 if only the lemma (base form) is found in the word column instead. | 1 |
 
 #### Sample Usage
 
@@ -415,7 +418,7 @@ def generate_noun_features():
 
 #### Abstractness
 
-The 'Conc.M' column in the dataset represents the concreteness of word. Here, we take the inverse (1/concreteness) for each noun and return the average value across all nouns.
+The 'Conc.M' column in the dataset represents the concreteness of word. Here, we take the inverse (1/concreteness) for each noun.
 
 Please see [sample_text/abstractness/en_core_web_lg](sample_text/abstractness/en_core_web_lg) for sample output.
 
@@ -433,14 +436,75 @@ Here is an excerpt from [paragraph.json](sample_text/abstractness/en_core_web_lg
     },
     "data": {
         "total_nouns": 10,
-        "feature": 0.2504803239958748
+        "feature_data": [
+            {
+                "token.text": "life",
+                "word": "life",
+                "feature_val": 0.3717472118959108,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "things",
+                "word": "thing",
+                "feature_val": 0.31545741324921134,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "town",
+                "word": "town",
+                "feature_val": 0.21551724137931036,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "countryside",
+                "word": "countryside",
+                "feature_val": 0.2232142857142857,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "hills",
+                "word": "hill",
+                "feature_val": 0.20283975659229211,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "couple",
+                "word": "couple",
+                "feature_val": 0.2544529262086514,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "farms",
+                "word": "farm",
+                "feature_val": 0.2178649237472767,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "street",
+                "word": "street",
+                "feature_val": 0.21052631578947367,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "diner",
+                "word": "diner",
+                "feature_val": 0.20746887966804978,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "name",
+                "word": "name",
+                "feature_val": 0.2857142857142857,
+                "is_lemma": 0
+            }
+        ]
     }
 }
 ```
 
 #### Age of Acquisition
 
-The 'AoA' column in the dataset represents the age when a given word is typically learned. Here, we return the average AoA value across all nouns.
+The 'AoA' column in the dataset represents the age when a given word is typically learned.
 
 Please see [sample_text/age_of_acquisition/en_core_web_lg](sample_text/age_of_acquisition/en_core_web_lg) for sample output.
 
@@ -458,14 +522,75 @@ Here is an excerpt from [paragraph.json](sample_text/age_of_acquisition/en_core_
     },
     "data": {
         "total_nouns": 10,
-        "feature": 5.427060742016943
+        "feature_data": [
+            {
+                "token.text": "life",
+                "word": "life",
+                "feature_val": 5.666149999999999,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "things",
+                "word": "things",
+                "feature_val": 4.317719583333333,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "town",
+                "word": "town",
+                "feature_val": 5.47843125,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "countryside",
+                "word": "countryside",
+                "feature_val": 8.0,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "hills",
+                "word": "hills",
+                "feature_val": 4.490893750000001,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "couple",
+                "word": "couple",
+                "feature_val": 6.133825353535353,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "farms",
+                "word": "farms",
+                "feature_val": 4.51294625,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "street",
+                "word": "street",
+                "feature_val": 4.600627849462366,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "diner",
+                "word": "diner",
+                "feature_val": 7.30250505050505,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "name",
+                "word": "name",
+                "feature_val": 3.7675083333333332,
+                "is_lemma": 0
+            }
+        ]
     }
 }
 ```
 
 #### Semantic Ambiguity
 
-The 'SemD' column in the dataset represents the degree to which the different contexts associated with a given word vary in their meanings. Here, we return the average SemD value across all nouns.
+The 'SemD' column in the dataset represents the degree to which the different contexts associated with a given word vary in their meanings.
 
 Please see [sample_text/semantic_ambiguity/en_core_web_lg](sample_text/semantic_ambiguity/en_core_web_lg) for sample output.
 
@@ -486,72 +611,331 @@ Here is an excerpt from [paragraph.json](sample_text/semantic_ambiguity/en_core_
     },
     "data": {
         "total_nouns": 10,
-        "feature": 1.75549056407669
+        "feature_data": [
+            {
+                "token.text": "life",
+                "word": "life",
+                "feature_val": 2.127011833336849,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "things",
+                "word": "things",
+                "feature_val": 1.9507460331936715,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "town",
+                "word": "town",
+                "feature_val": 1.850260277139322,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "countryside",
+                "word": "countryside",
+                "feature_val": 1.548715174128924,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "hills",
+                "word": "hills",
+                "feature_val": 1.6131345963861938,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "couple",
+                "word": "couple",
+                "feature_val": 1.8707156729919414,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "farms",
+                "word": "farms",
+                "feature_val": 1.2653946867156831,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "street",
+                "word": "street",
+                "feature_val": 1.7917702201526633,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "diner",
+                "word": "diner",
+                "feature_val": 1.4845310730241417,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "name",
+                "word": "name",
+                "feature_val": 2.0526260736975077,
+                "is_lemma": 0
+            }
+        ]
     }
 }
 ```
 
 #### Word Familiarity
 
-The 'Pknown' column in the dataset represents a z-standardized measure of the number of people who know a given word. Here, we return the average Pknown value across all nouns.
+The 'Pknown' column in the dataset represents a z-standardized measure of the number of people who know a given word.
 
-Please see [sample_text/semantic_ambiguity/en_core_web_lg](sample_text/semantic_ambiguity/en_core_web_lg) for sample output.
+Please see [sample_text/word_familiarity/en_core_web_lg](sample_text/word_familiarity/en_core_web_lg) for sample output.
 
-Here is an excerpt from [paragraph.json](sample_text/semantic_ambiguity/en_core_web_lg/paragraph.json):
+Here is an excerpt from [paragraph.json](sample_text/word_familiarity/en_core_web_lg/paragraph.json):
 
 ```json
 {
     "parameters": {
         "model": "en_core_web_lg",
         "filepath": "sample_text/paragraph.txt",
-        "feature_column": "SemD",
-        "dataset_fp": "datasets/dataset_for_semantic_ambiguity.xlsx",
-        "read_excel_kwargs": {
-            "skiprows": 1
-        },
-        "word_column": "!term",
-        "feature": "semantic_ambiguity"
+        "feature_column": "Pknown",
+        "dataset_fp": "datasets/dataset_for_word_prevalence_and_familiarity.xlsx",
+        "word_column": "Word",
+        "feature": "word_familiarity"
     },
     "data": {
         "total_nouns": 10,
-        "feature": 1.75549056407669
+        "feature_data": [
+            {
+                "token.text": "life",
+                "word": "life",
+                "feature_val": 0.9976744186046509,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "things",
+                "word": "thing",
+                "feature_val": 1.0,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "town",
+                "word": "town",
+                "feature_val": 0.9976190476190478,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "countryside",
+                "word": "countryside",
+                "feature_val": 0.9905882352941178,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "hills",
+                "word": "hill",
+                "feature_val": 0.9954337899543376,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "couple",
+                "word": "couple",
+                "feature_val": 0.9907621247113163,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "farms",
+                "word": "farm",
+                "feature_val": 0.9978494623655912,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "street",
+                "word": "street",
+                "feature_val": 0.9973614775725596,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "diner",
+                "word": "diner",
+                "feature_val": 0.9977011494252872,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "name",
+                "word": "name",
+                "feature_val": 0.993993993993994,
+                "is_lemma": 0
+            }
+        ]
     }
 }
 ```
+
+#### Word Frequency
+
+The 'Lg10WF' column in the dataset represents the frequency of a given word per million words on a log10 scale.
+
+Please see [sample_text/word_frequency/en_core_web_lg](sample_text/word_frequency/en_core_web_lg) for sample output.
+
+Here is an excerpt from [paragraph.json](sample_text/word_frequency/en_core_web_lg/paragraph.json):
+
+```json
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/paragraph.txt",
+        "feature_column": "Lg10WF",
+        "dataset_fp": "datasets/dataset_for_word_frequency.xlsx",
+        "word_column": "Word",
+        "feature": "word_frequency"
+    },
+    "data": {
+        "total_nouns": 10,
+        "feature_data": [
+            {
+                "token.text": "life",
+                "word": "life",
+                "feature_val": 4.608846822326411,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "things",
+                "word": "things",
+                "feature_val": 4.548241966406093,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "town",
+                "word": "town",
+                "feature_val": 4.101918833680424,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "countryside",
+                "word": "countryside",
+                "feature_val": 2.2576785748691846,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "hills",
+                "word": "hills",
+                "feature_val": 3.011993114659257,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "couple",
+                "word": "couple",
+                "feature_val": 4.056714329516394,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "farms",
+                "word": "farms",
+                "feature_val": 2.164352855784437,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "street",
+                "word": "street",
+                "feature_val": 3.878406887580996,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "diner",
+                "word": "diner",
+                "feature_val": 2.801403710017355,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "name",
+                "word": "name",
+                "feature_val": 4.515025612032066,
+                "is_lemma": 0
+            }
+        ]
+    }
+}
+```
+
+#### Word Frequency
+
+The 'Prevalence' column in the dataset represents the number of people who knew a given word. It was crowdsourced via a study involving over 220,000 people. ([Word prevalence norms for 62,000 English lemmas](https://link.springer.com/article/10.3758/s13428-018-1077-9))
+
+Please see [sample_text/word_prevalence/en_core_web_lg](sample_text/word_prevalence/en_core_web_lg) for sample output.
+
+Here is an excerpt from [paragraph.json](sample_text/word_prevalence/en_core_web_lg/paragraph.json):
+
+```json
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/paragraph.txt",
+        "feature_column": "Prevalence",
+        "dataset_fp": "datasets/dataset_for_word_prevalence_and_familiarity.xlsx",
+        "word_column": "Word",
+        "feature": "word_prevalence"
+    },
+    "data": {
+        "total_nouns": 10,
+        "feature_data": [
+            {
+                "token.text": "life",
+                "word": "life",
+                "feature_val": 2.4420369643248447,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "things",
+                "word": "thing",
+                "feature_val": 2.5758293035489,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "town",
+                "word": "town",
+                "feature_val": 2.4393358558940506,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "countryside",
+                "word": "countryside",
+                "feature_val": 2.188471238006659,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "hills",
+                "word": "hill",
+                "feature_val": 2.3447254310991066,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "couple",
+                "word": "couple",
+                "feature_val": 2.193227487163475,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "farms",
+                "word": "farm",
+                "feature_val": 2.4506951640221115,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "street",
+                "word": "street",
+                "feature_val": 2.4269995579074632,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "diner",
+                "word": "diner",
+                "feature_val": 2.4433473510218704,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "name",
+                "word": "name",
+                "feature_val": 2.2922383711418757,
+                "is_lemma": 0
+            }
+        ]
+    }
+}
+```
+
 ## Extracting Linguistic Features
-### Semantic Complexity
-
-#### `abstractness()`
-The function `abstractness()` in `semantic_complexity.py` calls `generate_noun_feature()` with specified kwargs. This function finds the abstractness value corresponding to each noun in the text utilizing a pre-existing dataset, and averages these values. The function outputs the average abstractness value across all nouns in the text.
-#### `semantic_ambiguity()` 
-The function `semantic_ambiguity()` in `semantic_complexity.py` calls `generate_noun_feature()` with specified kwargs. This function finds the semantic ambiguity value corresponding to each noun in the text utilizing a pre-existing dataset, and averages these values. The function outputs the average semantic ambiguity value across all nouns in the text.
-#### `word_frequency()`
-The function `word_frequency()` in `semantic_complexity.py` calls `generate_noun_feature()` with specified kwargs. This function finds the word frequency value corresponding to each noun in the text utilizing a pre-existing dataset, and averages these values. The function outputs the average word frequency value across all nouns in the text.
-#### `word_prevalence`
-The function `word_prevalence()` in `semantic_complexity.py` calls `generate_noun_feature()` with specified kwargs. This function finds the word prevalence value corresponding to each noun in the text utilizing a pre-existing dataset, and averages these values. The function outputs the average word prevalence value across all nouns in the text.
-#### `word_familiarity()`
-The function `word_familiarity()` in `semantic_complexity.py` calls `generate_noun_feature()` with specified kwargs. This function finds the word familiarity value corresponding to each noun in the text utilizing a pre-existing dataset, and averages these values. The function outputs the average word familiarity value across all nouns in the text.
-#### `age_of_acquisition()` 
-The function `age_of_acquisition()` in `semantic_complexity.py` calls `generate_noun_feature()` with specified kwargs. This function finds the age of acquisition value corresponding to each noun in the text utilizing a pre-existing dataset, and averages these values. The function outputs the average age of acquisition value across all nouns in the text.
-#### Parameters for `generate_noun_feature()`
-The functions  `abstractness()`, `semantic_ambiguity()`, `word_frequency()`, `word_prevalence()`, `word_familiarity()`, and `age_of_acquisition()` in `semantic_complexity.py`, all depend on the `generate_noun_feature()` function. They each calculate a feature value of nouns in the text. These values estimate the complexity of the text. Each function uses a different dataset and column with predetermined values for each word. The functions all take in a natural language processor, file path, and function specific arguments via \*\*kwargs, and return a singular float value, representing the average feature value across all nouns in the text.
-
-| Parameter | Type                    | Description                                                                                               | Default |
-|-----------|-------------------------|-----------------------------------------------------------------------------------------------------------|---------|
-| nlp       | spacy.language.Language | This is a pipeline object loaded from SpaCy. The user can choose the type, genre, and size of their model | N/A     |
-| file_path | str                     | This is a path to a file in string format                                                                 | N/A     |
-| **kwargs  |                         | function specific parameters for dataset lookup                                                           |         |
-
-#### \*\*kwargs for `generate_noun_feature()`
-
-| Kwarg             | Type | Description                                                                         | Default            |
-|-------------------|------|-------------------------------------------------------------------------------------|--------------------|
-| feature_column    | str  | refers to the column in the dataset used to calculate feature                       |                    |
-| dataset_fp        | str  | string version of the path to the dataset used to calculate features                |                    |
-| read_excel_kwargs | dict | parameter to pass to pd.read_excel, for example {'skiprows': 1}                     | {}                 |
-| word_column       | str  | refers to the name of the column used to find the corresponding word in the dataset |                    |
-| increment results |      | function applied to row in dataset to add the item in the feature column            | lambda r: r.item() |
-
 ### Syntactic Complexity
 #### `num_tense_inflected_verbs()`
 The `num_tense_inflected_verbs()` function in `syntactic_complexity.py` takes in a nlp, file_path, and amount. The function outputs the average number of tense-inflected verbs per specified word amount. Tense inflected verbs are defined as present and past verbs and modal auxiliaries. 

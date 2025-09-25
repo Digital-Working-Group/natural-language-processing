@@ -9,6 +9,19 @@
     },
     "data": {
         "total_nouns": 2,
-        "feature": 2.508933133936872
+        "feature_data": [
+            {
+                "token.text": "life",
+                "word": "life",
+                "feature_val": 2.4420369643248447,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "things",
+                "word": "thing",
+                "feature_val": 2.5758293035489,
+                "is_lemma": 1
+            }
+        ]
     }
 }

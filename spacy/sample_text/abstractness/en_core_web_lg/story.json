@@ -9,6 +9,751 @@
     },
     "data": {
         "total_nouns": 124,
-        "feature": 0.29922490830321297
+        "feature_data": [
+            {
+                "token.text": "life",
+                "word": "life",
+                "feature_val": 0.3717472118959108,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "things",
+                "word": "thing",
+                "feature_val": 0.31545741324921134,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "town",
+                "word": "town",
+                "feature_val": 0.21551724137931036,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "countryside",
+                "word": "countryside",
+                "feature_val": 0.2232142857142857,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "hills",
+                "word": "hill",
+                "feature_val": 0.20283975659229211,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "couple",
+                "word": "couple",
+                "feature_val": 0.2544529262086514,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "farms",
+                "word": "farm",
+                "feature_val": 0.2178649237472767,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "street",
+                "word": "street",
+                "feature_val": 0.21052631578947367,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "diner",
+                "word": "diner",
+                "feature_val": 0.20746887966804978,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "name",
+                "word": "name",
+                "feature_val": 0.2857142857142857,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "parents",
+                "word": "parent",
+                "feature_val": 0.2192982456140351,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "teachers",
+                "word": "teacher",
+                "feature_val": 0.22123893805309736,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "education",
+                "word": "education",
+                "feature_val": 0.341296928327645,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "part",
+                "word": "part",
+                "feature_val": 0.303951367781155,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "life",
+                "word": "life",
+                "feature_val": 0.3717472118959108,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "get",
+                "word": "get",
+                "feature_val": 0.42016806722689076,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "go",
+                "word": "go",
+                "feature_val": 0.31746031746031744,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "importance",
+                "word": "importance",
+                "feature_val": 0.5714285714285714,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "value",
+                "word": "value",
+                "feature_val": 0.6172839506172839,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "kindness",
+                "word": "kindness",
+                "feature_val": 0.5747126436781609,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "community",
+                "word": "community",
+                "feature_val": 0.2840909090909091,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "school",
+                "word": "school",
+                "feature_val": 0.20876826722338204,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "towns",
+                "word": "town",
+                "feature_val": 0.21551724137931036,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "group",
+                "word": "group",
+                "feature_val": 0.24271844660194175,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "friends",
+                "word": "friend",
+                "feature_val": 0.32573289902280134,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "family",
+                "word": "family",
+                "feature_val": 0.23640661938534277,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "star",
+                "word": "star",
+                "feature_val": 0.21321961620469082,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "athlete",
+                "word": "athlete",
+                "feature_val": 0.23255813953488372,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "class",
+                "word": "class",
+                "feature_val": 0.2597402597402597,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "president",
+                "word": "president",
+                "feature_val": 0.22727272727272727,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "reading",
+                "word": "reading",
+                "feature_val": 0.2695417789757412,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "writing",
+                "word": "writing",
+                "feature_val": 0.27027027027027023,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "class",
+                "word": "class",
+                "feature_val": 0.2597402597402597,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "haven",
+                "word": "haven",
+                "feature_val": 0.2958579881656805,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "teachers",
+                "word": "teacher",
+                "feature_val": 0.22123893805309736,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "words",
+                "word": "word",
+                "feature_val": 0.2808988764044944,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "journalism",
+                "word": "journalism",
+                "feature_val": 0.42194092827004215,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "school",
+                "word": "school",
+                "feature_val": 0.20876826722338204,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "change",
+                "word": "change",
+                "feature_val": 0.3460207612456747,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "place",
+                "word": "place",
+                "feature_val": 0.28735632183908044,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "campus",
+                "word": "campus",
+                "feature_val": 0.21551724137931036,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "thousands",
+                "word": "thousand",
+                "feature_val": 0.3246753246753247,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "students",
+                "word": "student",
+                "feature_val": 0.2032520325203252,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "College",
+                "word": "college",
+                "feature_val": 0.21645021645021645,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "ways",
+                "word": "ways",
+                "feature_val": 0.5,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "campus",
+                "word": "campus",
+                "feature_val": 0.21551724137931036,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "newspaper",
+                "word": "newspaper",
+                "feature_val": 0.20746887966804978,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "reporter",
+                "word": "reporter",
+                "feature_val": 0.2159827213822894,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "events",
+                "word": "event",
+                "feature_val": 0.3717472118959108,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "club",
+                "word": "club",
+                "feature_val": 0.2645502645502646,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "meetings",
+                "word": "meeting",
+                "feature_val": 0.3021148036253776,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "way",
+                "word": "way",
+                "feature_val": 0.4273504273504274,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "editor",
+                "word": "editor",
+                "feature_val": 0.23529411764705882,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "year",
+                "word": "year",
+                "feature_val": 0.3076923076923077,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "years",
+                "word": "year",
+                "feature_val": 0.3076923076923077,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "life",
+                "word": "life",
+                "feature_val": 0.3717472118959108,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "deadlines",
+                "word": "deadline",
+                "feature_val": 0.37593984962406013,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "criticism",
+                "word": "criticism",
+                "feature_val": 0.48309178743961356,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "stories",
+                "word": "story",
+                "feature_val": 0.30303030303030304,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "writer",
+                "word": "writer",
+                "feature_val": 0.23148148148148145,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "itch",
+                "word": "itch",
+                "feature_val": 0.31746031746031744,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "job",
+                "word": "job",
+                "feature_val": 0.31347962382445144,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "paper",
+                "word": "paper",
+                "feature_val": 0.20283975659229211,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "community",
+                "word": "community",
+                "feature_val": 0.2840909090909091,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "news",
+                "word": "news",
+                "feature_val": 0.29325513196480935,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "interest",
+                "word": "interest",
+                "feature_val": 0.5555555555555556,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "stories",
+                "word": "story",
+                "feature_val": 0.30303030303030304,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "writing",
+                "word": "writing",
+                "feature_val": 0.27027027027027023,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "people",
+                "word": "people",
+                "feature_val": 0.20746887966804978,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "ways",
+                "word": "ways",
+                "feature_val": 0.5,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "couple",
+                "word": "couple",
+                "feature_val": 0.2544529262086514,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "years",
+                "word": "year",
+                "feature_val": 0.3076923076923077,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "city",
+                "word": "city",
+                "feature_val": 0.20876826722338204,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "magazine",
+                "word": "magazine",
+                "feature_val": 0.2,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "pieces",
+                "word": "piece",
+                "feature_val": 0.24154589371980678,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "voice",
+                "word": "voice",
+                "feature_val": 0.24213075060532688,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "journalism",
+                "word": "journalism",
+                "feature_val": 0.42194092827004215,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "facts",
+                "word": "fact",
+                "feature_val": 0.3676470588235294,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "way",
+                "word": "way",
+                "feature_val": 0.4273504273504274,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "change",
+                "word": "change",
+                "feature_val": 0.3460207612456747,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "work",
+                "word": "work",
+                "feature_val": 0.28735632183908044,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "way",
+                "word": "way",
+                "feature_val": 0.4273504273504274,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "people",
+                "word": "people",
+                "feature_val": 0.20746887966804978,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "places",
+                "word": "place",
+                "feature_val": 0.28735632183908044,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "challenges",
+                "word": "challenge",
+                "feature_val": 0.47393364928909953,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "resilience",
+                "word": "resilience",
+                "feature_val": 0.4424778761061947,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "college",
+                "word": "college",
+                "feature_val": 0.21645021645021645,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "sweetheart",
+                "word": "sweetheart",
+                "feature_val": 0.35842293906810035,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "partner",
+                "word": "partner",
+                "feature_val": 0.28328611898017,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "twist",
+                "word": "twist",
+                "feature_val": 0.25641025641025644,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "house",
+                "word": "house",
+                "feature_val": 0.2,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "garden",
+                "word": "garden",
+                "feature_val": 0.2114164904862579,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "neighborhood",
+                "word": "neighborhood",
+                "feature_val": 0.21052631578947367,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "suburbs",
+                "word": "suburb",
+                "feature_val": 0.26595744680851063,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "home",
+                "word": "home",
+                "feature_val": 0.24330900243309,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "freelance",
+                "word": "freelance",
+                "feature_val": 0.5208333333333334,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "writer",
+                "word": "writer",
+                "feature_val": 0.23148148148148145,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "editor",
+                "word": "editor",
+                "feature_val": 0.23529411764705882,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "juggling",
+                "word": "juggling",
+                "feature_val": 0.23529411764705882,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "act",
+                "word": "act",
+                "feature_val": 0.4065040650406504,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "clients",
+                "word": "client",
+                "feature_val": 0.25641025641025644,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "pitching",
+                "word": "pitching",
+                "feature_val": 0.2617801047120419,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "stories",
+                "word": "story",
+                "feature_val": 0.30303030303030304,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "time",
+                "word": "time",
+                "feature_val": 0.32573289902280134,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "projects",
+                "word": "project",
+                "feature_val": 0.27624309392265195,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "book",
+                "word": "book",
+                "feature_val": 0.2040816326530612,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "sort",
+                "word": "sort",
+                "feature_val": 0.29940119760479045,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "memoir",
+                "word": "memoir",
+                "feature_val": 0.26595744680851063,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "people",
+                "word": "people",
+                "feature_val": 0.20746887966804978,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "chapter",
+                "word": "chapter",
+                "feature_val": 0.29154518950437314,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "trip",
+                "word": "trip",
+                "feature_val": 0.2695417789757412,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "diner",
+                "word": "diner",
+                "feature_val": 0.20746887966804978,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "coffee",
+                "word": "coffee",
+                "feature_val": 0.2079002079002079,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "world",
+                "word": "world",
+                "feature_val": 0.2293577981651376,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "life",
+                "word": "life",
+                "feature_val": 0.3717472118959108,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "mosaic",
+                "word": "mosaic",
+                "feature_val": 0.2347417840375587,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "moments",
+                "word": "moment",
+                "feature_val": 0.6211180124223602,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "pieces",
+                "word": "piece",
+                "feature_val": 0.24154589371980678,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "picture",
+                "word": "picture",
+                "feature_val": 0.22123893805309736,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "education",
+                "word": "education",
+                "feature_val": 0.341296928327645,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "journey",
+                "word": "journey",
+                "feature_val": 0.38910505836575876,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "lot",
+                "word": "lot",
+                "feature_val": 0.27027027027027023,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "content",
+                "word": "content",
+                "feature_val": 0.3861003861003861,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "story",
+                "word": "story",
+                "feature_val": 0.30303030303030304,
+                "is_lemma": 0
+            }
+        ]
     }
 }
