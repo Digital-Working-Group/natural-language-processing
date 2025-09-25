@@ -1,0 +1,90 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/paragraph.txt",
+        "amount": 100,
+        "function": "tense_inflected_verbs"
+    },
+    "data": {
+        "tiv_ratio": 14.285714285714285,
+        "total_tivs": 8,
+        "total_alpha_tokens": 56,
+        "present_verbs": 4,
+        "past_verbs": 4,
+        "modal_auxiliaries": 0,
+        "feature_data": [
+            {
+                "token.text": "know",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBP",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "think",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBP",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "become",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBP",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "grew",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "called",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBN",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "tucked",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "rolling",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "knew",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            }
+        ]
+    }
+}

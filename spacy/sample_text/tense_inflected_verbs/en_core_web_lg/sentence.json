@@ -1,0 +1,45 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/sentence.txt",
+        "amount": 100,
+        "function": "tense_inflected_verbs"
+    },
+    "data": {
+        "tiv_ratio": 15.0,
+        "total_tivs": 3,
+        "total_alpha_tokens": 20,
+        "present_verbs": 3,
+        "past_verbs": 0,
+        "modal_auxiliaries": 0,
+        "feature_data": [
+            {
+                "token.text": "know",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBP",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "think",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBP",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "become",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBP",
+                "word_type": "present_verb"
+            }
+        ]
+    }
+}

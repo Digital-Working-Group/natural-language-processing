@@ -1,0 +1,708 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/story.txt",
+        "amount": 100,
+        "function": "tense_inflected_verbs"
+    },
+    "data": {
+        "tiv_ratio": 13.310580204778159,
+        "total_tivs": 78,
+        "total_alpha_tokens": 586,
+        "present_verbs": 29,
+        "past_verbs": 43,
+        "modal_auxiliaries": 6,
+        "feature_data": [
+            {
+                "token.text": "know",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBP",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "think",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBP",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "become",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBP",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "grew",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "called",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBN",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "tucked",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "rolling",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "knew",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "instilled",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "learning",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "went",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "go",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBP",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "knew",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "had",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "knit",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBN",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "felt",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "loved",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "encouraged",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "think",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBP",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "started",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "wanted",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "headed",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "moving",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "knew",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "bustling",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "pushed",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "joined",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "started",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "covering",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "worked",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "learned",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "mattered",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "graduated",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "wanted",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "had",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "could",
+                "token.pos_": "AUX",
+                "tense": [],
+                "tag": "MD",
+                "word_type": "modal_auxiliary"
+            },
+            {
+                "token.text": "took",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "covering",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "grounding",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "reminded",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "loved",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "could",
+                "token.pos_": "AUX",
+                "tense": [],
+                "tag": "MD",
+                "word_type": "modal_auxiliary"
+            },
+            {
+                "token.text": "could",
+                "token.pos_": "AUX",
+                "tense": [],
+                "tag": "MD",
+                "word_type": "modal_auxiliary"
+            },
+            {
+                "token.text": "moved",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "diving",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "found",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "discovered",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "could",
+                "token.pos_": "AUX",
+                "tense": [],
+                "tag": "MD",
+                "word_type": "modal_auxiliary"
+            },
+            {
+                "token.text": "could",
+                "token.pos_": "AUX",
+                "tense": [],
+                "tag": "MD",
+                "word_type": "modal_auxiliary"
+            },
+            {
+                "token.text": "met",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "traveled",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "imagined",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBN",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "faced",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "tested",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "got",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "bought",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "say",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBP",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "feels",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBZ",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "working",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "finding",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "trying",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "would",
+                "token.pos_": "AUX",
+                "tense": [],
+                "tag": "MD",
+                "word_type": "modal_auxiliary"
+            },
+            {
+                "token.text": "started",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBN",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "writing",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "growing",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "shaped",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "going",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "feels",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBZ",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "sipping",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "watching",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "Looking",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "realize",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBP",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "started",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "got",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "brought",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Past"
+                ],
+                "tag": "VBD",
+                "word_type": "past_verb"
+            },
+            {
+                "token.text": "telling",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "seeing",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "takes",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBZ",
+                "word_type": "present_verb"
+            }
+        ]
+    }
+}

@@ -52,7 +52,7 @@ See [main.py](main.py) for usage examples.
 ```
 tag_ratio = tag_ct / total_tokens * amount
 ```
-For example, 8.547 = 60 / 702 * 100, where we have 60 occurrences of a tag (e.g., PRP), 702 total tokens, and have amount is set to 100. The intent is to control for the number of total words/tokens. The amount being set to 100 is arbitrary, if set to 1 then it becomes a normal percentage.
+For example, 8.547 = 60 / 702 * 100, where we have 60 occurrences of a tag (e.g., PRP), 702 total tokens, and have amount is set to 100. The intent is to control for the number of total words/tokens. The amount being set to 100 is arbitrary, if set to 1 then it becomes a decimal percentage.
 
 #### Input
 
@@ -61,7 +61,7 @@ For example, 8.547 = 60 / 702 * 100, where we have 60 occurrences of a tag (e.g.
 | model | The spaCy model to load and use for tagging parts of speech. | 'en_core_web_lg' |
 | filepath | The filepath to a text file to process. | 'sample_text/story.txt' |
 | tag_list | A list of tags to generate the tag ratio for (see `pos_tagging.data_to_df()` for a full list) | ['POS', 'TAG'] |
-| amount | The tag ratio is the number of tags divided by the total tokens multipled by the amount. | 100 |
+| amount | The tag ratio is the number of tags divided by the total tokens multiplied by the amount. | 100 |
 
 #### Output
 
@@ -932,6 +932,103 @@ Here is an excerpt from [paragraph.json](sample_text/word_prevalence/en_core_web
         ]
     }
 }
+```
+
+### Tense Inflected Verbs
+
+`syntactic_complexity.tense_inflected_verbs()` generates measures related to the number of tense-inflected verbs and only iterates over alphanumeric tokens. Tense-inflected verbs include present and past verbs, as well as modal auxiliary verbs.
+
+#### Input
+
+| Parameter | Description | Example |
+| - | - | - |
+| model | The spaCy model to load and use for tagging parts of speech. | 'en_core_web_lg' |
+| filepath | The filepath to a text file to process. | 'sample_text/story.txt' |
+| amount | The tiv_ratio is the number of tense-inflected verbs divided by the total tokens multiplied by the amount. | 100 |
+
+#### Output
+
+| Key | Description | Example |
+| - | - | - |
+| parameters | The parameters of the function. | See the Input table and below. |
+| parameters.function | The name of the function. | See below. |
+| data.tiv_ratio | The tiv_ratio is the number of tense-inflected verbs divided by the total tokens multiplied by the amount. When set to 1, it's a decimal percentage and when set to 100, it's a whole percentage. | 15.0 |
+| data.total_tivs | The total number of tense-inflected verbs. | 3 |
+| data.total_alpha_tokens | The total number of alphanumeric tokens. | 20 |
+| data.present_verbs | The total number of present tense verbs. | 3 |
+| data.past_verbs | The total number of past tense verbs. | 0 |
+| data.modal_auxiliaries | The total number of modal auxiliaries. | 0 |
+| data.feature_data[N].token.text | The token's text. | 'know' |
+| data.feature_data[N].token.pos_ | The simple part of speech tag. | 'VERB' |
+| data.feature_data[N].tense | The list of tense(s) of the token. | ['Pres'] |
+| data.feature_data[N].tag | The detailed part of speech tag. | 'VBP' |
+| data.feature_data[N].word_type | The word type (present_verb, past_verb, modal_auxiliary) | 'present_verb' |
+
+Please see [sample_text/tense_inflected_verbs/en_core_web_lg](sample_text/tense_inflected_verbs/en_core_web_lg) for sample output.
+
+Here is an excerpt from [sentence.json](sample_text/tense_inflected_verbs/en_core_web_lg/sentence.json):
+
+```json
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/sentence.txt",
+        "amount": 100,
+        "function": "tense_inflected_verbs"
+    },
+    "data": {
+        "tiv_ratio": 15.0,
+        "total_tivs": 3,
+        "total_alpha_tokens": 20,
+        "present_verbs": 3,
+        "past_verbs": 0,
+        "modal_auxiliaries": 0,
+        "feature_data": [
+            {
+                "token.text": "know",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBP",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "think",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBP",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "become",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBP",
+                "word_type": "present_verb"
+            }
+        ]
+    }
+}
+```
+
+#### Sample Usage
+
+```py
+import syntactic_complexity as syn_c
+
+def tense_inflected_verbs():
+    """
+    run syntactic_complexity.tense_inflected_verbs()
+    """
+    model = 'en_core_web_lg'
+    sample_files = get_sample_files()
+    for filepath in sample_files:
+        syn_c.tense_inflected_verbs(model, filepath)
 ```
 
 ## Extracting Linguistic Features

@@ -4,6 +4,7 @@ main entrypoint
 """
 import pos_tagging as pos_t
 import semantic_complexity as sem_c
+import syntactic_complexity as syn_c
 
 def get_sample_files():
     """
@@ -70,6 +71,15 @@ def generate_noun_features():
         sem_c.word_familiarity(model, filepath)
         sem_c.age_of_acquisition(model, filepath)
 
+def tense_inflected_verbs():
+    """
+    run syntactic_complexity.tense_inflected_verbs()
+    """
+    model = 'en_core_web_lg'
+    sample_files = get_sample_files()
+    for filepath in sample_files:
+        syn_c.tense_inflected_verbs(model, filepath)
+
 def main():
     """
     main entrypoint
@@ -78,7 +88,8 @@ def main():
     # alpha_pos_ratio()
     # alpha_pos_ratio_sentences()
     # idea_density_sentences()
-    generate_noun_features()
+    # generate_noun_features()
+    tense_inflected_verbs()
 
 if __name__ == '__main__':
     main()
