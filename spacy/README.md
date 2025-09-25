@@ -67,7 +67,7 @@ For example, 8.547 = 60 / 702 * 100, where we have 60 occurrences of a tag (e.g.
 
 | Key | Description | Example |
 | - | - | - |
-| parameters | The list of parameters to the function. | See Input table and below. |
+| parameters | The parameters of the function. | See the Input table and below. |
 | parameters.function | The name of the function. | See below. |
 | data[N].tag | The tag used as an input to pos_tag_ratio(), an element of tag_list. | "POS" |
 | data[N].tag_data.tag_label | The tag's label. | "PRON" |
@@ -164,7 +164,7 @@ def pos_tag_ratio():
 
 | Key | Description | Example |
 | - | - | - |
-| parameters | The list of parameters to the function. | See Input table and below. |
+| parameters | The parameters of the function. | See the Input table and below. |
 | parameters.function | The name of the function. | See below. |
 | data.pos_ratio | Contains the POS ratio across the whole document. | 0.229 |
 
@@ -225,7 +225,7 @@ def alpha_pos_ratio():
 
 | Key | Description | Example |
 | - | - | - |
-| parameters | The list of parameters to the function. | See Input table and below. |
+| parameters | The parameters of the function. | See the Input table and below. |
 | parameters.function | The name of the function. | See below. |
 | data.sent_mean | Mean of POS ratio across all sentences. | 0.246 |
 | data.sent_max | Max of POS ratio across all sentences. | 0.4 |
@@ -304,7 +304,7 @@ Information about the parts-of-speech tags can be found in [spacy_pos_tags_expla
 
 | Key | Description | Example |
 | - | - | - |
-| parameters | The list of parameters to the function. | See Input table and below. |
+| parameters | The parameters of the function. | See the Input table and below. |
 | parameters.function | The name of the function. | See below. |
 | data.total_sentences | The total number of sentences in the text. | 3 |
 | data.sent_list[N].sent_idx | The sentence index number (zero is the first sentence). | 0 |
@@ -388,11 +388,10 @@ If the noun isn't found in the `word_column`, then its lemma is also searched fo
 
 | Key | Description | Example |
 | - | - | - |
-| parameters | The list of parameters to the function. | See Input table and below. |
-| parameters.function | The name of the function. | See below. |
+| parameters | The parameters of the function. | See the Input table and below. |
 | data.total_nouns | The total number of nouns. | 10 |
 | data.feature_data[N].token.text | The text of the token. | 'things' |
-| data.feature_data[N].word | The lowercased version of token.text. It will be the lemma (base form) of the token.text, if the token.text can't be found in the dataset and only the lemma can be found. | 'thing' |
+| data.feature_data[N].word | The lowercased version of token.text. The lemma is the base form of a word. If the word (token.text) can't be found in the dataset and its lemma can be found, this will be equal to its lemma. If neither can be found, the word gets skipped and isn't included in the output data. | 'thing' |
 | data.feature_data[N].feature_val | The value of the feature found in the feature column. | 0.315 |
 | data.feature_data[N].is_lemma | This is equal to 0 if data[N].word is found directly in the word column and is equal to 1 if only the lemma (base form) is found in the word column instead. | 1 |
 
