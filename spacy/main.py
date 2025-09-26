@@ -21,7 +21,7 @@ def get_sample_files():
 def main():
     """
     run all the functions
-    """  
+    """
     model = 'en_core_web_lg'
     sample_files = get_sample_files()
     for filepath in sample_files:
@@ -40,46 +40,39 @@ def main():
 
         sem_c.idea_density_sentences(nlp_util)
 
-def generate_noun_features():
-    """
-    run the several generate_noun_feature-based functions from semantic_complexity.py
-    """
-    model = 'en_core_web_lg'
-    sample_files = get_sample_files()
-    for filepath in sample_files:
-        sem_c.abstractness(model, filepath)
-        sem_c.semantic_ambiguity(model, filepath)
-        sem_c.word_frequency(model, filepath)
-        sem_c.word_prevalence(model, filepath)
-        sem_c.word_familiarity(model, filepath)
-        sem_c.age_of_acquisition(model, filepath)
+        sem_c.abstractness(nlp_util)
+        sem_c.age_of_acquisition(nlp_util)
+        sem_c.semantic_ambiguity(nlp_util)
+        sem_c.word_familiarity(nlp_util)
+        sem_c.word_frequency(nlp_util)
+        sem_c.word_prevalence(nlp_util)
 
-def tense_inflected_verbs():
-    """
-    run syntactic_complexity.tense_inflected_verbs()
-    """
-    model = 'en_core_web_lg'
-    sample_files = get_sample_files()
-    for filepath in sample_files:
-        syn_c.tense_inflected_verbs(model, filepath)
+# def tense_inflected_verbs():
+#     """
+#     run syntactic_complexity.tense_inflected_verbs()
+#     """
+#     model = 'en_core_web_lg'
+#     sample_files = get_sample_files()
+#     for filepath in sample_files:
+#         syn_c.tense_inflected_verbs(nlp_util)
 
-def dependency_distance():
-    """
-    run syntactic_complexity.dependency_distance()
-    """
-    model = 'en_core_web_lg'
-    sample_files = get_sample_files()
-    for filepath in sample_files:
-        syn_c.dependency_distance(model, filepath)
+# def dependency_distance():
+#     """
+#     run syntactic_complexity.dependency_distance()
+#     """
+#     model = 'en_core_web_lg'
+#     sample_files = get_sample_files()
+#     for filepath in sample_files:
+#         syn_c.dependency_distance(nlp_util)
 
-def moving_type_token_ratio():
-    """
-    run lexical_variation.moving_type_token_ratio()
-    """
-    model = 'en_core_web_lg'
-    sample_files = get_sample_files()
-    for filepath in sample_files:
-        lex_v.moving_type_token_ratio(model, filepath)
+# def moving_type_token_ratio():
+#     """
+#     run lexical_variation.moving_type_token_ratio()
+#     """
+#     model = 'en_core_web_lg'
+#     sample_files = get_sample_files()
+#     for filepath in sample_files:
+#         lex_v.moving_type_token_ratio(nlp_util)
 
 if __name__ == '__main__':
     main()

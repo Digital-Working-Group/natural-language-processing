@@ -48,7 +48,7 @@ See [main.py](main.py) for usage examples across all functions.
 
 ## Common Inputs
 
-Each function takes in a spaCy model and filepath, which is loaded into a NLPUtil object, see [nlp_utility.py.](nlp_utility.py)
+Each function takes in a spaCy model and filepath, which are loaded into a NLPUtil object, see [nlp_utility.py.](nlp_utility.py)
 
 | Parameter | Description | Example |
 | - | - | - |
@@ -297,8 +297,6 @@ If the noun isn't found in the `word_column`, then its lemma is also searched fo
 
 | Parameter | Description | Example |
 | - | - | - |
-| model | The spaCy model to load and use for tagging parts of speech. | 'en_core_web_lg' |
-| filepath | The filepath to a text file to process. | 'sample_text/story.txt' |
 | feature | The name of the feature. | 'abstractness' |
 | dataset_fp | The filepath to the dataset excel sheet needed for the feature calculation. | 'datasets/dataset_for_abstractness.xlsx' |
 | read_excel_kwargs | Keyword arguments to add to the excel reading function call (pd.read_excel()) | {'skiprows': 1} |
@@ -316,26 +314,6 @@ If the noun isn't found in the `word_column`, then its lemma is also searched fo
 | data.feature_data[N].word | The lowercased version of token.text. The lemma is the base form of a word. If the word (token.text) can't be found in the dataset and its lemma can be found, this will be equal to its lemma. If neither can be found, the word gets skipped and isn't included in the output data. | 'thing' |
 | data.feature_data[N].feature_val | The value of the feature found in the feature column. | 0.315 |
 | data.feature_data[N].is_lemma | This is equal to 0 if data[N].word is found directly in the word column and is equal to 1 if only the lemma (base form) is found in the word column instead. | 1 |
-
-#### Sample Usage
-
-```py
-import semantic_complexity as sem_c
-
-def generate_noun_features():
-    """
-    run the several generate_noun_feature-based functions from semantic_complexity.py
-    """
-    model = 'en_core_web_lg'
-    sample_files = get_sample_files()
-    for filepath in sample_files:
-        sem_c.abstractness(model, filepath)
-        sem_c.semantic_ambiguity(model, filepath)
-        sem_c.word_frequency(model, filepath)
-        sem_c.word_prevalence(model, filepath)
-        sem_c.word_familiarity(model, filepath)
-        sem_c.age_of_acquisition(model, filepath)
-```
 
 #### Abstractness
 
@@ -770,7 +748,7 @@ Here is an excerpt from [paragraph.json](sample_text/word_frequency/en_core_web_
 }
 ```
 
-#### Word Frequency
+#### Word Prevalence
 
 The 'Prevalence' column in the dataset represents the number of people who knew a given word. It was crowdsourced via a study involving over 220,000 people. ([Word prevalence norms for 62,000 English lemmas](https://link.springer.com/article/10.3758/s13428-018-1077-9))
 
