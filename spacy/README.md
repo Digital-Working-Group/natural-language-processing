@@ -965,8 +965,6 @@ Here is an excerpt from [story.json](sample_text/dependency_distance/en_core_web
 
 | Parameter | Description | Example |
 | - | - | - |
-| model | The spaCy model to load and use for tagging parts of speech. | 'en_core_web_lg' |
-| filepath | The filepath to a text file to process. | 'sample_text/story.txt' |
 | window_size | The size of the moving window. | 20 |
 
 #### Output
@@ -1016,21 +1014,6 @@ Here is an excerpt from [paragraph.json](sample_text/moving_type_token_ratio/en_
         ]
     }
 }
-```
-
-#### Sample Usage
-
-```py
-import lexical_variation as lex_v
-
-def moving_type_token_ratio():
-    """
-    run lexical_variation.moving_type_token_ratio()
-    """
-    model = 'en_core_web_lg'
-    sample_files = get_sample_files()
-    for filepath in sample_files:
-        lex_v.moving_type_token_ratio(model, filepath)
 ```
 
 ## Extracting Linguistic Features

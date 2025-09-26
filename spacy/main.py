@@ -52,6 +52,7 @@ def main():
         pipe_nlp_util = NLPUtil(model, filepath, pipe_list=pipe_list)
         syn_c.dependency_distance(pipe_nlp_util)
 
+        lex_v.moving_type_token_ratio(nlp_util)
 # def moving_type_token_ratio():
 #     """
 #     run lexical_variation.moving_type_token_ratio()
