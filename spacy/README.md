@@ -842,8 +842,6 @@ Here is an excerpt from [paragraph.json](sample_text/word_prevalence/en_core_web
 
 | Parameter | Description | Example |
 | - | - | - |
-| model | The spaCy model to load and use for tagging parts of speech. | 'en_core_web_lg' |
-| filepath | The filepath to a text file to process. | 'sample_text/story.txt' |
 | amount | The tiv_ratio is the number of tense-inflected verbs divided by the total tokens multiplied by the amount. | 100 |
 
 #### Output
@@ -916,31 +914,17 @@ Here is an excerpt from [sentence.json](sample_text/tense_inflected_verbs/en_cor
 }
 ```
 
-#### Sample Usage
-
-```py
-import syntactic_complexity as syn_c
-
-def tense_inflected_verbs():
-    """
-    run syntactic_complexity.tense_inflected_verbs()
-    """
-    model = 'en_core_web_lg'
-    sample_files = get_sample_files()
-    for filepath in sample_files:
-        syn_c.tense_inflected_verbs(model, filepath)
-```
-
 ### Dependency Distance
 
 `syntactic_complexity.dependency_distance()` generates dependency distance metrics, which can measure syntactic complexity. The greater the dependency distance is, the more complex it is. The [TextDescriptives](https://github.com/HLasse/TextDescriptives) implementation is utilized here and their specific dependency distance documentation can be found [here](https://hlasse.github.io/TextDescriptives/dependencydistance.html). The TextDescriptives implementation follows the description in ([Oya 2011](https://www.paaljapan.org/conference2011/ProcNewest2011/pdf/poster/P-13.pdf)).
 
 #### Input
 
+An important note is that textdescriptives must be imported to allow for spaCy to access it as a pipe when running this function.
+
 | Parameter | Description | Example |
 | - | - | - |
-| model | The spaCy model to load and use for tagging parts of speech. | 'en_core_web_lg' |
-| filepath | The filepath to a text file to process. | 'sample_text/story.txt' |
+| pipe_list | The list of the pipe(s) needed to access the dependency distance implementation. | ['textdescriptives/dependency_distance'] |
 
 #### Output
 
@@ -971,24 +955,6 @@ Here is an excerpt from [story.json](sample_text/dependency_distance/en_core_web
         "prop_adjacent_dependency_relation_std": 0.08557102852242565
     }
 }
-```
-
-#### Sample Usage
-
-An important note is that textdescriptives must be imported to allow for spaCy to access it as a pipe, even if it's not directly used in the code below.
-
-```py
-import textdescriptives
-import syntactic_complexity as syn_c
-
-def dependency_distance():
-    """
-    run syntactic_complexity.dependency_distance()
-    """
-    model = 'en_core_web_lg'
-    sample_files = get_sample_files()
-    for filepath in sample_files:
-        syn_c.dependency_distance(model, filepath)
 ```
 
 ### Moving Type Token Ratio

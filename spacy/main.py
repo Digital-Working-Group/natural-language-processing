@@ -47,23 +47,10 @@ def main():
         sem_c.word_frequency(nlp_util)
         sem_c.word_prevalence(nlp_util)
 
-# def tense_inflected_verbs():
-#     """
-#     run syntactic_complexity.tense_inflected_verbs()
-#     """
-#     model = 'en_core_web_lg'
-#     sample_files = get_sample_files()
-#     for filepath in sample_files:
-#         syn_c.tense_inflected_verbs(nlp_util)
-
-# def dependency_distance():
-#     """
-#     run syntactic_complexity.dependency_distance()
-#     """
-#     model = 'en_core_web_lg'
-#     sample_files = get_sample_files()
-#     for filepath in sample_files:
-#         syn_c.dependency_distance(nlp_util)
+        syn_c.tense_inflected_verbs(nlp_util)
+        pipe_list = ['textdescriptives/dependency_distance']
+        pipe_nlp_util = NLPUtil(model, filepath, pipe_list=pipe_list)
+        syn_c.dependency_distance(pipe_nlp_util)
 
 # def moving_type_token_ratio():
 #     """

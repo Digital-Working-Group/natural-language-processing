@@ -2,7 +2,6 @@
 syntactic_complexity.py
 Functions related to syntactic complexity.
 """
-import utility as util
 
 def get_tiv_data(doc, amount):
     """
@@ -45,7 +44,7 @@ def get_tiv_data(doc, amount):
         'past_verbs': past_verbs, 'modal_auxiliaries': modal_auxiliaries,
         'feature_data': feature_data}
 
-def tense_inflected_verbs(model, filepath, amount=100):
+def tense_inflected_verbs(nlp_util, amount=100):
     """
     Iterates over alphanumeric tokens (token.is_alpha) and counts only tense-inflected verbs.
         Tense-inflected verbs include present and past verbs, as well as modal auxiliary verbs.
@@ -59,14 +58,14 @@ def tense_inflected_verbs(model, filepath, amount=100):
     AUX: auxiliary
     MD: verb, modal auxiliary
     """
-    doc, path_filepath = util.get_doc_and_filepath(model, filepath)
-    data = get_tiv_data(doc, amount)
+    data = get_tiv_data(nlp_util.doc, amount)
     function = 'tense_inflected_verbs'
-    parameters = {'model': model, 'filepath': filepath, 'amount': amount, 'function': function}
+    parameters = {'model': nlp_util.model, 'filepath': nlp_util.filepath,
+        'amount': amount, 'function': function}
     final_data = {'parameters': parameters, 'data': data}
-    util.write_json_model(path_filepath, function, model, final_data)
+    nlp_util.write_json_model(function, final_data)
 
-def dependency_distance(model, filepath):
+def dependency_distance(nlp_util):
     """
     Use the TextDescriptives pipeline component to get dependency distance metrics.
     dependency_distance dict data:
@@ -80,9 +79,7 @@ def dependency_distance(model, filepath):
             - prop_adjacent_dependency_relation_std: Standard deviation of
               the proportion of adjacent dependency relations on the sentence level
     """
-    pipe_list = ['textdescriptives/dependency_distance']
-    doc, path_filepath = util.get_doc_and_filepath_add_pipes(model, filepath, pipe_list)
     function = 'dependency_distance'
-    parameters = {'model': model, 'filepath': filepath, 'function': function}
-    final_data = {'parameters': parameters, 'data': doc._.dependency_distance}
-    util.write_json_model(path_filepath, function, model, final_data)
+    parameters = {'model': nlp_util.model, 'filepath': nlp_util.filepath, 'function': function}
+    final_data = {'parameters': parameters, 'data': nlp_util.doc._.dependency_distance}
+    nlp_util.write_json_model(function, final_data)
