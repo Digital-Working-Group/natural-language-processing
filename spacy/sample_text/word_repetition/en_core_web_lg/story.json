@@ -1,0 +1,15 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/story.txt",
+        "function": "word_repetition"
+    },
+    "data": {
+        "most_frequent_word": "i",
+        "most_frequent_ct": 34,
+        "repeating_words": 393,
+        "unique_words": 288,
+        "repeating_to_unique_ratio": 1.3645833333333333,
+        "consecutive_words": 0
+    }
+}

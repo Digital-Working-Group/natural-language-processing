@@ -1,0 +1,15 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/sentence.txt",
+        "function": "word_repetition"
+    },
+    "data": {
+        "most_frequent_word": "you",
+        "most_frequent_ct": 2,
+        "repeating_words": 2,
+        "unique_words": 19,
+        "repeating_to_unique_ratio": 0.10526315789473684,
+        "consecutive_words": 0
+    }
+}

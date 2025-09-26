@@ -1054,21 +1054,50 @@ Here is an excerpt from [story.json](sample_text/nonword_frequency/en_core_web_l
 }
 ```
 
+### Word Repetition
+
+`lexical_repetition.word_repetition` iterates over alphanumeric tokens and calculates several word-based repetition metrics.
+
+#### Input
+
+Only takes in the [Common Inputs](#common-inputs), which are model and filepath.
+
+#### Output
+
+| Key | Description | Example |
+| - | - | - |
+| parameters | The parameters of the function. | See the Input table and below. |
+| parameters.function | The name of the function. | See below. |
+| data.most_frequent_word | The most frequently occurring word. | i |
+| data.most_frequent_ct | The number of times that the most frequent word occurs. | 34 |
+| data.repeating_words | The total number of words that appear >1 times. | 393 |
+| data.unique_words | The total number of unique words. | 288 |
+| data.repeating_to_unique_ratio | repeating_words / unique_words | 1.36 |
+| data.consecutive_words | The total number of words that appear consecutively. | 0 |
+
+Please see [sample_text/word_repetition/en_core_web_lg](sample_text/word_repetition/en_core_web_lg) for sample output.
+
+Here is an excerpt from [story.json](sample_text/word_repetition/en_core_web_lg/story.json):
+
+```json
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/story.txt",
+        "function": "word_repetition"
+    },
+    "data": {
+        "most_frequent_word": "i",
+        "most_frequent_ct": 34,
+        "repeating_words": 393,
+        "unique_words": 288,
+        "repeating_to_unique_ratio": 1.3645833333333333,
+        "consecutive_words": 0
+    }
+}
+```
+
 ## Extracting Linguistic Features
-
-### Lexical Repetition
-#### `most_frequent_word()`
-The function `most_frequent_word()` in `lexical_repetition.py` takes in a natural language processor and a filepath. It calculates and returns the most commonly occurring word and how many times it appears in the text.
-#### `repeating_unique_word_ratio()`
-The function `repeating_unique_word_ratio()` in `lexical_repetition.py` takes in a natural language processor, and a file path. It calculates and returns the ratio of repeating words to unique words in the text.
-#### `total_consecutive_words()`
-The function `total_consecutive_words` in `lexical_repetition.py` takes in a natural language processor and filepath. It calculates and returns the number of consecutive repeating words in the text.
-#### Parameters for `most_frequent_word()`, `repeating_unique_word_ratio()`, and `total_consecutive_words()` 
-
-| Parameter  | Type                    | Description                                                                                                | Default  |
-|------------|-------------------------|------------------------------------------------------------------------------------------------------------|----------|
-| nlp        | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model. | Required |
-| file_path  | str                     | This is a filepath in string format.                                                                       | Required |
 
 ### Similarity
 #### `stats_similarity_of_words()`

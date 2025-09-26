@@ -1,53 +1,39 @@
-import spacy
-from pathlib import Path
+"""
+lexical_repetition.py
+Functions related to lexical repetition
+"""
 from collections import defaultdict
 
-def most_frequent_word(nlp, file_path):
+def word_repetition(nlp_util):
     """
-    Takes in a natural language processor and file path
-    Returns most frequent word and its number of occurrences
+    Only iterates over alphanumeric tokens.
+    most_frequent_word: most frequent word
+    most_frequent_ct: the number of times the most_frequent_word occurs
+    repeating_words: the total number of words that appear >1 times.
+    unique_words: the total number of unique words
+    repeating_to_unique_ratio: repeating_words / unique_words
+    consecutive_words: the total number of words that appear consecutively
     """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    words_and_occurrences = defaultdict(int)
-    for token in doc:
-        if token.is_alpha and not token.is_stop:
-            word = token.text.lower()
-            words_and_occurrences[word] += 1
-    most_common_count, most_common_word = max((v, k) for k, v in words_and_occurrences.items())
-    return most_common_word, most_common_count
-
-def repeating_unique_word_ratio(nlp, file_path):
-    """
-    Takes in a natural language processor and file path and per word amount
-    calculates (number of repeating words) / (number of unique words)
-    Returns the ratio of repeating to unique words
-    """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    words_and_counts = {}
-    repeating_words = 0
-    for token in doc:
+    word_ct = defaultdict(int)
+    for token in nlp_util.doc:
         if token.is_alpha:
-            if token.text not in words_and_counts:
-                words_and_counts[token.text] = 1
-            else:
-                words_and_counts[token.text] += 1
-                repeating_words += 1
-    return repeating_words / len(words_and_counts)
-
-def total_consecutive_words(nlp, file_path):
-    """
-    Takes in a natural language processor and file path
-    Counts the number of consecutive repeating words
-    returns the count of consecutive repeating words.
-    """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    word_list = []
+            word_ct[token.text.lower()] += 1
+    most_frequent_ct, most_frequent_word = max((v, k) for k, v in word_ct.items())
+    repeating_words = sum((v for v in word_ct.values() if v > 1))
+    unique_words = len(word_ct)
+    repeating_to_unique_ratio = repeating_words / unique_words
     consecutive_words = 0
-    for token in doc:
-        if token.is_alpha:
-            word_list.append(token.text)
-    for i, word in enumerate(word_list):
-        next_word = word_list[i + 1] if i != len(word_list) - 1 else None
-        if word == next_word:
+    word_list = list(word_ct.keys())
+    for idx, word in enumerate(word_list):
+        if idx == unique_words - 1: ## reached the end of word_list
+            break
+        if word == word_list[idx + 1]:
             consecutive_words += 1
-    return consecutive_words
+    function = 'word_repetition'
+    parameters = {'model': nlp_util.model, 'filepath': nlp_util.filepath, 'function': function}
+    data = {'most_frequent_word': most_frequent_word, 'most_frequent_ct': most_frequent_ct,
+        'repeating_words': repeating_words, 'unique_words': unique_words,
+        'repeating_to_unique_ratio': repeating_to_unique_ratio,
+        'consecutive_words': consecutive_words}
+    final_data = {'parameters': parameters, 'data': data}
+    nlp_util.write_json_model(function, final_data)
