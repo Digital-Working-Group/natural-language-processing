@@ -1056,35 +1056,6 @@ Here is an excerpt from [story.json](sample_text/nonword_frequency/en_core_web_l
 
 ## Extracting Linguistic Features
 
-### Syntactic Errors
-#### `nonword_frequency()`
-The `nonword_frequency()` function in `syntactic_errors.py` takes in a natural language processor, file path, dataset of words, and per word amount(default is 100). The dataset used in examples comes from [kaggle](https://www.kaggle.com/datasets/bwandowando/479k-english-words). It is text file containing over 466k English words. The function calculates frequency of non-words using the dataset and Outputs on average how many non-words are present per word amount.
-#### Parameters for `nonword_frequency()`:
-
-| Parameter  | Type                    | Description                                                                                                   | Default  |
-|------------|-------------------------|---------------------------------------------------------------------------------------------------------------|----------|
-| nlp        | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model.    | Required |
-| file_path  | str                     | This is a filepath in string format.                                                                          | Required |
-| dataset_fp | str                     | This is a filepath in string format for a dataset of English words. (used to detect nonwords)                 | Required |
-| amount     | int                     | This is an integer representing the number of words for which the proportion of nonwords should be calculated | 100      |
-#### `avg_num_nonwords()` 
-`avg_num_nonwords()` in `syntactic_errors.py` is an alternative way of counting non-words. The function takes in a natural language processor, filepath, and word amount. It counts number of nonwords by checking if words are in spaCy's vocabulary, and returns the number of nonwords present per word amount.
-#### Parameters for `avg_num_nonwords()`
-| Parameter  | Type                    | Description                                                                                                   | Default  |
-|------------|-------------------------|---------------------------------------------------------------------------------------------------------------|----------|
-| nlp        | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model.    | Required |
-| file_path  | str                     | This is a filepath in string format.                                                                          | Required |
-| amount     | int                     | This is an integer representing the number of words for which the proportion of nonwords should be calculated | 100      |
-#### `incorrectly_followed_articles()`
-The function `incorrectly_followed_articles()` in `syntactic_errors.py` takes in a natural language processor and filepath. It calculates and returns the number of articles (a, and, the) that are not followed by an adjective, noun, or, proper noun.
-#### `count_num_sentences_without_verbs()`
-The function `count_num_sentences_without_verbs()` in `syntactic_errors.py` takes in a natural language processor and filepath. It calculates and returns the number of sentences in the text that do not contain verbs.
-#### Parameters for `incorrectly_followed_articles()`, and `count_num_sentences_without_verbs()`:
-| Parameter  | Type                    | Description                                                                                                   | Default  |
-|------------|-------------------------|---------------------------------------------------------------------------------------------------------------|----------|
-| nlp        | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model.    | Required |
-| file_path  | str                     | This is a filepath in string format.                                                                          | Required |
-
 ### Lexical Repetition
 #### `most_frequent_word()`
 The function `most_frequent_word()` in `lexical_repetition.py` takes in a natural language processor and a filepath. It calculates and returns the most commonly occurring word and how many times it appears in the text.
