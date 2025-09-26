@@ -1016,6 +1016,44 @@ Here is an excerpt from [paragraph.json](sample_text/moving_type_token_ratio/en_
 }
 ```
 
+### Nonword Frequency
+
+`syntactic_errors.nonword_frequency()` calculates the frequency of non-words per amount of words. Non-words are defined as the token's text or lemma not being in the dataset. The dataset ([datasets/words_alpha.txt](datasets/words_alpha.txt)) comes from [Kaggle](https://www.kaggle.com/datasets/bwandowando/479k-english-words)) and contains over 466K English words.
+
+#### Input
+
+| Parameter | Description | Example |
+| - | - | - |
+| amount | The nonword frequency is the total number of non-words divided by the total words multiplied by amount. | 100 |
+
+#### Output
+
+| Key | Description | Example |
+| - | - | - |
+| parameters | The parameters of the function. | See the Input table and below. |
+| parameters.function | The name of the function. | See below. |
+
+Please see [sample_text/nonword_frequency/en_core_web_lg](sample_text/nonword_frequency/en_core_web_lg) for sample output.
+
+Here is an excerpt from [story.json](sample_text/nonword_frequency/en_core_web_lg/story.json):
+
+```json
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/story.txt",
+        "dataset_fp": "datasets/words_alpha.txt",
+        "amount": 100,
+        "function": "nonword_frequency"
+    },
+    "data": {
+        "total_nonwords": 3,
+        "total_words": 586,
+        "nonword_frequency": 0.5119453924914675
+    }
+}
+```
+
 ## Extracting Linguistic Features
 
 ### Syntactic Errors
@@ -1089,364 +1127,6 @@ The function `tf_idf()` in `term_freq_inverse_doc_freq.py` takes in  a natural l
 | file_path     | str                     | This is a filepath in string format.                                                                       | Required |
 | document_list | list                    | List of file paths                                                                                         | Required |
 | term          | str                     | Target string for which TF-IDF will be calculated                                                          | None     |
-## SpaCy Universal Tag Explanation
-Please see spacy_pos_tags_explained.md for details on spaCy's parts-of-speech tags and their descriptions.
-
-## Usage Examples
-This section demonstrate how to call the functions described above.
-### Parts-of-Speech Tagging
-#### `data_to_df()`
-```doctest
-import spacy
-from nlp_functions import data_to_df
-
-data_to_df(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
-```
-#### `pos_tag_counts()`
-```doctest
-import spacy
-from pos_tagging import pos_tag_counts
-
-pos_tag_counts(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt", tag="POS", amount=100)
-pos_tag_counts(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt", tag="TAG", amount=100)
-```
-```doctest
-defaultdict(<class 'int'>, {'PRON': 13.675213675213676, 'VERB': 13.96011396011396, 'PUNCT': 12.678062678062679, 'SCONJ': 2.1367521367521367, 'ADV': 4.843304843304843, 'ADP': 8.547008547008547, 'NOUN': 17.663817663817664, 'ADJ': 6.41025641025641, 'DET': 7.4074074074074066, 'PROPN': 1.4245014245014245, 'AUX': 3.9886039886039883, 'PART': 1.9943019943019942, 'CCONJ': 4.273504273504273, 'NUM': 0.14245014245014245, 'SPACE': 0.8547008547008548})
-defaultdict(<class 'int'>, {'PRP': 8.547008547008547, 'VBP': 1.7094017094017095, ',': 6.1253561253561255, 'WRB': 1.566951566951567, 'RB': 5.413105413105413, 'IN': 8.547008547008547, 'PRP$': 1.9943019943019942, 'NN': 13.96011396011396, 'VBZ': 1.7094017094017095, 'JJ': 5.555555555555555, 'DT': 8.262108262108262, 'NNS': 4.700854700854701, 'VB': 2.564102564102564, 'WP': 0.5698005698005698, '.': 4.843304843304843, 'VBD': 7.4074074074074066, 'RP': 0.5698005698005698, 'VBN': 0.7122507122507122, 'NNP': 1.4245014245014245, ':': 1.282051282051282, 'VBG': 2.849002849002849, 'CC': 4.273504273504273, 'CD': 0.14245014245014245, 'HYPH': 0.2849002849002849, '_SP': 0.8547008547008548, 'NFP': 0.14245014245014245, 'WDT': 0.5698005698005698, 'RBR': 0.2849002849002849, 'TO': 0.9971509971509971, 'JJS': 0.2849002849002849, 'POS': 0.14245014245014245, 'MD': 0.9971509971509971, 'JJR': 0.5698005698005698, 'EX': 0.14245014245014245})
-
-```
-#### `tag_ratio()`
-```doctest
-import spacy
-from pos_tagging import tag_ratio
-
-tag_ratio(nlp=spacy.load('en_core_web_sm'), file_path="sample_text/test.txt", amount=100)
-```
-```doctest
-{'POS': defaultdict(<class 'int'>, {'PRON': 15.151515151515152, 'VERB': 13.636363636363635, 'PUNCT': 12.121212121212121, 'SCONJ': 4.545454545454546, 'ADV': 7.575757575757576, 'ADP': 9.090909090909092, 'NOUN': 15.151515151515152, 'AUX': 3.0303030303030303, 'ADJ': 6.0606060606060606, 'DET': 7.575757575757576, 'PROPN': 1.5151515151515151, 'PART': 1.5151515151515151, 'CCONJ': 1.5151515151515151, 'NUM': 1.5151515151515151}), 'TAG': defaultdict(<class 'int'>, {'PRP': 9.090909090909092, 'VBP': 4.545454545454546, ',': 7.575757575757576, 'WRB': 4.545454545454546, 'RB': 9.090909090909092, 'IN': 7.575757575757576, 'PRP$': 3.0303030303030303, 'NN': 12.121212121212121, 'VBZ': 1.5151515151515151, 'JJ': 6.0606060606060606, 'DT': 7.575757575757576, 'NNS': 4.545454545454546, 'VB': 1.5151515151515151, 'WP': 1.5151515151515151, '.': 4.545454545454546, 'VBD': 6.0606060606060606, 'RP': 1.5151515151515151, 'VBN': 1.5151515151515151, 'NNP': 1.5151515151515151, 'VBG': 1.5151515151515151, 'CC': 1.5151515151515151, 'CD': 1.5151515151515151})}
-```
-#### `ratio_of_nouns()`
-```doctest
-import spacy
-from pos_tagging import ratio_of_nouns
-
-ratio_of_nouns(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
-```
-```doctest
-0.22866894197952217
-```
-#### `ratio_of_pronouns()`
-```doctest
-import spacy
-from pos_tagging import ratio_of_pronouns
-
-ratio_of_pronouns(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
-```
-```doctest
-0.16382252559726962
-```
-#### `ratio_of_conjunctions()`
-```doctest
-import spacy
-from pos_tagging import ratio_of_conjunctions
-
-ratio_of_conjunctions(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
-```
-```doctest
-0.025597269624573378
-```
-#### `stats_proportion_coordinators()`
-```doctest
-import spacy
-from pos_tagging import stats_proportion_coordinators
-
-stats_proportion_coordinators(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
-```
-```doctest
-{'mean': 0.05029893149270312, 'max': 0.1875, 'min': 0.0, 'std': 0.04583023800082182}
-```
-#### `stats_proportion_auxiliaries()`
-```doctest
-import spacy
-from pos_tagging import stats_proportion_auxiliaries
-
-stats_proportion_auxiliaries(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
-```
-```doctest
-{'mean': 0.05560743436130433, 'max': 0.3333333333333333, 'min': 0.0, 'std': 0.07735664309842447}
-```
-#### `stats_proportion_adjectives()`
-```doctest
-import spacy
-from pos_tagging import stats_proportion_adjectives
-
-stats_proportion_adjectives(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
-```
-```doctest
-{'mean': 0.09117393468581776, 'max': 0.375, 'min': 0.0, 'std': 0.09741581819031751}
-```
-#### `stats_proportion_subjects()`
-```doctest
-import spacy
-from pos_tagging import stats_proportion_subjects
-
-stats_proportion_subjects(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
-```
-```doctest
-{'mean': 0.13538585215010274, 'max': 0.3333333333333333, 'min': 0.04, 'std': 0.06797608583749848}
-```
-### Semantic Complexity
-#### `calculate_idea_density()`
-```doctest
-import spacy
-from semantic_complexity import calculate_idea_density
-
-calculate_idea_density(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
-```
-```doctest
-[("You know, when I think back on my life, it's funny how the little things really shape who you become.", 0.55), ('I grew up in this small town called Ridgewood, tucked away in the countryside.', 0.5714285714285714), ("It wasn't much just rolling hills, a couple of farms, and one main street with a diner where everyone knew your name.", 0.4090909090909091)]
-```
-#### `abstractness()`
-```doctest
-import spacy
-from semantic_complexity import abstractness
-
-abstractness(nlp=spacy.load('en_core_web_lg'), file_path='sample_text/test.txt')
-```
-```doctest
-0.29922490830321297
-```
-
-#### `semantic_ambiguity()`
-```doctest
-import spacy
-from semantic_complexity import semantic_ambiguity
-
-semantic_ambiguity(nlp=spacy.load('en_core_web_lg'), file_path='sample_text/test.txt')
-```
-```doctest
-1.822231297208903
-```
-
-#### `word_frequency()`
-```doctest
-import spacy
-from semantic_complexity import word_frequency
-
-word_frequency(nlp=spacy.load('en_core_web_lg'), file_path='sample_text/test.txt')
-
-```
-```doctest
-3.4619091967314177
-```
-
-#### `word_prevalence()`
-```doctest
-import spacy
-from semantic_complexity import word_prevalence
-
-print(word_prevalence(nlp=spacy.load('en_core_web_lg'), file_path='sample_text/test.txt'))
-```
-```doctest
-2.3736957410124493
-```
-
-#### `word_familiarity()`
-```doctest
-import spacy
-from semantic_complexity import word_familiarity
-
-word_familiarity(nlp=spacy.load('en_core_web_lg'), file_path='sample_text/test.txt')
-```
-```doctest
-0.9956890179911594
-```
-
-#### `age_of_acquisition()`
-```doctest
-import spacy
-from semantic_complexity import age_of_acquisition
-
-age_of_acquisition(sapcy.load('en_core_web_lg'), file_path='sample_text/test.txt')
-```
-```doctest
-6.383932762273736
-```
-### Syntactic Complexity
-
-#### `num_tense_inflected_verbs()`
-```doctest
-import spacy
-from syntactic_complexity import num_tense_inflected_verbs
-
-num_tense_inflected_verbs(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt", amount=100)
-```
-```json
-14.285714285714285
-```
-#### `sentence_lengths()`
-```doctest
-import spacy
-from syntactic_complexity import sentence_lengths
-
-sentence_lengths(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
-```
-```doctest
-[20, 14, 22, 19, 16, 3, 11, 22, 16, 6, 27, 9, 21, 8, 8, 25, 12, 13, 22, 18, 20, 22, 25, 5, 21, 16, 25, 9, 25, 20, 26, 21, 17, 22]
-
-```
-#### `dependency_tree_heights()`
-```doctest
-import spacy
-from syntactic_complexity import dependency_tree_heights, tree_heights
-
-dependency_tree_heights(nlp=(spacy.load('en_core_web_lg')), file_path="sample_text/test.txt")
-```
-```doctest
-[6, 5, 8, 6, 6, 2, 4, 6, 4, 3, 12, 4, 9, 5, 5, 9, 7, 5, 5, 6, 9, 5, 9, 2, 7, 8, 7, 4, 8, 9, 8, 10, 6, 7]
-```
-### Syntactic Errors
-`nonword_frequency()`
-```doctest
-import spacy
-from syntactic_errors import nonword_frequency
-
-nonword_frequency(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/contains_nonwords.txt", dataset_fp="words_alpha.txt", amount=100)
-```
-```doctest
-1.0186757215619695
-```
-`avg_num_nonwords()`
-```doctest
-import spacy
-from syntactic_errors import avg_num_nonwords
-
-avg_num_nonwords(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/contains_nonwords.txt", amount=100)
-```
-```doctest
-0.5093378607809848
-```
-`incorrectly_followed_articles()`
-```doctest
-import spacy
-from syntactic_errors import incorrectly_followed_articles
-
-incorrectly_followed_articles(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
-```
-```doctest
-1
-```
-#### `count_num_sentences_without_verbs()`
-```doctest
-import spacy
-from syntactic_errors import count_num_sentences_without_verbs
-
-count_num_sentences_without_verbs(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
-```
-```doctest
-6
-```
-### Lexical Repetition
-#### `most_frequent_word()`
-```doctest
-import spacy
-from lexical_repetition import most_frequent_word
-
-most_frequent_word(nlp=spacy.load('en_ccore_web_lg'), file_path="sample_text/test.txt")
-```
-```doctest
-('life', 5)
-```
-#### `repeating_unique_word_ratio()`
-```doctest
-import spacy
-from lexical_repetition import repeating_unique_word_ratio
-
-repeating_unique_word_ratio(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
-```
-```doctest
-0.9533333333333334
-```
-#### `total_consecutive_words()`
-```doctest
-import spacy
-from lexical_repetition import total_consecutive_words
-
-total_consecutive_words(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
-```
-```doctest
-0
-```
-### Lexical Variation
-#### `windowed_text_token_ratio`
-```doctest
-import spacy
-from lexical_variation import windowed_text_token_ratio
-
-windowed_text_token_ratio(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt", window_size=20)
-```
-```doctest
-0.9238095238095237
-```
-#### `number_of_unique_token()`
-```doctest
-import spacy
-from lexical_variation import number_of_unique_tokens
-
-number_of_unique_tokens(nlp=spacy.load(en_core_web_lg), file_path="sample_text/test.txt")
-```
-```doctest
-311
-```
-#### `number_of_uniue_lemmas()`
-```doctest
-import spacy
-from lexical_variation import number_of_unique_lemmas
-
-number_of_unique_lemmas(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt")
-```
-```doctest
-278
-```
-### Similarity
-#### `stats_similarity_of_words()`
-```doctest
-import spacy
-from similarity  import stats_similarity_of_words
-
-stats_similarity_of_words(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt", window_size=3)
-```
-```doctest
-{'mean': 0.4197374429223744, 'max': 0.7733333333333334, 'min': 0.013333333333333336, 'std': 0.1215306716400124}
-```
-#### `mean_similarity_of_sentences()`
-```doctest
-import spacy
-from similarity import mean_similarity_of_sentences
-
-mean_similarity_of_sentences(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/sample.txt")
-```
-```doctest
-0.8783600713012477
-```
-### Term Frequency-Inverse Document Frequency
-```doctest
-import spacy
-from term_freq_inverse_doc_freq import tf_idf
-
-tf_idf(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt", document_list=["sample_text/sample.txt", "sample_text/test.txt", "sample_text/contains_nonwords.txt"], term="life")
-```
-```doctest
-0.0
-```
-## Sample Input Files
-The folder sample_text contains text documents for convenient testing of these NLP functions.
-
-| File name             | Description                                                                                         | Use                                                                                                                                             |
-|-----------------------|-----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| test.txt              | This is a text file containing an AI generated story of 500 words.                                  | Can be used to test any of the nlp functions.                                                                                                   |
-| contains_nonwords.txt | This is a modified version of test.txt, in which nonsensical words were added to several sentences. | This can be used to test functions detecting presence of non-words.                                                                             |
-| sample.txt            | This is a subset of test.txt containing the first three sentences of the document.                  | This file is used in most of the Jupyter Notebook examples for quick testing and easy visualization. It is also used to validate some functions. |
 
 ## Acknowledgement
 - [spaCy](https://spacy.io/): Free and open source library for industrial-strength Natural Language Processing (NLP) in Python

@@ -1,28 +1,33 @@
-
-import spacy
-from pathlib import Path
-
-def nonword_frequency(nlp, file_path, dataset_fp, amount=100):
+"""
+syntactic_errors.py
+Functions related to syntactic errors.
+"""
+def nonword_frequency(nlp_util, **kwargs):
     """
-    Takes in a natural language processor and file path, dataset of words and per word amount(default is 100)
-    Dataset used in examples comes from kaggle, it is text file containing over 466k English words
-    Calculates frequency of non-words using dataset
-    Outputs on average how many non-words are present per word amount
+    Calculates the frequency of non-words per amount of words.
+    Non-words are defined as the token's text or lemma not being in the dataset.
+    The dataset (datasets/words_alpha.txt) comes from Kaggle and contains over 466K English words.
     """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
+    dataset_fp = kwargs.get('dataset_fp', 'datasets/words_alpha.txt')
+    amount = kwargs.get('amount', 100)
     total_words = 0
     total_nonwords = 0
     word_set = set()
-    with open(dataset_fp, "r") as f:
-        for line in f:
+    with open(dataset_fp, "r") as infile:
+        for line in infile:
             word_set.add(line.strip())
-    for token in doc:
+    for token in nlp_util.doc:
         if token.is_alpha:
             total_words += 1
             if token.text.lower() not in word_set and token.lemma_.lower() not in word_set:
                 total_nonwords += 1
-    ratio_nonwords = total_nonwords / total_words * amount
-    return ratio_nonwords
+    function = 'nonword_frequency'
+    parameters = {'model': nlp_util.model, 'filepath': nlp_util.filepath, 'dataset_fp': dataset_fp,
+        'amount': amount, 'function': function}
+    data = {'total_nonwords': total_nonwords, 'total_words': total_words,
+        'nonword_frequency': total_nonwords / total_words * amount}
+    final_data = {'parameters': parameters, 'data': data}
+    nlp_util.write_json_model(function, final_data)
 
 # def avg_num_nonwords(nlp, file_path, amount=100):
 #     """
@@ -75,4 +80,3 @@ def nonword_frequency(nlp, file_path, dataset_fp, amount=100):
 #         if count_verbs < 1:
 #             count += 1
 #     return count
-

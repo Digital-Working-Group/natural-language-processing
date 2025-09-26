@@ -1,0 +1,14 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/story.txt",
+        "dataset_fp": "datasets/words_alpha.txt",
+        "amount": 100,
+        "function": "nonword_frequency"
+    },
+    "data": {
+        "total_nonwords": 3,
+        "total_words": 586,
+        "nonword_frequency": 0.5119453924914675
+    }
+}
