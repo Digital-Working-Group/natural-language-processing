@@ -1,41 +1,56 @@
-from pathlib import Path
+"""
+lexical_variation.py
+Functions related to lexical variation
+"""
+import utility as util
 
-
-def windowed_text_token_ratio(nlp, file_path, window_size=20):
+def get_window_data(word_list, window_size):
     """
-    Takes in a natural language processor and file path and window size (default is 20)
-    Calculates type/token ratio for a fixed-length window, and averages type/token ratios from all windows.
-    Returns moving average text token ratio
+    get data from each window
     """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    word_list = []
-    text_token_ratio_per_window = []
-    for token in doc:
-        if token.is_alpha:
-            word_list.append(token.text.lower())
-    for i in range(len(word_list) - window_size + 1):
-        words_in_window = word_list[i: i + window_size]
+    num_word_list = len(word_list)
+    assert num_word_list >= window_size, 'The number of words in the word_list '+\
+        f'({num_word_list}) is less than the window_size ({window_size})'
+    total_type_token_ratio = 0
+    windows = []
+    for idx in range(num_word_list - window_size + 1):
+        words_in_window = word_list[idx: idx + window_size]
         unique_words = set(words_in_window)
-        text_token_ratio_per_window.append(len(unique_words) / window_size)
-    return sum(text_token_ratio_per_window) / len(text_token_ratio_per_window)
+        num_words = len(words_in_window)
+        num_unique_words = len(unique_words)
+        type_token_ratio = num_unique_words / num_words
+        total_type_token_ratio += type_token_ratio
+        windows.append({'num_unique_words': num_unique_words,
+            'type_token_ratio': type_token_ratio})
+    return windows, total_type_token_ratio
 
-def number_of_unique_tokens(nlp, file_path):
+def moving_type_token_ratio(model, filepath, window_size=20):
     """
-    Takes in a spacy doc and returns the number of unique tokens
-    """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    unique_tokens = set()
-    for token in doc:
-        unique_tokens.add(token.text)
-    return len(unique_tokens)
+    Iterates over alphanumeric tokens only.
+    Calculates type/token ratio for a fixed-length window, moving one word at a time.
+    Calculates the average of the type/token ratios from all windows.
+    
+    Raises an AssertionError if the total number of alphanumeric tokens are less than
+    the window_size.
 
-def number_of_unique_lemmas(nlp, file_path):
+    Returns data per window and overall statistics
+    data:
+        average_type_token_ratio
+        num_windows
+        window_data: [
+            {'num_unique_words', 'type_token_ratio'}
+        ]
     """
-    Takes in a spacy doc and returns the number of unique tokens
-    """
-    doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-    unique_lemmas = set()
-    for token in doc:
-        unique_lemmas.add(token.lemma_)
-    return len(unique_lemmas)
+    doc, path_filepath = util.get_doc_and_filepath(model, filepath)
+    word_list = [t.text.lower() for t in doc if t.is_alpha]
 
+    windows, total_type_token_ratio = get_window_data(word_list, window_size)
+    num_windows = len(windows)
+    average_type_token_ratio = total_type_token_ratio / num_windows
+    data = {'average_type_token_ratio': average_type_token_ratio, 'num_windows': num_windows,
+        'windows': windows}
+    function = 'moving_type_token_ratio'
+    parameters = {'model': model, 'filepath': filepath, 'window_size': window_size,
+        'function': function}
+    final_data = {'parameters': parameters, 'data': data}
+    util.write_json_model(path_filepath, function, model, final_data)

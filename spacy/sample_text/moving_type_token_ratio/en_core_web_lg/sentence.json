@@ -1,0 +1,18 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/sentence.txt",
+        "window_size": 20,
+        "function": "moving_type_token_ratio"
+    },
+    "data": {
+        "average_type_token_ratio": 0.95,
+        "num_windows": 1,
+        "windows": [
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            }
+        ]
+    }
+}

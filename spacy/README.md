@@ -1048,8 +1048,12 @@ def tense_inflected_verbs():
 | - | - | - |
 | parameters | The parameters of the function. | See the Input table and below. |
 | parameters.function | The name of the function. | See below. |
+| data.dependency_distance_mean | Mean dependency distance on the sentence level. | 2.78 |
+| data.dependency_distance_std | Standard deviation of dependency distance on the sentence level. | 0.59 |
+| data.prop_adjacent_dependency_relation_mean | Mean proportion of adjacent dependency relations on the sentence level. | 0.44 |
+| data.prop_adjacent_dependency_relation_std | Standard deviation of the proportion of adjacent dependency relations on the sentence level. | 0.09 |
 
-Please see [sample_text/dependency_distances/en_core_web_lg](sample_text/tense_inflected_verbs/en_core_web_lg) for sample output.
+Please see [sample_text/dependency_distances/en_core_web_lg](sample_text/dependency_distance/en_core_web_lg) for sample output.
 
 Here is an excerpt from [story.json](sample_text/dependency_distance/en_core_web_lg/story.json):
 
@@ -1087,27 +1091,83 @@ def dependency_distance():
         syn_c.dependency_distance(model, filepath)
 ```
 
+### Moving Type Token Ratio
+
+`lexical_variation.moving_type_token_ratio()` calculates the type/token ratio for a fixed-length window, moving one word at a time and returns data per window and overall statistics. It iterates only over alphanumeric tokens. It will raise an AssertionError if the total number of alphanumeric tokens are less than the window_size. This implementation attempts to follow the description in section 2.4 (Lexical Measures) of [(Cho 2022, Automated analysis of lexical features in Frontotemporal Degeneration)](https://pmc.ncbi.nlm.nih.gov/articles/PMC8044033/)
+
+#### Input
+
+| Parameter | Description | Example |
+| - | - | - |
+| model | The spaCy model to load and use for tagging parts of speech. | 'en_core_web_lg' |
+| filepath | The filepath to a text file to process. | 'sample_text/story.txt' |
+| window_size | The size of the moving window. | 20 |
+
+#### Output
+
+| Key | Description | Example |
+| - | - | - |
+| parameters | The parameters of the function. | See the Input table and below. |
+| parameters.function | The name of the function. | See below. |
+| data.average_type_token_ratio | The average of the type token ratio across all windows. | 0.97 |
+| data.num_windows | The total number of windows. | 37 |
+| data.windows[N].num_unique_words | The total unique words in the window. | 19 |
+| data.windows[N].type_token_ratio | The num_unique_words / the number of words in the window (window_size) | 0.95 |
+
+Please see [sample_text/moving_type_token_ratio/en_core_web_lg](sample_text/moving_type_token_ratio/en_core_web_lg) for sample output.
+
+Here is an excerpt from [paragraph.json](sample_text/moving_type_token_ratio/en_core_web_lg/paragraph.json):
+
+```yaml
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/paragraph.txt",
+        "window_size": 20,
+        "function": "moving_type_token_ratio"
+    },
+    "data": {
+        "average_type_token_ratio": 0.9689189189189189,
+        "num_windows": 37,
+        "windows": [
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+        ...
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            }
+        ]
+    }
+}
+```
+
+#### Sample Usage
+
+```py
+import lexical_variation as lex_v
+
+def moving_type_token_ratio():
+    """
+    run lexical_variation.moving_type_token_ratio()
+    """
+    model = 'en_core_web_lg'
+    sample_files = get_sample_files()
+    for filepath in sample_files:
+        lex_v.moving_type_token_ratio(model, filepath)
+```
+
 ## Extracting Linguistic Features
-
-### Lexical Variation
-#### `windowed_type_token_ratio()`
-The `windowed_type_token_ratio()` in  function takes in a natural language processor, filepath, and window size. It calculates and returns the average type token ratio across moving windows, starting from the beginning and moving one word at a time through the text. 
-#### Parameters for `windowed_type_token_ratio()`
-
-| Parameter   | Type                    | Description                                                                                                | Default  |
-|-------------|-------------------------|------------------------------------------------------------------------------------------------------------|----------|
-| nlp         | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model. | Required |
-| file_path   | str                     | This is a filepath in string format.                                                                       | Required |
-| window_size | int                     | number of words contained in moving windows (size)                                                         | 20       |
-#### `number_of_unique_tokens()`
-The function `number_of_unique_tokens()` in `lexical_variation.py` takes in a natural language processor and filepath. It calculates and returns the number of unique tokens in the text. 
-#### `number_of_unique_lemmas()`
-The function `number_of_unique_lemmas()` in `lexical_variation.py` takes in a natural language processor and filepath. It calculates and returns the number of unique lemmas in the text. 
-#### Parameters for `number_of_unique_tokens()` and `number_of_unique_lemmas()`:
-| Parameter   | Type                    | Description                                                                                                | Default  |
-|-------------|-------------------------|------------------------------------------------------------------------------------------------------------|----------|
-| nlp         | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model. | Required |
-| file_path   | str                     | This is a filepath in string format.                                                                       | Required |
 
 ### Syntactic Errors
 #### `nonword_frequency()`

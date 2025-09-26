@@ -6,7 +6,7 @@ import textdescriptives
 import pos_tagging as pos_t
 import semantic_complexity as sem_c
 import syntactic_complexity as syn_c
-
+import lexical_variation as lex_v
 
 def get_sample_files():
     """
@@ -91,6 +91,15 @@ def dependency_distance():
     for filepath in sample_files:
         syn_c.dependency_distance(model, filepath)
 
+def moving_type_token_ratio():
+    """
+    run lexical_variation.moving_type_token_ratio()
+    """
+    model = 'en_core_web_lg'
+    sample_files = get_sample_files()
+    for filepath in sample_files:
+        lex_v.moving_type_token_ratio(model, filepath)
+
 def main():
     """
     main entrypoint
@@ -101,7 +110,8 @@ def main():
     # idea_density_sentences()
     # generate_noun_features()
     # tense_inflected_verbs()
-    dependency_distance()
+    # dependency_distance()
+    moving_type_token_ratio()
 
 if __name__ == '__main__':
     main()

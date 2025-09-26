@@ -1,0 +1,2282 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/story.txt",
+        "window_size": 20,
+        "function": "moving_type_token_ratio"
+    },
+    "data": {
+        "average_type_token_ratio": 0.9238095238095205,
+        "num_windows": 567,
+        "windows": [
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 15,
+                "type_token_ratio": 0.75
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 20,
+                "type_token_ratio": 1.0
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 16,
+                "type_token_ratio": 0.8
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 17,
+                "type_token_ratio": 0.85
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 18,
+                "type_token_ratio": 0.9
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            },
+            {
+                "num_unique_words": 19,
+                "type_token_ratio": 0.95
+            }
+        ]
+    }
+}

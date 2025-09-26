@@ -78,7 +78,7 @@ def dependency_distance(model, filepath):
             - prop_adjacent_dependency_relation_mean: Mean proportion of adjacent
               dependency relations on the sentence level
             - prop_adjacent_dependency_relation_std: Standard deviation of
-              proportion of adjacent dependency relations on the sentence level
+              the proportion of adjacent dependency relations on the sentence level
     """
     pipe_list = ['textdescriptives/dependency_distance']
     doc, path_filepath = util.get_doc_and_filepath_add_pipes(model, filepath, pipe_list)
