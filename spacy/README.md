@@ -1031,17 +1031,63 @@ def tense_inflected_verbs():
         syn_c.tense_inflected_verbs(model, filepath)
 ```
 
+### Dependency Distance
+
+`syntactic_complexity.dependency_distance()` generates dependency distance metrics, which can measure syntactic complexity. The greater the dependency distance is, the more complex it is. The [TextDescriptives](https://github.com/HLasse/TextDescriptives) implementation is utilized here and their specific dependency distance documentation can be found [here](https://hlasse.github.io/TextDescriptives/dependencydistance.html). The TextDescriptives implementation follows the description in ([Oya 2011](https://www.paaljapan.org/conference2011/ProcNewest2011/pdf/poster/P-13.pdf)).
+
+#### Input
+
+| Parameter | Description | Example |
+| - | - | - |
+| model | The spaCy model to load and use for tagging parts of speech. | 'en_core_web_lg' |
+| filepath | The filepath to a text file to process. | 'sample_text/story.txt' |
+
+#### Output
+
+| Key | Description | Example |
+| - | - | - |
+| parameters | The parameters of the function. | See the Input table and below. |
+| parameters.function | The name of the function. | See below. |
+
+Please see [sample_text/dependency_distances/en_core_web_lg](sample_text/tense_inflected_verbs/en_core_web_lg) for sample output.
+
+Here is an excerpt from [story.json](sample_text/dependency_distance/en_core_web_lg/story.json):
+
+```json
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/story.txt",
+        "function": "dependency_distance"
+    },
+    "data": {
+        "dependency_distance_mean": 2.7765067920765767,
+        "dependency_distance_std": 0.5908581635641064,
+        "prop_adjacent_dependency_relation_mean": 0.43699129406789733,
+        "prop_adjacent_dependency_relation_std": 0.08557102852242565
+    }
+}
+```
+
+#### Sample Usage
+
+An important note is that textdescriptives must be imported to allow for spaCy to access it as a pipe, even if it's not directly used in the code below.
+
+```py
+import textdescriptives
+import syntactic_complexity as syn_c
+
+def dependency_distance():
+    """
+    run syntactic_complexity.dependency_distance()
+    """
+    model = 'en_core_web_lg'
+    sample_files = get_sample_files()
+    for filepath in sample_files:
+        syn_c.dependency_distance(model, filepath)
+```
+
 ## Extracting Linguistic Features
-### Syntactic Complexity
-
-#### `dependency_tree_heights()` 
-The `dependency_tree_heights()` function in `syntactic complexity.py` takes in a natural language processor and a filepath. It calculates the dependency tree height of each dependant relation in spaCy using `tree_heights()`and returns a list of dependency tree heights. 
-#### Parameters for `sentence_lengths()` and `dependency_tree_heights()`:
-
-| Parameter | Type                    | Description                                                                                                | Default  |
-|-----------|-------------------------|------------------------------------------------------------------------------------------------------------|----------|
-| nlp       | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model. | Required |
-| file_path | str                     | This is a filepath in string format.                                                                       | Required |
 
 ### Lexical Variation
 #### `windowed_type_token_ratio()`

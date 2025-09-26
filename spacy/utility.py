@@ -7,6 +7,18 @@ import json
 from pathlib import Path
 import spacy
 
+def get_doc_and_filepath_add_pipes(model, filepath, pipe_list):
+    """
+    add pipes, then return doc and filepath
+    pipe_list: ['textdescriptives/dependency_distance']
+    """
+    path_filepath = Path(filepath)
+    nlp = spacy.load(model)
+    for pipe in pipe_list:
+        nlp.add_pipe(pipe)
+    doc = nlp(path_filepath.read_text(encoding='utf-8'))
+    return doc, path_filepath
+
 def get_doc_and_filepath(model, filepath):
     """
     get spacy doc and Path(filepath)

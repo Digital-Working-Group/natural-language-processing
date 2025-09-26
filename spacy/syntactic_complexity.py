@@ -66,31 +66,23 @@ def tense_inflected_verbs(model, filepath, amount=100):
     final_data = {'parameters': parameters, 'data': data}
     util.write_json_model(path_filepath, function, model, final_data)
 
-# def tree_height(node=None):
-#     """
-#     Returns the max height of a tree given a node
-#     """
-#     if node is None:
-#         return 0
-#     else:
-#         children = list(node.lefts) + list(node.rights)
-#         if not children:
-#             return 1
-#         else:
-#             return max(tree_height(child) for child in children) + 1
-
-# def dependency_tree_heights(nlp, file_path):
-#     """
-#     Takes in a natural language processor and file path
-#     Uses tree_height() to calculate max height of dependency trees
-#     Returns average height of all dependency trees
-#     """
-#     doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-#     tree_depths = []
-#     max_depth = 0
-#     for sentence in doc.sents:
-#         for token in sentence:
-#             if token.dep_ == "ROOT":
-#                 max_depth = tree_height(token)
-#         tree_depths.append(max_depth)
-#     return tree_depths
+def dependency_distance(model, filepath):
+    """
+    Use the TextDescriptives pipeline component to get dependency distance metrics.
+    dependency_distance dict data:
+        dict: Dictionary with the following keys:
+            - dependency_distance_mean: Mean dependency distance on the sentence
+              level
+            - dependency_distance_std: Standard deviation of dependency distance on
+              the sentence level
+            - prop_adjacent_dependency_relation_mean: Mean proportion of adjacent
+              dependency relations on the sentence level
+            - prop_adjacent_dependency_relation_std: Standard deviation of
+              proportion of adjacent dependency relations on the sentence level
+    """
+    pipe_list = ['textdescriptives/dependency_distance']
+    doc, path_filepath = util.get_doc_and_filepath_add_pipes(model, filepath, pipe_list)
+    function = 'dependency_distance'
+    parameters = {'model': model, 'filepath': filepath, 'function': function}
+    final_data = {'parameters': parameters, 'data': doc._.dependency_distance}
+    util.write_json_model(path_filepath, function, model, final_data)

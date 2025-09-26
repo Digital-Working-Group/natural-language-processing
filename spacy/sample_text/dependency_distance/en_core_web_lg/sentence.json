@@ -1,0 +1,13 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/sentence.txt",
+        "function": "dependency_distance"
+    },
+    "data": {
+        "dependency_distance_mean": 3.1666666666666665,
+        "dependency_distance_std": 0.0,
+        "prop_adjacent_dependency_relation_mean": 0.4166666666666667,
+        "prop_adjacent_dependency_relation_std": 0.0
+    }
+}
