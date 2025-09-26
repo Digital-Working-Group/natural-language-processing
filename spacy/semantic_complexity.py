@@ -30,7 +30,7 @@ def get_idea_density_sent_data(sent_idx, sent, pos_list):
     return {'sent_idx': sent_idx, 'total_tokens': total_tokens,
         'idea_density': props / total_tokens}
 
-def idea_density_sentences(model, filepath):
+def idea_density_sentences(nlp_util):
     """
     Examines only alphanumeric (is_alpha) characters
     
@@ -50,16 +50,15 @@ def idea_density_sentences(model, filepath):
     model: spaCy model to load
     filepath: text file to process
     """
-    doc, path_filepath = util.get_doc_and_filepath(model, filepath)
     function = 'idea_density_sentences'
     pos_list = get_prop_pos()
     sent_list = []
-    for sent_idx, sent in enumerate(doc.sents):
+    for sent_idx, sent in enumerate(nlp_util.doc.sents):
         sent_list.append(get_idea_density_sent_data(sent_idx, sent, pos_list))
-    parameters = {'model': model, 'filepath': filepath, 'function': function}
+    parameters = {'model': nlp_util.model, 'filepath': nlp_util.filepath, 'function': function}
     data = {'total_sentences': len(sent_list), 'sent_list': sent_list}
     final_data = {'parameters': parameters, 'data': data}
-    util.write_json_model(path_filepath, function, model, final_data)
+    nlp_util.write_json_model(function, final_data)
 
 def process_doc_noun_feature(doc, **kwargs):
     """

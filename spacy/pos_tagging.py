@@ -6,7 +6,6 @@ import statistics
 from collections import defaultdict
 import pandas as pd
 import spacy
-import utility as util
 
 def data_to_df(doc):
     """
@@ -66,21 +65,20 @@ def get_tag_data_and_total(doc_df, tag, amount):
             'tag_ratio': tag_ratio, 'spacy.explain': spacy.explain(tag_label)})
     return tag_data, total
 
-def pos_tag_ratio(model, filepath, tag_list, amount=100):
+def pos_tag_ratio(nlp_util, tag_list, amount=100):
     """
     get the tag ratio for each tag in tag_list
     """
-    doc, path_filepath = util.get_doc_and_filepath(model, filepath)
     function = 'pos_tag_ratio'
-    parameters = {'model': model, 'filepath': filepath, 'tag_list': tag_list,
+    parameters = {'model': nlp_util.model, 'filepath': nlp_util.filepath, 'tag_list': tag_list,
         'amount': amount, 'function': function}
-    doc_df = data_to_df(doc)
+    doc_df = data_to_df(nlp_util.doc)
     all_tag_data = []
     for tag in tag_list:
         tag_data, total = get_tag_data_and_total(doc_df, tag, amount)
         all_tag_data.append({'tag': tag, 'total_tokens': total, 'tag_data': tag_data})
     final_data = {'parameters': parameters, 'data': all_tag_data}
-    util.write_json_model(path_filepath, function, model, final_data)
+    nlp_util.write_json_model(function, final_data)
 
 def get_alpha_pos_ct_and_total(doc, pos_to_list):
     """
@@ -96,7 +94,7 @@ def get_alpha_pos_ct_and_total(doc, pos_to_list):
                     pos_to_ct[pos] += 1
     return pos_to_ct, total_tokens
 
-def alpha_pos_ratio(model, filepath, **kwargs):
+def alpha_pos_ratio(nlp_util, **kwargs):
     """
     Examines only alphanumeric (is_alpha) characters
     Returns the ratio of specific part(s) of speech to total words
@@ -111,15 +109,14 @@ def alpha_pos_ratio(model, filepath, **kwargs):
 
     Writes an output JSON for each key, value pair in pos_to_list.
     """
-    doc, path_filepath = util.get_doc_and_filepath(model, filepath)
     pos_to_list = kwargs['pos_to_list']
     function = 'alpha_pos_ratio'
-    pos_to_ct, total_tokens = get_alpha_pos_ct_and_total(doc, pos_to_list)
+    pos_to_ct, total_tokens = get_alpha_pos_ct_and_total(nlp_util.doc, pos_to_list)
     for pos, pos_ct in pos_to_ct.items():
-        parameters = {'model': model, 'filepath': filepath, 'pos_list': pos_to_list[pos],
-            'function': function}
+        parameters = {'model': nlp_util.model, 'filepath': nlp_util.filepath,
+            'pos_list': pos_to_list[pos], 'function': function}
         final_data = {'parameters': parameters, 'data': {'pos_ratio': pos_ct / total_tokens}}
-        util.write_json_model(path_filepath, function, model, final_data, ext=pos)
+        nlp_util.write_json_model(function, final_data, ext=pos)
 
 def get_pos_to_ratios(doc, pos_to_list):
     """
@@ -144,7 +141,7 @@ def calc_sent_stats(list_of_ratios):
     return {'sent_mean': sent_mean, 'sent_max': sent_max, 'sent_min': sent_min,
             'sent_std': sent_std, 'sent_total': sent_total}
 
-def alpha_pos_ratio_sentences(model, filepath, **kwargs):
+def alpha_pos_ratio_sentences(nlp_util, **kwargs):
     """
     Examines only alphanumeric (is_alpha) characters
     Calculates the ratio of specified part-of-speech to total words per sentence
@@ -157,13 +154,12 @@ def alpha_pos_ratio_sentences(model, filepath, **kwargs):
         {'pronouns': ['PRON']}
         {'conjunctions': ['CONJ', 'CCONJ', 'SCONJ']}
     """
-    doc, path_filepath = util.get_doc_and_filepath(model, filepath)
     pos_to_list = kwargs['pos_to_list']
     function = 'alpha_pos_ratio_sentences'
-    pos_to_ratios = get_pos_to_ratios(doc, pos_to_list)
+    pos_to_ratios = get_pos_to_ratios(nlp_util.doc, pos_to_list)
     for pos, list_of_ratios in pos_to_ratios.items():
-        parameters = {'model': model, 'filepath': filepath, 'pos_list': pos_to_list[pos],
-            'function': function}
+        parameters = {'model': nlp_util.model, 'filepath': nlp_util.filepath,
+            'pos_list': pos_to_list[pos], 'function': function}
         data = calc_sent_stats(list_of_ratios)
         final_data = {'parameters': parameters, 'data': data}
-        util.write_json_model(path_filepath, function, model, final_data, ext=pos)
+        nlp_util.write_json_model(function, final_data, ext=pos)
