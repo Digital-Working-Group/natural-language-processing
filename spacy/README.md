@@ -37,7 +37,6 @@ OSError: [E050] Can't find model 'en_core_web_lg'. It doesn't seem to be a Pytho
 ```
 sample_text
 |-- paragraph.txt ## A single paragraph
-|-- repeated-words-paragraph.txt ## A single paragraph with repeated consecutive words
 |-- sentence.txt ## A single sentence
 |-- story.txt ## A multi-paragraph story
 |-- story_with_nonwords.txt ## A multi-paragraph story with nonwords
@@ -1034,24 +1033,23 @@ Here is an excerpt from [paragraph.json](sample_text/moving_type_token_ratio/en_
 | parameters | The parameters of the function. | See the Input table and below. |
 | parameters.function | The name of the function. | See below. |
 
-Please see [sample_text/word_repetition/en_core_web_lg](sample_text/word_repetition/en_core_web_lg) for sample output.
+Please see [sample_text/nonword_frequency/en_core_web_lg](sample_text/nonword_frequency/en_core_web_lg) for sample output.
 
-Here is an excerpt from [repeated-words-paragraph.json](sample_text/word_repetition/en_core_web_lg/repeated-words-paragraph.json):
+Here is an excerpt from [story.json](sample_text/nonword_frequency/en_core_web_lg/story.json):
 
 ```json
 {
     "parameters": {
         "model": "en_core_web_lg",
-        "filepath": "sample_text/repeated-words-paragraph.txt",
-        "function": "word_repetition"
+        "filepath": "sample_text/story.txt",
+        "dataset_fp": "datasets/words_alpha.txt",
+        "amount": 100,
+        "function": "nonword_frequency"
     },
     "data": {
-        "most_frequent_word": "the",
-        "most_frequent_ct": 6,
-        "repeating_words": 33,
-        "unique_words": 54,
-        "repeating_to_unique_ratio": 0.6111111111111112,
-        "consecutive_words": 5
+        "total_nonwords": 3,
+        "total_words": 586,
+        "nonword_frequency": 0.5119453924914675
     }
 }
 ```
@@ -1079,22 +1077,22 @@ Only takes in the [Common Inputs](#common-inputs), which are model and filepath.
 
 Please see [sample_text/word_repetition/en_core_web_lg](sample_text/word_repetition/en_core_web_lg) for sample output.
 
-Here is an excerpt from [story.json](sample_text/word_repetition/en_core_web_lg/story.json):
+Here is an excerpt from [repeated-words-paragraph.json](sample_text/word_repetition/en_core_web_lg/repeated-words-paragraph.json):
 
 ```json
 {
     "parameters": {
         "model": "en_core_web_lg",
-        "filepath": "sample_text/story.txt",
+        "filepath": "sample_text/repeated-words-paragraph.txt",
         "function": "word_repetition"
     },
     "data": {
-        "most_frequent_word": "i",
-        "most_frequent_ct": 34,
-        "repeating_words": 393,
-        "unique_words": 288,
-        "repeating_to_unique_ratio": 1.3645833333333333,
-        "consecutive_words": 0
+        "most_frequent_word": "the",
+        "most_frequent_ct": 6,
+        "repeating_words": 33,
+        "unique_words": 54,
+        "repeating_to_unique_ratio": 0.6111111111111112,
+        "consecutive_words": 5
     }
 }
 ```
