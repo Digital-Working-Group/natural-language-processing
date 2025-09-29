@@ -2,6 +2,7 @@
 main.py
 main entrypoint
 """
+from datetime import datetime
 import textdescriptives
 import pos_tagging as pos_t
 import semantic_complexity as sem_c
@@ -27,6 +28,7 @@ def main():
     """
     model = 'en_core_web_lg'
     sample_files = get_sample_files()
+    iso_now = datetime.now().isoformat().replace(':', '-').replace('.', '-')
     for filepath in sample_files:
         nlp_util = NLPUtil(model, filepath)
 
@@ -60,6 +62,8 @@ def main():
         # syn_e.nonword_frequency(nlp_util, amount=100)
 
         lex_r.word_repetition(nlp_util)
+
+        # nlp_util.write_all_data(iso_now)
 
 # def moving_type_token_ratio():
 #     """
