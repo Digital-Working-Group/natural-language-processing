@@ -1,0 +1,15 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/repeated-words-paragraph.txt",
+        "function": "word_repetition"
+    },
+    "data": {
+        "most_frequent_word": "the",
+        "most_frequent_ct": 6,
+        "repeating_words": 33,
+        "unique_words": 54,
+        "repeating_to_unique_ratio": 0.6111111111111112,
+        "consecutive_words": 5
+    }
+}

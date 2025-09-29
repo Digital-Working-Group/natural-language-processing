@@ -18,7 +18,8 @@ def get_sample_files():
     sentence = 'sample_text/sentence.txt'
     paragraph = 'sample_text/paragraph.txt'
     story = 'sample_text/story.txt'
-    return [sentence, paragraph, story]
+    repeated = 'sample_text/repeated-words-paragraph.txt'
+    return [sentence, paragraph, story, repeated]
 
 def main():
     """
