@@ -21,7 +21,8 @@ class NLPUtil:
         nlp = spacy.load(model)
         for pipe in pipe_list:
             nlp.add_pipe(pipe)
-        self.doc = nlp(self.path_filepath.read_text(encoding='utf-8'))
+        self.nlp = nlp
+        self.doc = self.nlp(self.path_filepath.read_text(encoding='utf-8'))
         self.data = {}
 
     def write_json_model(self, function, final_data, **kwargs):

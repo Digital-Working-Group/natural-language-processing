@@ -1,0 +1,341 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/paragraph.txt",
+        "window_size": 3,
+        "function": "doc_similarity"
+    },
+    "data": {
+        "avg_similarity_score": 0.43012345679012365,
+        "max_similarity_score": 0.7233333333333335,
+        "min_similarity_score": 0.013333333333333336,
+        "std_similarity_score": 0.1383596064509404,
+        "num_windows": 54,
+        "windows": [
+            {
+                "avg_similarity_score": 0.7233333333333335,
+                "max_similarity_score": 0.81,
+                "min_similarity_score": 0.68,
+                "std_similarity_score": 0.07505553499465135
+            },
+            {
+                "avg_similarity_score": 0.61,
+                "max_similarity_score": 0.68,
+                "min_similarity_score": 0.52,
+                "std_similarity_score": 0.0818535277187245
+            },
+            {
+                "avg_similarity_score": 0.5933333333333334,
+                "max_similarity_score": 0.64,
+                "min_similarity_score": 0.52,
+                "std_similarity_score": 0.06429100507328636
+            },
+            {
+                "avg_similarity_score": 0.52,
+                "max_similarity_score": 0.62,
+                "min_similarity_score": 0.44,
+                "std_similarity_score": 0.0916515138991168
+            },
+            {
+                "avg_similarity_score": 0.42333333333333334,
+                "max_similarity_score": 0.5,
+                "min_similarity_score": 0.31,
+                "std_similarity_score": 0.10016652800877814
+            },
+            {
+                "avg_similarity_score": 0.51,
+                "max_similarity_score": 0.62,
+                "min_similarity_score": 0.45,
+                "std_similarity_score": 0.09539392014169455
+            },
+            {
+                "avg_similarity_score": 0.43333333333333335,
+                "max_similarity_score": 0.52,
+                "min_similarity_score": 0.33,
+                "std_similarity_score": 0.09609023536933049
+            },
+            {
+                "avg_similarity_score": 0.5566666666666668,
+                "max_similarity_score": 0.62,
+                "min_similarity_score": 0.52,
+                "std_similarity_score": 0.05507570547286101
+            },
+            {
+                "avg_similarity_score": 0.45333333333333337,
+                "max_similarity_score": 0.53,
+                "min_similarity_score": 0.39,
+                "std_similarity_score": 0.07094598884597587
+            },
+            {
+                "avg_similarity_score": 0.5533333333333333,
+                "max_similarity_score": 0.71,
+                "min_similarity_score": 0.44,
+                "std_similarity_score": 0.14011899704655797
+            },
+            {
+                "avg_similarity_score": 0.43,
+                "max_similarity_score": 0.53,
+                "min_similarity_score": 0.25,
+                "std_similarity_score": 0.1562049935181331
+            },
+            {
+                "avg_similarity_score": 0.5366666666666666,
+                "max_similarity_score": 0.58,
+                "min_similarity_score": 0.5,
+                "std_similarity_score": 0.04041451884327378
+            },
+            {
+                "avg_similarity_score": 0.5666666666666668,
+                "max_similarity_score": 0.66,
+                "min_similarity_score": 0.5,
+                "std_similarity_score": 0.08326663997864532
+            },
+            {
+                "avg_similarity_score": 0.6933333333333334,
+                "max_similarity_score": 0.75,
+                "min_similarity_score": 0.66,
+                "std_similarity_score": 0.04932882862316245
+            },
+            {
+                "avg_similarity_score": 0.5333333333333333,
+                "max_similarity_score": 0.75,
+                "min_similarity_score": 0.41,
+                "std_similarity_score": 0.18823743871327334
+            },
+            {
+                "avg_similarity_score": 0.41333333333333333,
+                "max_similarity_score": 0.56,
+                "min_similarity_score": 0.24,
+                "std_similarity_score": 0.16165807537309523
+            },
+            {
+                "avg_similarity_score": 0.39333333333333337,
+                "max_similarity_score": 0.54,
+                "min_similarity_score": 0.24,
+                "std_similarity_score": 0.1501110699893027
+            },
+            {
+                "avg_similarity_score": 0.5266666666666667,
+                "max_similarity_score": 0.54,
+                "min_similarity_score": 0.52,
+                "std_similarity_score": 0.011547005383792526
+            },
+            {
+                "avg_similarity_score": 0.4366666666666667,
+                "max_similarity_score": 0.52,
+                "min_similarity_score": 0.27,
+                "std_similarity_score": 0.14433756729740643
+            },
+            {
+                "avg_similarity_score": 0.33,
+                "max_similarity_score": 0.45,
+                "min_similarity_score": 0.27,
+                "std_similarity_score": 0.10392304845413264
+            },
+            {
+                "avg_similarity_score": 0.3933333333333333,
+                "max_similarity_score": 0.47,
+                "min_similarity_score": 0.27,
+                "std_similarity_score": 0.10785793124908956
+            },
+            {
+                "avg_similarity_score": 0.42333333333333334,
+                "max_similarity_score": 0.47,
+                "min_similarity_score": 0.34,
+                "std_similarity_score": 0.07234178138070234
+            },
+            {
+                "avg_similarity_score": 0.4666666666666666,
+                "max_similarity_score": 0.51,
+                "min_similarity_score": 0.43,
+                "std_similarity_score": 0.04041451884327381
+            },
+            {
+                "avg_similarity_score": 0.4066666666666667,
+                "max_similarity_score": 0.43,
+                "min_similarity_score": 0.37,
+                "std_similarity_score": 0.03214550253664318
+            },
+            {
+                "avg_similarity_score": 0.4033333333333333,
+                "max_similarity_score": 0.48,
+                "min_similarity_score": 0.36,
+                "std_similarity_score": 0.06658328118479392
+            },
+            {
+                "avg_similarity_score": 0.39999999999999997,
+                "max_similarity_score": 0.48,
+                "min_similarity_score": 0.36,
+                "std_similarity_score": 0.06928203230275509
+            },
+            {
+                "avg_similarity_score": 0.06,
+                "max_similarity_score": 0.36,
+                "min_similarity_score": -0.19,
+                "std_similarity_score": 0.2783882181415011
+            },
+            {
+                "avg_similarity_score": 0.013333333333333336,
+                "max_similarity_score": 0.16,
+                "min_similarity_score": -0.19,
+                "std_similarity_score": 0.18175074506954114
+            },
+            {
+                "avg_similarity_score": 0.13666666666666666,
+                "max_similarity_score": 0.47,
+                "min_similarity_score": -0.13,
+                "std_similarity_score": 0.30550504633038933
+            },
+            {
+                "avg_similarity_score": 0.38999999999999996,
+                "max_similarity_score": 0.47,
+                "min_similarity_score": 0.29,
+                "std_similarity_score": 0.0916515138991168
+            },
+            {
+                "avg_similarity_score": 0.49,
+                "max_similarity_score": 0.56,
+                "min_similarity_score": 0.41,
+                "std_similarity_score": 0.07549834435270754
+            },
+            {
+                "avg_similarity_score": 0.35333333333333333,
+                "max_similarity_score": 0.56,
+                "min_similarity_score": 0.25,
+                "std_similarity_score": 0.178978583448784
+            },
+            {
+                "avg_similarity_score": 0.3666666666666667,
+                "max_similarity_score": 0.62,
+                "min_similarity_score": 0.23,
+                "std_similarity_score": 0.21962088546705508
+            },
+            {
+                "avg_similarity_score": 0.34,
+                "max_similarity_score": 0.63,
+                "min_similarity_score": 0.16,
+                "std_similarity_score": 0.2535744466621193
+            },
+            {
+                "avg_similarity_score": 0.66,
+                "max_similarity_score": 0.78,
+                "min_similarity_score": 0.57,
+                "std_similarity_score": 0.10816653826391971
+            },
+            {
+                "avg_similarity_score": 0.65,
+                "max_similarity_score": 0.73,
+                "min_similarity_score": 0.57,
+                "std_similarity_score": 0.08000000000000002
+            },
+            {
+                "avg_similarity_score": 0.5066666666666667,
+                "max_similarity_score": 0.73,
+                "min_similarity_score": 0.35,
+                "std_similarity_score": 0.19857828011475306
+            },
+            {
+                "avg_similarity_score": 0.4266666666666667,
+                "max_similarity_score": 0.53,
+                "min_similarity_score": 0.31,
+                "std_similarity_score": 0.1106044001535804
+            },
+            {
+                "avg_similarity_score": 0.35000000000000003,
+                "max_similarity_score": 0.53,
+                "min_similarity_score": 0.17,
+                "std_similarity_score": 0.18000000000000002
+            },
+            {
+                "avg_similarity_score": 0.2933333333333334,
+                "max_similarity_score": 0.46,
+                "min_similarity_score": 0.17,
+                "std_similarity_score": 0.14977761292440647
+            },
+            {
+                "avg_similarity_score": 0.42333333333333334,
+                "max_similarity_score": 0.46,
+                "min_similarity_score": 0.36,
+                "std_similarity_score": 0.05507570547286104
+            },
+            {
+                "avg_similarity_score": 0.25,
+                "max_similarity_score": 0.36,
+                "min_similarity_score": 0.19,
+                "std_similarity_score": 0.09539392014169455
+            },
+            {
+                "avg_similarity_score": 0.3333333333333333,
+                "max_similarity_score": 0.58,
+                "min_similarity_score": 0.19,
+                "std_similarity_score": 0.21455380055672124
+            },
+            {
+                "avg_similarity_score": 0.3233333333333333,
+                "max_similarity_score": 0.52,
+                "min_similarity_score": 0.22,
+                "std_similarity_score": 0.17039170558842745
+            },
+            {
+                "avg_similarity_score": 0.46,
+                "max_similarity_score": 0.53,
+                "min_similarity_score": 0.33,
+                "std_similarity_score": 0.11269427669584646
+            },
+            {
+                "avg_similarity_score": 0.42,
+                "max_similarity_score": 0.53,
+                "min_similarity_score": 0.36,
+                "std_similarity_score": 0.09539392014169458
+            },
+            {
+                "avg_similarity_score": 0.33666666666666667,
+                "max_similarity_score": 0.37,
+                "min_similarity_score": 0.28,
+                "std_similarity_score": 0.04932882862316245
+            },
+            {
+                "avg_similarity_score": 0.37333333333333335,
+                "max_similarity_score": 0.56,
+                "min_similarity_score": 0.28,
+                "std_similarity_score": 0.16165807537309523
+            },
+            {
+                "avg_similarity_score": 0.33,
+                "max_similarity_score": 0.56,
+                "min_similarity_score": 0.2,
+                "std_similarity_score": 0.19974984355438183
+            },
+            {
+                "avg_similarity_score": 0.32666666666666666,
+                "max_similarity_score": 0.47,
+                "min_similarity_score": 0.23,
+                "std_similarity_score": 0.12662279942148383
+            },
+            {
+                "avg_similarity_score": 0.38999999999999996,
+                "max_similarity_score": 0.61,
+                "min_similarity_score": 0.28,
+                "std_similarity_score": 0.19052558883257648
+            },
+            {
+                "avg_similarity_score": 0.6233333333333334,
+                "max_similarity_score": 0.66,
+                "min_similarity_score": 0.6,
+                "std_similarity_score": 0.03214550253664321
+            },
+            {
+                "avg_similarity_score": 0.5033333333333333,
+                "max_similarity_score": 0.66,
+                "min_similarity_score": 0.3,
+                "std_similarity_score": 0.18448125469362286
+            },
+            {
+                "avg_similarity_score": 0.3666666666666667,
+                "max_similarity_score": 0.42,
+                "min_similarity_score": 0.3,
+                "std_similarity_score": 0.061101009266077866
+            }
+        ]
+    }
+}

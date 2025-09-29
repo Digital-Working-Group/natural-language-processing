@@ -1056,7 +1056,7 @@ Here is an excerpt from [story.json](sample_text/nonword_frequency/en_core_web_l
 
 ### Word Repetition
 
-`lexical_repetition.word_repetition` iterates over alphanumeric tokens and calculates several word-based repetition metrics.
+`lexical_repetition.word_repetition()` iterates over alphanumeric tokens and calculates several word-based repetition metrics.
 
 #### Input
 
@@ -1093,6 +1093,69 @@ Here is an excerpt from [repeated-words-paragraph.json](sample_text/word_repetit
         "unique_words": 54,
         "repeating_to_unique_ratio": 0.6111111111111112,
         "consecutive_words": 5
+    }
+}
+```
+
+### Doc Similarity
+
+`similarity.doc_similarity()` calculates word similarity across a sliding window over a document's alphanumeric tokens.
+
+#### Input
+
+| Parameter | Description | Example |
+| - | - | - |
+| window_size | The size of the sliding window. | 3 |
+
+#### Output
+
+| Key | Description | Example |
+| - | - | - |
+| parameters | The parameters of the function. | See the Input table and below. |
+| parameters.function | The name of the function. | See below. |
+| data.avg_similarity_score | The average of all the windows' similarity scores. | 0.526 |
+| data.max_similarity_score | The maximum of all the windows' similarity scores. | 0.723 |
+| data.min_similarity_score | The minimum of all the windows' similarity scores. | 0.393 |
+| data.std_similarity_score | The standard deviation of all the windows' similarity scores. | 0.09 |
+| data.num_windows | The number of windows. | 18 |
+| data.windows[N].avg_similarity_score | The average similarity score of the window. | 0.723 |
+| data.windows[N].max_similarity_score | The maximum similarity score of the window. | 0.81 |
+| data.windows[N].min_similarity_score | The minimum similarity score of the window. | 0.68 |
+| data.windows[N].std_similarity_score | The standard deviation of similarity scores of the window. | 0.07 |
+
+Please see [sample_text/doc_similarity/en_core_web_lg](sample_text/doc_similarity/en_core_web_lg) for sample output.
+
+Here is an excerpt from [sentence.json](sample_text/doc_similarity/en_core_web_lg/sentence.json):
+
+```yaml
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/sentence.txt",
+        "window_size": 3,
+        "function": "doc_similarity"
+    },
+    "data": {
+        "avg_similarity_score": 0.5261111111111112,
+        "max_similarity_score": 0.7233333333333335,
+        "min_similarity_score": 0.39333333333333337,
+        "std_similarity_score": 0.09275204136012637,
+        "num_windows": 18,
+        "windows": [
+            {
+                "avg_similarity_score": 0.7233333333333335,
+                "max_similarity_score": 0.81,
+                "min_similarity_score": 0.68,
+                "std_similarity_score": 0.07505553499465135
+            },
+        ....
+            {
+                "avg_similarity_score": 0.5266666666666667,
+                "max_similarity_score": 0.54,
+                "min_similarity_score": 0.52,
+                "std_similarity_score": 0.011547005383792526
+            }
+        ]
     }
 }
 ```

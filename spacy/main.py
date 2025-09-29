@@ -10,6 +10,8 @@ import syntactic_complexity as syn_c
 import lexical_variation as lex_v
 import syntactic_errors as syn_e
 import lexical_repetition as lex_r
+import similarity as sim
+
 from nlp_utility import NLPUtil
 
 def get_sample_files():
@@ -61,18 +63,9 @@ def main():
 
         # syn_e.nonword_frequency(nlp_util, amount=100)
 
-        lex_r.word_repetition(nlp_util)
-
-        # nlp_util.write_all_data(iso_now)
-
-# def moving_type_token_ratio():
-#     """
-#     run lexical_variation.moving_type_token_ratio()
-#     """
-#     model = 'en_core_web_lg'
-#     sample_files = get_sample_files()
-#     for filepath in sample_files:
-#         lex_v.moving_type_token_ratio(nlp_util)
+        # lex_r.word_repetition(nlp_util)
+        sim.doc_similarity(nlp_util)
+        nlp_util.write_all_data(iso_now)
 
 if __name__ == '__main__':
     main()
