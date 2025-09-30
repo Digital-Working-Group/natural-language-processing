@@ -51,6 +51,7 @@ OSError: [E050] Can't find model 'en_core_web_lg'. It doesn't seem to be a Pytho
 ```
 sample_text
 |-- paragraph.txt ## A single paragraph
+|-- repeated-words-paragraph.txt ## A single paragraph with repeated words
 |-- sentence.txt ## A single sentence
 |-- story.txt ## A multi-paragraph story
 |-- story_with_nonwords.txt ## A multi-paragraph story with nonwords
@@ -58,7 +59,8 @@ sample_text
 
 ## Sample Output Files
 
-For each sample text file, each feature will have a separate JSON output file.
+For each sample text file, each feature will have a separate JSON output file (see [sample_text/pos_tag_ratio/en_core_web_lg](sample_text/pos_tag_ratio/en_core_web_lg)). Additionally, for each sample text file, a single JSON is created with all features (see [sample_text/data/en_core_web_lg](sample_text/data/en_core_web_lg])).
+
 ## Extracting Linguistic Features
 
 See [main.py](main.py) for usage examples across all functions.
