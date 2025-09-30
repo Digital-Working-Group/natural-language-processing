@@ -34,37 +34,37 @@ def main():
     for filepath in sample_files:
         nlp_util = NLPUtil(model, filepath)
 
-        # tag_list = ['POS', 'TAG']
-        # pos_t.pos_tag_ratio(nlp_util, tag_list, amount=100)
+        tag_list = ['POS', 'TAG']
+        pos_t.pos_tag_ratio(nlp_util, tag_list, amount=100)
 
-        # pos_to_list = {'nouns': ['NOUN', 'PROPN'], 'pronouns': ['PRON'],
-        #     'conjunctions': ['CONJ', 'CCONJ', 'SCONJ']}
-        # pos_t.alpha_pos_ratio(nlp_util, pos_to_list=pos_to_list)
+        pos_to_list = {'nouns': ['NOUN', 'PROPN'], 'pronouns': ['PRON'],
+            'conjunctions': ['CONJ', 'CCONJ', 'SCONJ']}
+        pos_t.alpha_pos_ratio(nlp_util, pos_to_list=pos_to_list)
 
-        # pos_to_list = {'nouns': ['NOUN', 'PROPN'], 'pronouns': ['PRON'],
-        #     'conjunctions': ['CONJ', 'CCONJ', 'SCONJ']}
-        # pos_t.alpha_pos_ratio(nlp_util, pos_to_list=pos_to_list)
+        pos_to_list = {'nouns': ['NOUN', 'PROPN'], 'pronouns': ['PRON'],
+            'conjunctions': ['CONJ', 'CCONJ', 'SCONJ']}
+        pos_t.alpha_pos_ratio(nlp_util, pos_to_list=pos_to_list)
 
-        # sem_c.idea_density_sentences(nlp_util)
+        sem_c.idea_density_sentences(nlp_util)
 
-        # sem_c.abstractness(nlp_util)
-        # sem_c.age_of_acquisition(nlp_util)
-        # sem_c.semantic_ambiguity(nlp_util)
-        # sem_c.word_familiarity(nlp_util)
-        # sem_c.word_frequency(nlp_util)
-        # sem_c.word_prevalence(nlp_util)
+        sem_c.abstractness(nlp_util)
+        sem_c.age_of_acquisition(nlp_util)
+        sem_c.semantic_ambiguity(nlp_util)
+        sem_c.word_familiarity(nlp_util)
+        sem_c.word_frequency(nlp_util)
+        sem_c.word_prevalence(nlp_util)
 
-        # syn_c.tense_inflected_verbs(nlp_util)
-        # pipe_list = ['textdescriptives/dependency_distance']
-        # pipe_nlp_util = NLPUtil(model, filepath, pipe_list=pipe_list)
-        # syn_c.dependency_distance(pipe_nlp_util)
+        syn_c.tense_inflected_verbs(nlp_util)
+        pipe_list = ['textdescriptives/dependency_distance']
+        pipe_nlp_util = NLPUtil(model, filepath, pipe_list=pipe_list)
+        syn_c.dependency_distance(pipe_nlp_util)
 
-        # lex_v.moving_type_token_ratio(nlp_util)
+        lex_v.moving_type_token_ratio(nlp_util)
 
-        # syn_e.nonword_frequency(nlp_util, amount=100)
+        syn_e.nonword_frequency(nlp_util, amount=100)
 
-        # lex_r.word_repetition(nlp_util)
-        # sim.doc_similarity(nlp_util)
+        lex_r.word_repetition(nlp_util)
+        sim.doc_similarity(nlp_util)
         if 'sentence.txt' not in filepath:
             sim.sent_similarity(nlp_util)
         if nlp_util.data != {}:

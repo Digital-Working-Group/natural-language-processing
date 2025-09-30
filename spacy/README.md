@@ -1201,19 +1201,5 @@ Here is an excerpt from [story.json](sample_text/sent_similarity/en_core_web_lg/
 }
 ```
 
-## Extracting Linguistic Features
-
-### Term Frequency - Inverse Document Frequency
-TF-IDF is a method used to evaluate importance of a word to a document in relation to a larger collection of documents. It combines term frequency (how often a word appears in a document) with inverse document frequency (total number of documents / number of documents containing term t). More information on this implementation can be found [here](https://www.geeksforgeeks.org/machine-learning/understanding-tf-idf-term-frequency-inverse-document-frequency/)
-#### `tf_idf()`
-The function `tf_idf()` in `term_freq_inverse_doc_freq.py` takes in  a natural language processor, filepath, document list and target string(term). It first calculates term frequency, which is defined as the frequency of a target string in a document. Then, it calculates inverse-document-frequency, which is defined as log10 of the number of documents divided by the number of documents containing the term. TF-IDF is calculated by multiplying these two values.
-#### Parameters for `tf_idf()`
-| Parameter     | Type                    | Description                                                                                                | Default  |
-|---------------|-------------------------|------------------------------------------------------------------------------------------------------------|----------|
-| nlp           | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model. | Required |
-| file_path     | str                     | This is a filepath in string format.                                                                       | Required |
-| document_list | list                    | List of file paths                                                                                         | Required |
-| term          | str                     | Target string for which TF-IDF will be calculated                                                          | None     |
-
 ## Acknowledgement
 - [spaCy](https://spacy.io/): Free and open source library for industrial-strength Natural Language Processing (NLP) in Python
