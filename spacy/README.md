@@ -1203,23 +1203,6 @@ Here is an excerpt from [story.json](sample_text/sent_similarity/en_core_web_lg/
 
 ## Extracting Linguistic Features
 
-### Similarity
-#### `stats_similarity_of_words()`
-The function `stats_similarity_of_words()` in `similarity.py` takes in a natural language processor, file path, and window size(default 3). It returns dictionary containing mean, min,  max, and standard deviation of word similarity across all windows.
-#### Parameters for `stats_similarity_of_words()`
-| Parameter   | Type                    | Description                                                                                                | Default  |
-|-------------|-------------------------|------------------------------------------------------------------------------------------------------------|----------|
-| nlp         | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model. | Required |
-| file_path   | str                     | This is a filepath in string format.                                                                       | Required |
-| window_size | int                     | This is an integer representing the number of words contained in each window                               | 3        |
-#### `mean_similarity_of_sentences()`
-The function `mean_similarity_of_sentences()` in `similarity.py` takes in a natural language processor and a filepath. It calculates and returns the mean similarity of all combinations of sentences.
-#### Parameters for `mean_similarity_of_sentences()`
-| Parameter   | Type                    | Description                                                                                                | Default  |
-|-------------|-------------------------|------------------------------------------------------------------------------------------------------------|----------|
-| nlp         | spacy.language.Language | This is a pipeline object loaded from spacy. The user can choose the type, genre, and size of their model. | Required |
-| file_path   | str                     | This is a filepath in string format.                                                                       | Required |
-
 ### Term Frequency - Inverse Document Frequency
 TF-IDF is a method used to evaluate importance of a word to a document in relation to a larger collection of documents. It combines term frequency (how often a word appears in a document) with inverse document frequency (total number of documents / number of documents containing term t). More information on this implementation can be found [here](https://www.geeksforgeeks.org/machine-learning/understanding-tf-idf-term-frequency-inverse-document-frequency/)
 #### `tf_idf()`

@@ -1,3 +1,7 @@
+"""
+tf_idf.py
+Function(s) for Term Frequency - Inverse Document Frequency
+"""
 import math
 import spacy
 from pathlib import Path
@@ -45,7 +49,9 @@ def tf_idf(nlp, file_path, document_list=None, term=None):
 
 
 
-tf_idf(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt", document_list=["sample_text/sample.txt", "sample_text/test.txt", "sample_text/contains_nonwords.txt"], term="life")
+# tf_idf(nlp=spacy.load('en_core_web_lg'), file_path="sample_text/test.txt",
+# document_list=["sample_text/sample.txt", "sample_text/test.txt",
+# "sample_text/contains_nonwords.txt"], term="life")
 
 
 
