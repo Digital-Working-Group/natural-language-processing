@@ -1,0 +1,75 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/repeated-words-paragraph.txt",
+        "amount": 100,
+        "function": "tense_inflected_verbs"
+    },
+    "data": {
+        "tiv_ratio": 9.45945945945946,
+        "total_tivs": 7,
+        "total_alpha_tokens": 74,
+        "present_verbs": 4,
+        "past_verbs": 0,
+        "modal_auxiliaries": 3,
+        "feature_data": [
+            {
+                "token.text": "Growing",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "would",
+                "token.pos_": "AUX",
+                "tense": [],
+                "tag": "MD",
+                "word_type": "modal_auxiliary"
+            },
+            {
+                "token.text": "casting",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "would",
+                "token.pos_": "AUX",
+                "tense": [],
+                "tag": "MD",
+                "word_type": "modal_auxiliary"
+            },
+            {
+                "token.text": "lapping",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            },
+            {
+                "token.text": "would",
+                "token.pos_": "AUX",
+                "tense": [],
+                "tag": "MD",
+                "word_type": "modal_auxiliary"
+            },
+            {
+                "token.text": "lighting",
+                "token.pos_": "VERB",
+                "tense": [
+                    "Pres"
+                ],
+                "tag": "VBG",
+                "word_type": "present_verb"
+            }
+        ]
+    }
+}

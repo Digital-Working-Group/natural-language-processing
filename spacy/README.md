@@ -1,21 +1,34 @@
 # Linguistic Features: SpaCy
 This repository contains examples of how to use the [spaCy Python library](https://spacy.io/usage/linguistic-features) to generate linguistic features from raw text input.
 
-## Installation
-### Without Docker
-Check your python version:
+## Installation and Setup
+
+### Python Requirements
+
 ```
+
+```
+
+Check your Python version:
+```sh
 python --version
 ```
-Install requirements for python 3.13.5:
-```
-pip install -r python3-15-5_requirements.txt
-```
-## Data Dictionary
-See [data_dictionary.md](data_dictionary.md) for detailed descriptions of each linguistic feature, the function(s) used to generate them, and references to the papers they were extracted from.
+See [Anaconda](https://www.anaconda.com/download/success) as an option to switch between Python versions. This repository has been tested with Python 3.10.11.
 
-## Jupyter Notebook Examples
-Please run [jupyter notebook](https://docs.jupyter.org/en/latest/running.html) and see [nlp_function_examples.ipynb](nlp_function_examples.ipynb) for an interactive set of examples. Also, see the usage example sections below.
+Install requirements for Python 3.10.11:
+```sh
+pip install -r requirements/py3-10-11/requirements.txt ## Python 3.10.11 requirements
+```
+
+Note: you may use the pip install command described above even if you are working with a different Python version, but you may need to adjust the requirements.txt file to fit any dependencies specific to that Python version.
+
+### Requirements.txt License Information
+License information for each set of requirements.txt can be found in their respective `pip-licenses.md` file within the requirements/python[version] folders.
+
+### Docker Support
+[Docker](https://docs.docker.com/engine/install/) support can be found via the `Dockerfile` and `build_docker.sh` and `run_docker.sh` files.
+
+Please see Docker's documentation for more information ([docker build](https://docs.docker.com/build/), [Dockerfile](https://docs.docker.com/build/concepts/dockerfile/), [docker run](https://docs.docker.com/reference/cli/docker/container/run/)).
 
 ## Load spaCy models
 Prior to being able to load spaCy models such as [en_core_web_lg](https://spacy.io/models/en#en_core_web_lg), one must run `spacy download <model name`:

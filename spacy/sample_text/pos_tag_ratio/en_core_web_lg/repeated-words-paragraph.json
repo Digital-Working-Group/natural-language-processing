@@ -1,0 +1,200 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/repeated-words-paragraph.txt",
+        "tag_list": [
+            "POS",
+            "TAG"
+        ],
+        "amount": 100,
+        "function": "pos_tag_ratio"
+    },
+    "data": [
+        {
+            "tag": "POS",
+            "total_tokens": 85,
+            "tag_data": [
+                {
+                    "tag_label": "VERB",
+                    "tag_ct": 9,
+                    "tag_ratio": 10.588235294117647,
+                    "spacy.explain": "verb"
+                },
+                {
+                    "tag_label": "ADP",
+                    "tag_ct": 9,
+                    "tag_ratio": 10.588235294117647,
+                    "spacy.explain": "adposition"
+                },
+                {
+                    "tag_label": "DET",
+                    "tag_ct": 9,
+                    "tag_ratio": 10.588235294117647,
+                    "spacy.explain": "determiner"
+                },
+                {
+                    "tag_label": "NOUN",
+                    "tag_ct": 27,
+                    "tag_ratio": 31.76470588235294,
+                    "spacy.explain": "noun"
+                },
+                {
+                    "tag_label": "PUNCT",
+                    "tag_ct": 11,
+                    "tag_ratio": 12.941176470588237,
+                    "spacy.explain": "punctuation"
+                },
+                {
+                    "tag_label": "AUX",
+                    "tag_ct": 5,
+                    "tag_ratio": 5.88235294117647,
+                    "spacy.explain": "auxiliary"
+                },
+                {
+                    "tag_label": "ADJ",
+                    "tag_ct": 3,
+                    "tag_ratio": 3.5294117647058822,
+                    "spacy.explain": "adjective"
+                },
+                {
+                    "tag_label": "ADV",
+                    "tag_ct": 3,
+                    "tag_ratio": 3.5294117647058822,
+                    "spacy.explain": "adverb"
+                },
+                {
+                    "tag_label": "SCONJ",
+                    "tag_ct": 1,
+                    "tag_ratio": 1.1764705882352942,
+                    "spacy.explain": "subordinating conjunction"
+                },
+                {
+                    "tag_label": "PRON",
+                    "tag_ct": 4,
+                    "tag_ratio": 4.705882352941177,
+                    "spacy.explain": "pronoun"
+                },
+                {
+                    "tag_label": "CCONJ",
+                    "tag_ct": 4,
+                    "tag_ratio": 4.705882352941177,
+                    "spacy.explain": "coordinating conjunction"
+                }
+            ]
+        },
+        {
+            "tag": "TAG",
+            "total_tokens": 85,
+            "tag_data": [
+                {
+                    "tag_label": "VBG",
+                    "tag_ct": 4,
+                    "tag_ratio": 4.705882352941177,
+                    "spacy.explain": "verb, gerund or present participle"
+                },
+                {
+                    "tag_label": "RP",
+                    "tag_ct": 1,
+                    "tag_ratio": 1.1764705882352942,
+                    "spacy.explain": "adverb, particle"
+                },
+                {
+                    "tag_label": "IN",
+                    "tag_ct": 8,
+                    "tag_ratio": 9.411764705882353,
+                    "spacy.explain": "conjunction, subordinating or preposition"
+                },
+                {
+                    "tag_label": "DT",
+                    "tag_ct": 9,
+                    "tag_ratio": 10.588235294117647,
+                    "spacy.explain": "determiner"
+                },
+                {
+                    "tag_label": "NN",
+                    "tag_ct": 18,
+                    "tag_ratio": 21.176470588235293,
+                    "spacy.explain": "noun, singular or mass"
+                },
+                {
+                    "tag_label": ",",
+                    "tag_ct": 8,
+                    "tag_ratio": 9.411764705882353,
+                    "spacy.explain": "punctuation mark, comma"
+                },
+                {
+                    "tag_label": "NNS",
+                    "tag_ct": 9,
+                    "tag_ratio": 10.588235294117647,
+                    "spacy.explain": "noun, plural"
+                },
+                {
+                    "tag_label": "VBD",
+                    "tag_ct": 2,
+                    "tag_ratio": 2.3529411764705883,
+                    "spacy.explain": "verb, past tense"
+                },
+                {
+                    "tag_label": "JJS",
+                    "tag_ct": 1,
+                    "tag_ratio": 1.1764705882352942,
+                    "spacy.explain": "adjective, superlative"
+                },
+                {
+                    "tag_label": ".",
+                    "tag_ct": 3,
+                    "tag_ratio": 3.5294117647058822,
+                    "spacy.explain": "punctuation mark, sentence closer"
+                },
+                {
+                    "tag_label": "MD",
+                    "tag_ct": 3,
+                    "tag_ratio": 3.5294117647058822,
+                    "spacy.explain": "verb, modal auxiliary"
+                },
+                {
+                    "tag_label": "VB",
+                    "tag_ct": 5,
+                    "tag_ratio": 5.88235294117647,
+                    "spacy.explain": "verb, base form"
+                },
+                {
+                    "tag_label": "RB",
+                    "tag_ct": 3,
+                    "tag_ratio": 3.5294117647058822,
+                    "spacy.explain": "adverb"
+                },
+                {
+                    "tag_label": "JJ",
+                    "tag_ct": 2,
+                    "tag_ratio": 2.3529411764705883,
+                    "spacy.explain": "adjective (English), other noun-modifier (Chinese)"
+                },
+                {
+                    "tag_label": "WRB",
+                    "tag_ct": 1,
+                    "tag_ratio": 1.1764705882352942,
+                    "spacy.explain": "wh-adverb"
+                },
+                {
+                    "tag_label": "PRP$",
+                    "tag_ct": 3,
+                    "tag_ratio": 3.5294117647058822,
+                    "spacy.explain": "pronoun, possessive"
+                },
+                {
+                    "tag_label": "CC",
+                    "tag_ct": 4,
+                    "tag_ratio": 4.705882352941177,
+                    "spacy.explain": "conjunction, coordinating"
+                },
+                {
+                    "tag_label": "PRP",
+                    "tag_ct": 1,
+                    "tag_ratio": 1.1764705882352942,
+                    "spacy.explain": "pronoun, personal"
+                }
+            ]
+        }
+    ]
+}

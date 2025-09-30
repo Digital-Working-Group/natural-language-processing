@@ -1,0 +1,18 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/repeated-words-paragraph.txt",
+        "pos_list": [
+            "NOUN",
+            "PROPN"
+        ],
+        "function": "alpha_pos_ratio_sentences"
+    },
+    "data": {
+        "sent_mean": 0.365163734115347,
+        "sent_max": 0.41935483870967744,
+        "sent_min": 0.3125,
+        "sent_std": 0.05344379088680786,
+        "sent_total": 3
+    }
+}

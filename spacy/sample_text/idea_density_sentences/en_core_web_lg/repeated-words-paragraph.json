@@ -1,0 +1,27 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/repeated-words-paragraph.txt",
+        "function": "idea_density_sentences"
+    },
+    "data": {
+        "total_sentences": 3,
+        "sent_list": [
+            {
+                "sent_idx": 0,
+                "total_tokens": 11,
+                "idea_density": 0.36363636363636365
+            },
+            {
+                "sent_idx": 1,
+                "total_tokens": 32,
+                "idea_density": 0.4375
+            },
+            {
+                "sent_idx": 2,
+                "total_tokens": 31,
+                "idea_density": 0.3548387096774194
+            }
+        ]
+    }
+}

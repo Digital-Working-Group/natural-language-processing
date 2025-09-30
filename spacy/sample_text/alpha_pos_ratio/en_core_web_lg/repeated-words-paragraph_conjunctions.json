@@ -1,0 +1,15 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/repeated-words-paragraph.txt",
+        "pos_list": [
+            "CONJ",
+            "CCONJ",
+            "SCONJ"
+        ],
+        "function": "alpha_pos_ratio"
+    },
+    "data": {
+        "pos_ratio": 0.06756756756756757
+    }
+}

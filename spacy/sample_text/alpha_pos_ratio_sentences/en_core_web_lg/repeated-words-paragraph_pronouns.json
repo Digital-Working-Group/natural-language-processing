@@ -1,0 +1,17 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/repeated-words-paragraph.txt",
+        "pos_list": [
+            "PRON"
+        ],
+        "function": "alpha_pos_ratio_sentences"
+    },
+    "data": {
+        "sent_mean": 0.06350806451612903,
+        "sent_max": 0.06451612903225806,
+        "sent_min": 0.0625,
+        "sent_std": 0.0014256185104567479,
+        "sent_total": 2
+    }
+}

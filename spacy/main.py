@@ -32,8 +32,8 @@ def main():
     sample_files = get_sample_files()
     iso_now = datetime.now().isoformat().replace(':', '-').replace('.', '-')
     for filepath in sample_files:
-        nlp_util = NLPUtil(model, filepath)
-
+        pipe_list = ['textdescriptives/dependency_distance']
+        nlp_util = NLPUtil(model, filepath, pipe_list=pipe_list)
         tag_list = ['POS', 'TAG']
         pos_t.pos_tag_ratio(nlp_util, tag_list, amount=100)
 
@@ -43,7 +43,7 @@ def main():
 
         pos_to_list = {'nouns': ['NOUN', 'PROPN'], 'pronouns': ['PRON'],
             'conjunctions': ['CONJ', 'CCONJ', 'SCONJ']}
-        pos_t.alpha_pos_ratio(nlp_util, pos_to_list=pos_to_list)
+        pos_t.alpha_pos_ratio_sentences(nlp_util, pos_to_list=pos_to_list)
 
         sem_c.idea_density_sentences(nlp_util)
 
@@ -55,10 +55,10 @@ def main():
         sem_c.word_prevalence(nlp_util)
 
         syn_c.tense_inflected_verbs(nlp_util)
-        pipe_list = ['textdescriptives/dependency_distance']
-        pipe_nlp_util = NLPUtil(model, filepath, pipe_list=pipe_list)
-        syn_c.dependency_distance(pipe_nlp_util)
-
+        # pipe_list = ['textdescriptives/dependency_distance']
+        # pipe_nlp_util = NLPUtil(model, filepath, pipe_list=pipe_list)
+        # syn_c.dependency_distance(pipe_nlp_util)
+        syn_c.dependency_distance(nlp_util)
         lex_v.moving_type_token_ratio(nlp_util)
 
         syn_e.nonword_frequency(nlp_util, amount=100)

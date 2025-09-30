@@ -1,0 +1,13 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/repeated-words-paragraph.txt",
+        "function": "dependency_distance"
+    },
+    "data": {
+        "dependency_distance_mean": 2.9381843381843376,
+        "dependency_distance_std": 0.6415007061354028,
+        "prop_adjacent_dependency_relation_mean": 0.38766458766458767,
+        "prop_adjacent_dependency_relation_std": 0.009086505005174644
+    }
+}

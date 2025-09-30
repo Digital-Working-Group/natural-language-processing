@@ -1,0 +1,622 @@
+{
+    "pos_tag_ratio": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/sentence.txt",
+            "tag_list": [
+                "POS",
+                "TAG"
+            ],
+            "amount": 100,
+            "function": "pos_tag_ratio"
+        },
+        "data": [
+            {
+                "tag": "POS",
+                "total_tokens": 24,
+                "tag_data": [
+                    {
+                        "tag_label": "PRON",
+                        "tag_ct": 6,
+                        "tag_ratio": 25.0,
+                        "spacy.explain": "pronoun"
+                    },
+                    {
+                        "tag_label": "VERB",
+                        "tag_ct": 4,
+                        "tag_ratio": 16.666666666666664,
+                        "spacy.explain": "verb"
+                    },
+                    {
+                        "tag_label": "PUNCT",
+                        "tag_ct": 3,
+                        "tag_ratio": 12.5,
+                        "spacy.explain": "punctuation"
+                    },
+                    {
+                        "tag_label": "SCONJ",
+                        "tag_ct": 2,
+                        "tag_ratio": 8.333333333333332,
+                        "spacy.explain": "subordinating conjunction"
+                    },
+                    {
+                        "tag_label": "ADV",
+                        "tag_ct": 2,
+                        "tag_ratio": 8.333333333333332,
+                        "spacy.explain": "adverb"
+                    },
+                    {
+                        "tag_label": "ADP",
+                        "tag_ct": 1,
+                        "tag_ratio": 4.166666666666666,
+                        "spacy.explain": "adposition"
+                    },
+                    {
+                        "tag_label": "NOUN",
+                        "tag_ct": 2,
+                        "tag_ratio": 8.333333333333332,
+                        "spacy.explain": "noun"
+                    },
+                    {
+                        "tag_label": "AUX",
+                        "tag_ct": 1,
+                        "tag_ratio": 4.166666666666666,
+                        "spacy.explain": "auxiliary"
+                    },
+                    {
+                        "tag_label": "ADJ",
+                        "tag_ct": 2,
+                        "tag_ratio": 8.333333333333332,
+                        "spacy.explain": "adjective"
+                    },
+                    {
+                        "tag_label": "DET",
+                        "tag_ct": 1,
+                        "tag_ratio": 4.166666666666666,
+                        "spacy.explain": "determiner"
+                    }
+                ]
+            },
+            {
+                "tag": "TAG",
+                "total_tokens": 24,
+                "tag_data": [
+                    {
+                        "tag_label": "PRP",
+                        "tag_ct": 4,
+                        "tag_ratio": 16.666666666666664,
+                        "spacy.explain": "pronoun, personal"
+                    },
+                    {
+                        "tag_label": "VBP",
+                        "tag_ct": 3,
+                        "tag_ratio": 12.5,
+                        "spacy.explain": "verb, non-3rd person singular present"
+                    },
+                    {
+                        "tag_label": ",",
+                        "tag_ct": 2,
+                        "tag_ratio": 8.333333333333332,
+                        "spacy.explain": "punctuation mark, comma"
+                    },
+                    {
+                        "tag_label": "WRB",
+                        "tag_ct": 2,
+                        "tag_ratio": 8.333333333333332,
+                        "spacy.explain": "wh-adverb"
+                    },
+                    {
+                        "tag_label": "RB",
+                        "tag_ct": 2,
+                        "tag_ratio": 8.333333333333332,
+                        "spacy.explain": "adverb"
+                    },
+                    {
+                        "tag_label": "IN",
+                        "tag_ct": 1,
+                        "tag_ratio": 4.166666666666666,
+                        "spacy.explain": "conjunction, subordinating or preposition"
+                    },
+                    {
+                        "tag_label": "PRP$",
+                        "tag_ct": 1,
+                        "tag_ratio": 4.166666666666666,
+                        "spacy.explain": "pronoun, possessive"
+                    },
+                    {
+                        "tag_label": "NN",
+                        "tag_ct": 1,
+                        "tag_ratio": 4.166666666666666,
+                        "spacy.explain": "noun, singular or mass"
+                    },
+                    {
+                        "tag_label": "VBZ",
+                        "tag_ct": 1,
+                        "tag_ratio": 4.166666666666666,
+                        "spacy.explain": "verb, 3rd person singular present"
+                    },
+                    {
+                        "tag_label": "JJ",
+                        "tag_ct": 2,
+                        "tag_ratio": 8.333333333333332,
+                        "spacy.explain": "adjective (English), other noun-modifier (Chinese)"
+                    },
+                    {
+                        "tag_label": "DT",
+                        "tag_ct": 1,
+                        "tag_ratio": 4.166666666666666,
+                        "spacy.explain": "determiner"
+                    },
+                    {
+                        "tag_label": "NNS",
+                        "tag_ct": 1,
+                        "tag_ratio": 4.166666666666666,
+                        "spacy.explain": "noun, plural"
+                    },
+                    {
+                        "tag_label": "VB",
+                        "tag_ct": 1,
+                        "tag_ratio": 4.166666666666666,
+                        "spacy.explain": "verb, base form"
+                    },
+                    {
+                        "tag_label": "WP",
+                        "tag_ct": 1,
+                        "tag_ratio": 4.166666666666666,
+                        "spacy.explain": "wh-pronoun, personal"
+                    },
+                    {
+                        "tag_label": ".",
+                        "tag_ct": 1,
+                        "tag_ratio": 4.166666666666666,
+                        "spacy.explain": "punctuation mark, sentence closer"
+                    }
+                ]
+            }
+        ]
+    },
+    "alpha_pos_ratio": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/sentence.txt",
+            "pos_list": [
+                "NOUN",
+                "PROPN"
+            ],
+            "function": "alpha_pos_ratio"
+        },
+        "data": {
+            "pos_ratio": 0.1
+        }
+    },
+    "alpha_pos_ratio_sentences": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/sentence.txt",
+            "pos_list": [
+                "NOUN",
+                "PROPN"
+            ],
+            "function": "alpha_pos_ratio_sentences"
+        },
+        "data": {
+            "sent_mean": 0.1,
+            "sent_max": 0.1,
+            "sent_min": 0.1,
+            "sent_std": null,
+            "sent_total": 1
+        }
+    },
+    "idea_density_sentences": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/sentence.txt",
+            "function": "idea_density_sentences"
+        },
+        "data": {
+            "total_sentences": 1,
+            "sent_list": [
+                {
+                    "sent_idx": 0,
+                    "total_tokens": 20,
+                    "idea_density": 0.55
+                }
+            ]
+        }
+    },
+    "abstractness": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/sentence.txt",
+            "feature_column": "Conc.M",
+            "dataset_fp": "datasets/dataset_for_abstractness.xlsx",
+            "word_column": "Word",
+            "feature": "abstractness"
+        },
+        "data": {
+            "total_nouns": 2,
+            "feature_data": [
+                {
+                    "token.text": "life",
+                    "word": "life",
+                    "feature_val": 0.3717472118959108,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "things",
+                    "word": "thing",
+                    "feature_val": 0.31545741324921134,
+                    "is_lemma": 1
+                }
+            ]
+        }
+    },
+    "age_of_acquisition": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/sentence.txt",
+            "feature_column": "AoA",
+            "dataset_fp": "datasets/dataset_for_age_of_acquisition.xlsx",
+            "word_column": "Word",
+            "feature": "age_of_acquisition"
+        },
+        "data": {
+            "total_nouns": 2,
+            "feature_data": [
+                {
+                    "token.text": "life",
+                    "word": "life",
+                    "feature_val": 5.666149999999999,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "things",
+                    "word": "things",
+                    "feature_val": 4.317719583333333,
+                    "is_lemma": 0
+                }
+            ]
+        }
+    },
+    "semantic_ambiguity": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/sentence.txt",
+            "feature_column": "SemD",
+            "dataset_fp": "datasets/dataset_for_semantic_ambiguity.xlsx",
+            "read_excel_kwargs": {
+                "skiprows": 1
+            },
+            "word_column": "!term",
+            "feature": "semantic_ambiguity"
+        },
+        "data": {
+            "total_nouns": 2,
+            "feature_data": [
+                {
+                    "token.text": "life",
+                    "word": "life",
+                    "feature_val": 2.127011833336849,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "things",
+                    "word": "things",
+                    "feature_val": 1.9507460331936715,
+                    "is_lemma": 0
+                }
+            ]
+        }
+    },
+    "word_familiarity": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/sentence.txt",
+            "feature_column": "Pknown",
+            "dataset_fp": "datasets/dataset_for_word_prevalence_and_familiarity.xlsx",
+            "word_column": "Word",
+            "feature": "word_familiarity"
+        },
+        "data": {
+            "total_nouns": 2,
+            "feature_data": [
+                {
+                    "token.text": "life",
+                    "word": "life",
+                    "feature_val": 0.9976744186046509,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "things",
+                    "word": "thing",
+                    "feature_val": 1.0,
+                    "is_lemma": 1
+                }
+            ]
+        }
+    },
+    "word_frequency": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/sentence.txt",
+            "feature_column": "Lg10WF",
+            "dataset_fp": "datasets/dataset_for_word_frequency.xlsx",
+            "word_column": "Word",
+            "feature": "word_frequency"
+        },
+        "data": {
+            "total_nouns": 2,
+            "feature_data": [
+                {
+                    "token.text": "life",
+                    "word": "life",
+                    "feature_val": 4.608846822326411,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "things",
+                    "word": "things",
+                    "feature_val": 4.548241966406093,
+                    "is_lemma": 0
+                }
+            ]
+        }
+    },
+    "word_prevalence": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/sentence.txt",
+            "feature_column": "Prevalence",
+            "dataset_fp": "datasets/dataset_for_word_prevalence_and_familiarity.xlsx",
+            "word_column": "Word",
+            "feature": "word_prevalence"
+        },
+        "data": {
+            "total_nouns": 2,
+            "feature_data": [
+                {
+                    "token.text": "life",
+                    "word": "life",
+                    "feature_val": 2.4420369643248447,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "things",
+                    "word": "thing",
+                    "feature_val": 2.5758293035489,
+                    "is_lemma": 1
+                }
+            ]
+        }
+    },
+    "tense_inflected_verbs": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/sentence.txt",
+            "amount": 100,
+            "function": "tense_inflected_verbs"
+        },
+        "data": {
+            "tiv_ratio": 15.0,
+            "total_tivs": 3,
+            "total_alpha_tokens": 20,
+            "present_verbs": 3,
+            "past_verbs": 0,
+            "modal_auxiliaries": 0,
+            "feature_data": [
+                {
+                    "token.text": "know",
+                    "token.pos_": "VERB",
+                    "tense": [
+                        "Pres"
+                    ],
+                    "tag": "VBP",
+                    "word_type": "present_verb"
+                },
+                {
+                    "token.text": "think",
+                    "token.pos_": "VERB",
+                    "tense": [
+                        "Pres"
+                    ],
+                    "tag": "VBP",
+                    "word_type": "present_verb"
+                },
+                {
+                    "token.text": "become",
+                    "token.pos_": "VERB",
+                    "tense": [
+                        "Pres"
+                    ],
+                    "tag": "VBP",
+                    "word_type": "present_verb"
+                }
+            ]
+        }
+    },
+    "dependency_distance": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/sentence.txt",
+            "function": "dependency_distance"
+        },
+        "data": {
+            "dependency_distance_mean": 3.1666666666666665,
+            "dependency_distance_std": 0.0,
+            "prop_adjacent_dependency_relation_mean": 0.4166666666666667,
+            "prop_adjacent_dependency_relation_std": 0.0
+        }
+    },
+    "moving_type_token_ratio": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/sentence.txt",
+            "window_size": 20,
+            "function": "moving_type_token_ratio"
+        },
+        "data": {
+            "average_type_token_ratio": 0.95,
+            "num_windows": 1,
+            "windows": [
+                {
+                    "num_unique_words": 19,
+                    "type_token_ratio": 0.95
+                }
+            ]
+        }
+    },
+    "nonword_frequency": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/sentence.txt",
+            "dataset_fp": "datasets/words_alpha.txt",
+            "amount": 100,
+            "function": "nonword_frequency"
+        },
+        "data": {
+            "total_nonwords": 0,
+            "total_words": 20,
+            "nonword_frequency": 0.0
+        }
+    },
+    "word_repetition": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/sentence.txt",
+            "function": "word_repetition"
+        },
+        "data": {
+            "most_frequent_word": "you",
+            "most_frequent_ct": 2,
+            "repeating_words": 2,
+            "unique_words": 19,
+            "repeating_to_unique_ratio": 0.10526315789473684,
+            "consecutive_words": 0
+        }
+    },
+    "doc_similarity": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/sentence.txt",
+            "window_size": 3,
+            "function": "doc_similarity"
+        },
+        "data": {
+            "avg_similarity_score": 0.5261111111111112,
+            "max_similarity_score": 0.7233333333333335,
+            "min_similarity_score": 0.39333333333333337,
+            "std_similarity_score": 0.09275204136012637,
+            "num_windows": 18,
+            "windows": [
+                {
+                    "avg_similarity_score": 0.7233333333333335,
+                    "max_similarity_score": 0.81,
+                    "min_similarity_score": 0.68,
+                    "std_similarity_score": 0.07505553499465135
+                },
+                {
+                    "avg_similarity_score": 0.61,
+                    "max_similarity_score": 0.68,
+                    "min_similarity_score": 0.52,
+                    "std_similarity_score": 0.0818535277187245
+                },
+                {
+                    "avg_similarity_score": 0.5933333333333334,
+                    "max_similarity_score": 0.64,
+                    "min_similarity_score": 0.52,
+                    "std_similarity_score": 0.06429100507328636
+                },
+                {
+                    "avg_similarity_score": 0.52,
+                    "max_similarity_score": 0.62,
+                    "min_similarity_score": 0.44,
+                    "std_similarity_score": 0.0916515138991168
+                },
+                {
+                    "avg_similarity_score": 0.42333333333333334,
+                    "max_similarity_score": 0.5,
+                    "min_similarity_score": 0.31,
+                    "std_similarity_score": 0.10016652800877814
+                },
+                {
+                    "avg_similarity_score": 0.51,
+                    "max_similarity_score": 0.62,
+                    "min_similarity_score": 0.45,
+                    "std_similarity_score": 0.09539392014169455
+                },
+                {
+                    "avg_similarity_score": 0.43333333333333335,
+                    "max_similarity_score": 0.52,
+                    "min_similarity_score": 0.33,
+                    "std_similarity_score": 0.09609023536933049
+                },
+                {
+                    "avg_similarity_score": 0.5566666666666668,
+                    "max_similarity_score": 0.62,
+                    "min_similarity_score": 0.52,
+                    "std_similarity_score": 0.05507570547286101
+                },
+                {
+                    "avg_similarity_score": 0.45333333333333337,
+                    "max_similarity_score": 0.53,
+                    "min_similarity_score": 0.39,
+                    "std_similarity_score": 0.07094598884597587
+                },
+                {
+                    "avg_similarity_score": 0.5533333333333333,
+                    "max_similarity_score": 0.71,
+                    "min_similarity_score": 0.44,
+                    "std_similarity_score": 0.14011899704655797
+                },
+                {
+                    "avg_similarity_score": 0.43,
+                    "max_similarity_score": 0.53,
+                    "min_similarity_score": 0.25,
+                    "std_similarity_score": 0.1562049935181331
+                },
+                {
+                    "avg_similarity_score": 0.5366666666666666,
+                    "max_similarity_score": 0.58,
+                    "min_similarity_score": 0.5,
+                    "std_similarity_score": 0.04041451884327378
+                },
+                {
+                    "avg_similarity_score": 0.5666666666666668,
+                    "max_similarity_score": 0.66,
+                    "min_similarity_score": 0.5,
+                    "std_similarity_score": 0.08326663997864532
+                },
+                {
+                    "avg_similarity_score": 0.6933333333333334,
+                    "max_similarity_score": 0.75,
+                    "min_similarity_score": 0.66,
+                    "std_similarity_score": 0.04932882862316245
+                },
+                {
+                    "avg_similarity_score": 0.5333333333333333,
+                    "max_similarity_score": 0.75,
+                    "min_similarity_score": 0.41,
+                    "std_similarity_score": 0.18823743871327334
+                },
+                {
+                    "avg_similarity_score": 0.41333333333333333,
+                    "max_similarity_score": 0.56,
+                    "min_similarity_score": 0.24,
+                    "std_similarity_score": 0.16165807537309523
+                },
+                {
+                    "avg_similarity_score": 0.39333333333333337,
+                    "max_similarity_score": 0.54,
+                    "min_similarity_score": 0.24,
+                    "std_similarity_score": 0.1501110699893027
+                },
+                {
+                    "avg_similarity_score": 0.5266666666666667,
+                    "max_similarity_score": 0.54,
+                    "min_similarity_score": 0.52,
+                    "std_similarity_score": 0.011547005383792526
+                }
+            ]
+        }
+    }
+}

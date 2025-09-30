@@ -1,0 +1,2126 @@
+{
+    "pos_tag_ratio": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/repeated-words-paragraph.txt",
+            "tag_list": [
+                "POS",
+                "TAG"
+            ],
+            "amount": 100,
+            "function": "pos_tag_ratio"
+        },
+        "data": [
+            {
+                "tag": "POS",
+                "total_tokens": 85,
+                "tag_data": [
+                    {
+                        "tag_label": "VERB",
+                        "tag_ct": 9,
+                        "tag_ratio": 10.588235294117647,
+                        "spacy.explain": "verb"
+                    },
+                    {
+                        "tag_label": "ADP",
+                        "tag_ct": 9,
+                        "tag_ratio": 10.588235294117647,
+                        "spacy.explain": "adposition"
+                    },
+                    {
+                        "tag_label": "DET",
+                        "tag_ct": 9,
+                        "tag_ratio": 10.588235294117647,
+                        "spacy.explain": "determiner"
+                    },
+                    {
+                        "tag_label": "NOUN",
+                        "tag_ct": 27,
+                        "tag_ratio": 31.76470588235294,
+                        "spacy.explain": "noun"
+                    },
+                    {
+                        "tag_label": "PUNCT",
+                        "tag_ct": 11,
+                        "tag_ratio": 12.941176470588237,
+                        "spacy.explain": "punctuation"
+                    },
+                    {
+                        "tag_label": "AUX",
+                        "tag_ct": 5,
+                        "tag_ratio": 5.88235294117647,
+                        "spacy.explain": "auxiliary"
+                    },
+                    {
+                        "tag_label": "ADJ",
+                        "tag_ct": 3,
+                        "tag_ratio": 3.5294117647058822,
+                        "spacy.explain": "adjective"
+                    },
+                    {
+                        "tag_label": "ADV",
+                        "tag_ct": 3,
+                        "tag_ratio": 3.5294117647058822,
+                        "spacy.explain": "adverb"
+                    },
+                    {
+                        "tag_label": "SCONJ",
+                        "tag_ct": 1,
+                        "tag_ratio": 1.1764705882352942,
+                        "spacy.explain": "subordinating conjunction"
+                    },
+                    {
+                        "tag_label": "PRON",
+                        "tag_ct": 4,
+                        "tag_ratio": 4.705882352941177,
+                        "spacy.explain": "pronoun"
+                    },
+                    {
+                        "tag_label": "CCONJ",
+                        "tag_ct": 4,
+                        "tag_ratio": 4.705882352941177,
+                        "spacy.explain": "coordinating conjunction"
+                    }
+                ]
+            },
+            {
+                "tag": "TAG",
+                "total_tokens": 85,
+                "tag_data": [
+                    {
+                        "tag_label": "VBG",
+                        "tag_ct": 4,
+                        "tag_ratio": 4.705882352941177,
+                        "spacy.explain": "verb, gerund or present participle"
+                    },
+                    {
+                        "tag_label": "RP",
+                        "tag_ct": 1,
+                        "tag_ratio": 1.1764705882352942,
+                        "spacy.explain": "adverb, particle"
+                    },
+                    {
+                        "tag_label": "IN",
+                        "tag_ct": 8,
+                        "tag_ratio": 9.411764705882353,
+                        "spacy.explain": "conjunction, subordinating or preposition"
+                    },
+                    {
+                        "tag_label": "DT",
+                        "tag_ct": 9,
+                        "tag_ratio": 10.588235294117647,
+                        "spacy.explain": "determiner"
+                    },
+                    {
+                        "tag_label": "NN",
+                        "tag_ct": 18,
+                        "tag_ratio": 21.176470588235293,
+                        "spacy.explain": "noun, singular or mass"
+                    },
+                    {
+                        "tag_label": ",",
+                        "tag_ct": 8,
+                        "tag_ratio": 9.411764705882353,
+                        "spacy.explain": "punctuation mark, comma"
+                    },
+                    {
+                        "tag_label": "NNS",
+                        "tag_ct": 9,
+                        "tag_ratio": 10.588235294117647,
+                        "spacy.explain": "noun, plural"
+                    },
+                    {
+                        "tag_label": "VBD",
+                        "tag_ct": 2,
+                        "tag_ratio": 2.3529411764705883,
+                        "spacy.explain": "verb, past tense"
+                    },
+                    {
+                        "tag_label": "JJS",
+                        "tag_ct": 1,
+                        "tag_ratio": 1.1764705882352942,
+                        "spacy.explain": "adjective, superlative"
+                    },
+                    {
+                        "tag_label": ".",
+                        "tag_ct": 3,
+                        "tag_ratio": 3.5294117647058822,
+                        "spacy.explain": "punctuation mark, sentence closer"
+                    },
+                    {
+                        "tag_label": "MD",
+                        "tag_ct": 3,
+                        "tag_ratio": 3.5294117647058822,
+                        "spacy.explain": "verb, modal auxiliary"
+                    },
+                    {
+                        "tag_label": "VB",
+                        "tag_ct": 5,
+                        "tag_ratio": 5.88235294117647,
+                        "spacy.explain": "verb, base form"
+                    },
+                    {
+                        "tag_label": "RB",
+                        "tag_ct": 3,
+                        "tag_ratio": 3.5294117647058822,
+                        "spacy.explain": "adverb"
+                    },
+                    {
+                        "tag_label": "JJ",
+                        "tag_ct": 2,
+                        "tag_ratio": 2.3529411764705883,
+                        "spacy.explain": "adjective (English), other noun-modifier (Chinese)"
+                    },
+                    {
+                        "tag_label": "WRB",
+                        "tag_ct": 1,
+                        "tag_ratio": 1.1764705882352942,
+                        "spacy.explain": "wh-adverb"
+                    },
+                    {
+                        "tag_label": "PRP$",
+                        "tag_ct": 3,
+                        "tag_ratio": 3.5294117647058822,
+                        "spacy.explain": "pronoun, possessive"
+                    },
+                    {
+                        "tag_label": "CC",
+                        "tag_ct": 4,
+                        "tag_ratio": 4.705882352941177,
+                        "spacy.explain": "conjunction, coordinating"
+                    },
+                    {
+                        "tag_label": "PRP",
+                        "tag_ct": 1,
+                        "tag_ratio": 1.1764705882352942,
+                        "spacy.explain": "pronoun, personal"
+                    }
+                ]
+            }
+        ]
+    },
+    "alpha_pos_ratio": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/repeated-words-paragraph.txt",
+            "pos_list": [
+                "PRON"
+            ],
+            "function": "alpha_pos_ratio"
+        },
+        "data": {
+            "pos_ratio": 0.05405405405405406
+        }
+    },
+    "alpha_pos_ratio_sentences": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/repeated-words-paragraph.txt",
+            "pos_list": [
+                "PRON"
+            ],
+            "function": "alpha_pos_ratio_sentences"
+        },
+        "data": {
+            "sent_mean": 0.06350806451612903,
+            "sent_max": 0.06451612903225806,
+            "sent_min": 0.0625,
+            "sent_std": 0.0014256185104567479,
+            "sent_total": 2
+        }
+    },
+    "idea_density_sentences": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/repeated-words-paragraph.txt",
+            "function": "idea_density_sentences"
+        },
+        "data": {
+            "total_sentences": 3,
+            "sent_list": [
+                {
+                    "sent_idx": 0,
+                    "total_tokens": 11,
+                    "idea_density": 0.36363636363636365
+                },
+                {
+                    "sent_idx": 1,
+                    "total_tokens": 32,
+                    "idea_density": 0.4375
+                },
+                {
+                    "sent_idx": 2,
+                    "total_tokens": 31,
+                    "idea_density": 0.3548387096774194
+                }
+            ]
+        }
+    },
+    "abstractness": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/repeated-words-paragraph.txt",
+            "feature_column": "Conc.M",
+            "dataset_fp": "datasets/dataset_for_abstractness.xlsx",
+            "word_column": "Word",
+            "feature": "abstractness"
+        },
+        "data": {
+            "total_nouns": 27,
+            "feature_data": [
+                {
+                    "token.text": "lake",
+                    "word": "lake",
+                    "feature_val": 0.20491803278688525,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "lake",
+                    "word": "lake",
+                    "feature_val": 0.20491803278688525,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "days",
+                    "word": "days",
+                    "feature_val": 0.2976190476190476,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "days",
+                    "word": "days",
+                    "feature_val": 0.2976190476190476,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "morning",
+                    "word": "morning",
+                    "feature_val": 0.29069767441860467,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "morning",
+                    "word": "morning",
+                    "feature_val": 0.29069767441860467,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "sun",
+                    "word": "sun",
+                    "feature_val": 0.20703933747412007,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "water",
+                    "word": "water",
+                    "feature_val": 0.2,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "light",
+                    "word": "light",
+                    "feature_val": 0.23752969121140144,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "dock",
+                    "word": "dock",
+                    "feature_val": 0.21551724137931036,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "friends",
+                    "word": "friend",
+                    "feature_val": 0.32573289902280134,
+                    "is_lemma": 1
+                },
+                {
+                    "token.text": "splash",
+                    "word": "splash",
+                    "feature_val": 0.2386634844868735,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "splash",
+                    "word": "splash",
+                    "feature_val": 0.2386634844868735,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "end",
+                    "word": "end",
+                    "feature_val": 0.3184713375796178,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "sound",
+                    "word": "sound",
+                    "feature_val": 0.27027027027027023,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "waves",
+                    "word": "wave",
+                    "feature_val": 0.21978021978021978,
+                    "is_lemma": 1
+                },
+                {
+                    "token.text": "waves",
+                    "word": "wave",
+                    "feature_val": 0.21978021978021978,
+                    "is_lemma": 1
+                },
+                {
+                    "token.text": "shore",
+                    "word": "shore",
+                    "feature_val": 0.20876826722338204,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "lullaby",
+                    "word": "lullaby",
+                    "feature_val": 0.2610966057441253,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "evening",
+                    "word": "evening",
+                    "feature_val": 0.3067484662576687,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "evening",
+                    "word": "evening",
+                    "feature_val": 0.3067484662576687,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "fireflies",
+                    "word": "firefly",
+                    "feature_val": 0.2040816326530612,
+                    "is_lemma": 1
+                },
+                {
+                    "token.text": "stars",
+                    "word": "star",
+                    "feature_val": 0.21321961620469082,
+                    "is_lemma": 1
+                },
+                {
+                    "token.text": "night",
+                    "word": "night",
+                    "feature_val": 0.22123893805309736,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "nights",
+                    "word": "nights",
+                    "feature_val": 0.22675736961451246,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "magic",
+                    "word": "magic",
+                    "feature_val": 0.3448275862068966,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "memories",
+                    "word": "memory",
+                    "feature_val": 0.42016806722689076,
+                    "is_lemma": 1
+                }
+            ]
+        }
+    },
+    "age_of_acquisition": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/repeated-words-paragraph.txt",
+            "feature_column": "AoA",
+            "dataset_fp": "datasets/dataset_for_age_of_acquisition.xlsx",
+            "word_column": "Word",
+            "feature": "age_of_acquisition"
+        },
+        "data": {
+            "total_nouns": 27,
+            "feature_data": [
+                {
+                    "token.text": "lake",
+                    "word": "lake",
+                    "feature_val": 4.942003125,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "lake",
+                    "word": "lake",
+                    "feature_val": 4.942003125,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "days",
+                    "word": "days",
+                    "feature_val": 3.5902417204301074,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "days",
+                    "word": "days",
+                    "feature_val": 3.5902417204301074,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "morning",
+                    "word": "morning",
+                    "feature_val": 3.7751427272727276,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "morning",
+                    "word": "morning",
+                    "feature_val": 3.7751427272727276,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "sun",
+                    "word": "sun",
+                    "feature_val": 3.4498885416666667,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "water",
+                    "word": "water",
+                    "feature_val": 2.8429886363636365,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "light",
+                    "word": "light",
+                    "feature_val": 4.670701041666667,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "dock",
+                    "word": "dock",
+                    "feature_val": 7.318698958333333,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "friends",
+                    "word": "friends",
+                    "feature_val": 3.8244550537634403,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "splash",
+                    "word": "splash",
+                    "feature_val": 4.317213124999999,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "splash",
+                    "word": "splash",
+                    "feature_val": 4.317213124999999,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "end",
+                    "word": "end",
+                    "feature_val": 4.212405833333334,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "sound",
+                    "word": "sound",
+                    "feature_val": 4.92504171875,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "waves",
+                    "word": "waves",
+                    "feature_val": 4.6051821875,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "waves",
+                    "word": "waves",
+                    "feature_val": 4.6051821875,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "shore",
+                    "word": "shore",
+                    "feature_val": 6.391796875,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "lullaby",
+                    "word": "lullaby",
+                    "feature_val": 5.48,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "evening",
+                    "word": "evening",
+                    "feature_val": 5.98735,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "evening",
+                    "word": "evening",
+                    "feature_val": 5.98735,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "fireflies",
+                    "word": "firefly",
+                    "feature_val": 6.39,
+                    "is_lemma": 1
+                },
+                {
+                    "token.text": "stars",
+                    "word": "stars",
+                    "feature_val": 4.1549000000000005,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "night",
+                    "word": "night",
+                    "feature_val": 3.8324763440860217,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "nights",
+                    "word": "nights",
+                    "feature_val": 3.8324763440860217,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "magic",
+                    "word": "magic",
+                    "feature_val": 5.373534696969697,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "memories",
+                    "word": "memories",
+                    "feature_val": 6.838765,
+                    "is_lemma": 0
+                }
+            ]
+        }
+    },
+    "semantic_ambiguity": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/repeated-words-paragraph.txt",
+            "feature_column": "SemD",
+            "dataset_fp": "datasets/dataset_for_semantic_ambiguity.xlsx",
+            "read_excel_kwargs": {
+                "skiprows": 1
+            },
+            "word_column": "!term",
+            "feature": "semantic_ambiguity"
+        },
+        "data": {
+            "total_nouns": 25,
+            "feature_data": [
+                {
+                    "token.text": "lake",
+                    "word": "lake",
+                    "feature_val": 1.5661942914734845,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "lake",
+                    "word": "lake",
+                    "feature_val": 1.5661942914734845,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "days",
+                    "word": "days",
+                    "feature_val": 2.1341569024525855,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "days",
+                    "word": "days",
+                    "feature_val": 2.1341569024525855,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "morning",
+                    "word": "morning",
+                    "feature_val": 1.771616258769022,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "morning",
+                    "word": "morning",
+                    "feature_val": 1.771616258769022,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "sun",
+                    "word": "sun",
+                    "feature_val": 1.6461730114414812,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "water",
+                    "word": "water",
+                    "feature_val": 1.8155029779198022,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "light",
+                    "word": "light",
+                    "feature_val": 1.9766361323940957,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "dock",
+                    "word": "dock",
+                    "feature_val": 1.5474946106750536,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "friends",
+                    "word": "friends",
+                    "feature_val": 1.8686841194099986,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "splash",
+                    "word": "splash",
+                    "feature_val": 1.7563745621585136,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "splash",
+                    "word": "splash",
+                    "feature_val": 1.7563745621585136,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "end",
+                    "word": "end",
+                    "feature_val": 2.2591666325090634,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "sound",
+                    "word": "sound",
+                    "feature_val": 1.8128539915590285,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "waves",
+                    "word": "waves",
+                    "feature_val": 1.4966019045831476,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "waves",
+                    "word": "waves",
+                    "feature_val": 1.4966019045831476,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "shore",
+                    "word": "shore",
+                    "feature_val": 1.3835010316918936,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "evening",
+                    "word": "evening",
+                    "feature_val": 1.784281831271312,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "evening",
+                    "word": "evening",
+                    "feature_val": 1.784281831271312,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "stars",
+                    "word": "stars",
+                    "feature_val": 1.546706764122934,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "night",
+                    "word": "night",
+                    "feature_val": 1.8510840259406212,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "nights",
+                    "word": "nights",
+                    "feature_val": 1.737396606409188,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "magic",
+                    "word": "magic",
+                    "feature_val": 1.6609820318937698,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "memories",
+                    "word": "memories",
+                    "feature_val": 1.7989812617975354,
+                    "is_lemma": 0
+                }
+            ]
+        }
+    },
+    "word_familiarity": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/repeated-words-paragraph.txt",
+            "feature_column": "Pknown",
+            "dataset_fp": "datasets/dataset_for_word_prevalence_and_familiarity.xlsx",
+            "word_column": "Word",
+            "feature": "word_familiarity"
+        },
+        "data": {
+            "total_nouns": 27,
+            "feature_data": [
+                {
+                    "token.text": "lake",
+                    "word": "lake",
+                    "feature_val": 0.9976247030878861,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "lake",
+                    "word": "lake",
+                    "feature_val": 0.9976247030878861,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "days",
+                    "word": "days",
+                    "feature_val": 0.9952038369304553,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "days",
+                    "word": "days",
+                    "feature_val": 0.9952038369304553,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "morning",
+                    "word": "morning",
+                    "feature_val": 1.0,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "morning",
+                    "word": "morning",
+                    "feature_val": 1.0,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "sun",
+                    "word": "sun",
+                    "feature_val": 0.9903381642512079,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "water",
+                    "word": "water",
+                    "feature_val": 1.0,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "light",
+                    "word": "light",
+                    "feature_val": 0.9925373134328361,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "dock",
+                    "word": "dock",
+                    "feature_val": 0.992857142857143,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "friends",
+                    "word": "friend",
+                    "feature_val": 0.9973890339425587,
+                    "is_lemma": 1
+                },
+                {
+                    "token.text": "splash",
+                    "word": "splash",
+                    "feature_val": 0.9974619289340103,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "splash",
+                    "word": "splash",
+                    "feature_val": 0.9974619289340103,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "end",
+                    "word": "end",
+                    "feature_val": 0.997596153846154,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "sound",
+                    "word": "sound",
+                    "feature_val": 0.9872773536895675,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "waves",
+                    "word": "wave",
+                    "feature_val": 1.0,
+                    "is_lemma": 1
+                },
+                {
+                    "token.text": "waves",
+                    "word": "wave",
+                    "feature_val": 1.0,
+                    "is_lemma": 1
+                },
+                {
+                    "token.text": "shore",
+                    "word": "shore",
+                    "feature_val": 0.9949109414758273,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "lullaby",
+                    "word": "lullaby",
+                    "feature_val": 0.9853300733496331,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "evening",
+                    "word": "evening",
+                    "feature_val": 0.9951219512195123,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "evening",
+                    "word": "evening",
+                    "feature_val": 0.9951219512195123,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "fireflies",
+                    "word": "firefly",
+                    "feature_val": 0.9926108374384236,
+                    "is_lemma": 1
+                },
+                {
+                    "token.text": "stars",
+                    "word": "star",
+                    "feature_val": 0.990719257540603,
+                    "is_lemma": 1
+                },
+                {
+                    "token.text": "night",
+                    "word": "night",
+                    "feature_val": 0.9949999999999997,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "nights",
+                    "word": "nights",
+                    "feature_val": 0.994858611825193,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "magic",
+                    "word": "magic",
+                    "feature_val": 0.9973118279569892,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "memories",
+                    "word": "memory",
+                    "feature_val": 0.9927360774818402,
+                    "is_lemma": 1
+                }
+            ]
+        }
+    },
+    "word_frequency": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/repeated-words-paragraph.txt",
+            "feature_column": "Lg10WF",
+            "dataset_fp": "datasets/dataset_for_word_frequency.xlsx",
+            "word_column": "Word",
+            "feature": "word_frequency"
+        },
+        "data": {
+            "total_nouns": 27,
+            "feature_data": [
+                {
+                    "token.text": "lake",
+                    "word": "lake",
+                    "feature_val": 3.2641091563058082,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "lake",
+                    "word": "lake",
+                    "feature_val": 3.2641091563058082,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "days",
+                    "word": "days",
+                    "feature_val": 4.1929296788902,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "days",
+                    "word": "days",
+                    "feature_val": 4.1929296788902,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "morning",
+                    "word": "morning",
+                    "feature_val": 4.35005409357903,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "morning",
+                    "word": "morning",
+                    "feature_val": 4.35005409357903,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "sun",
+                    "word": "sun",
+                    "feature_val": 3.550717423469283,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "water",
+                    "word": "water",
+                    "feature_val": 4.059904055884405,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "light",
+                    "word": "light",
+                    "feature_val": 3.925621454790829,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "dock",
+                    "word": "dock",
+                    "feature_val": 2.6972293427597176,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "friends",
+                    "word": "friends",
+                    "feature_val": 4.192539577314719,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "splash",
+                    "word": "splash",
+                    "feature_val": 2.3344537511509307,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "splash",
+                    "word": "splash",
+                    "feature_val": 2.3344537511509307,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "end",
+                    "word": "end",
+                    "feature_val": 4.132259689531044,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "sound",
+                    "word": "sound",
+                    "feature_val": 3.8641549560020256,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "waves",
+                    "word": "waves",
+                    "feature_val": 2.829303772831025,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "waves",
+                    "word": "waves",
+                    "feature_val": 2.829303772831025,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "shore",
+                    "word": "shore",
+                    "feature_val": 3.0060379549973173,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "lullaby",
+                    "word": "lullaby",
+                    "feature_val": 1.9493900066449128,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "evening",
+                    "word": "evening",
+                    "feature_val": 3.789298611159441,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "evening",
+                    "word": "evening",
+                    "feature_val": 3.789298611159441,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "fireflies",
+                    "word": "fireflies",
+                    "feature_val": 1.724275869600789,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "stars",
+                    "word": "stars",
+                    "feature_val": 3.371806458507416,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "night",
+                    "word": "night",
+                    "feature_val": 4.645117566806543,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "nights",
+                    "word": "nights",
+                    "feature_val": 3.2375437381428744,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "magic",
+                    "word": "magic",
+                    "feature_val": 3.429429264381788,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "memories",
+                    "word": "memories",
+                    "feature_val": 3.0542299098633974,
+                    "is_lemma": 0
+                }
+            ]
+        }
+    },
+    "word_prevalence": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/repeated-words-paragraph.txt",
+            "feature_column": "Prevalence",
+            "dataset_fp": "datasets/dataset_for_word_prevalence_and_familiarity.xlsx",
+            "word_column": "Word",
+            "feature": "word_prevalence"
+        },
+        "data": {
+            "total_nouns": 27,
+            "feature_data": [
+                {
+                    "token.text": "lake",
+                    "word": "lake",
+                    "feature_val": 2.4396109261131995,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "lake",
+                    "word": "lake",
+                    "feature_val": 2.4396109261131995,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "days",
+                    "word": "days",
+                    "feature_val": 2.3359009801422776,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "days",
+                    "word": "days",
+                    "feature_val": 2.3359009801422776,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "morning",
+                    "word": "morning",
+                    "feature_val": 2.5758293035489,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "morning",
+                    "word": "morning",
+                    "feature_val": 2.5758293035489,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "sun",
+                    "word": "sun",
+                    "feature_val": 2.181716874042539,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "water",
+                    "word": "water",
+                    "feature_val": 2.5758293035489,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "light",
+                    "word": "light",
+                    "feature_val": 2.2448756053387955,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "dock",
+                    "word": "dock",
+                    "feature_val": 2.2548482240522865,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "friends",
+                    "word": "friend",
+                    "feature_val": 2.4283018296620758,
+                    "is_lemma": 1
+                },
+                {
+                    "token.text": "splash",
+                    "word": "splash",
+                    "feature_val": 2.4317667294009913,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "splash",
+                    "word": "splash",
+                    "feature_val": 2.4317667294009913,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "end",
+                    "word": "end",
+                    "feature_val": 2.438224232278959,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "sound",
+                    "word": "sound",
+                    "feature_val": 2.1061555861794314,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "waves",
+                    "word": "wave",
+                    "feature_val": 2.5758293035489,
+                    "is_lemma": 1
+                },
+                {
+                    "token.text": "waves",
+                    "word": "wave",
+                    "feature_val": 2.5758293035489,
+                    "is_lemma": 1
+                },
+                {
+                    "token.text": "shore",
+                    "word": "shore",
+                    "feature_val": 2.3249181760445765,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "lullaby",
+                    "word": "lullaby",
+                    "feature_val": 2.063696991722371,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "evening",
+                    "word": "evening",
+                    "feature_val": 2.3328020586284874,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "evening",
+                    "word": "evening",
+                    "feature_val": 2.3328020586284874,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "fireflies",
+                    "word": "firefly",
+                    "feature_val": 2.24714844275362,
+                    "is_lemma": 1
+                },
+                {
+                    "token.text": "stars",
+                    "word": "star",
+                    "feature_val": 2.192050366063893,
+                    "is_lemma": 1
+                },
+                {
+                    "token.text": "night",
+                    "word": "night",
+                    "feature_val": 2.3282280026491335,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "nights",
+                    "word": "nights",
+                    "feature_val": 2.3229851801459622,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "magic",
+                    "word": "magic",
+                    "feature_val": 2.424663530504036,
+                    "is_lemma": 0
+                },
+                {
+                    "token.text": "memories",
+                    "word": "memory",
+                    "feature_val": 2.251046907291525,
+                    "is_lemma": 1
+                }
+            ]
+        }
+    },
+    "tense_inflected_verbs": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/repeated-words-paragraph.txt",
+            "amount": 100,
+            "function": "tense_inflected_verbs"
+        },
+        "data": {
+            "tiv_ratio": 9.45945945945946,
+            "total_tivs": 7,
+            "total_alpha_tokens": 74,
+            "present_verbs": 4,
+            "past_verbs": 0,
+            "modal_auxiliaries": 3,
+            "feature_data": [
+                {
+                    "token.text": "Growing",
+                    "token.pos_": "VERB",
+                    "tense": [
+                        "Pres"
+                    ],
+                    "tag": "VBG",
+                    "word_type": "present_verb"
+                },
+                {
+                    "token.text": "would",
+                    "token.pos_": "AUX",
+                    "tense": [],
+                    "tag": "MD",
+                    "word_type": "modal_auxiliary"
+                },
+                {
+                    "token.text": "casting",
+                    "token.pos_": "VERB",
+                    "tense": [
+                        "Pres"
+                    ],
+                    "tag": "VBG",
+                    "word_type": "present_verb"
+                },
+                {
+                    "token.text": "would",
+                    "token.pos_": "AUX",
+                    "tense": [],
+                    "tag": "MD",
+                    "word_type": "modal_auxiliary"
+                },
+                {
+                    "token.text": "lapping",
+                    "token.pos_": "VERB",
+                    "tense": [
+                        "Pres"
+                    ],
+                    "tag": "VBG",
+                    "word_type": "present_verb"
+                },
+                {
+                    "token.text": "would",
+                    "token.pos_": "AUX",
+                    "tense": [],
+                    "tag": "MD",
+                    "word_type": "modal_auxiliary"
+                },
+                {
+                    "token.text": "lighting",
+                    "token.pos_": "VERB",
+                    "tense": [
+                        "Pres"
+                    ],
+                    "tag": "VBG",
+                    "word_type": "present_verb"
+                }
+            ]
+        }
+    },
+    "dependency_distance": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/repeated-words-paragraph.txt",
+            "function": "dependency_distance"
+        },
+        "data": {
+            "dependency_distance_mean": 2.9381843381843376,
+            "dependency_distance_std": 0.6415007061354028,
+            "prop_adjacent_dependency_relation_mean": 0.38766458766458767,
+            "prop_adjacent_dependency_relation_std": 0.009086505005174644
+        }
+    },
+    "moving_type_token_ratio": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/repeated-words-paragraph.txt",
+            "window_size": 20,
+            "function": "moving_type_token_ratio"
+        },
+        "data": {
+            "average_type_token_ratio": 0.8272727272727277,
+            "num_windows": 55,
+            "windows": [
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 15,
+                    "type_token_ratio": 0.75
+                },
+                {
+                    "num_unique_words": 15,
+                    "type_token_ratio": 0.75
+                },
+                {
+                    "num_unique_words": 15,
+                    "type_token_ratio": 0.75
+                },
+                {
+                    "num_unique_words": 15,
+                    "type_token_ratio": 0.75
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 15,
+                    "type_token_ratio": 0.75
+                },
+                {
+                    "num_unique_words": 15,
+                    "type_token_ratio": 0.75
+                },
+                {
+                    "num_unique_words": 15,
+                    "type_token_ratio": 0.75
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 17,
+                    "type_token_ratio": 0.85
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 17,
+                    "type_token_ratio": 0.85
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 17,
+                    "type_token_ratio": 0.85
+                },
+                {
+                    "num_unique_words": 17,
+                    "type_token_ratio": 0.85
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 17,
+                    "type_token_ratio": 0.85
+                },
+                {
+                    "num_unique_words": 17,
+                    "type_token_ratio": 0.85
+                },
+                {
+                    "num_unique_words": 17,
+                    "type_token_ratio": 0.85
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 17,
+                    "type_token_ratio": 0.85
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 17,
+                    "type_token_ratio": 0.85
+                },
+                {
+                    "num_unique_words": 17,
+                    "type_token_ratio": 0.85
+                },
+                {
+                    "num_unique_words": 16,
+                    "type_token_ratio": 0.8
+                },
+                {
+                    "num_unique_words": 17,
+                    "type_token_ratio": 0.85
+                },
+                {
+                    "num_unique_words": 17,
+                    "type_token_ratio": 0.85
+                },
+                {
+                    "num_unique_words": 17,
+                    "type_token_ratio": 0.85
+                },
+                {
+                    "num_unique_words": 17,
+                    "type_token_ratio": 0.85
+                },
+                {
+                    "num_unique_words": 17,
+                    "type_token_ratio": 0.85
+                },
+                {
+                    "num_unique_words": 17,
+                    "type_token_ratio": 0.85
+                },
+                {
+                    "num_unique_words": 18,
+                    "type_token_ratio": 0.9
+                },
+                {
+                    "num_unique_words": 18,
+                    "type_token_ratio": 0.9
+                },
+                {
+                    "num_unique_words": 18,
+                    "type_token_ratio": 0.9
+                },
+                {
+                    "num_unique_words": 19,
+                    "type_token_ratio": 0.95
+                },
+                {
+                    "num_unique_words": 18,
+                    "type_token_ratio": 0.9
+                },
+                {
+                    "num_unique_words": 18,
+                    "type_token_ratio": 0.9
+                },
+                {
+                    "num_unique_words": 18,
+                    "type_token_ratio": 0.9
+                },
+                {
+                    "num_unique_words": 18,
+                    "type_token_ratio": 0.9
+                },
+                {
+                    "num_unique_words": 18,
+                    "type_token_ratio": 0.9
+                },
+                {
+                    "num_unique_words": 17,
+                    "type_token_ratio": 0.85
+                },
+                {
+                    "num_unique_words": 17,
+                    "type_token_ratio": 0.85
+                }
+            ]
+        }
+    },
+    "nonword_frequency": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/repeated-words-paragraph.txt",
+            "dataset_fp": "datasets/words_alpha.txt",
+            "amount": 100,
+            "function": "nonword_frequency"
+        },
+        "data": {
+            "total_nonwords": 0,
+            "total_words": 74,
+            "nonword_frequency": 0.0
+        }
+    },
+    "word_repetition": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/repeated-words-paragraph.txt",
+            "function": "word_repetition"
+        },
+        "data": {
+            "most_frequent_word": "the",
+            "most_frequent_ct": 6,
+            "repeating_words": 33,
+            "unique_words": 54,
+            "repeating_to_unique_ratio": 0.6111111111111112,
+            "consecutive_words": 5
+        }
+    },
+    "doc_similarity": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/repeated-words-paragraph.txt",
+            "window_size": 3,
+            "function": "doc_similarity"
+        },
+        "data": {
+            "avg_similarity_score": 0.39236111111111105,
+            "max_similarity_score": 0.68,
+            "min_similarity_score": 0.12333333333333335,
+            "std_similarity_score": 0.1162998088558451,
+            "num_windows": 72,
+            "windows": [
+                {
+                    "avg_similarity_score": 0.4033333333333333,
+                    "max_similarity_score": 0.48,
+                    "min_similarity_score": 0.26,
+                    "std_similarity_score": 0.12423096769056147
+                },
+                {
+                    "avg_similarity_score": 0.4666666666666666,
+                    "max_similarity_score": 0.55,
+                    "min_similarity_score": 0.38,
+                    "std_similarity_score": 0.08504900548115384
+                },
+                {
+                    "avg_similarity_score": 0.29333333333333333,
+                    "max_similarity_score": 0.38,
+                    "min_similarity_score": 0.25,
+                    "std_similarity_score": 0.07505553499465135
+                },
+                {
+                    "avg_similarity_score": 0.5,
+                    "max_similarity_score": 1.0,
+                    "min_similarity_score": 0.25,
+                    "std_similarity_score": 0.4330127018922193
+                },
+                {
+                    "avg_similarity_score": 0.45999999999999996,
+                    "max_similarity_score": 1.0,
+                    "min_similarity_score": 0.19,
+                    "std_similarity_score": 0.4676537180435969
+                },
+                {
+                    "avg_similarity_score": 0.27666666666666667,
+                    "max_similarity_score": 0.41,
+                    "min_similarity_score": 0.19,
+                    "std_similarity_score": 0.11718930554164629
+                },
+                {
+                    "avg_similarity_score": 0.37999999999999995,
+                    "max_similarity_score": 0.42,
+                    "min_similarity_score": 0.31,
+                    "std_similarity_score": 0.060827625302982184
+                },
+                {
+                    "avg_similarity_score": 0.42,
+                    "max_similarity_score": 0.51,
+                    "min_similarity_score": 0.33,
+                    "std_similarity_score": 0.09
+                },
+                {
+                    "avg_similarity_score": 0.3666666666666667,
+                    "max_similarity_score": 0.51,
+                    "min_similarity_score": 0.28,
+                    "std_similarity_score": 0.12503332889007368
+                },
+                {
+                    "avg_similarity_score": 0.43,
+                    "max_similarity_score": 0.52,
+                    "min_similarity_score": 0.28,
+                    "std_similarity_score": 0.1307669683062202
+                },
+                {
+                    "avg_similarity_score": 0.5066666666666667,
+                    "max_similarity_score": 0.52,
+                    "min_similarity_score": 0.49,
+                    "std_similarity_score": 0.01527525231651948
+                },
+                {
+                    "avg_similarity_score": 0.68,
+                    "max_similarity_score": 1.0,
+                    "min_similarity_score": 0.52,
+                    "std_similarity_score": 0.27712812921102037
+                },
+                {
+                    "avg_similarity_score": 0.5933333333333334,
+                    "max_similarity_score": 1.0,
+                    "min_similarity_score": 0.39,
+                    "std_similarity_score": 0.3521836642056717
+                },
+                {
+                    "avg_similarity_score": 0.4033333333333333,
+                    "max_similarity_score": 0.46,
+                    "min_similarity_score": 0.36,
+                    "std_similarity_score": 0.051316014394468853
+                },
+                {
+                    "avg_similarity_score": 0.3866666666666667,
+                    "max_similarity_score": 0.53,
+                    "min_similarity_score": 0.27,
+                    "std_similarity_score": 0.13203534880225573
+                },
+                {
+                    "avg_similarity_score": 0.35333333333333333,
+                    "max_similarity_score": 0.44,
+                    "min_similarity_score": 0.27,
+                    "std_similarity_score": 0.08504900548115382
+                },
+                {
+                    "avg_similarity_score": 0.43,
+                    "max_similarity_score": 0.44,
+                    "min_similarity_score": 0.41,
+                    "std_similarity_score": 0.017320508075688787
+                },
+                {
+                    "avg_similarity_score": 0.45999999999999996,
+                    "max_similarity_score": 0.48,
+                    "min_similarity_score": 0.44,
+                    "std_similarity_score": 0.01999999999999999
+                },
+                {
+                    "avg_similarity_score": 0.48,
+                    "max_similarity_score": 0.55,
+                    "min_similarity_score": 0.41,
+                    "std_similarity_score": 0.07000000000000003
+                },
+                {
+                    "avg_similarity_score": 0.4566666666666667,
+                    "max_similarity_score": 0.55,
+                    "min_similarity_score": 0.4,
+                    "std_similarity_score": 0.0814452781524708
+                },
+                {
+                    "avg_similarity_score": 0.3,
+                    "max_similarity_score": 0.4,
+                    "min_similarity_score": 0.23,
+                    "std_similarity_score": 0.0888819441731559
+                },
+                {
+                    "avg_similarity_score": 0.28,
+                    "max_similarity_score": 0.31,
+                    "min_similarity_score": 0.26,
+                    "std_similarity_score": 0.026457513110645897
+                },
+                {
+                    "avg_similarity_score": 0.33,
+                    "max_similarity_score": 0.45,
+                    "min_similarity_score": 0.26,
+                    "std_similarity_score": 0.1044030650891055
+                },
+                {
+                    "avg_similarity_score": 0.38000000000000006,
+                    "max_similarity_score": 0.45,
+                    "min_similarity_score": 0.34,
+                    "std_similarity_score": 0.060827625302982205
+                },
+                {
+                    "avg_similarity_score": 0.44,
+                    "max_similarity_score": 0.55,
+                    "min_similarity_score": 0.35,
+                    "std_similarity_score": 0.10148891565092223
+                },
+                {
+                    "avg_similarity_score": 0.33666666666666667,
+                    "max_similarity_score": 0.55,
+                    "min_similarity_score": 0.22,
+                    "std_similarity_score": 0.1850225211517056
+                },
+                {
+                    "avg_similarity_score": 0.37999999999999995,
+                    "max_similarity_score": 0.61,
+                    "min_similarity_score": 0.24,
+                    "std_similarity_score": 0.2007485989988473
+                },
+                {
+                    "avg_similarity_score": 0.3133333333333333,
+                    "max_similarity_score": 0.43,
+                    "min_similarity_score": 0.22,
+                    "std_similarity_score": 0.10692676621563627
+                },
+                {
+                    "avg_similarity_score": 0.49,
+                    "max_similarity_score": 0.58,
+                    "min_similarity_score": 0.43,
+                    "std_similarity_score": 0.07937253933193769
+                },
+                {
+                    "avg_similarity_score": 0.49333333333333335,
+                    "max_similarity_score": 0.58,
+                    "min_similarity_score": 0.44,
+                    "std_similarity_score": 0.07571877794400363
+                },
+                {
+                    "avg_similarity_score": 0.4033333333333333,
+                    "max_similarity_score": 0.46,
+                    "min_similarity_score": 0.32,
+                    "std_similarity_score": 0.07371114795831994
+                },
+                {
+                    "avg_similarity_score": 0.45333333333333337,
+                    "max_similarity_score": 0.53,
+                    "min_similarity_score": 0.32,
+                    "std_similarity_score": 0.11590225767142474
+                },
+                {
+                    "avg_similarity_score": 0.45333333333333337,
+                    "max_similarity_score": 0.53,
+                    "min_similarity_score": 0.38,
+                    "std_similarity_score": 0.07505553499465135
+                },
+                {
+                    "avg_similarity_score": 0.6333333333333333,
+                    "max_similarity_score": 1.0,
+                    "min_similarity_score": 0.45,
+                    "std_similarity_score": 0.31754264805429416
+                },
+                {
+                    "avg_similarity_score": 0.52,
+                    "max_similarity_score": 1.0,
+                    "min_similarity_score": 0.28,
+                    "std_similarity_score": 0.41569219381653055
+                },
+                {
+                    "avg_similarity_score": 0.28,
+                    "max_similarity_score": 0.39,
+                    "min_similarity_score": 0.17,
+                    "std_similarity_score": 0.11
+                },
+                {
+                    "avg_similarity_score": 0.4466666666666667,
+                    "max_similarity_score": 1.0,
+                    "min_similarity_score": 0.17,
+                    "std_similarity_score": 0.4792007234273894
+                },
+                {
+                    "avg_similarity_score": 0.47333333333333333,
+                    "max_similarity_score": 1.0,
+                    "min_similarity_score": 0.21,
+                    "std_similarity_score": 0.45610671265980435
+                },
+                {
+                    "avg_similarity_score": 0.27999999999999997,
+                    "max_similarity_score": 0.36,
+                    "min_similarity_score": 0.21,
+                    "std_similarity_score": 0.0754983443527075
+                },
+                {
+                    "avg_similarity_score": 0.4066666666666667,
+                    "max_similarity_score": 0.54,
+                    "min_similarity_score": 0.32,
+                    "std_similarity_score": 0.11718930554164633
+                },
+                {
+                    "avg_similarity_score": 0.39999999999999997,
+                    "max_similarity_score": 0.52,
+                    "min_similarity_score": 0.32,
+                    "std_similarity_score": 0.10583005244258363
+                },
+                {
+                    "avg_similarity_score": 0.54,
+                    "max_similarity_score": 0.6,
+                    "min_similarity_score": 0.5,
+                    "std_similarity_score": 0.052915026221291794
+                },
+                {
+                    "avg_similarity_score": 0.4333333333333333,
+                    "max_similarity_score": 0.6,
+                    "min_similarity_score": 0.34,
+                    "std_similarity_score": 0.14468356276140468
+                },
+                {
+                    "avg_similarity_score": 0.4566666666666666,
+                    "max_similarity_score": 0.71,
+                    "min_similarity_score": 0.3,
+                    "std_similarity_score": 0.22143471573656495
+                },
+                {
+                    "avg_similarity_score": 0.33,
+                    "max_similarity_score": 0.39,
+                    "min_similarity_score": 0.3,
+                    "std_similarity_score": 0.05196152422706633
+                },
+                {
+                    "avg_similarity_score": 0.5333333333333333,
+                    "max_similarity_score": 1.0,
+                    "min_similarity_score": 0.3,
+                    "std_similarity_score": 0.40414518843273806
+                },
+                {
+                    "avg_similarity_score": 0.5933333333333334,
+                    "max_similarity_score": 1.0,
+                    "min_similarity_score": 0.39,
+                    "std_similarity_score": 0.3521836642056717
+                },
+                {
+                    "avg_similarity_score": 0.41333333333333333,
+                    "max_similarity_score": 0.44,
+                    "min_similarity_score": 0.39,
+                    "std_similarity_score": 0.02516611478423583
+                },
+                {
+                    "avg_similarity_score": 0.25666666666666665,
+                    "max_similarity_score": 0.44,
+                    "min_similarity_score": 0.13,
+                    "std_similarity_score": 0.16258331197676265
+                },
+                {
+                    "avg_similarity_score": 0.25333333333333335,
+                    "max_similarity_score": 0.48,
+                    "min_similarity_score": 0.13,
+                    "std_similarity_score": 0.19655363983740756
+                },
+                {
+                    "avg_similarity_score": 0.33666666666666667,
+                    "max_similarity_score": 0.48,
+                    "min_similarity_score": 0.2,
+                    "std_similarity_score": 0.140118997046558
+                },
+                {
+                    "avg_similarity_score": 0.35333333333333333,
+                    "max_similarity_score": 0.5,
+                    "min_similarity_score": 0.23,
+                    "std_similarity_score": 0.13650396819628846
+                },
+                {
+                    "avg_similarity_score": 0.27,
+                    "max_similarity_score": 0.3,
+                    "min_similarity_score": 0.23,
+                    "std_similarity_score": 0.03605551275463988
+                },
+                {
+                    "avg_similarity_score": 0.12333333333333335,
+                    "max_similarity_score": 0.28,
+                    "min_similarity_score": 0.02,
+                    "std_similarity_score": 0.13796134724383252
+                },
+                {
+                    "avg_similarity_score": 0.19000000000000003,
+                    "max_similarity_score": 0.51,
+                    "min_similarity_score": 0.02,
+                    "std_similarity_score": 0.27730849247724093
+                },
+                {
+                    "avg_similarity_score": 0.18666666666666668,
+                    "max_similarity_score": 0.44,
+                    "min_similarity_score": 0.04,
+                    "std_similarity_score": 0.22030282189144407
+                },
+                {
+                    "avg_similarity_score": 0.43333333333333335,
+                    "max_similarity_score": 0.49,
+                    "min_similarity_score": 0.37,
+                    "std_similarity_score": 0.06027713773341708
+                },
+                {
+                    "avg_similarity_score": 0.66,
+                    "max_similarity_score": 1.0,
+                    "min_similarity_score": 0.49,
+                    "std_similarity_score": 0.2944486372867091
+                },
+                {
+                    "avg_similarity_score": 0.4533333333333333,
+                    "max_similarity_score": 1.0,
+                    "min_similarity_score": 0.18,
+                    "std_similarity_score": 0.4734272207354931
+                },
+                {
+                    "avg_similarity_score": 0.19666666666666668,
+                    "max_similarity_score": 0.35,
+                    "min_similarity_score": 0.06,
+                    "std_similarity_score": 0.14571661996262927
+                },
+                {
+                    "avg_similarity_score": 0.20666666666666667,
+                    "max_similarity_score": 0.29,
+                    "min_similarity_score": 0.06,
+                    "std_similarity_score": 0.12741009902410927
+                },
+                {
+                    "avg_similarity_score": 0.4533333333333333,
+                    "max_similarity_score": 0.7,
+                    "min_similarity_score": 0.29,
+                    "std_similarity_score": 0.21733231083604052
+                },
+                {
+                    "avg_similarity_score": 0.3333333333333333,
+                    "max_similarity_score": 0.42,
+                    "min_similarity_score": 0.21,
+                    "std_similarity_score": 0.1096965511460289
+                },
+                {
+                    "avg_similarity_score": 0.33,
+                    "max_similarity_score": 0.42,
+                    "min_similarity_score": 0.26,
+                    "std_similarity_score": 0.08185352771872449
+                },
+                {
+                    "avg_similarity_score": 0.20333333333333334,
+                    "max_similarity_score": 0.26,
+                    "min_similarity_score": 0.15,
+                    "std_similarity_score": 0.055075705472861024
+                },
+                {
+                    "avg_similarity_score": 0.19666666666666666,
+                    "max_similarity_score": 0.26,
+                    "min_similarity_score": 0.15,
+                    "std_similarity_score": 0.056862407030773277
+                },
+                {
+                    "avg_similarity_score": 0.31333333333333335,
+                    "max_similarity_score": 0.36,
+                    "min_similarity_score": 0.26,
+                    "std_similarity_score": 0.05033222956847166
+                },
+                {
+                    "avg_similarity_score": 0.49,
+                    "max_similarity_score": 0.8,
+                    "min_similarity_score": 0.31,
+                    "std_similarity_score": 0.2696293752542553
+                },
+                {
+                    "avg_similarity_score": 0.4833333333333334,
+                    "max_similarity_score": 0.8,
+                    "min_similarity_score": 0.27,
+                    "std_similarity_score": 0.27970222261064237
+                },
+                {
+                    "avg_similarity_score": 0.28,
+                    "max_similarity_score": 0.3,
+                    "min_similarity_score": 0.27,
+                    "std_similarity_score": 0.017320508075688756
+                },
+                {
+                    "avg_similarity_score": 0.39333333333333337,
+                    "max_similarity_score": 0.67,
+                    "min_similarity_score": 0.24,
+                    "std_similarity_score": 0.2400694344004112
+                },
+                {
+                    "avg_similarity_score": 0.3133333333333333,
+                    "max_similarity_score": 0.37,
+                    "min_similarity_score": 0.24,
+                    "std_similarity_score": 0.06658328118479394
+                }
+            ]
+        }
+    },
+    "sent_similarity": {
+        "parameters": {
+            "model": "en_core_web_lg",
+            "filepath": "sample_text/repeated-words-paragraph.txt",
+            "function": "sent_similarity"
+        },
+        "data": {
+            "avg_similarity_score": 0.8733333333333334,
+            "max_similarity_score": 0.91,
+            "min_similarity_score": 0.83,
+            "std_similarity_score": 0.040414518843273836,
+            "num_sentences": 3
+        }
+    }
+}

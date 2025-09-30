@@ -1,0 +1,177 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/repeated-words-paragraph.txt",
+        "feature_column": "Prevalence",
+        "dataset_fp": "datasets/dataset_for_word_prevalence_and_familiarity.xlsx",
+        "word_column": "Word",
+        "feature": "word_prevalence"
+    },
+    "data": {
+        "total_nouns": 27,
+        "feature_data": [
+            {
+                "token.text": "lake",
+                "word": "lake",
+                "feature_val": 2.4396109261131995,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "lake",
+                "word": "lake",
+                "feature_val": 2.4396109261131995,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "days",
+                "word": "days",
+                "feature_val": 2.3359009801422776,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "days",
+                "word": "days",
+                "feature_val": 2.3359009801422776,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "morning",
+                "word": "morning",
+                "feature_val": 2.5758293035489,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "morning",
+                "word": "morning",
+                "feature_val": 2.5758293035489,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "sun",
+                "word": "sun",
+                "feature_val": 2.181716874042539,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "water",
+                "word": "water",
+                "feature_val": 2.5758293035489,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "light",
+                "word": "light",
+                "feature_val": 2.2448756053387955,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "dock",
+                "word": "dock",
+                "feature_val": 2.2548482240522865,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "friends",
+                "word": "friend",
+                "feature_val": 2.4283018296620758,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "splash",
+                "word": "splash",
+                "feature_val": 2.4317667294009913,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "splash",
+                "word": "splash",
+                "feature_val": 2.4317667294009913,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "end",
+                "word": "end",
+                "feature_val": 2.438224232278959,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "sound",
+                "word": "sound",
+                "feature_val": 2.1061555861794314,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "waves",
+                "word": "wave",
+                "feature_val": 2.5758293035489,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "waves",
+                "word": "wave",
+                "feature_val": 2.5758293035489,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "shore",
+                "word": "shore",
+                "feature_val": 2.3249181760445765,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "lullaby",
+                "word": "lullaby",
+                "feature_val": 2.063696991722371,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "evening",
+                "word": "evening",
+                "feature_val": 2.3328020586284874,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "evening",
+                "word": "evening",
+                "feature_val": 2.3328020586284874,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "fireflies",
+                "word": "firefly",
+                "feature_val": 2.24714844275362,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "stars",
+                "word": "star",
+                "feature_val": 2.192050366063893,
+                "is_lemma": 1
+            },
+            {
+                "token.text": "night",
+                "word": "night",
+                "feature_val": 2.3282280026491335,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "nights",
+                "word": "nights",
+                "feature_val": 2.3229851801459622,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "magic",
+                "word": "magic",
+                "feature_val": 2.424663530504036,
+                "is_lemma": 0
+            },
+            {
+                "token.text": "memories",
+                "word": "memory",
+                "feature_val": 2.251046907291525,
+                "is_lemma": 1
+            }
+        ]
+    }
+}
