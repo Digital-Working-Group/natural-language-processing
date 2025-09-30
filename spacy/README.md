@@ -46,6 +46,7 @@ Without downloading the model, one may encounter errors such as:
 ```
 OSError: [E050] Can't find model 'en_core_web_lg'. It doesn't seem to be a Python package or a valid path to a data directory.
 ```
+
 ## Sample Input Text Files
 ```
 sample_text
@@ -55,6 +56,9 @@ sample_text
 |-- story_with_nonwords.txt ## A multi-paragraph story with nonwords
 ```
 
+## Sample Output Files
+
+For each sample text file, each feature will have a separate JSON output file.
 ## Extracting Linguistic Features
 
 See [main.py](main.py) for usage examples across all functions.
@@ -67,6 +71,8 @@ Each function takes in a spaCy model and filepath, which are loaded into a NLPUt
 | - | - | - |
 | model | The spaCy model to load and use for tagging parts of speech. | 'en_core_web_lg' |
 | filepath | The filepath to a text file to process. | 'sample_text/story.txt' |
+
+## Feature Documentation
 
 ### Parts of Speech Tagging
 

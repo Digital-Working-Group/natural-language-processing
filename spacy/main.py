@@ -55,9 +55,6 @@ def main():
         sem_c.word_prevalence(nlp_util)
 
         syn_c.tense_inflected_verbs(nlp_util)
-        # pipe_list = ['textdescriptives/dependency_distance']
-        # pipe_nlp_util = NLPUtil(model, filepath, pipe_list=pipe_list)
-        # syn_c.dependency_distance(pipe_nlp_util)
         syn_c.dependency_distance(nlp_util)
         lex_v.moving_type_token_ratio(nlp_util)
 
