@@ -224,7 +224,7 @@ Here is an excerpt from [story_nouns.json](sample_text/alpha_pos_ratio/en_core_w
 | data.sent_std | Standard deviation of POS ratio across all sentences. If there are <2 sentences, is set to None. | 0.08 |
 | data.sent_total | Total number of sentences. | 33 |
 
-Please see [sample_text/alpha_pos_ratio/en_core_web_lg](sample_text/alpha_pos_ratio_sentences/en_core_web_lg) for sample output.
+Please see [sample_text/alpha_pos_ratio_sentences/en_core_web_lg](sample_text/alpha_pos_ratio_sentences/en_core_web_lg) for sample output.
 
 Here is an excerpt from [story_nouns.json](sample_text/alpha_pos_ratio_sentences/en_core_web_lg/story_nouns.json):
 
