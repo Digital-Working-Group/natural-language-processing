@@ -33,7 +33,7 @@ def main():
     iso_now = datetime.now().isoformat().replace(':', '-').replace('.', '-')
     for filepath in sample_files:
         pipe_list = ['textdescriptives/dependency_distance']
-        nlp_util = NLPUtil(model, filepath, pipe_list=pipe_list)
+        nlp_util = NLPUtil(model, filepath, pipe_list=pipe_list, do_write_json=False)
         tag_list = ['POS', 'TAG']
         pos_t.pos_tag_ratio(nlp_util, tag_list, amount=100)
 

@@ -15,6 +15,7 @@ class NLPUtil:
         constructor
         """
         pipe_list = kwargs.get('pipe_list', [])
+        self.do_write_json = kwargs.get('do_write_json', True)
         self.model = model
         self.filepath = filepath
         self.path_filepath = Path(filepath)
@@ -33,12 +34,13 @@ class NLPUtil:
         quiet = kwargs.get('quiet', False)
         ext = kwargs.get('ext', '')
         add_to_data = kwargs.get('add_to_data', function)
-        ext = f'_{ext}' if '_' not in ext and ext != '' else ext
-        filename = f'{self.path_filepath.stem}{ext}'
-        out_fp = self.path_filepath.parent.joinpath(function, self.model, f'{filename}.json')
-        json_save(final_data, out_fp)
-        if not quiet:
-            print(f'wrote: {out_fp}')
+        if self.do_write_json:
+            ext = f'_{ext}' if '_' not in ext and ext != '' else ext
+            filename = f'{self.path_filepath.stem}{ext}'
+            out_fp = self.path_filepath.parent.joinpath(function, self.model, f'{filename}.json')
+            json_save(final_data, out_fp)
+            if not quiet:
+                print(f'wrote: {out_fp}')
         if add_to_data is not None:
             self.data[function] = final_data
 

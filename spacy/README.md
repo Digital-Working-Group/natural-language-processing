@@ -64,13 +64,11 @@ sample_text
 |-- story_with_nonwords.txt ## A multi-paragraph story with nonwords
 ```
 
-## Sample Output Files
+## Sample Usage
 
 For each sample text file, each feature will have a separate JSON output file (see [sample_text/pos_tag_ratio/en_core_web_lg](sample_text/pos_tag_ratio/en_core_web_lg)). Additionally, for each sample text file, a single JSON is created with all features (see [sample_text/data/en_core_web_lg](sample_text/data/en_core_web_lg)).
 
-## Extracting Linguistic Features
-
-See [main.py](main.py) for usage examples across all functions.
+See [main.py](main.py) for usage examples across all functions. If `nlp_util` has `do_write_json` set to False, then individual separate JSON output files aren't created and only a single JSON is created with all features per input text file.
 
 ## Common Inputs
 
