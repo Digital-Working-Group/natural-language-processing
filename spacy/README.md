@@ -66,7 +66,7 @@ sample_text
 
 ## Sample Output Files
 
-For each sample text file, each feature will have a separate JSON output file (see [sample_text/pos_tag_ratio/en_core_web_lg](sample_text/pos_tag_ratio/en_core_web_lg)). Additionally, for each sample text file, a single JSON is created with all features (see [sample_text/data/en_core_web_lg](sample_text/data/en_core_web_lg])).
+For each sample text file, each feature will have a separate JSON output file (see [sample_text/pos_tag_ratio/en_core_web_lg](sample_text/pos_tag_ratio/en_core_web_lg)). Additionally, for each sample text file, a single JSON is created with all features (see [sample_text/data/en_core_web_lg](sample_text/data/en_core_web_lg)).
 
 ## Extracting Linguistic Features
 
