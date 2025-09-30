@@ -5,7 +5,7 @@ Functions related to text similarity.
 import itertools
 import statistics
 
-def get_similarity_from_words(nlp, first, second):
+def get_similarity(nlp, first, second):
     """
     get similarity of two tokens
     """
@@ -35,7 +35,7 @@ def doc_similarity(nlp_util, window_size=3):
         window_similarity_scores = []
         words_in_window = word_list[idx: idx + window_size]
         for first, second in itertools.combinations(words_in_window, 2):
-            window_similarity_scores.append(get_similarity_from_words(nlp_util.nlp, first, second))
+            window_similarity_scores.append(get_similarity(nlp_util.nlp, first, second))
         windows.append(get_similarity_stats(window_similarity_scores))
         similarity_scores.append(windows[idx]['avg_similarity_score'])
     data = get_similarity_stats(similarity_scores)
@@ -46,20 +46,20 @@ def doc_similarity(nlp_util, window_size=3):
     final_data = {'parameters': parameters, 'data': data}
     nlp_util.write_json_model(function, final_data)
 
-# def mean_similarity_of_sentences(nlp, file_path):
-#     """
-#     Takes in a natural language processor and file path
-#     calculates mean similarity of all combinations of sentences
-#     Returns mean similarity of all sentences
-#     """
-#     doc = nlp(Path(file_path).read_text(encoding='utf-8'))
-#     sentence_list = list(doc.sents)
-#     similarity_scores = []
-#     for comb in itertools.combinations(sentence_list, 2):
-#         sentence_one = str(comb[0])
-#         sentence_two = str(comb[1])
-#         doc_one = nlp(sentence_one)
-#         doc_two = nlp(sentence_two)
-#         similarity_score = round(doc_one.similarity(doc_two), 2)
-#         similarity_scores.append(similarity_score)
-#     return sum(similarity_scores) / len(similarity_scores)
+def sent_similarity(nlp_util):
+    """
+    calculates word similarity of sentences over a document's alphanumeric tokens.
+    """
+    sentence_list = list(nlp_util.doc.sents)
+    similarity_scores = []
+    for first, second in itertools.combinations(sentence_list, 2):
+        first = " ".join([t.text.lower() for t in first if t.is_alpha])
+        second = " ".join([t.text.lower() for t in second if t.is_alpha])
+        similarity_scores.append(get_similarity(nlp_util.nlp, first, second))
+    data = get_similarity_stats(similarity_scores)
+    data.update({'num_sentences': len(sentence_list)})
+    function = 'sent_similarity'
+    parameters = {'model': nlp_util.model, 'filepath': nlp_util.filepath,
+        'function': function}
+    final_data = {'parameters': parameters, 'data': data}
+    nlp_util.write_json_model(function, final_data)

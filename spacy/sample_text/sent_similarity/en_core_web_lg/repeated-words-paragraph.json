@@ -1,0 +1,14 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/repeated-words-paragraph.txt",
+        "function": "sent_similarity"
+    },
+    "data": {
+        "avg_similarity_score": 0.8733333333333334,
+        "max_similarity_score": 0.91,
+        "min_similarity_score": 0.83,
+        "std_similarity_score": 0.040414518843273836,
+        "num_sentences": 3
+    }
+}

@@ -1160,6 +1160,47 @@ Here is an excerpt from [sentence.json](sample_text/doc_similarity/en_core_web_l
 }
 ```
 
+### Sent Similarity
+
+`similarity.sent_similarity()` calculates word similarity of sentences over a document's alphanumeric tokens.
+
+#### Input
+
+Only takes in the [Common Inputs](#common-inputs), which are model and filepath.
+
+#### Output
+
+| Key | Description | Example |
+| - | - | - |
+| parameters | The parameters of the function. | See the Input table and below. |
+| parameters.function | The name of the function. | See below. |
+| data.avg_similarity_score | The average of all the sentences' similarity scores. | 0.859 |
+| data.max_similarity_score | The maximum of all the sentences' similarity scores. | 0.97 |
+| data.min_similarity_score | The minimum of all the sentences' similarity scores. | 0.66 |
+| data.std_similarity_score | The standard deviation of all the sentences' similarity scores. | 0.06 |
+| data.num_sentences | The total number of sentences in the document. | 34 |
+
+Please see [sample_text/sent_similarity/en_core_web_lg](sample_text/sent_similarity/en_core_web_lg) for sample output.
+
+Here is an excerpt from [story.json](sample_text/sent_similarity/en_core_web_lg/story.json):
+
+```json
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/story.txt",
+        "function": "sent_similarity"
+    },
+    "data": {
+        "avg_similarity_score": 0.8591443850267388,
+        "max_similarity_score": 0.97,
+        "min_similarity_score": 0.66,
+        "std_similarity_score": 0.0586939596675117,
+        "num_sentences": 34
+    }
+}
+```
+
 ## Extracting Linguistic Features
 
 ### Similarity

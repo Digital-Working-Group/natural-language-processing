@@ -1,0 +1,14 @@
+{
+    "parameters": {
+        "model": "en_core_web_lg",
+        "filepath": "sample_text/story.txt",
+        "function": "sent_similarity"
+    },
+    "data": {
+        "avg_similarity_score": 0.8591443850267388,
+        "max_similarity_score": 0.97,
+        "min_similarity_score": 0.66,
+        "std_similarity_score": 0.0586939596675117,
+        "num_sentences": 34
+    }
+}

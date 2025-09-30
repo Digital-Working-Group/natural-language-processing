@@ -64,8 +64,11 @@ def main():
         # syn_e.nonword_frequency(nlp_util, amount=100)
 
         # lex_r.word_repetition(nlp_util)
-        sim.doc_similarity(nlp_util)
-        nlp_util.write_all_data(iso_now)
+        # sim.doc_similarity(nlp_util)
+        if 'sentence.txt' not in filepath:
+            sim.sent_similarity(nlp_util)
+        if nlp_util.data != {}:
+            nlp_util.write_all_data(iso_now)
 
 if __name__ == '__main__':
     main()
