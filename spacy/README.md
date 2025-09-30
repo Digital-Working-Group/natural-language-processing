@@ -6,7 +6,14 @@ This repository contains examples of how to use the [spaCy Python library](https
 ### Python Requirements
 
 ```
-
+spacy
+   |-- requirements
+   |   |-- py3-10-11
+   |   |   |-- Dockerfile
+   |   |   |-- build_docker.sh
+   |   |   |-- pip-licenses.md
+   |   |   |-- requirements.txt
+   |   |   |-- run_docker.sh
 ```
 
 Check your Python version:
